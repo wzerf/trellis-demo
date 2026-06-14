@@ -1,0 +1,12 @@
+{"file": ".trellis/spec/backend/index.md", "reason": "后端规范总览，作为 check 子代理的质量基线"}
+{"file": ".trellis/spec/backend/directory-structure.md", "reason": "验证四模块结构与包命名符合规范"}
+{"file": ".trellis/spec/backend/database-guidelines.md", "reason": "验证 Easy-Query 接入符合规范（starter 版本、实体注解、Repository 写法）"}
+{"file": ".trellis/spec/backend/logging-guidelines.md", "reason": "验证 MDC traceId 写入与 Logback pattern 正确"}
+{"file": ".trellis/spec/backend/error-handling.md", "reason": "验证统一响应 Result 包装与异常处理覆盖"}
+{"file": ".trellis/spec/backend/quality-guidelines.md", "reason": "验证单测覆盖率、Mockito 使用、无 hardcode"}
+{"file": ".trellis/spec/backend/infra-flyway.md", "reason": "验证 Flyway V1/V2 SQL、dev/prod 隔离、配置 baseline"}
+{"file": ".trellis/spec/backend/infra-docker-compose.md", "reason": "验证 docker-compose.yml 语法、healthcheck、命名 volume、.env 隔离、Nacos 服务正常"}
+{"file": ".trellis/spec/backend/infra-nacos.md", "reason": "验证 Nacos @ConditionalOnProperty 开关、双 dataId、namespace 隔离、降级路径"}
+{"file": ".trellis/tasks/06-14-java-admin-backend/prd.md", "reason": "对照验收标准逐项核验（含 Docker Compose + Flyway + Nacos 验收）"}
+{"file": ".trellis/tasks/06-14-java-admin-backend/design.md", "reason": "对照设计契约验证模块依赖、数据流、AOP 顺序、Flyway profile 隔离、Compose 编排、Nacos 可插拔"}
+{"file": ".trellis/tasks/06-14-java-admin-backend/implement.md", "reason": "对照执行计划验证阶段产物、验证命令产出"}

@@ -1,0 +1,12 @@
+{"file": ".trellis/spec/backend/index.md", "reason": "后端规范总览，决定子代理如何按团队规范生成代码与配置"}
+{"file": ".trellis/spec/backend/directory-structure.md", "reason": "约定四模块(api/common/service/infra)结构与包布局"}
+{"file": ".trellis/spec/backend/database-guidelines.md", "reason": "Easy-Query 接入规范、参考路径与版本约束"}
+{"file": ".trellis/spec/backend/logging-guidelines.md", "reason": "MDC traceId + Logback pattern 规范"}
+{"file": ".trellis/spec/backend/error-handling.md", "reason": "统一响应 Result、异常体系、GlobalExceptionHandler 规范"}
+{"file": ".trellis/spec/backend/quality-guidelines.md", "reason": "代码评审标准、Mockito 单测要求"}
+{"file": ".trellis/spec/backend/infra-flyway.md", "reason": "Flyway 迁移规范：V1/V2 命名、dev/prod 隔离、baseline 策略"}
+{"file": ".trellis/spec/backend/infra-docker-compose.md", "reason": "dev 依赖编排规范：MySQL+Redis+Nacos+Adminer，java-admin app 不入 compose"}
+{"file": ".trellis/spec/backend/infra-nacos.md", "reason": "Nacos Config 可插拔规范：@ConditionalOnProperty 开关、双 dataId、独立 namespace、降级路径"}
+{"file": ".trellis/tasks/06-14-java-admin-backend/prd.md", "reason": "本任务的需求/约束/验收标准（含 Q5-Q12 决策）"}
+{"file": ".trellis/tasks/06-14-java-admin-backend/design.md", "reason": "本任务的技术设计：模块边界、依赖图、契约、数据流、Flyway+Docker Compose+Nacos 设计"}
+{"file": ".trellis/tasks/06-14-java-admin-backend/implement.md", "reason": "本任务的执行计划：阶段顺序、验证命令、回滚点、Review-gate contract"}
