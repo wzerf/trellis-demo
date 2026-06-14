@@ -1,0 +1,10 @@
+{"file": ".trellis/spec/backend/index.md", "reason": "backend 层 spec 索引,确认 schema 改动在 backend 包规范下"}
+{"file": ".trellis/spec/guides/index.md", "reason": "全局 spec 索引,确认改动在 guides 规范下"}
+{"file": ".trellis/spec/frontend/index.md", "reason": "前端 spec 索引,确认本任务不涉及 frontend(虽 docs 用了 'frontend 扩展字段' 注释,但 schema 层无 frontend 依赖)"}
+{"file": ".trellis/tasks/06-14-admin-db-design/", "reason": "上一任务(v3→v4 的 deleted_at 软删改造)的产物,本任务延续其设计"}
+{"file": "backend/db/schema.sql", "reason": "v4 起点,本任务升级到 v5"}
+{"file": "backend/db/docs/tables.md", "reason": "v4+ 配套文档,本任务同步到 v5+"}
+{"file": "backend/db/docs/er.md", "reason": "v4+ 配套文档,本任务同步到 v5+"}
+{"file": "backend/db/docs/db-conventions.md", "reason": "v4+ 配套文档,本任务同步到 v5+"}
+{"file": "PG sys_api_log reference (用户提供)", "reason": "api_log 字段扩充的目标参照"}
+{"file": "PG sys_login_log reference (用户提供)", "reason": "login_log 字段扩充的目标参照"}

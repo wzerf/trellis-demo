@@ -1,0 +1,5 @@
+{"file": "backend/db/schema.sql", "reason": "22 张表数量不变 / 文件头 v5 标记 / 末尾 v5 标记 / 4 张表无 description / sys_user 无 dept_id / api_log + login_log 新字段完整 / 归档表镜像热表"}
+{"file": "backend/db/docs/tables.md", "reason": "头部 (v5+) / 逐表字段表与 schema 完全一致 / 7.1 api_log 7.3 login_log 段重写"}
+{"file": "backend/db/docs/er.md", "reason": "头部 (v5+) / §3 软引用清单无 dept_id 行 / api_log login_log 用 sys_user_id"}
+{"file": "backend/db/docs/db-conventions.md", "reason": "头部 (v5+) / §6.2 索引模式更新 / §7.2 软外键表无 dept_id / §9 JSON 字段 / §11.1 日志关键字段 / §11.5 性能索引"}
+{"file": "git diff", "reason": "最终 diff 只包含 4 个 schema 文档文件,不污染其他窗口的 untracked 工作(apps/vue-vben-admin)"}
