@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: java-admin
+  profiles:
+    active: dev
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    validate-on-migrate: true
+    clean-disabled: true
+
+  # ───────────────────────────────────────────────
+  # Nacos Config（nacos-config-spring-boot-starter 0.2.2+）
+  # ───────────────────────────────────────────────
+  # 端口策略：4000 段，避开常见 dev 冲突（80xx/3306/6379/8848）
+  # server-addr / username / password 放顶层，config.* 自动继承
+  cloud:
+    nacos:
+      server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:4848}
+      username: ${NACOS_USER:nacos}
+      password: ${NACOS_PASSWORD:nacos}
+      config:
+        # 与新 starter 的 spring.config.import 行为兼容
+        import-check:
+          enabled: false
+        namespace: ${NACOS_NAMESPACE:java-admin-dev}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+        file-extension: yaml
+        # 双 dataId（Q12 决策）：共享 + dev 覆盖
+        # ⚠️ kebab-case：data-id / refresh-enabled（starter metadata 真实字段名）
+        extension-configs:
+          - data-id: java-admin.yaml
+            group: DEFAULT_GROUP
+            refresh-enabled: true
+          - data-id: java-admin-dev.yaml
+            group: DEFAULT_GROUP
+            refresh-enabled: true
+
+  # Nacos 启用开关（被 NacosConfigToggleProperties @ConfigurationProperties 绑定）
+  # 默认 false：dev profile 不连 Nacos，prod 用 env 变量打开
+  # 与 spring.cloud.nacos.config.enabled 同义
+nacos:
+  config:
+    enabled: ${NACOS_CONFIG_ENABLED:false}
+
+# Sa-Token（Redis 模式：sa-token-redis-template 走 Spring Data Redis + Lettuce）
+# timeout=2592000s=30天；is-share=false 同一账号多端登录各持独立 token
+sa-token:
+  token-name: satoken
+  timeout: 2592000
+  active-timeout: -1
+  is-concurrent: true
+  is-share: false
+  token-style: uuid
+  is-log: false
+  is-read-cookie: false
+  is-read-header: true
+
+# Easy-Query 3.x（SQL-springboot4-starter 适配 SB 4）
+# name-conversion: underlined → entity 字段 userId 自动映射列 user_id
+easy-query:
+  enable: true
+  database: mysql
+  name-conversion: underlined
+  defaultDataSourceMergePoolSize: 16
+
+server:
+  port: ${APP_PORT:4080}
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    root: INFO
+    com.wshake: INFO

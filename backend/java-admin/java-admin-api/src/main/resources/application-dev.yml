@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    # 4000 段端口（dev：MySQL 4336）；prod profile 用 ${MYSQL_PORT} 注入
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:4336}/${MYSQL_DATABASE:javaadmin_dev}?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 16
+      minimum-idle: 2
+      idle-timeout: 30000
+
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      # 4000 段端口（dev：Redis 4379）；prod profile 用 ${REDIS_PORT} 注入
+      port: ${REDIS_PORT:4379}
+      # 本地 dev Redis 有密码（docker 起时设了 123456）；prod profile 必设
+      # 密码为空时 Lettuce 仍会发 AUTH 空密码被 Redis 拒绝，所以 dev 强制非空
+      password: ${REDIS_PASSWORD:123456}
+      timeout: 10s
+      database: 0
+      lettuce:
+        pool:
+          max-active: 16
+          max-idle: 8
+          min-idle: 1
+
+  # Flyway V1 + V2（dev 加载全部；prod 用 application-prod.yml 的 migration-prod 不含 V2）
+  flyway:
+    locations: classpath:db/migration
+
+logging:
+  # dev 噪音调低：root=INFO + 自包 DEBUG；Spring/Netty/Hikari 调 WARN/INFO
+  level:
+    root: INFO
+    com.wshake: DEBUG
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false">
+
+    <!--
+        显式注册 Spring Boot 4 的 ColorConverter。
+        SB 4 不再通过 META-INF/services 自动注册 %clr，
+        必须 <conversionRule conversionWord="clr" .../> 显式声明。
+    -->
+    <conversionRule conversionWord="clr"
+                    class="org.springframework.boot.logging.logback.ColorConverter"/>
+
+    <!--
+        普通 pattern（prod 用，文件日志也用这个；不带 ANSI 控制符）。
+        用 %highlight() 也能上色（logback 内置），但 %clr() 更细（可指定颜色名）。
+    -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%X{traceId}] [%thread] %logger{36} - %msg%n"/>
+
+    <!--
+        dev 彩色 pattern（用 %clr() + 显式颜色名）：
+        - 级别：%clr(%-5level) — 按 level 自动配色（ERROR=红, WARN=黄, INFO=绿, DEBUG=蓝）
+        - traceId：%clr([%X{traceId}]){magenta}
+        - 线程：%clr([%thread]){blue}
+        - logger：%clr(%-40.40logger{39}){cyan}
+    -->
+    <property name="LOG_PATTERN_COLOR"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%-5level) %clr([%X{traceId}]){magenta} %clr([%thread]){blue} %clr(%-40.40logger{39}){cyan} - %msg%n"/>
+
+    <!-- ──────────────────────────────────────────────
+         DEV profile：彩色控制台
+         ────────────────────────────────────────────── -->
+    <springProfile name="dev">
+        <appender name="STDOUT_COLOR" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${LOG_PATTERN_COLOR}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="STDOUT_COLOR"/>
+        </root>
+        <logger name="com.wshake" level="DEBUG"/>
+        <logger name="com.easy.query" level="INFO"/>
+        <logger name="org.springframework.web" level="INFO"/>
+    </springProfile>
+
+    <!-- ──────────────────────────────────────────────
+         PROD profile：普通控制台 + 文件滚动
+         ────────────────────────────────────────────── -->
+    <springProfile name="prod">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>logs/java-admin.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>logs/java-admin.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>100MB</maxFileSize>
+                <maxHistory>30</maxHistory>
+                <totalSizeCap>10GB</totalSizeCap>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="FILE"/>
+        </root>
+        <logger name="com.wshake" level="INFO"/>
+    </springProfile>
+
+</configuration>

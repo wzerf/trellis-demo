@@ -12,13 +12,16 @@
 
 ## 规范索引
 
-| 规范 | 说明 | 状态 |
-|------|------|------|
-| [目录结构](./directory-structure.md) | 模块组织与文件布局 | 待补充 |
-| [数据库规范](./database-guidelines.md) | ORM 模式、查询方式、迁移约定 | 待补充 |
-| [错误处理](./error-handling.md) | 错误类型与处理策略 | 待补充 |
-| [质量规范](./quality-guidelines.md) | 代码标准与禁用模式 | 待补充 |
-| [日志规范](./logging-guidelines.md) | 结构化日志与日志级别 | 待补充 |
+| 规范                                             | 说明                                                   | 状态                                                  |
+| ------------------------------------------------ | ------------------------------------------------------ | ----------------------------------------------------- |
+| [目录结构](./directory-structure.md)             | 模块组织与文件布局（四模块架构）                       | 已落盘（2026-06-14，参考 `06-14-java-admin-backend`） |
+| [数据库规范](./database-guidelines.md)           | Easy-Query 接入、参考路径、查询模式                    | 已落盘（2026-06-14）                                  |
+| [错误处理](./error-handling.md)                  | Result 统一响应、异常体系                              | 已落盘（2026-06-14）                                  |
+| [质量规范](./quality-guidelines.md)              | 代码标准、Mockito 测试、review checklist               | 已落盘（2026-06-14）                                  |
+| [日志规范](./logging-guidelines.md)              | SLF4J + Logback + MDC traceId                          | 已落盘（2026-06-14）                                  |
+| [Flyway 迁移规范](./infra-flyway.md)             | V1/V2 命名、dev/prod 隔离、baseline 策略               | 已落盘（2026-06-14）                                  |
+| [Docker Compose 规范](./infra-docker-compose.md) | dev 依赖编排（MySQL+Redis+Nacos+Adminer）              | 已落盘（2026-06-14）                                  |
+| [Nacos Config 规范（可插拔）](./infra-nacos.md)  | @ConditionalOnProperty 开关、双 dataId、独立 namespace | 已落盘（2026-06-14）                                  |
 
 ---
 
