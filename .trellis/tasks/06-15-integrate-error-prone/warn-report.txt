@@ -1,0 +1,111 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] java-admin-parent                                                  [pom]
+[INFO] java-admin-common                                                  [jar]
+[INFO] java-admin-service                                                 [jar]
+[INFO] java-admin-infra                                                   [jar]
+[INFO] java-admin-api                                                     [jar]
+[INFO] 
+[INFO] --------------------< com.wshake:java-admin-parent >--------------------
+[INFO] Building java-admin-parent 0.0.1-SNAPSHOT                          [1/5]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ java-admin-parent ---
+[INFO] Deleting /Users/wshake/code/trellis-demo/backend/java-admin/target
+[INFO] 
+[INFO] --------------------< com.wshake:java-admin-common >--------------------
+[INFO] Building java-admin-common 0.0.1-SNAPSHOT                          [2/5]
+[INFO]   from java-admin-common/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ java-admin-common ---
+[INFO] Deleting /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-common/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ java-admin-common ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ java-admin-common ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 9 source files with javac [forked debug release 17] to target/classes
+[WARNING] /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:[23,4] [UnrecognisedJavadocTag] This Javadoc tag wasn't recognised by the parser. Is it malformed somehow, perhaps with mismatched braces?
+    (see https://errorprone.info/bugpattern/UnrecognisedJavadocTag)
+[WARNING] /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:[29,4] [UnrecognisedJavadocTag] This Javadoc tag wasn't recognised by the parser. Is it malformed somehow, perhaps with mismatched braces?
+    (see https://errorprone.info/bugpattern/UnrecognisedJavadocTag)
+[WARNING] /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java:[18,4] [UnrecognisedJavadocTag] This Javadoc tag wasn't recognised by the parser. Is it malformed somehow, perhaps with mismatched braces?
+    (see https://errorprone.info/bugpattern/UnrecognisedJavadocTag)
+[INFO] 
+[INFO] -------------------< com.wshake:java-admin-service >--------------------
+[INFO] Building java-admin-service 0.0.1-SNAPSHOT                         [3/5]
+[INFO]   from java-admin-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ java-admin-service ---
+[INFO] Deleting /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-service/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ java-admin-service ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ java-admin-service ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 4 source files with javac [forked debug release 17] to target/classes
+[WARNING] /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-service/target/generated-sources/annotations/com/wshake/service/entity/proxy/SysUserProxy.java:[98,2] [EmptyBlockTag] A block tag (@param, @return, @throws, @deprecated) has an empty description. Block tags without descriptions don't add much value for future readers of the code; consider removing the tag entirely or adding a description.
+    (see https://google.github.io/styleguide/javaguide.html#s7.1.3-javadoc-block-tags)
+  Did you mean '*'?
+[WARNING] /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-service/target/generated-sources/annotations/com/wshake/service/entity/proxy/SysUserProxy.java:[97,2] [InvalidBlockTag] The tag @return is not allowed on this type of element.
+    (see https://errorprone.info/bugpattern/InvalidBlockTag)
+  Did you mean '*'?
+[INFO] 
+[INFO] --------------------< com.wshake:java-admin-infra >---------------------
+[INFO] Building java-admin-infra 0.0.1-SNAPSHOT                           [4/5]
+[INFO]   from java-admin-infra/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ java-admin-infra ---
+[INFO] Deleting /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-infra/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ java-admin-infra ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ java-admin-infra ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 9 source files with javac [forked debug release 17] to target/classes
+[WARNING] /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java:[28,4] [UnrecognisedJavadocTag] This Javadoc tag wasn't recognised by the parser. Is it malformed somehow, perhaps with mismatched braces?
+    (see https://errorprone.info/bugpattern/UnrecognisedJavadocTag)
+[INFO] 
+[INFO] ---------------------< com.wshake:java-admin-api >----------------------
+[INFO] Building java-admin-api 0.0.1-SNAPSHOT                             [5/5]
+[INFO]   from java-admin-api/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ java-admin-api ---
+[INFO] Deleting /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-api/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ java-admin-api ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ java-admin-api ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 5 source files with javac [forked debug release 17] to target/classes
+[WARNING] /Users/wshake/code/trellis-demo/backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java:[16,4] [UnrecognisedJavadocTag] This Javadoc tag wasn't recognised by the parser. Is it malformed somehow, perhaps with mismatched braces?
+    (see https://errorprone.info/bugpattern/UnrecognisedJavadocTag)
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for java-admin-parent 0.0.1-SNAPSHOT:
+[INFO] 
+[INFO] java-admin-parent .................................. SUCCESS [  0.082 s]
+[INFO] java-admin-common .................................. SUCCESS [  2.378 s]
+[INFO] java-admin-service ................................. SUCCESS [  4.872 s]
+[INFO] java-admin-infra ................................... SUCCESS [  3.447 s]
+[INFO] java-admin-api ..................................... SUCCESS [  2.092 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  13.158 s
+[INFO] Finished at: 2026-06-15T01:45:55+08:00
+[INFO] ------------------------------------------------------------------------

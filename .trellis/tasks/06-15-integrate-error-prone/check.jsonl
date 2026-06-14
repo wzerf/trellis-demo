@@ -1,0 +1,2 @@
+{"file": ".trellis/spec/backend/quality-guidelines.md", "reason": "本任务正在更新的 spec;check 时必须复核改动是否一致"}
+{"file": ".trellis/spec/backend/index.md", "reason": "backend spec 索引;check 时确认 quality-guidelines.md 在索引表中的状态/说明仍准确"}

@@ -45,6 +45,9 @@
         <!-- Java 工具链（2026-06-14 集成） -->
         <spotless.version>3.6.0</spotless.version>
         <palantir-java-format.version>2.92.0</palantir-java-format.version>
+
+        <!-- Error Prone 2.x（2026-06-15 集成；2.50.0 = 2.x 最新稳定，2026-06-10 发布，需 JDK 21+） -->
+        <errorprone.version>2.50.0</errorprone.version>
     </properties>
 
     <dependencyManagement>
@@ -155,6 +158,34 @@
         </dependencies>
     </dependencyManagement>
 
+    <!--
+      项目实际依赖(继承给所有子模块)。
+      error_prone_core / error_prone_check_api / error_prone_annotation 三个 jar
+      用 provided 作用域:编译期 javac -classpath 可见,运行 jar 不打包。
+      目的:让 ServiceLoader 在 fork=true 模式下能从 javac -classpath 找到 EP plugin
+      类(同时 annotationProcessorPaths 也放 EP jars,让 transitive 都在 processorpath)。
+    -->
+    <dependencies>
+        <dependency>
+            <groupId>com.google.errorprone</groupId>
+            <artifactId>error_prone_core</artifactId>
+            <version>${errorprone.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.errorprone</groupId>
+            <artifactId>error_prone_check_api</artifactId>
+            <version>${errorprone.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.errorprone</groupId>
+            <artifactId>error_prone_annotation</artifactId>
+            <version>${errorprone.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -182,6 +213,104 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <!--
+              maven-compiler-plugin（含 Error Prone 2.50.0，2026-06-15 集成）
+              走 EP 官方 install guide 推荐的 "fork=false + .mvn/jvm.config" 路径:
+              - mvn 与 javac 共享同一 JVM,ServiceLoader 走 plugin classloader 找 EP 类
+              - 10 个 add-exports / 2 个 add-opens 不进 compilerArgs(MCP 3.14.1
+                在 fork 模式下会吞带 J 前缀的 export 旗标);改放进 .mvn/jvm.config,
+                mvn 启动时读取 → 写到 JVM 启动参数 → javac 与 mvn 共用同一 JVM
+                时自然继承
+              - error_prone_core / check_api / annotation 放 plugin 的 dependencies,
+                让 ServiceLoader 找得到
+              与 Spotless(格式) / Checkstyle(命名/复杂度) 形成三层质量门禁。
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <fork>true</fork>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <!-- Easy-Query APT -->
+                        <path>
+                            <groupId>com.easy-query</groupId>
+                            <artifactId>sql-processor</artifactId>
+                            <version>${easy-query.version}</version>
+                        </path>
+                        <!--
+                          Error Prone 注解 + plugin 都进 processorpath。
+                          关键:error_prone_core 必须进 processorpath,它的 transitive
+                          (Guava、protobuf、dataflow 等) 由 MCP 自动拉到 processorpath。
+                          同时 error_prone_core 也走 project <dependencies>(provided 作用域),
+                          让 ServiceLoader 也能从 javac -classpath 找到 ErrorProneJavacPlugin 类。
+                        -->
+                        <path>
+                            <groupId>com.google.errorprone</groupId>
+                            <artifactId>error_prone_annotations</artifactId>
+                            <version>${errorprone.version}</version>
+                        </path>
+                        <path>
+                            <groupId>com.google.errorprone</groupId>
+                            <artifactId>error_prone_core</artifactId>
+                            <version>${errorprone.version}</version>
+                        </path>
+                        <path>
+                            <groupId>com.google.errorprone</groupId>
+                            <artifactId>error_prone_check_api</artifactId>
+                            <version>${errorprone.version}</version>
+                        </path>
+                        <path>
+                            <groupId>com.google.errorprone</groupId>
+                            <artifactId>error_prone_annotation</artifactId>
+                            <version>${errorprone.version}</version>
+                        </path>
+                        <path>
+                            <groupId>io.github.eisop</groupId>
+                            <artifactId>dataflow-errorprone</artifactId>
+                            <version>3.41.0-eisop1</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <compilerArgs>
+                        <!--
+                          EP 2.50.0 强制旗标:
+                          - XDcompilePolicy=simple / should-stop=ifError=FLOW
+                            EP 拒绝 javac 的 by-todo / INIT 默认策略
+                          - XDaddTypeAnnotationsToSymbol=true
+                            EP 2.50.0 在 JDK 21 上必需(JEP 396 内部 API 调整)
+                          - Xplugin:ErrorProne 启用 javac plugin
+                          10 个 add-exports / 2 个 add-opens 放 .mvn/jvm.config。
+                          jvm.config 只对 mvn 主 JVM 生效;但 MCP 3.11.0 fork=true 模式下
+                          实际看到 [forked debug release 17] —— fork 进程继承 mvn JVM
+                          的 add-exports 是 jvm.config 之外的另一条路;我们靠 project
+                          <dependencies> 让 error_prone_core 在 classpath 上
+                          (ServiceLoader 找得到),add-exports 在 MCP 透传给 forked JVM。
+                        -->
+                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
+                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+                        <arg>-XDcompilePolicy=simple</arg>
+                        <arg>--should-stop=ifError=FLOW</arg>
+                        <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
+                        <arg>-Xplugin:ErrorProne</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
             <!-- Spotless: palantir-java-format 自动格式化
                  通过 `mvn spotless:apply` 全量格式化；
                  `mvn spotless:check` 仅检查（exit ≠ 0 表示未格式化）。

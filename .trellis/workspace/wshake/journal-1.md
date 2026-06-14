@@ -101,3 +101,59 @@ java-admin-backend Phase 3 收尾。Spring Boot 4.0.3 + Java 17 + 4 模块 Maven
 ### Next Steps
 
 - None - task complete
+
+---
+
+## Session 2: 集成 Error Prone 2.50.0 到 Java 后端构建
+
+**Date**: 2026-06-15
+**Task**: `.trellis/tasks/06-15-integrate-error-prone/`(Phase 3 收口,finish-work 收尾)
+
+### 本次做了什么
+
+- **JDK 21 升级**:`brew install openjdk@21` + `~/.zshrc` + `~/.zshenv` 切默认,本机 `mvn --version` Java 21.0.11。Task 1 选 B 路径的落地。
+- **EP 2.50.0 集成**(`backend/java-admin/pom.xml` 4 处 + 新 `.mvn/jvm.config` + `lefthook.yml` pre-push job):
+  - `maven-compiler-plugin 3.11.0` + `fork=true`(EP 官方 install guide 用的版本)
+  - `<annotationProcessorPaths>` 放 lombok + sql-processor + 5 个 EP path,MCP 自动拉 transitive
+  - 项目 `<dependencies>(provided)` 同步放 3 个 EP core jar(让 ServiceLoader 从 javac `-classpath` 找 plugin 类)
+  - `<compilerArgs>` 含 10 个 `-J--add-exports` + 2 个 `-J--add-opens` + 3 个 EP 强制旗标 + `-Xplugin:ErrorProne`
+  - `.mvn/jvm.config` 兜底(10 add-exports + 2 add-opens),应对 MCP 透传 -J 旗标的边界场景
+- **spec 翻转**:`quality-guidelines.md` 第 1 节改成"三层门禁",加 8.6 节,补 4 条 EP 已知坑到第 9 节,第 10 节删 Error Prone 行。
+- **修一个 test bug**:`TraceIdFilterTest.java:44` 的 `verify(chain);` 是无意义的 Mockito 调用(EP 抓出来当 ERROR),删掉(死代码清理,不改测试意图)。
+- **删 errorprone.xml**:`-XepOpt:Configuration=...` 旗标在 EP 2.50.0 javac plugin 里没被消费。
+- **基线**:7 个 EP warnings(5× `UnrecognisedJavadocTag` 在手写代码 + 2× `EmptyBlockTag`/`InvalidBlockTag` 在 Easy-Query APT 生成的 `SysUserProxy.java`)。
+
+### 关键工程教训
+
+- **EP 集成到 MCP 3.x fork 模式的核心**: `error_prone_core` 必须**同时**放 `<annotationProcessorPaths>` + project `<dependencies>(provided)`,前者拉 transitive 到 processorpath 让 plugin 加载所需类齐全,后者让 ServiceLoader 从 javac `-classpath` 找到 `ErrorProneJavacPlugin` 类。
+- **EP 2.50.0 在 JDK 21 上**有几个强制旗标:`-XDcompilePolicy=simple` / `--should-stop=ifError=FLOW` / `-XDaddTypeAnnotationsToSymbol=true`,任一缺失就抛 `InvalidCommandLineOptionException`。
+- **EP 2.50.0 已知缺陷**:`-Xep:CheckName:LEVEL` / `-XepOpt:Configuration=...` 旗标在 javac plugin 里没被消费(应被 plugin 截获,实际透传给 javac 报"无效的标记")。Phase 2 之前没法用 XML 配置文件。
+- **JDK 升级路径**:EP 2.43.0+ 切到 JDK 21 编译(class 65.0),JDK 17 上回退到 EP 2.42.0(末班兼容版)。
+- **MCP 版本选择**:EP 官方 install guide 显式说用 `3.11.0`。3.14.1 有不同的 classpath 转发行为,实际会让 `-J--add-exports` 失效。
+
+### Git 改动
+
+| 文件                                                                                            | 状态 | 改动                                                                       |
+| ----------------------------------------------------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
+| `backend/java-admin/pom.xml`                                                                    | M    | 父 POM 加 EP 集成(3 处:property / project deps / maven-compiler-plugin 段) |
+| `backend/java-admin/.mvn/jvm.config`                                                            | A    | 新建(10 add-exports + 2 add-opens)                                         |
+| `backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java` | M    | 删死代码 `verify(chain);`                                                  |
+| `lefthook.yml`                                                                                  | M    | pre-push 加 java-errorprone job                                            |
+| `.trellis/spec/backend/quality-guidelines.md`                                                   | M    | spec 翻转 + 新 8.6 节 + 4 条 EP 坑                                         |
+| `.trellis/tasks/06-15-integrate-error-prone/warn-report.txt`                                    | A    | EP 基线                                                                    |
+
+### Testing
+
+- [OK] `mvn -B -DskipTests -f backend/java-admin/pom.xml clean compile` → 7 warnings
+- [OK] `mvn -B -f backend/java-admin/pom.xml clean verify`(4 子模块 + tests + checkstyle + spotless) → BUILD SUCCESS,24.3s
+- [OK] AC 1-10 全部通过
+
+### Status
+
+[OK] **Completed** (本任务 in_progress,等用户决定 commit + finish-work)
+
+### Next Steps
+
+- 跑 trellis-check 验证
+- 用户决策:commit 当前改动 + `task.py finish` + `task.py archive`
+- 后续:下个任务分批收敛 7 个 EP warnings(独立 PRD 写)

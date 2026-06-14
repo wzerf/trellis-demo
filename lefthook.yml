@@ -50,3 +50,12 @@ pre-push:
       # to verify phase) as a safety net; pre-push is the fast-feedback layer.
       glob: "backend/java-admin/**/src/{main,test}/java/**/*.java"
       run: mvn -B -f backend/java-admin/pom.xml checkstyle:check
+    java-errorprone:
+      # Backend correctness check — Google Error Prone 2.50.0(2026-06-15 集成)
+      # 跑 `mvn compile`(含 javac + Error Prone javac plugin),WARN 不阻断 push。
+      # 全量检查也由 maven-compiler-plugin 绑到 compile 阶段保证。
+      # glob 同 java-checkstyle:只在 Java 源码变更时跑。
+      # 任何 ERROR(理论上 WARN 不应出现 ERROR)会阻断 push;
+      # WARN 不阻断 —— dev-time visibility,不当门禁。
+      glob: "backend/java-admin/**/src/{main,test}/java/**/*.java"
+      run: mvn -B -q -f backend/java-admin/pom.xml -DskipTests compile

@@ -2,7 +2,6 @@ package com.wshake.infra.log;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 import com.wshake.common.constant.RedisKeys;
 import com.wshake.common.util.TraceIdUtil;
@@ -41,7 +40,6 @@ class TraceIdFilterTest {
         assertThat(resp.getHeader(TraceIdUtil.HEADER)).isNotBlank();
         // 请求结束后 MDC 被清空
         assertThat(MDC.get(RedisKeys.MDC_TRACE_ID)).isNull();
-        verify(chain);
     }
 
     @Test
