@@ -32,6 +32,16 @@ pre-commit:
   commands:
     staged:
       # Frontend / TS / Vue / global JS staged-file pipeline (Vite+).
+      # `vp staged` reads the `staged` map in `vite.config.ts` and runs the
+      # mapped task on each staged file. The current mapping is a
+      # function task (lint-staged API) on `**/*` that:
+      #   1. filters out paths inside `apps/vue-vben-admin/` (the
+      #      submodule carries its own `oxfmt.config.ts` / `oxlint.config.ts`
+      #      / `lefthook.yml` and is handled by its own pre-commit pipeline
+      #      — see `apps/vue-vben-admin/lefthook.yml`),
+      #   2. runs `vp check --fix` on the remaining files.
+      # Format and lint issues on those files are auto-fixed in place and
+      # the modified files are re-staged automatically by `lint-staged`.
       run: pnpm exec vp staged
     java-spotless:
       # Backend Java formatter — runs only when at least one staged file matches.
@@ -44,6 +54,24 @@ pre-commit:
 pre-push:
   parallel: true
   commands:
+    full-check:
+      # Workspace-wide fmt + lint + type-check safety net. Pre-commit only
+      # touches staged files (via `vp staged`); pre-push runs the same
+      # pipeline across the whole root workspace so any drift introduced
+      # by bypassing the pre-commit hook (e.g. `--no-verify`, or files
+      # touched but not staged) is caught before the push.
+      #
+      # `apps/vue-vben-admin/**` is already excluded by the root
+      # `fmt` / `lint` `ignorePatterns` in `vite.config.ts`, so this
+      # never runs against the submodule's files (the submodule has its
+      # own pipeline — `apps/vue-vben-admin/lefthook.yml`).
+      #
+      # Note: `--fix` will rewrite files in the working tree if anything
+      # is found. The push itself still uses the already-made commits
+      # (working-tree changes are not part of the push), so review the
+      # diff after the hook and follow up with a fixup commit when
+      # needed. Drop `--fix` if you want a hard-fail-only gate.
+      run: pnpm exec vp check --fix
     java-checkstyle:
       # Backend static check — fail fast on naming / complexity / style violations.
       # The same ruleset also runs at `mvn verify` (maven-checkstyle-plugin bound
