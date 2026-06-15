@@ -1,0 +1,5 @@
+{"file": ".trellis/spec/backend/index.md", "reason": "定位后端规范整体索引"}
+{"file": ".trellis/spec/backend/directory-structure.md", "reason": "确认包路径、Controller/DTO/Config 放置位置、模块依赖方向(common 不能依赖 spring-boot-starter-web,避免引入 swagger 依赖破坏 common 复用性)"}
+{"file": ".trellis/spec/backend/error-handling.md", "reason": "Result 字段语义、code 段划分、GlobalExceptionHandler 返回结构"}
+{"file": ".trellis/spec/backend/quality-guidelines.md", "reason": "测试规范、review checklist、commit 前必跑测试"}
+{"file": ".trellis/spec/guides/index.md", "reason": "思考指南:代码复用 / 跨层 / 修改前先搜索"}

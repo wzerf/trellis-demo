@@ -1,0 +1,16 @@
+{"file": ".trellis/tasks/06-15-knife4j-annotations/prd.md", "reason": "需求 + 验收标准 + 范围"}
+{"file": ".trellis/tasks/06-15-knife4j-annotations/design.md", "reason": "技术设计:注解包、OpenApiConfig 形态、yml 决策、为什么不加类级 @Schema"}
+{"file": ".trellis/tasks/06-15-knife4j-annotations/implement.md", "reason": "执行清单:有序步骤、闸门、回滚点、验证命令"}
+{"file": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java", "reason": "唯一 Controller,核对方法签名与 @Valid @RequestBody 注解,避免改坏入参注解顺序"}
+{"file": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java", "reason": "登录请求 DTO,字段约束 @NotBlank/@Size 需保留"}
+{"file": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java", "reason": "登录响应 VO,4 字段 @AllArgsConstructor 构造器顺序需与 Controller 调用一致"}
+{"file": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java", "reason": "用户信息 VO"}
+{"file": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java", "reason": "RestControllerAdvice,每个 handler 对应一类 HTTP 状态 + 业务码,需要核对 code 段"}
+{"file": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java", "reason": "通用响应体,确认 @JsonInclude / @JsonIgnore 行为不被 Schema 注解影响"}
+{"file": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java", "reason": "ObjectResult 子类,用于 okObj() 场景"}
+{"file": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java", "reason": "ListResult 子类,用于 okList() 场景"}
+{"file": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java", "reason": "业务码枚举,所有 @ApiResponse description 引用的 code 段从这里核对"}
+{"file": "backend/java-admin/java-admin-api/src/main/resources/application-dev.yml", "reason": "knife4j.enable + language=zh_cn,不动但需核对"}
+{"file": "backend/java-admin/java-admin-api/src/main/resources/application-prod.yml", "reason": "knife4j.enable=${KNIFE4J_ENABLE:false},prod 文档关闭是合规要求"}
+{"file": "backend/java-admin/pom.xml", "reason": "父 pom knife4j.version=4.5.0,确认引入的 starter 是 knife4j-openapi3-jakarta-spring-boot-starter(走 OpenAPI 3 + Jakarta)"}
+{"file": ".trellis/spec/backend/directory-structure.md", "reason": "Controller/DTO/Config 摆放位置,确认 OpenApiConfig 放在 com.wshake.api.config 而不是 infra.config"}
