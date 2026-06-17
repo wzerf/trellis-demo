@@ -9,7 +9,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python .claude/hooks/session-start.py",
+            "command": "python3 .claude/hooks/session-start.py",
             "timeout": 30
           }
         ]
@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python .claude/hooks/session-start.py",
+            "command": "python3 .claude/hooks/session-start.py",
             "timeout": 30
           }
         ]
@@ -29,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python .claude/hooks/session-start.py",
+            "command": "python3 .claude/hooks/session-start.py",
             "timeout": 30
           }
         ]
@@ -41,7 +41,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python .claude/hooks/inject-subagent-context.py",
+            "command": "python3 .claude/hooks/inject-subagent-context.py",
             "timeout": 30
           }
         ]
@@ -51,7 +51,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python .claude/hooks/inject-subagent-context.py",
+            "command": "python3 .claude/hooks/inject-subagent-context.py",
             "timeout": 30
           }
         ]
@@ -62,12 +62,25 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python .claude/hooks/inject-workflow-state.py",
+            "command": "python3 .claude/hooks/inject-workflow-state.py",
             "timeout": 15
           }
         ]
       }
     ]
   },
-  "enabledPlugins": {}
+  "enabledPlugins": {},
+  "permissions": {
+    "allow": [
+      "mcp__codegraph__codegraph_search",
+      "mcp__codegraph__codegraph_context",
+      "mcp__codegraph__codegraph_callers",
+      "mcp__codegraph__codegraph_callees",
+      "mcp__codegraph__codegraph_impact",
+      "mcp__codegraph__codegraph_node",
+      "mcp__codegraph__codegraph_status",
+      "mcp__codegraph__codegraph_explore",
+      "mcp__codegraph__codegraph_files"
+    ]
+  }
 }
