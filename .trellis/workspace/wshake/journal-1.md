@@ -213,3 +213,11 @@ java-admin-backend Phase 3 收尾。Spring Boot 4.0.3 + Java 17 + 4 模块 Maven
 
 - 用户决策:commit + `task.py finish` + `task.py archive`
 - 后续(独立任务):升 EP 2.51+ / 升 Easy-Query ≥ `@Generated` 版本,届时 7 个 false positive 应该全归零
+
+- 2026-06-18 00:49 Trellis 已关闭
+
+- 2026-06-18 00:53 Trellis 已开启
+
+- 2026-06-18 00:53 Trellis 已关闭
+
+- 2026-06-18 00:54 Trellis 已开启
