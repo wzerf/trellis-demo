@@ -8,9 +8,9 @@
         "--mcp"
       ]
     },
-    "pixso-desktop": {
+    "sketch": {
       "type": "http",
-      "url": "http://127.0.0.1:3667/mcp"
+      "url": "http://localhost:31126/mcp"
     },
     "playwright": {
       "command": "npx",
