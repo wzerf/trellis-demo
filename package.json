@@ -9,6 +9,8 @@
     "dev:vben": "pnpm -C apps/vue-vben-admin dev:naive"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "catalog:",
+    "commitlint": "catalog:",
     "lefthook": "catalog:",
     "vite-plus": "catalog:"
   },
