@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 import type { internal_messageservicev1_InternalMessage as InternalMessage } from '@/api/generated/admin/service/v1';
 import { PaginationQuery } from '@/core';
 import { useUpdateInternalMessage, useSendMessage, fetchListMessageCategories } from '@/api/hooks/internal-message';
-import { Editor, EditorType } from '@/components/common/Editor';
 import { getStatusOptions, getTypeOptions } from '../constants';
 
 interface MessageDrawerProps {

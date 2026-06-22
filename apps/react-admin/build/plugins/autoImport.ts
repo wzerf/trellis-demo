@@ -15,12 +15,13 @@ export const autoImportPlugin = (): PluginOption => {
         ],
         imports: [
             'react',
-            'react-router',
+            // 'react-router',
             'react-router-dom',
             'react-i18next',
-            {from: 'react', imports: ['FC'], type: true},
+            // {from: 'react', imports: ['FC'], type: true},
         ],
-        dts: 'types/autoImports.d.ts',
+        dtsMode: 'overwrite',
+        dts: 'src/auto-imports.d.ts',
         include: [/\.[tj]sx?$/],
         resolvers: [
             (name) => {
