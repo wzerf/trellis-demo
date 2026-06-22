@@ -3,20 +3,21 @@ import { defineConfig } from "vite-plus";
 const isInVueVbenAdmin = (file: string): boolean =>
   file.replace(/\\/g, "/").includes("/apps/vue-vben-admin/");
 
+const isInReactAdmin = (file: string): boolean =>
+  file.replace(/\\/g, "/").includes("/apps/react-admin/");
+
 export default defineConfig({
   staged: {
     // Function task (lint-staged API) instead of a plain command string so
-    // that we can drop paths inside `apps/vue-vben-admin/` before they are
-    // handed to `vp check --fix`. The submodule has its own
-    // `oxfmt.config.ts` / `oxlint.config.ts` / `lefthook.yml` and is
-    // expected to be linted/formatted by its own pre-commit pipeline
-    // (`apps/vue-vben-admin/lefthook.yml`), not by the root workspace's
-    // rules. Without this filter, `vp check --fix` would receive the
-    // excluded file list and fail with "Formatting failed before analysis
-    // started" because the `ignorePatterns` below would silently drop
+    // that we can drop paths inside `apps/vue-vben-admin/` and
+    // `apps/react-admin/` before they are handed to `vp check --fix`. Both
+    // sub-apps have their own formatting/lint setup and are expected to be
+    // handled by their own pipelines, not by the root workspace's rules.
+    // Without this filter, `vp check --fix` would receive the excluded file
+    // list and fail because the `ignorePatterns` below would silently drop
     // every input file.
     "**/*": (files: readonly string[]) => {
-      const filtered = files.filter((f) => !isInVueVbenAdmin(f));
+      const filtered = files.filter((f) => !isInVueVbenAdmin(f) && !isInReactAdmin(f));
       if (filtered.length === 0) return [];
       // lint-staged treats each entry of a returned array as a separate
       // command (not as a single argv), so we must return one shell-quoted
@@ -26,10 +27,24 @@ export default defineConfig({
     },
   },
   fmt: {
-    ignorePatterns: ["apps/vue-vben-admin/**", "apps/vue-vben-admin", "**/.*/**", "**/.*"],
+    ignorePatterns: [
+      "apps/vue-vben-admin/**",
+      "apps/vue-vben-admin",
+      "apps/react-admin/**",
+      "apps/react-admin",
+      "**/.*/**",
+      "**/.*",
+    ],
   },
   lint: {
-    ignorePatterns: ["apps/vue-vben-admin/**", "apps/vue-vben-admin", "**/.*/**", "**/.*"],
+    ignorePatterns: [
+      "apps/vue-vben-admin/**",
+      "apps/vue-vben-admin",
+      "apps/react-admin/**",
+      "apps/react-admin",
+      "**/.*/**",
+      "**/.*",
+    ],
     jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
     rules: { "vite-plus/prefer-vite-plus-imports": "error" },
     options: { typeAware: true, typeCheck: true },

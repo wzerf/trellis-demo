@@ -6,6 +6,8 @@ packages:
   # its own catalog instead of the root's.
   - "!apps/vue-vben-admin"
   - "!apps/vue-vben-admin/**"
+  - "!apps/react-admin"
+  - "!apps/react-admin/**"
   - packages/*
   - tools/*
 

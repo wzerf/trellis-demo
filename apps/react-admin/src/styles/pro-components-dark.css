@@ -1,0 +1,99 @@
+/* ========== ProPageContainer ========== */
+.ant-pro-page-container {
+  background-color: var(--ant-color-bg-layout) !important;
+}
+.ant-pro-page-container-children-content {
+  background-color: transparent !important;
+}
+
+/* ========== ProTable ========== */
+.ant-pro-table {
+  background-color: transparent !important;
+}
+.ant-pro-table .ant-table {
+  background-color: var(--ant-color-bg-container) !important;
+}
+.ant-pro-table .ant-table-thead > tr > th {
+  background-color: var(--ant-color-bg-container) !important;
+  color: var(--ant-color-text);
+}
+.ant-pro-table .ant-table-tbody > tr > td {
+  background-color: var(--ant-color-bg-container) !important;
+  color: var(--ant-color-text);
+}
+.ant-pro-table .ant-table-tbody > tr:hover > td {
+  background-color: var(--ant-color-fill-secondary) !important;
+}
+
+/* ========== 分页器 ========== */
+.ant-pagination {
+  background-color: transparent !important;
+}
+.ant-pagination-item {
+  background-color: var(--ant-color-bg-container) !important;
+  border-color: var(--ant-color-border) !important;
+}
+.ant-pagination-item-active {
+  background-color: var(--ant-color-primary) !important;
+  border-color: var(--ant-color-primary) !important;
+}
+.ant-pagination-item-active a {
+  color: #fff !important;
+}
+
+/* ========== 搜索表单 ========== */
+.ant-pro-table-search {
+  background-color: var(--ant-color-bg-container) !important;
+  border-color: var(--ant-color-border) !important;
+}
+
+/* ========== ProTable 圆角一致性 ========== */
+/* 顶部搜索表单圆角 */
+.ant-pro-table .ant-pro-table-search {
+  border-radius: var(--ant-border-radius-lg, 8px);
+}
+/* 工具栏容器圆角 */
+.ant-pro-table .ant-pro-table-list-toolbar-container {
+  border-radius: var(--ant-border-radius-lg, 8px) var(--ant-border-radius-lg, 8px) 0 0;
+}
+/* 表格容器底部圆角（与顶部对称） */
+.ant-pro-table .ant-table-container {
+  border-radius: 0 0 var(--ant-border-radius-lg, 8px) var(--ant-border-radius-lg, 8px) !important;
+  overflow: hidden !important;
+}
+/* 表格内容区域底部圆角 */
+.ant-pro-table .ant-table-container .ant-table-content {
+  border-radius: 0 0 var(--ant-border-radius-lg, 8px) var(--ant-border-radius-lg, 8px) !important;
+}
+/* 表格 body 底部圆角 */
+.ant-pro-table .ant-table-body {
+  border-radius: 0 0 var(--ant-border-radius-lg, 8px) var(--ant-border-radius-lg, 8px) !important;
+}
+/* bordered 模式下最后一行左右端圆角 */
+.ant-pro-table .ant-table-tbody > tr:last-child > td:first-child {
+  border-bottom-left-radius: var(--ant-border-radius-lg, 8px) !important;
+}
+.ant-pro-table .ant-table-tbody > tr:last-child > td:last-child {
+  border-bottom-right-radius: var(--ant-border-radius-lg, 8px) !important;
+}
+/* 无数据状态表格圆角 */
+.ant-pro-table .ant-table-placeholder {
+  border-radius: 0 0 var(--ant-border-radius-lg, 8px) var(--ant-border-radius-lg, 8px) !important;
+}
+/* 分页器圆角（如果有） */
+.ant-pro-table .ant-pagination {
+  border-radius: 0 0 var(--ant-border-radius-lg, 8px) var(--ant-border-radius-lg, 8px);
+  margin-top: 0 !important;
+}
+/* 搜索+表格整体分离时各自圆角 */
+.ant-pro-table .ant-card {
+  border-radius: var(--ant-border-radius-lg, 8px);
+}
+
+/* ========== 暗黑模式专属修正 ========== */
+[data-theme='dark'] .ant-pro-table .ant-table-placeholder {
+  background-color: var(--ant-color-bg-container) !important;
+}
+[data-theme='dark'] .ant-empty-normal {
+  color: var(--ant-color-text-secondary) !important;
+}

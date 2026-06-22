@@ -1,0 +1,6 @@
+allowBuilds:
+  '@swc/core': false
+  core-js: false
+  esbuild: false
+  json-editor-vue: true
+  vue-demi: true
