@@ -8,9 +8,11 @@ import { useAuthStore } from '@/stores';
  * 应用启动初始化
  */
 export async function bootstrap() {
+  // 1. 先把持久化的 token 从 storage 读回 store
+  useAuthStore.getState().hydrate();
+
   await _initI18n();
 
-  // 可放全局初始化逻辑
   console.log('✅ 应用启动初始化完成');
 }
 

@@ -395,6 +395,15 @@ export function getMenuIds(menus: any[]) {
 }
 
 /**
+ * 共享的可变用户列表，给 system/user 的 CRUD handler 使用。
+ */
+const mockUserList: any[] = [];
+
+export function getMockUserList() {
+  return mockUserList;
+}
+
+/**
  * 时区选项
  */
 export const TIME_ZONE_OPTIONS: TimezoneOption[] = [

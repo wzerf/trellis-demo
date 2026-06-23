@@ -1,6 +1,6 @@
 import { Navigate, useSearchParams } from 'react-router-dom';
 import React from 'react';
-import { useAuthStore, useUserStore } from '@/stores';
+import { useAuthStore } from '@/stores';
 
 interface GuestGuardProps {
   isAuthenticated?: boolean;
@@ -18,14 +18,12 @@ export const GuestGuard = ({
   redirectPath = '/',
 }: GuestGuardProps) => {
   const [searchParams] = useSearchParams();
-  // 使用 Hook 订阅，状态变化会触发重渲染
   const accessToken = useAuthStore((s) => s.accessToken);
-  const userInfo = useUserStore((s) => s.userInfo);
+  const homePath = useAuthStore((s) => s.userInfo?.homePath);
   const isAuthenticated = isAuthenticatedProp ?? !!accessToken;
 
   if (isAuthenticated) {
-    // 优先使用 URL 中的 redirect 参数，其次使用用户 homePath，最后用默认值
-    const redirect = searchParams.get('redirect') || userInfo?.homePath || redirectPath;
+    const redirect = searchParams.get('redirect') || homePath || redirectPath;
     return <Navigate to={decodeURIComponent(redirect)} replace />;
   }
 

@@ -16,6 +16,6 @@
   },
   "devDependencies": {
     "@types/jsonwebtoken": "catalog:",
-    "h3": "catalog:"
+    "h3": "1.15.11"
   }
 }

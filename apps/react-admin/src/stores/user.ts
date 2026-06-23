@@ -1,83 +1,56 @@
-import {create} from 'zustand';
-import {persist} from 'zustand/middleware';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 // ========== 状态定义 ==========
+// userInfo 的唯一来源是 useAuthStore（精简后无重复）；
+// 本 store 只承担角色码 + 权限码 + 租户信息。
 export interface UserState {
-    // 核心状态
-    userInfo: BasicUserInfo | null;
-    userRoles: string[];         // 角色码（来自 userInfo.roles）
-    accessCodes: string[];       // 权限码（来自 GetMyPermissionCode）
+  userRoles: string[];
+  accessCodes: string[];
+  tenantId: number | null;
 
-    // 计算属性（函数形式，React 中不需要 computed）
-    tenantId: number | null;
-    isLoggedIn: boolean;
-
-    // 动作
-    setUserInfo: (info: BasicUserInfo | null) => void;
-    setUserRoles: (roles: string[]) => void;
-    setAccessCodes: (codes: string[]) => void;
-    isTenantUser: () => boolean;
-    $reset: () => void;
+  setUserInfo: (info: { roles?: string[]; tenantId?: number | string | null } | null) => void;
+  setUserRoles: (roles: string[]) => void;
+  setAccessCodes: (codes: string[]) => void;
+  isTenantUser: () => boolean;
+  $reset: () => void;
 }
 
-// ========== Store 实现 ==========
 export const useUserStore = create<UserState>()(
-    persist(
-        (set, get) => ({
-            // 初始状态
-            userInfo: null,
-            userRoles: [],
-            accessCodes: [],
+  persist(
+    (set, get) => ({
+      userRoles: [],
+      accessCodes: [],
+      tenantId: null,
 
-            // 计算属性（函数形式，每次调用时计算）
-            get tenantId() {
-                return get().userInfo?.tenantId ?? null;
-            },
+      setUserInfo: (info) => {
+        set({
+          userRoles: info?.roles ?? [],
+          tenantId:
+            info?.tenantId !== undefined && info?.tenantId !== null
+              ? Number(info.tenantId)
+              : null,
+        });
+      },
+      setUserRoles: (roles) => set({ userRoles: roles }),
+      setAccessCodes: (codes) => set({ accessCodes: codes }),
 
-            get isLoggedIn() {
-                return get().userInfo !== null;
-            },
+      isTenantUser: () => {
+        const { tenantId } = get();
+        return tenantId !== null && tenantId !== undefined && tenantId > 0;
+      },
 
-            // 设置用户信息（同时更新角色）
-            setUserInfo: (info) => {
-                set({
-                    userInfo: info,
-                    userRoles: info?.roles ?? [],
-                });
-            },
-
-            // 单独设置角色
-            setUserRoles: (roles) => {
-                set({userRoles: roles});
-            },
-
-            // 单独设置权限码
-            setAccessCodes: (codes) => {
-                set({accessCodes: codes});
-            },
-
-            // 判断是否为租户用户
-            isTenantUser: () => {
-                const {tenantId} = get();
-                return tenantId !== null && tenantId !== undefined && tenantId > 0;
-            },
-
-            // 重置状态
-            $reset: () => {
-                set({
-                    userInfo: null,
-                    userRoles: [],
-                    accessCodes: [],
-                });
-            },
-        }),
-        {
-            name: 'user-storage', // localStorage key
-            // ✅ 可选：只持久化用户信息（角色可从用户信息派生）
-            partialize: (state) => ({
-                userInfo: state.userInfo,
-                // userRoles 可从 userInfo?.roles 派生，不持久化避免不一致
-            }),
-        }
-    )
+      $reset: () => set({ userRoles: [], accessCodes: [], tenantId: null }),
+    }),
+    {
+      name: 'user-storage',
+      partialize: (state) => ({
+        // 持久化仅供调试；正常路径用 useAuthStore.userInfo
+        userRoles: state.userRoles,
+        accessCodes: state.accessCodes,
+        tenantId: state.tenantId,
+      }),
+    },
+  ),
 );
+

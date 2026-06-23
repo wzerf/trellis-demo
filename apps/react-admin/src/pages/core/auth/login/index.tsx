@@ -15,11 +15,13 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (values: { username: string; password: string; remember?: boolean }) => {
     try {
-      await login({
-        username: values.username,
-        password: values.password,
-        grant_type: 'password',
-      });
+      await login(
+        {
+          username: values.username,
+          password: values.password,
+        },
+        { remember: values.remember ?? true },
+      );
 
       message.success(t('loginSuccess'));
 
@@ -28,7 +30,7 @@ const Login: React.FC = () => {
       setTimeout(() => {
         navigate(redirect);
       }, 300);
-    } catch (error: any) {
+    } catch (error) {
       // 错误已在 store 中处理
     }
   };
@@ -105,15 +107,7 @@ const Login: React.FC = () => {
         </Form.Item>
       </Form>
 
-      {/* 底部链接 */}
-      <div className="auth-footer-link">
-        <span className="auth-footer-text">
-          {t('noAccount')}{' '}
-        </span>
-        <a href="/auth/register" className="auth-footer-anchor">
-          {t('createAccount')}
-        </a>
-      </div>
+      {/* 底部链接已移除（精简后不支持注册） */}
     </div>
   );
 };

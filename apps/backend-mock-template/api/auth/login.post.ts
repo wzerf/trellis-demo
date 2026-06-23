@@ -25,8 +25,10 @@ export default defineEventHandler(async (event) => {
 
   setRefreshTokenCookie(event, refreshToken);
 
+  // 不向客户端返回 password 字段
+  const { password: _password, ...safeUser } = findUser;
   return useResponseSuccess({
-    ...findUser,
+    ...safeUser,
     accessToken,
   });
 });

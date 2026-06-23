@@ -5,11 +5,10 @@ import UserLayout from '@/layouts/UserLayout';
 import RouteErrorFallback from '@/layouts/components/ErrorFallback/RouteErrorFallback.tsx';
 
 import Login from '@/pages/core/auth/login';
-import Register from '@/pages/core/auth/register';
 
 /**
  * 认证相关路由配置
- * 包括登录、注册等页面
+ * 仅保留登录（精简后不再支持注册）
  * 这些路由不受 AuthGuard 保护，使用 GuestGuard 防止已登录用户访问
  */
 export const authRoutes: AppRouteObject[] = [
@@ -29,16 +28,6 @@ export const authRoutes: AppRouteObject[] = [
           </GuestGuard>
         ),
         meta: { title: 'routes:login', ignoreAccess: true },
-      },
-      {
-        name: 'register',
-        path: 'register',
-        element: (
-          <GuestGuard>
-            <Register />
-          </GuestGuard>
-        ),
-        meta: { title: 'routes:register', ignoreAccess: true },
       },
     ],
   },

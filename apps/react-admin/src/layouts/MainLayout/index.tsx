@@ -14,7 +14,7 @@ import { useMenuData } from './hooks/useMenuData';
 import { useLayoutState } from './hooks/useLayoutState';
 
 // Stores & Preferences
-import { useUserStore, useAuthStore, usePageRefreshStore } from '@/stores';
+import { useAuthStore, usePageRefreshStore } from '@/stores';
 import { useAccess } from '@/core/access';
 import { usePreferencesStore } from '@/core/preferences/store';
 import { useThemeConfig } from '@/core/preferences/hooks/useThemeConfig';
@@ -43,7 +43,7 @@ export const MainLayout = ({ routes: dynamicRoutes }: MainLayoutProps) => {
   const matches = rawMatches as LayoutRouteMatch[];
 
   // Stores
-  const { userInfo } = useUserStore();
+  const userInfo = useAuthStore((s) => s.userInfo);
   const { logout } = useAuthStore();
 
   // Preferences

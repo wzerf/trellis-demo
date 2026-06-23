@@ -38,10 +38,8 @@ declare global {
   const VideoModal: typeof import('./components/common/Editor/src/TiptapEditor/modals').VideoModal
   const cache: typeof import('react').cache
   const cacheSignal: typeof import('react').cacheSignal
-  const connectSSEServer: typeof import('./hooks/useTokenRefresh').connectSSEServer
   const createContext: typeof import('react').createContext
   const createRef: typeof import('react').createRef
-  const disconnectSSEServer: typeof import('./hooks/useTokenRefresh').disconnectSSEServer
   const fetchAllDictEntries: typeof import('./hooks/useDictCache').fetchAllDictEntries
   const forwardRef: typeof import('react').forwardRef
   const getDictEntriesByTypeCode: typeof import('./hooks/useDictCache').getDictEntriesByTypeCode
@@ -55,7 +53,6 @@ declare global {
   const lazy: typeof import('react').lazy
   const memo: typeof import('react').memo
   const monacoLoader: typeof import('./components/common/Editor/src/monaco-loader').default
-  const reconnectSSEServer: typeof import('./hooks/useTokenRefresh').reconnectSSEServer
   const resetDictCache: typeof import('./hooks/useDictCache').resetDictCache
   const startRefreshTimer: typeof import('./hooks/useTokenRefresh').startRefreshTimer
   const startTransition: typeof import('react').startTransition
@@ -111,6 +108,9 @@ declare global {
 // for type re-export
 declare global {
   // @ts-ignore
+  export type { DictEntry, DictType } from './hooks/useDictCache'
+  import('./hooks/useDictCache')
+  // @ts-ignore
   export type { ECOption } from './hooks/useEcharts'
   import('./hooks/useEcharts')
   // @ts-ignore
@@ -141,7 +141,7 @@ declare global {
   export type { ThemeLoadingProps } from './components/common/Loading/index'
   import('./components/common/Loading/index')
   // @ts-ignore
-  export type { TokenPayload, AuthState } from './stores/auth'
+  export type { LoginOptions, AuthState } from './stores/auth'
   import('./stores/auth')
   // @ts-ignore
   export type { UserState } from './stores/user'

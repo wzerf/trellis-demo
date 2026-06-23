@@ -2,6 +2,20 @@
 
 基于 React 19 + Ant Design 6 的后台管理系统前端，提供权限管理、组织架构、审计日志、国际化、主题切换等开箱即用的企业级能力。
 
+> **精简状态（2026-06）**：与 `apps/vue-vben-admin`（最小骨架）对齐。当前仅保留 **登录 + Dashboard + 用户管理 + 基础布局**；所有 HTTP 接口对接 `apps/backend-mock-template`（vben 风格 Nitro mock）。
+>
+> 启动顺序：先 `cd apps/backend-mock-template && pnpm start`（默认 3000 端口），再 `pnpm --filter ant-design-pro dev`。
+>
+> 默认账号：`vben / 123456`（super）、`admin / 123456`（admin）、`jack / 123456`（user）。
+>
+> 已裁剪功能（保留目录 + 路由不再注册，便于将来恢复）：
+> - 系统管理：`system/dict`、`system/file`、`system/language`、`system/login-policy`、`system/task`
+> - 业务域：`opm/*`（org-unit、position）、`permission/*`、`log/*`（login/api/operation/data-access/permission 审计）、`tenant/*`、`internal-message/*`
+> - 认证：`register`、找回密码、扫码登录
+> - 通知：HeaderContent 内的 inbox 弹窗（依赖 internal-message 模块）
+> - 字典：`useDictCache` 已 stub（mock 不提供 dict list）
+> - SSE 推送：暂不实现
+
 ## 技术栈
 
 | 类别 | 技术 | 说明 |
@@ -54,19 +68,17 @@ pnpm preview
 | 文件 | 用途 |
 |------|------|
 | `.env` | 公共配置（应用标题、命名空间、AES 密钥等） |
-| `.env.development` | 开发环境（API 地址 `localhost:7788`，代理配置） |
-| `.env.production` | 生产环境（API 地址 `api.demo.admin.gowind.cloud`） |
+| `.env.development` | 开发环境（Vite 代理 `/api` → mock 3000 端口） |
+| `.env.production` | 生产环境（同源部署时留空） |
 
 关键变量：
 
 | 变量 | 说明 | 示例 |
 |------|------|------|
-| `VITE_API_URL` | API 基础地址 | `http://localhost:7788` |
-| `VITE_SSE_URL` | SSE 推送地址 | `http://localhost:7789/events` |
+| `VITE_API_URL` | API 基础地址（dev 留空走 Vite 代理） | `''` |
 | `VITE_SERVER_PORT` | 开发服务器端口 | `7000` |
-| `VITE_PROXY` | 开发代理配置 | `[["/admin", "http://127.0.0.1:7788/"]]` |
+| `VITE_PROXY` | 开发代理配置 | `[["/api/", "http://localhost:3000/api/"]]` |
 | `VITE_APP_TITLE` | 应用标题 | `GoWind Admin` |
-| `VITE_MOCK` | 是否启用 Mock | `false` |
 
 ---
 
@@ -74,11 +86,17 @@ pnpm preview
 
 ```
 src/
-├── api/                        # API 层
-│   ├── generated/              # 后端 Proto 生成的类型定义
-│   ├── service/                # 服务函数（对 axios 的直接封装）
+├── api/                        # API 层（vben REST 风格）
+│   ├── rest/                   # REST 客户端（薄封装 RequestClient）
+│   │   ├── request.ts          #   - get/post/put/delete
+│   │   ├── types.ts            #   - 业务类型（LoginRequest、UserListItem、MenuItem...）
+│   │   ├── auth.ts             #   - loginApi / logoutApi / refreshTokenApi / ...
+│   │   ├── user.ts             #   - listUsersApi / createUserApi / updateUserApi / ...
+│   │   └── menu.ts             #   - getAllMenusApi
 │   ├── hooks/                  # React Query Hooks（组件内使用）
-│   └── index.ts
+│   │   ├── auth.ts             #   - useLogin / useUserInfo / useAccessCodes
+│   │   └── user.ts             #   - useListUsers / useCreateUser / useUpdateUser / useDeleteUser
+│   └── client.ts               # 兼容旧 apiClient 命名（已废弃，会抛错）
 │
 ├── core/                       # 核心模块（通用、可复用）
 │   ├── access/                 # 权限控制（useAccess / AccessControl）
