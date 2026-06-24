@@ -1,10 +1,11 @@
 {
-  "name": "@vben/backend-mock",
+  "name": "backend-mock-template",
   "version": "5.7.0",
   "private": true,
   "description": "",
   "license": "MIT",
   "author": "",
+  "type": "module",
   "scripts": {
     "build": "nitro build",
     "start": "nitro dev"

@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "ready": "vp check && vp run -r test && vp run -r build",
-    "dev": "vp run website-template#dev",
-    "dev:vben": "pnpm -C apps/vue-vben-admin dev:naive"
+    "dev:mock": "vp run backend-mock-template#start",
+    "dev:vadmin": "pnpm -C apps/vue-vben-admin dev:naive",
+    "dev:radmin": "pnpm -C apps/react-admin dev"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "catalog:",
