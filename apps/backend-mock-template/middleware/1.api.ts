@@ -1,6 +1,14 @@
 import { defineEventHandler } from "h3";
 import { forbiddenResponse, sleep } from "~/utils/response";
 
+// 演示环境写操作白名单：user 长期允许；字典管理 dict-mock-api 任务追加。
+// 路径同时支持带尾斜杠（/api/system/dict-type/<id>）与不带尾斜杠（/api/system/dict-type POST）。
+const WRITE_WHITELIST = ["/api/system/user", "/api/system/dict-type", "/api/system/dict-data"];
+
+function isWhitelisted(path: string) {
+  return WRITE_WHITELIST.some((prefix) => path === prefix || path.startsWith(`${prefix}/`));
+}
+
 export default defineEventHandler(async (event) => {
   event.node.res.setHeader("Access-Control-Allow-Origin", event.headers.get("Origin") ?? "*");
   if (event.method === "OPTIONS") {
@@ -10,7 +18,7 @@ export default defineEventHandler(async (event) => {
   } else if (
     ["DELETE", "PATCH", "POST", "PUT"].includes(event.method) &&
     event.path.startsWith("/api/system/") &&
-    !event.path.startsWith("/api/system/user/")
+    !isWhitelisted(event.path)
   ) {
     await sleep(Math.floor(Math.random() * 2000));
     return forbiddenResponse(event, "演示环境，禁止修改");

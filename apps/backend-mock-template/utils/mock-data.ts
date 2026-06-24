@@ -428,3 +428,195 @@ export const TIME_ZONE_OPTIONS: TimezoneOption[] = [
     timezone: "Asia/Seoul",
   },
 ];
+
+// ============================================================
+// 字典管理（dict_type / dict_data）
+// 字段对齐 Open Design 原型 mql4ww2b-schema.sql
+// ============================================================
+
+export interface DictType {
+  id: number;
+  code: string;
+  name: string;
+  remark: string;
+  is_enabled: 0 | 1;
+  deleted_at: number;
+  created_at: string;
+  updated_at: string;
+  created_by: number;
+  updated_by: number;
+}
+
+export interface DictData {
+  id: number;
+  type_id: number;
+  value: string;
+  label: string;
+  sort: number;
+  is_default: 0 | 1;
+  is_enabled: 0 | 1;
+  deleted_at: number;
+  remark: string;
+  created_at: string;
+  updated_at: string;
+  created_by: number;
+  updated_by: number;
+}
+
+/**
+ * 共享的可变字典类型列表，给 system/dict-type 的 CRUD handler 使用。
+ */
+const mockDictTypeList: DictType[] = [];
+
+export function getMockDictTypeList() {
+  return mockDictTypeList;
+}
+
+/**
+ * 共享的可变字典数据列表，给 system/dict-data 的 CRUD handler 使用。
+ */
+const mockDictDataList: DictData[] = [];
+
+export function getMockDictDataList() {
+  return mockDictDataList;
+}
+
+/**
+ * 生成 mock 自增 ID（与 user 列表隔离，足够 demo 使用）。
+ */
+function nextDictId(): number {
+  return Date.now() * 1000 + Math.floor(Math.random() * 1000);
+}
+
+function isoNow(): string {
+  return new Date().toISOString();
+}
+
+/**
+ * 惰性种子：首次 list 调用时填充。每个 typeId 显式固定，方便 dict-data 关联。
+ */
+function buildDictTypeSeeds(): DictType[] {
+  const now = "2025-01-01T00:00:00.000Z";
+  return [
+    {
+      id: 1,
+      code: "sys_user_sex",
+      name: "用户性别",
+      remark: "用户性别字典",
+      is_enabled: 1,
+      deleted_at: 0,
+      created_at: now,
+      updated_at: now,
+      created_by: 0,
+      updated_by: 0,
+    },
+    {
+      id: 2,
+      code: "sys_yes_no",
+      name: "系统是否",
+      remark: "通用 Y/N",
+      is_enabled: 1,
+      deleted_at: 0,
+      created_at: now,
+      updated_at: now,
+      created_by: 0,
+      updated_by: 0,
+    },
+    {
+      id: 3,
+      code: "sys_menu_type",
+      name: "菜单类型",
+      remark: "DIR / MENU / BUTTON",
+      is_enabled: 1,
+      deleted_at: 0,
+      created_at: now,
+      updated_at: now,
+      created_by: 0,
+      updated_by: 0,
+    },
+    {
+      id: 4,
+      code: "sys_notice_type",
+      name: "通知类型",
+      remark: "通知/公告/提醒",
+      is_enabled: 1,
+      deleted_at: 0,
+      created_at: now,
+      updated_at: now,
+      created_by: 0,
+      updated_by: 0,
+    },
+    {
+      id: 5,
+      code: "sys_common_status",
+      name: "通用状态",
+      remark: "正常 / 停用",
+      is_enabled: 1,
+      deleted_at: 0,
+      created_at: now,
+      updated_at: now,
+      created_by: 0,
+      updated_by: 0,
+    },
+  ];
+}
+
+function buildDictDataSeeds(): DictData[] {
+  const now = "2025-01-01T00:00:00.000Z";
+  const seed = (
+    id: number,
+    type_id: number,
+    value: string,
+    label: string,
+    sort: number,
+    is_default: 0 | 1 = 0,
+  ): DictData => ({
+    id,
+    type_id,
+    value,
+    label,
+    sort,
+    is_default,
+    is_enabled: 1,
+    deleted_at: 0,
+    remark: "",
+    created_at: now,
+    updated_at: now,
+    created_by: 0,
+    updated_by: 0,
+  });
+  return [
+    // sys_user_sex (type_id=1)
+    seed(101, 1, "0", "男", 0, 1),
+    seed(102, 1, "1", "女", 1),
+    seed(103, 1, "2", "未知", 2),
+    // sys_yes_no (type_id=2)
+    seed(201, 2, "Y", "是", 0, 1),
+    seed(202, 2, "N", "否", 1),
+    // sys_menu_type (type_id=3)
+    seed(301, 3, "DIR", "目录", 0),
+    seed(302, 3, "MENU", "菜单", 1),
+    seed(303, 3, "BUTTON", "按钮", 2),
+    // sys_notice_type (type_id=4)
+    seed(401, 4, "1", "通知", 0),
+    seed(402, 4, "2", "公告", 1),
+    seed(403, 4, "3", "提醒", 2),
+    // sys_common_status (type_id=5)
+    seed(501, 5, "0", "正常", 0, 1),
+    seed(502, 5, "1", "停用", 1),
+  ];
+}
+
+/**
+ * 首次访问 list 时把种子写入共享 list；之后 create/update/delete 改它，list 不会重置。
+ */
+export function ensureDictSeeds(): void {
+  if (mockDictTypeList.length === 0) {
+    mockDictTypeList.push(...buildDictTypeSeeds());
+  }
+  if (mockDictDataList.length === 0) {
+    mockDictDataList.push(...buildDictDataSeeds());
+  }
+}
+
+export { nextDictId, isoNow };
