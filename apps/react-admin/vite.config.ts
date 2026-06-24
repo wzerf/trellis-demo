@@ -27,7 +27,8 @@ export default defineConfig(({mode}) => {
             },
         },
         server: {
-            open: true,
+            // open: true, // 默认开启：dev 启动后自动打开浏览器；如需关闭，把 open 设为 false 或注释掉
+            open: false,
             port: VITE_SERVER_PORT,
             // 跨域处理
             proxy: createProxy(VITE_PROXY),
