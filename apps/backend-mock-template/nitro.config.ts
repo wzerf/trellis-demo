@@ -4,7 +4,7 @@ process.env.COMPATIBILITY_DATE = new Date().toISOString();
 export default defineNitroConfig({
   devErrorHandler: errorHandler,
   errorHandler: "~/error",
-  // 显式固定 dev 端口，便于前端 Vite 代理
+  // 显式固定 dev 端口，便于前端 Vite 代理（端口在 package.json 的 start 脚本中通过 --port 设置）
   devProxy: {},
   routeRules: {
     "/api/**": {

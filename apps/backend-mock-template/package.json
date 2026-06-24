@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "nitro build",
-    "start": "nitro dev"
+    "start": "nitro dev --port 4000"
   },
   "dependencies": {
     "@faker-js/faker": "catalog:",
