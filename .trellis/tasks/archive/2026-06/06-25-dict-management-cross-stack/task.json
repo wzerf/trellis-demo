@@ -1,0 +1,30 @@
+{
+  "id": "dict-management-cross-stack",
+  "name": "dict-management-cross-stack",
+  "title": "字典管理跨端实现（Vue vben-admin / React admin / Backend-mock）",
+  "description": "基于 Open Design 原型（项目 ID 26ea31e4-e18d-48d0-8fce-7ac6ce3485e6），按 schema.sql 的 dict_type / dict_data 字段，在 backend-mock-template、vue-vben-admin (web-naive)、react-admin 三个代码库上分别落地字典管理功能。Vue/React 共用 backend-mock 提供的同一组 REST 接口。视觉与交互对齐原型 index.html 的 master-detail 双表 + drawer + 状态开关样式。",
+  "status": "completed",
+  "dev_type": null,
+  "scope": null,
+  "package": null,
+  "priority": "P1",
+  "creator": "wshake",
+  "assignee": "wshake",
+  "createdAt": "2026-06-25",
+  "completedAt": "2026-06-25",
+  "branch": null,
+  "base_branch": "master",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [
+    "06-25-dict-mock-api",
+    "06-25-dict-vben-vue",
+    "06-25-dict-react-admin"
+  ],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {}
+}
