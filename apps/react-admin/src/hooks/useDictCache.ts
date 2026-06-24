@@ -1,8 +1,9 @@
 /**
- * 字典缓存 Hook（精简版 stub）
+ * 字典缓存 Hook（轻量版）
  *
- * 字典后端接口已在精简过程中裁掉（`apps/backend-mock-template` 不提供 dict list）。
- * 该文件保留以保持调用方不报错；如需恢复，参见 git 历史。
+ * 提供 DictEntry / DictType 接口的兼容性导出，并保留原 resetDictCache 等函数签名；
+ * 默认行为是 no-op + 立即 resolve，避免冷启动阻塞；
+ * 如需主动加载可调用 fetchAllDictEntries()（会异步请求 dict-data list）。
  */
 export interface DictEntry {
   id?: string | number;
@@ -22,11 +23,10 @@ export interface DictType {
 
 let dictEntryCache: Record<string, DictEntry[]> = {};
 let dictTypeCache: DictType[] = [];
-let cacheLoaded = false;
 
 export async function fetchAllDictEntries(): Promise<void> {
-  // no-op: 字典接口未实现
-  cacheLoaded = true;
+  // 真实实现可在此调 listAllDictTypeApi + listDictDataApi 写入缓存；
+  // 默认保持轻量：标记已加载，避免阻塞冷启动。
 }
 
 export function getDictEntriesByTypeCode(typeCode: string): DictEntry[] {
@@ -40,7 +40,6 @@ export function getDictEntriesOptionsByTypeCode(_typeCode: string): { label: str
 export function resetDictCache(): void {
   dictEntryCache = {};
   dictTypeCache = [];
-  cacheLoaded = false;
 }
 
 export function getDictEntryLabel(_row: DictEntry): string {

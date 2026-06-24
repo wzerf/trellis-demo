@@ -1,10 +1,10 @@
 import type { AppRouteObject } from '@/core/router/types';
 import UserPage from '@/pages/app/system/user';
-import React from 'react';
+import DictPage from '@/pages/app/system/dict';
 
 /**
- * 系统管理路由配置（精简版）
- * 仅保留用户管理；其它页面（dict/files/tasks/login-policies/languages）保留目录但路由不再注册。
+ * 系统管理路由配置
+ * user 与 dict（字典管理）已上线；其余模块保留目录结构以便后续补充。
  */
 export const systemRoutes: AppRouteObject[] = [
   {
@@ -27,9 +27,18 @@ export const systemRoutes: AppRouteObject[] = [
           order: 1,
         },
       },
+      {
+        name: 'dict',
+        path: 'dict',
+        element: <DictPage />,
+        meta: {
+          title: 'routes:dict',
+          icon: 'lucide:book-marked',
+          order: 2,
+        },
+      },
     ],
   },
 ];
 
 export default systemRoutes;
-
