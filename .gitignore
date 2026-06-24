@@ -35,3 +35,5 @@ deploy/.env
 node_modules/
 .nitro
 .playwright-mcp
+.understand-anything/intermediate/
+.understand-anything/diff-overlay.json
