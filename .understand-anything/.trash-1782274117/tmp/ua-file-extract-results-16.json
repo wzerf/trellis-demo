@@ -1,0 +1,217 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 3,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/BarChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 70,
+      "nonEmptyLines": 67,
+      "functions": [
+        {
+          "name": "BarChart",
+          "startLine": 8,
+          "endLine": 70,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "BarChart",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "BarChart",
+          "callee": "usePreferences",
+          "lineNumber": 9
+        },
+        {
+          "caller": "BarChart",
+          "callee": "useI18n",
+          "lineNumber": 10
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 25
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 26
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 27
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 28
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 29
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 30
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 31
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 32
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 33
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 34
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 35
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 36
+        },
+        {
+          "caller": "BarChart",
+          "callee": "t",
+          "lineNumber": 59
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/LineChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 109,
+      "nonEmptyLines": 106,
+      "functions": [
+        {
+          "name": "LineChart",
+          "startLine": 8,
+          "endLine": 109,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "LineChart",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "LineChart",
+          "callee": "usePreferences",
+          "lineNumber": 9
+        },
+        {
+          "caller": "LineChart",
+          "callee": "useI18n",
+          "lineNumber": 10
+        },
+        {
+          "caller": "LineChart",
+          "callee": "t",
+          "lineNumber": 66
+        },
+        {
+          "caller": "LineChart",
+          "callee": "t",
+          "lineNumber": 86
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/TrendChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 35,
+      "functions": [
+        {
+          "name": "TrendChart",
+          "startLine": 11,
+          "endLine": 38,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TrendChart",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "TrendChart",
+          "callee": "useI18n",
+          "lineNumber": 12
+        },
+        {
+          "caller": "TrendChart",
+          "callee": "useState",
+          "lineNumber": 13
+        },
+        {
+          "caller": "TrendChart",
+          "callee": "t",
+          "lineNumber": 18
+        },
+        {
+          "caller": "TrendChart",
+          "callee": "t",
+          "lineNumber": 23
+        },
+        {
+          "caller": "TrendChart",
+          "callee": "setActiveTab",
+          "lineNumber": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

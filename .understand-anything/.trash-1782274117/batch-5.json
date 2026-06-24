@@ -1,0 +1,416 @@
+{
+  "nodes": [
+    {
+      "id": "file:apps/react-admin/src/layouts/MainLayout/components/Footer.tsx",
+      "type": "file",
+      "name": "Footer.tsx",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/components/Footer.tsx",
+      "summary": "应用底部 Footer 组件，使用 antd 渲染版权信息，并从 preferences store 读取 footer 文本。",
+      "tags": ["layout", "footer", "component", "antd"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx",
+      "type": "file",
+      "name": "HeaderContent.tsx",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx",
+      "summary": "顶部 Header 内容组件，集成面包屑、用户菜单、全屏切换、主题切换、刷新、语言切换、设置入口等头部操作区。",
+      "tags": ["layout", "header", "component", "i18n", "antd"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx",
+      "type": "file",
+      "name": "ControlPanel.tsx",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx",
+      "summary": "SiderMenu 侧边栏底部的控制面板组件，提供展开悬停切换和折叠切换按钮。",
+      "tags": ["layout", "sider", "control-panel", "component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "type": "file",
+      "name": "SiderMenu/index.tsx",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "summary": "侧边栏菜单组件，负责将菜单数据渲染为可折叠导航，处理图标解析、国际化标签、悬停展开和折叠状态。",
+      "tags": ["layout", "sider", "menu", "navigation", "i18n"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "type": "file",
+      "name": "TabsBar/index.tsx",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "summary": "多页签（标签页）组件，支持打开/关闭/固定/刷新/全屏/拖拽排序等操作，与 tabs store 配合同步状态。",
+      "tags": ["layout", "tabs", "navigation", "dnd", "fullscreen"],
+      "complexity": "complex",
+      "languageNotes": "组件内部实现了完整的 HTML5 拖拽重排逻辑（dragstart/dragover/drop），并通过 dataTransfer 在 tab 间传递索引。"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts",
+      "type": "file",
+      "name": "useLayoutState.ts",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts",
+      "summary": "管理 MainLayout 的 Sider 折叠/展开状态、菜单 openKeys 与 selectedKeys 的自定义 hook。",
+      "tags": ["hook", "layout", "state-management", "menu"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts",
+      "type": "file",
+      "name": "useMenuData.ts",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts",
+      "summary": "根据静态路由、动态路由和权限集合，使用 useMemo 派生最终菜单数据及 i18n key。",
+      "tags": ["hook", "menu", "permissions", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "type": "file",
+      "name": "MainLayout/index.tsx",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "summary": "主布局组件，组合 Header、Sider、TabsBar、Content 区域，承载权限校验、暗色主题检测、移动端适配与全局偏好设置。",
+      "tags": ["layout", "entry-point", "composition", "permissions", "theme"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx",
+      "type": "file",
+      "name": "iconResolver.tsx",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx",
+      "summary": "根据图标名称字符串解析为 antd 图标组件的工具函数，支持命名空间前缀解析。",
+      "tags": ["utility", "icon", "resolver", "antd"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/MainLayout/components/Footer.tsx:AppFooter",
+      "type": "function",
+      "name": "AppFooter",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/components/Footer.tsx",
+      "lineRange": [3, 23],
+      "summary": "渲染应用 Footer 区域，从 usePreferencesStore 读取并显示版权文本。",
+      "tags": ["component", "footer", "antd"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx:HeaderContent",
+      "type": "function",
+      "name": "HeaderContent",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx",
+      "lineRange": [50, 474],
+      "summary": "顶部 Header 内容容器，组合面包屑、用户下拉、全屏/刷新/语言/主题/设置按钮等头部交互。",
+      "tags": ["component", "header", "i18n", "navigation"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx:ControlPanel",
+      "type": "function",
+      "name": "ControlPanel",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx",
+      "lineRange": [18, 77],
+      "summary": "Sider 底部的控制面板，展示 hover 展开切换和折叠/展开按钮。",
+      "tags": ["component", "sider", "control-panel"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx:Index",
+      "type": "function",
+      "name": "Index",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "lineRange": [20, 228],
+      "summary": "SiderMenu 主组件，递归渲染嵌套菜单，处理标签国际化、图标解析、悬停展开与折叠状态。",
+      "tags": ["component", "sider", "menu", "recursion", "i18n"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx:Index",
+      "type": "function",
+      "name": "Index",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "lineRange": [35, 661],
+      "summary": "TabsBar 主组件，管理标签页列表、当前激活 tab、右键菜单、拖拽重排、全屏切换与刷新。",
+      "tags": ["component", "tabs", "dnd", "fullscreen", "context-menu"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts:useLayoutState",
+      "type": "function",
+      "name": "useLayoutState",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts",
+      "lineRange": [3, 25],
+      "summary": "封装 Sider 折叠态、openKeys、selectedKeys 三个 useState 的自定义 hook。",
+      "tags": ["hook", "state-management", "menu"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts:useMenuData",
+      "type": "function",
+      "name": "useMenuData",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts",
+      "lineRange": [12, 37],
+      "summary": "根据静态路由、动态路由和权限集合，使用 useMemo 派生最终菜单数据。",
+      "tags": ["hook", "menu", "permissions"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/MainLayout/index.tsx:MainLayout",
+      "type": "function",
+      "name": "MainLayout",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "lineRange": [40, 334],
+      "summary": "应用主布局组件，组装 Header、Sidebar、TabsBar、Content 区域，统一处理权限、主题、移动端适配和设置抽屉。",
+      "tags": ["component", "layout", "composition", "permissions", "theme"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx:getIconFromName",
+      "type": "function",
+      "name": "getIconFromName",
+      "filePath": "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx",
+      "lineRange": [11, 27],
+      "summary": "根据字符串名称解析 antd 图标组件，支持命名空间前缀（如 IconName）。",
+      "tags": ["utility", "icon", "resolver"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/SiderMenu.style.less",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/TabsBar/tabsbar.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/Footer.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/Footer.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/components/Footer.tsx:AppFooter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx:HeaderContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx:ControlPanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx:Index",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx:Index",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts:useLayoutState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts:useMenuData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/index.tsx:MainLayout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx:getIconFromName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/Footer.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/components/Footer.tsx:AppFooter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx:HeaderContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx:ControlPanel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx:Index",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx:Index",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts:useLayoutState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts:useMenuData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/index.tsx:MainLayout",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx",
+      "target": "function:apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx:getIconFromName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/Footer.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

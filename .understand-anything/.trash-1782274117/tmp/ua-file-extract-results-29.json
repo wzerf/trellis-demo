@@ -1,0 +1,1514 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 7,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/preferences.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 159,
+      "nonEmptyLines": 159,
+      "sections": [
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "subtitle",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "tabs",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "actions",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "appearance",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "layout",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "shortcut",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "general",
+          "level": 1,
+          "line": 8
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/profile.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 55,
+      "nonEmptyLines": 55,
+      "sections": [
+        {
+          "heading": "pageTitle",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "tab",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "avatar",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "username",
+          "level": 1,
+          "line": 8
+        },
+        {
+          "heading": "nickname",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "nicknamePlaceholder",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "realname",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "realnamePlaceholder",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "email",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "emailPlaceholder",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "mobile",
+          "level": 1,
+          "line": 15
+        },
+        {
+          "heading": "mobilePlaceholder",
+          "level": 1,
+          "line": 16
+        },
+        {
+          "heading": "gender",
+          "level": 1,
+          "line": 17
+        },
+        {
+          "heading": "genderPlaceholder",
+          "level": 1,
+          "line": 18
+        },
+        {
+          "heading": "region",
+          "level": 1,
+          "line": 19
+        },
+        {
+          "heading": "regionPlaceholder",
+          "level": 1,
+          "line": 20
+        },
+        {
+          "heading": "address",
+          "level": 1,
+          "line": 21
+        },
+        {
+          "heading": "addressPlaceholder",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "remark",
+          "level": 1,
+          "line": 23
+        },
+        {
+          "heading": "remarkPlaceholder",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "roleNames",
+          "level": 1,
+          "line": 25
+        },
+        {
+          "heading": "orgUnitNames",
+          "level": 1,
+          "line": 26
+        },
+        {
+          "heading": "positionNames",
+          "level": 1,
+          "line": 27
+        },
+        {
+          "heading": "tenantName",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "lastLoginAt",
+          "level": 1,
+          "line": 29
+        },
+        {
+          "heading": "lastLoginIp",
+          "level": 1,
+          "line": 30
+        },
+        {
+          "heading": "createdAt",
+          "level": 1,
+          "line": 31
+        },
+        {
+          "heading": "action",
+          "level": 1,
+          "line": 32
+        },
+        {
+          "heading": "save",
+          "level": 1,
+          "line": 33
+        },
+        {
+          "heading": "saveSuccess",
+          "level": 1,
+          "line": 34
+        },
+        {
+          "heading": "saveFailed",
+          "level": 1,
+          "line": 35
+        },
+        {
+          "heading": "fetchFailed",
+          "level": 1,
+          "line": 36
+        },
+        {
+          "heading": "oldPassword",
+          "level": 1,
+          "line": 37
+        },
+        {
+          "heading": "oldPasswordPlaceholder",
+          "level": 1,
+          "line": 38
+        },
+        {
+          "heading": "requiredOldPassword",
+          "level": 1,
+          "line": 39
+        },
+        {
+          "heading": "newPassword",
+          "level": 1,
+          "line": 40
+        },
+        {
+          "heading": "newPasswordPlaceholder",
+          "level": 1,
+          "line": 41
+        },
+        {
+          "heading": "requiredNewPassword",
+          "level": 1,
+          "line": 42
+        },
+        {
+          "heading": "confirmPassword",
+          "level": 1,
+          "line": 43
+        },
+        {
+          "heading": "confirmPasswordPlaceholder",
+          "level": 1,
+          "line": 44
+        },
+        {
+          "heading": "requiredConfirmPassword",
+          "level": 1,
+          "line": 45
+        },
+        {
+          "heading": "passwordMismatch",
+          "level": 1,
+          "line": 46
+        },
+        {
+          "heading": "changePassword",
+          "level": 1,
+          "line": 47
+        },
+        {
+          "heading": "changePasswordSuccess",
+          "level": 1,
+          "line": 48
+        },
+        {
+          "heading": "changePasswordFailed",
+          "level": 1,
+          "line": 49
+        },
+        {
+          "heading": "genderMap",
+          "level": 1,
+          "line": 50
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 46
+      }
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/role.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 37,
+      "nonEmptyLines": 37,
+      "sections": [
+        {
+          "heading": "pageTitle",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "moduleName",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "serial",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "namePlaceholder",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "requiredName",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "code",
+          "level": 1,
+          "line": 8
+        },
+        {
+          "heading": "codePlaceholder",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "requiredCode",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "tenantName",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "status",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "statusPlaceholder",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "requiredStatus",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "sortOrder",
+          "level": 1,
+          "line": 15
+        },
+        {
+          "heading": "sortOrderPlaceholder",
+          "level": 1,
+          "line": 16
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 17
+        },
+        {
+          "heading": "descriptionPlaceholder",
+          "level": 1,
+          "line": 18
+        },
+        {
+          "heading": "permissions",
+          "level": 1,
+          "line": 19
+        },
+        {
+          "heading": "createdAt",
+          "level": 1,
+          "line": 20
+        },
+        {
+          "heading": "action",
+          "level": 1,
+          "line": 21
+        },
+        {
+          "heading": "create",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "edit",
+          "level": 1,
+          "line": 23
+        },
+        {
+          "heading": "deleteConfirmTitle",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "deleteConfirmDesc",
+          "level": 1,
+          "line": 25
+        },
+        {
+          "heading": "createSuccess",
+          "level": 1,
+          "line": 26
+        },
+        {
+          "heading": "updateSuccess",
+          "level": 1,
+          "line": 27
+        },
+        {
+          "heading": "deleteSuccess",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "createFailed",
+          "level": 1,
+          "line": 29
+        },
+        {
+          "heading": "updateFailed",
+          "level": 1,
+          "line": 30
+        },
+        {
+          "heading": "deleteFailed",
+          "level": 1,
+          "line": 31
+        },
+        {
+          "heading": "fetchFailed",
+          "level": 1,
+          "line": 32
+        },
+        {
+          "heading": "statusMap",
+          "level": 1,
+          "line": 33
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 32
+      }
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/task.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 69,
+      "nonEmptyLines": 69,
+      "sections": [
+        {
+          "heading": "pageTitle",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "moduleName",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "serial",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "type",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "typePlaceholder",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "typeName",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "typeNamePlaceholder",
+          "level": 1,
+          "line": 8
+        },
+        {
+          "heading": "taskPayload",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "taskPayloadPlaceholder",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "cronSpec",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "cronSpecPlaceholder",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "enable",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "enablePlaceholder",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "sortOrder",
+          "level": 1,
+          "line": 15
+        },
+        {
+          "heading": "createdAt",
+          "level": 1,
+          "line": 16
+        },
+        {
+          "heading": "remark",
+          "level": 1,
+          "line": 17
+        },
+        {
+          "heading": "remarkPlaceholder",
+          "level": 1,
+          "line": 18
+        },
+        {
+          "heading": "taskOptionsMaxRetry",
+          "level": 1,
+          "line": 19
+        },
+        {
+          "heading": "taskOptionsTimeout",
+          "level": 1,
+          "line": 20
+        },
+        {
+          "heading": "taskOptionsDeadline",
+          "level": 1,
+          "line": 21
+        },
+        {
+          "heading": "taskOptionsProcessIn",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "taskOptionsProcessAt",
+          "level": 1,
+          "line": 23
+        },
+        {
+          "heading": "action",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "create",
+          "level": 1,
+          "line": 25
+        },
+        {
+          "heading": "edit",
+          "level": 1,
+          "line": 26
+        },
+        {
+          "heading": "startAll",
+          "level": 1,
+          "line": 27
+        },
+        {
+          "heading": "stopAll",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "restartAll",
+          "level": 1,
+          "line": 29
+        },
+        {
+          "heading": "start",
+          "level": 1,
+          "line": 30
+        },
+        {
+          "heading": "stop",
+          "level": 1,
+          "line": 31
+        },
+        {
+          "heading": "restart",
+          "level": 1,
+          "line": 32
+        },
+        {
+          "heading": "deleteConfirmTitle",
+          "level": 1,
+          "line": 33
+        },
+        {
+          "heading": "deleteConfirmDesc",
+          "level": 1,
+          "line": 34
+        },
+        {
+          "heading": "startAllConfirmTitle",
+          "level": 1,
+          "line": 35
+        },
+        {
+          "heading": "startAllConfirmDesc",
+          "level": 1,
+          "line": 36
+        },
+        {
+          "heading": "stopAllConfirmTitle",
+          "level": 1,
+          "line": 37
+        },
+        {
+          "heading": "stopAllConfirmDesc",
+          "level": 1,
+          "line": 38
+        },
+        {
+          "heading": "restartAllConfirmTitle",
+          "level": 1,
+          "line": 39
+        },
+        {
+          "heading": "restartAllConfirmDesc",
+          "level": 1,
+          "line": 40
+        },
+        {
+          "heading": "startTaskConfirmTitle",
+          "level": 1,
+          "line": 41
+        },
+        {
+          "heading": "startTaskConfirmDesc",
+          "level": 1,
+          "line": 42
+        },
+        {
+          "heading": "stopTaskConfirmTitle",
+          "level": 1,
+          "line": 43
+        },
+        {
+          "heading": "stopTaskConfirmDesc",
+          "level": 1,
+          "line": 44
+        },
+        {
+          "heading": "restartTaskConfirmTitle",
+          "level": 1,
+          "line": 45
+        },
+        {
+          "heading": "restartTaskConfirmDesc",
+          "level": 1,
+          "line": 46
+        },
+        {
+          "heading": "createSuccess",
+          "level": 1,
+          "line": 47
+        },
+        {
+          "heading": "updateSuccess",
+          "level": 1,
+          "line": 48
+        },
+        {
+          "heading": "deleteSuccess",
+          "level": 1,
+          "line": 49
+        },
+        {
+          "heading": "operationSuccess",
+          "level": 1,
+          "line": 50
+        },
+        {
+          "heading": "updateStatusSuccess",
+          "level": 1,
+          "line": 51
+        },
+        {
+          "heading": "createFailed",
+          "level": 1,
+          "line": 52
+        },
+        {
+          "heading": "updateFailed",
+          "level": 1,
+          "line": 53
+        },
+        {
+          "heading": "deleteFailed",
+          "level": 1,
+          "line": 54
+        },
+        {
+          "heading": "operationFailed",
+          "level": 1,
+          "line": 55
+        },
+        {
+          "heading": "updateStatusFailed",
+          "level": 1,
+          "line": 56
+        },
+        {
+          "heading": "fetchFailed",
+          "level": 1,
+          "line": 57
+        },
+        {
+          "heading": "requiredTypeName",
+          "level": 1,
+          "line": 58
+        },
+        {
+          "heading": "requiredType",
+          "level": 1,
+          "line": 59
+        },
+        {
+          "heading": "taskType",
+          "level": 1,
+          "line": 60
+        },
+        {
+          "heading": "enableMap",
+          "level": 1,
+          "line": 65
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 60
+      }
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/tenant.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 79,
+      "nonEmptyLines": 79,
+      "sections": [
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "serial",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "namePlaceholder",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "code",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "codePlaceholder",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "adminUsername",
+          "level": 1,
+          "line": 8
+        },
+        {
+          "heading": "tenantType",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "tenantTypePlaceholder",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "auditStatus",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "auditStatusPlaceholder",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "status",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "statusPlaceholder",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "createdAt",
+          "level": 1,
+          "line": 15
+        },
+        {
+          "heading": "remark",
+          "level": 1,
+          "line": 16
+        },
+        {
+          "heading": "remarkPlaceholder",
+          "level": 1,
+          "line": 17
+        },
+        {
+          "heading": "action",
+          "level": 1,
+          "line": 18
+        },
+        {
+          "heading": "create",
+          "level": 1,
+          "line": 19
+        },
+        {
+          "heading": "edit",
+          "level": 1,
+          "line": 20
+        },
+        {
+          "heading": "deleteConfirmTitle",
+          "level": 1,
+          "line": 21
+        },
+        {
+          "heading": "deleteConfirmDesc",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "createSuccess",
+          "level": 1,
+          "line": 23
+        },
+        {
+          "heading": "updateSuccess",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "deleteSuccess",
+          "level": 1,
+          "line": 25
+        },
+        {
+          "heading": "createFailed",
+          "level": 1,
+          "line": 26
+        },
+        {
+          "heading": "updateFailed",
+          "level": 1,
+          "line": 27
+        },
+        {
+          "heading": "deleteFailed",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "fetchFailed",
+          "level": 1,
+          "line": 29
+        },
+        {
+          "heading": "tenantIdMissing",
+          "level": 1,
+          "line": 30
+        },
+        {
+          "heading": "maxChars",
+          "level": 1,
+          "line": 31
+        },
+        {
+          "heading": "requiredName",
+          "level": 1,
+          "line": 32
+        },
+        {
+          "heading": "requiredCode",
+          "level": 1,
+          "line": 33
+        },
+        {
+          "heading": "requiredType",
+          "level": 1,
+          "line": 34
+        },
+        {
+          "heading": "requiredAuditStatus",
+          "level": 1,
+          "line": 35
+        },
+        {
+          "heading": "requiredStatus",
+          "level": 1,
+          "line": 36
+        },
+        {
+          "heading": "reset",
+          "level": 1,
+          "line": 37
+        },
+        {
+          "heading": "adminSection",
+          "level": 1,
+          "line": 38
+        },
+        {
+          "heading": "adminUsernameLabel",
+          "level": 1,
+          "line": 39
+        },
+        {
+          "heading": "adminUsernamePlaceholder",
+          "level": 1,
+          "line": 40
+        },
+        {
+          "heading": "requiredAdminUsername",
+          "level": 1,
+          "line": 41
+        },
+        {
+          "heading": "password",
+          "level": 1,
+          "line": 42
+        },
+        {
+          "heading": "passwordPlaceholder",
+          "level": 1,
+          "line": 43
+        },
+        {
+          "heading": "requiredPassword",
+          "level": 1,
+          "line": 44
+        },
+        {
+          "heading": "passwordMin",
+          "level": 1,
+          "line": 45
+        },
+        {
+          "heading": "passwordConfirm",
+          "level": 1,
+          "line": 46
+        },
+        {
+          "heading": "passwordConfirmPlaceholder",
+          "level": 1,
+          "line": 47
+        },
+        {
+          "heading": "requiredPasswordConfirm",
+          "level": 1,
+          "line": 48
+        },
+        {
+          "heading": "passwordMismatch",
+          "level": 1,
+          "line": 49
+        },
+        {
+          "heading": "mobile",
+          "level": 1,
+          "line": 50
+        },
+        {
+          "heading": "mobilePlaceholder",
+          "level": 1,
+          "line": 51
+        },
+        {
+          "heading": "requiredMobile",
+          "level": 1,
+          "line": 52
+        },
+        {
+          "heading": "mobileInvalid",
+          "level": 1,
+          "line": 53
+        },
+        {
+          "heading": "email",
+          "level": 1,
+          "line": 54
+        },
+        {
+          "heading": "emailPlaceholder",
+          "level": 1,
+          "line": 55
+        },
+        {
+          "heading": "requiredEmail",
+          "level": 1,
+          "line": 56
+        },
+        {
+          "heading": "emailInvalid",
+          "level": 1,
+          "line": 57
+        },
+        {
+          "heading": "type",
+          "level": 1,
+          "line": 58
+        },
+        {
+          "heading": "typeUnknown",
+          "level": 1,
+          "line": 65
+        },
+        {
+          "heading": "audit",
+          "level": 1,
+          "line": 66
+        },
+        {
+          "heading": "auditUnknown",
+          "level": 1,
+          "line": 71
+        },
+        {
+          "heading": "tenantStatus",
+          "level": 1,
+          "line": 72
+        },
+        {
+          "heading": "statusUnknown",
+          "level": 1,
+          "line": 78
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 62
+      }
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/user-detail.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 43,
+      "nonEmptyLines": 43,
+      "sections": [
+        {
+          "heading": "pageTitle",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "tab",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "desc",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "button",
+          "level": 1,
+          "line": 26
+        },
+        {
+          "heading": "banConfirmTitle",
+          "level": 1,
+          "line": 30
+        },
+        {
+          "heading": "banConfirmDesc",
+          "level": 1,
+          "line": 31
+        },
+        {
+          "heading": "banSuccess",
+          "level": 1,
+          "line": 32
+        },
+        {
+          "heading": "banFailed",
+          "level": 1,
+          "line": 33
+        },
+        {
+          "heading": "editPasswordTitle",
+          "level": 1,
+          "line": 34
+        },
+        {
+          "heading": "newPassword",
+          "level": 1,
+          "line": 35
+        },
+        {
+          "heading": "newPasswordPlaceholder",
+          "level": 1,
+          "line": 36
+        },
+        {
+          "heading": "confirmPassword",
+          "level": 1,
+          "line": 37
+        },
+        {
+          "heading": "confirmPasswordPlaceholder",
+          "level": 1,
+          "line": 38
+        },
+        {
+          "heading": "passwordMismatch",
+          "level": 1,
+          "line": 39
+        },
+        {
+          "heading": "editPasswordSuccess",
+          "level": 1,
+          "line": 40
+        },
+        {
+          "heading": "editPasswordFailed",
+          "level": 1,
+          "line": 41
+        },
+        {
+          "heading": "fetchFailed",
+          "level": 1,
+          "line": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 18
+      }
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/user.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 66,
+      "nonEmptyLines": 66,
+      "sections": [
+        {
+          "heading": "pageTitle",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "moduleName",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "username",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "usernamePlaceholder",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "requiredUsername",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "password",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "passwordPlaceholder",
+          "level": 1,
+          "line": 8
+        },
+        {
+          "heading": "nickname",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "nicknamePlaceholder",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "requiredNickname",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "realname",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "realnamePlaceholder",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "email",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "emailPlaceholder",
+          "level": 1,
+          "line": 15
+        },
+        {
+          "heading": "requiredEmail",
+          "level": 1,
+          "line": 16
+        },
+        {
+          "heading": "mobile",
+          "level": 1,
+          "line": 17
+        },
+        {
+          "heading": "mobilePlaceholder",
+          "level": 1,
+          "line": 18
+        },
+        {
+          "heading": "gender",
+          "level": 1,
+          "line": 19
+        },
+        {
+          "heading": "genderPlaceholder",
+          "level": 1,
+          "line": 20
+        },
+        {
+          "heading": "status",
+          "level": 1,
+          "line": 21
+        },
+        {
+          "heading": "requiredStatus",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "roleIds",
+          "level": 1,
+          "line": 23
+        },
+        {
+          "heading": "roleIdsPlaceholder",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "orgUnitIds",
+          "level": 1,
+          "line": 25
+        },
+        {
+          "heading": "orgUnitIdsPlaceholder",
+          "level": 1,
+          "line": 26
+        },
+        {
+          "heading": "positionIds",
+          "level": 1,
+          "line": 27
+        },
+        {
+          "heading": "positionIdsPlaceholder",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "remark",
+          "level": 1,
+          "line": 29
+        },
+        {
+          "heading": "remarkPlaceholder",
+          "level": 1,
+          "line": 30
+        },
+        {
+          "heading": "tenantId",
+          "level": 1,
+          "line": 31
+        },
+        {
+          "heading": "tenantIdPlaceholder",
+          "level": 1,
+          "line": 32
+        },
+        {
+          "heading": "lastLoginAt",
+          "level": 1,
+          "line": 33
+        },
+        {
+          "heading": "createdAt",
+          "level": 1,
+          "line": 34
+        },
+        {
+          "heading": "action",
+          "level": 1,
+          "line": 35
+        },
+        {
+          "heading": "create",
+          "level": 1,
+          "line": 36
+        },
+        {
+          "heading": "edit",
+          "level": 1,
+          "line": 37
+        },
+        {
+          "heading": "detail",
+          "level": 1,
+          "line": 38
+        },
+        {
+          "heading": "deleteConfirmTitle",
+          "level": 1,
+          "line": 39
+        },
+        {
+          "heading": "deleteConfirmDesc",
+          "level": 1,
+          "line": 40
+        },
+        {
+          "heading": "createSuccess",
+          "level": 1,
+          "line": 41
+        },
+        {
+          "heading": "updateSuccess",
+          "level": 1,
+          "line": 42
+        },
+        {
+          "heading": "deleteSuccess",
+          "level": 1,
+          "line": 43
+        },
+        {
+          "heading": "createFailed",
+          "level": 1,
+          "line": 44
+        },
+        {
+          "heading": "updateFailed",
+          "level": 1,
+          "line": 45
+        },
+        {
+          "heading": "deleteFailed",
+          "level": 1,
+          "line": 46
+        },
+        {
+          "heading": "fetchFailed",
+          "level": 1,
+          "line": 47
+        },
+        {
+          "heading": "selectOrgFirst",
+          "level": 1,
+          "line": 48
+        },
+        {
+          "heading": "searchOrg",
+          "level": 1,
+          "line": 49
+        },
+        {
+          "heading": "expandAll",
+          "level": 1,
+          "line": 50
+        },
+        {
+          "heading": "collapseAll",
+          "level": 1,
+          "line": 51
+        },
+        {
+          "heading": "clearSelect",
+          "level": 1,
+          "line": 52
+        },
+        {
+          "heading": "statusMap",
+          "level": 1,
+          "line": 53
+        },
+        {
+          "heading": "genderMap",
+          "level": 1,
+          "line": 61
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 53
+      }
+    }
+  ]
+}

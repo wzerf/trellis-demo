@@ -1,0 +1,68 @@
+{
+  "nodes": [
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/preferences.json",
+      "type": "config",
+      "name": "preferences.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/preferences.json",
+      "summary": "react-admin 应用 en-US 区域下\"个人偏好设置\"模块的 i18n 文案配置,涵盖外观、布局、快捷键、通用等 8 个分组的标题与操作标签。",
+      "tags": ["i18n", "locale", "preferences", "configuration", "en-US"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/profile.json",
+      "type": "config",
+      "name": "profile.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/profile.json",
+      "summary": "react-admin 应用 en-US 区域下\"个人资料\"模块的 i18n 文案配置,包含用户基础信息字段、密码修改表单与 genderMap 枚举映射等 46 项文案。",
+      "tags": ["i18n", "locale", "profile", "configuration", "en-US"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/role.json",
+      "type": "config",
+      "name": "role.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/role.json",
+      "summary": "react-admin 应用 en-US 区域下\"角色管理\"模块的 i18n 文案配置,涵盖角色表单字段、CRUD 操作提示与 statusMap 状态枚举映射。",
+      "tags": ["i18n", "locale", "role", "configuration", "en-US"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/task.json",
+      "type": "config",
+      "name": "task.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/task.json",
+      "summary": "react-admin 应用 en-US 区域下\"任务调度\"模块的 i18n 文案配置,包含任务类型、Cron 表达式、启停/重启确认对话框与 taskType/enableMap 枚举映射。",
+      "tags": ["i18n", "locale", "task", "configuration", "en-US"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/tenant.json",
+      "type": "config",
+      "name": "tenant.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/tenant.json",
+      "summary": "react-admin 应用 en-US 区域下\"租户管理\"模块的 i18n 文案配置,包含租户表单、管理员账号注册、type/audit/tenantStatus 枚举映射等 62 项文案。",
+      "tags": ["i18n", "locale", "tenant", "configuration", "en-US"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/user-detail.json",
+      "type": "config",
+      "name": "user-detail.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/user-detail.json",
+      "summary": "react-admin 应用 en-US 区域下\"用户详情\"模块的 i18n 文案配置,涵盖 Tab 描述、封禁/重置密码对话框与相关成功失败提示。",
+      "tags": ["i18n", "locale", "user-detail", "configuration", "en-US"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/user.json",
+      "type": "config",
+      "name": "user.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/user.json",
+      "summary": "react-admin 应用 en-US 区域下\"用户管理\"模块的 i18n 文案配置,包含用户表单字段、组织树操作提示与 statusMap/genderMap 枚举映射。",
+      "tags": ["i18n", "locale", "user", "configuration", "en-US"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": []
+}

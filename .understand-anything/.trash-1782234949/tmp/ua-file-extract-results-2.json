@@ -1,0 +1,1382 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 27,
+      "functions": [
+        {
+          "name": "ListResult",
+          "startLine": 17,
+          "endLine": 17,
+          "params": []
+        },
+        {
+          "name": "of",
+          "startLine": 20,
+          "endLine": 22,
+          "params": []
+        },
+        {
+          "name": "of",
+          "startLine": 25,
+          "endLine": 31,
+          "params": [
+            "data"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ListResult",
+          "startLine": 15,
+          "endLine": 32,
+          "methods": [
+            "ListResult",
+            "of",
+            "of"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ListResult",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "of",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "of",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "ListResult",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "of",
+          "callee": "of",
+          "lineNumber": 21
+        },
+        {
+          "caller": "of",
+          "callee": "new ListResult<>",
+          "lineNumber": 26
+        },
+        {
+          "caller": "of",
+          "callee": "r.setCode",
+          "lineNumber": 27
+        },
+        {
+          "caller": "of",
+          "callee": "ResultCode.SUCCESS.getCode",
+          "lineNumber": 27
+        },
+        {
+          "caller": "of",
+          "callee": "r.setMsg",
+          "lineNumber": 28
+        },
+        {
+          "caller": "of",
+          "callee": "ResultCode.SUCCESS.getMsg",
+          "lineNumber": 28
+        },
+        {
+          "caller": "of",
+          "callee": "r.setData",
+          "lineNumber": 29
+        },
+        {
+          "caller": "of",
+          "callee": "Collections.emptyList",
+          "lineNumber": 29
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 30,
+      "functions": [
+        {
+          "name": "ObjectResult",
+          "startLine": 19,
+          "endLine": 19,
+          "params": []
+        },
+        {
+          "name": "of",
+          "startLine": 22,
+          "endLine": 24,
+          "params": []
+        },
+        {
+          "name": "of",
+          "startLine": 27,
+          "endLine": 34,
+          "params": [
+            "data"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ObjectResult",
+          "startLine": 17,
+          "endLine": 35,
+          "methods": [
+            "ObjectResult",
+            "of",
+            "of"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ObjectResult",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "of",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "of",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "ObjectResult",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "of",
+          "callee": "of",
+          "lineNumber": 23
+        },
+        {
+          "caller": "of",
+          "callee": "new ObjectResult<>",
+          "lineNumber": 29
+        },
+        {
+          "caller": "of",
+          "callee": "r.setCode",
+          "lineNumber": 30
+        },
+        {
+          "caller": "of",
+          "callee": "ResultCode.SUCCESS.getCode",
+          "lineNumber": 30
+        },
+        {
+          "caller": "of",
+          "callee": "r.setMsg",
+          "lineNumber": 31
+        },
+        {
+          "caller": "of",
+          "callee": "ResultCode.SUCCESS.getMsg",
+          "lineNumber": 31
+        },
+        {
+          "caller": "of",
+          "callee": "r.setData",
+          "lineNumber": 32
+        },
+        {
+          "caller": "of",
+          "callee": "Collections.emptyMap",
+          "lineNumber": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 103,
+      "nonEmptyLines": 85,
+      "functions": [
+        {
+          "name": "Result",
+          "startLine": 38,
+          "endLine": 38,
+          "params": []
+        },
+        {
+          "name": "Result",
+          "startLine": 40,
+          "endLine": 44,
+          "params": [
+            "code",
+            "msg",
+            "data"
+          ]
+        },
+        {
+          "name": "ok",
+          "startLine": 46,
+          "endLine": 48,
+          "params": []
+        },
+        {
+          "name": "ok",
+          "startLine": 50,
+          "endLine": 52,
+          "params": [
+            "data"
+          ]
+        },
+        {
+          "name": "ok",
+          "startLine": 54,
+          "endLine": 56,
+          "params": [
+            "data",
+            "msg"
+          ]
+        },
+        {
+          "name": "okObj",
+          "startLine": 64,
+          "endLine": 66,
+          "params": []
+        },
+        {
+          "name": "okObj",
+          "startLine": 69,
+          "endLine": 71,
+          "params": [
+            "data"
+          ]
+        },
+        {
+          "name": "okList",
+          "startLine": 78,
+          "endLine": 80,
+          "params": []
+        },
+        {
+          "name": "okList",
+          "startLine": 83,
+          "endLine": 85,
+          "params": [
+            "data"
+          ]
+        },
+        {
+          "name": "error",
+          "startLine": 87,
+          "endLine": 89,
+          "params": [
+            "code"
+          ]
+        },
+        {
+          "name": "error",
+          "startLine": 91,
+          "endLine": 93,
+          "params": [
+            "code",
+            "msg"
+          ]
+        },
+        {
+          "name": "error",
+          "startLine": 95,
+          "endLine": 97,
+          "params": [
+            "code",
+            "msg"
+          ]
+        },
+        {
+          "name": "isSuccess",
+          "startLine": 99,
+          "endLine": 102,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Result",
+          "startLine": 19,
+          "endLine": 103,
+          "methods": [
+            "Result",
+            "Result",
+            "ok",
+            "ok",
+            "ok",
+            "okObj",
+            "okObj",
+            "okList",
+            "okList",
+            "error",
+            "error",
+            "error",
+            "isSuccess"
+          ],
+          "properties": [
+            "code",
+            "msg",
+            "data"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Result",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "Result",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "ok",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "ok",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "ok",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "okObj",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "okObj",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "okList",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "okList",
+          "line": 83,
+          "isDefault": false
+        },
+        {
+          "name": "error",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "error",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "error",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "isSuccess",
+          "line": 99,
+          "isDefault": false
+        },
+        {
+          "name": "Result",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ok",
+          "callee": "new Result<>",
+          "lineNumber": 47
+        },
+        {
+          "caller": "ok",
+          "callee": "ResultCode.SUCCESS.getCode",
+          "lineNumber": 47
+        },
+        {
+          "caller": "ok",
+          "callee": "ResultCode.SUCCESS.getMsg",
+          "lineNumber": 47
+        },
+        {
+          "caller": "ok",
+          "callee": "new Result<>",
+          "lineNumber": 51
+        },
+        {
+          "caller": "ok",
+          "callee": "ResultCode.SUCCESS.getCode",
+          "lineNumber": 51
+        },
+        {
+          "caller": "ok",
+          "callee": "ResultCode.SUCCESS.getMsg",
+          "lineNumber": 51
+        },
+        {
+          "caller": "ok",
+          "callee": "new Result<>",
+          "lineNumber": 55
+        },
+        {
+          "caller": "ok",
+          "callee": "ResultCode.SUCCESS.getCode",
+          "lineNumber": 55
+        },
+        {
+          "caller": "okObj",
+          "callee": "ObjectResult.of",
+          "lineNumber": 65
+        },
+        {
+          "caller": "okObj",
+          "callee": "ObjectResult.of",
+          "lineNumber": 70
+        },
+        {
+          "caller": "okList",
+          "callee": "ListResult.of",
+          "lineNumber": 79
+        },
+        {
+          "caller": "okList",
+          "callee": "ListResult.of",
+          "lineNumber": 84
+        },
+        {
+          "caller": "error",
+          "callee": "new Result<>",
+          "lineNumber": 88
+        },
+        {
+          "caller": "error",
+          "callee": "code.getCode",
+          "lineNumber": 88
+        },
+        {
+          "caller": "error",
+          "callee": "code.getMsg",
+          "lineNumber": 88
+        },
+        {
+          "caller": "error",
+          "callee": "new Result<>",
+          "lineNumber": 92
+        },
+        {
+          "caller": "error",
+          "callee": "new Result<>",
+          "lineNumber": 96
+        },
+        {
+          "caller": "error",
+          "callee": "code.getCode",
+          "lineNumber": 96
+        },
+        {
+          "caller": "isSuccess",
+          "callee": "ResultCode.SUCCESS.getCode",
+          "lineNumber": 101
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 14,
+        "functionCount": 13,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 32,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 133,
+      "nonEmptyLines": 123,
+      "functions": [
+        {
+          "name": "handleBiz",
+          "startLine": 37,
+          "endLine": 47,
+          "params": [
+            "e"
+          ]
+        },
+        {
+          "name": "handleAuth",
+          "startLine": 49,
+          "endLine": 60,
+          "params": [
+            "e"
+          ]
+        },
+        {
+          "name": "handleNotLogin",
+          "startLine": 62,
+          "endLine": 71,
+          "params": [
+            "e"
+          ]
+        },
+        {
+          "name": "handleNotRole",
+          "startLine": 73,
+          "endLine": 83,
+          "params": [
+            "e"
+          ]
+        },
+        {
+          "name": "handleSaToken",
+          "startLine": 85,
+          "endLine": 95,
+          "params": [
+            "e"
+          ]
+        },
+        {
+          "name": "handleValidation",
+          "startLine": 97,
+          "endLine": 109,
+          "params": [
+            "e"
+          ]
+        },
+        {
+          "name": "handleNotReadable",
+          "startLine": 111,
+          "endLine": 120,
+          "params": [
+            "e"
+          ]
+        },
+        {
+          "name": "handleAny",
+          "startLine": 122,
+          "endLine": 132,
+          "params": [
+            "e"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "GlobalExceptionHandler",
+          "startLine": 32,
+          "endLine": 133,
+          "methods": [
+            "handleBiz",
+            "handleAuth",
+            "handleNotLogin",
+            "handleNotRole",
+            "handleSaToken",
+            "handleValidation",
+            "handleNotReadable",
+            "handleAny"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "handleBiz",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "handleAuth",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "handleNotLogin",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "handleNotRole",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "handleSaToken",
+          "line": 85,
+          "isDefault": false
+        },
+        {
+          "name": "handleValidation",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "handleNotReadable",
+          "line": 111,
+          "isDefault": false
+        },
+        {
+          "name": "handleAny",
+          "line": 122,
+          "isDefault": false
+        },
+        {
+          "name": "GlobalExceptionHandler",
+          "line": 32,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "handleBiz",
+          "callee": "log.warn",
+          "lineNumber": 44
+        },
+        {
+          "caller": "handleBiz",
+          "callee": "e.getCode",
+          "lineNumber": 44
+        },
+        {
+          "caller": "handleBiz",
+          "callee": "e.getMessage",
+          "lineNumber": 44
+        },
+        {
+          "caller": "handleBiz",
+          "callee": "MDC.get",
+          "lineNumber": 44
+        },
+        {
+          "caller": "handleBiz",
+          "callee": "e.getCode",
+          "lineNumber": 45
+        },
+        {
+          "caller": "handleBiz",
+          "callee": "ResponseEntity.status(status).body",
+          "lineNumber": 46
+        },
+        {
+          "caller": "handleBiz",
+          "callee": "ResponseEntity.status",
+          "lineNumber": 46
+        },
+        {
+          "caller": "handleBiz",
+          "callee": "Result.error",
+          "lineNumber": 46
+        },
+        {
+          "caller": "handleBiz",
+          "callee": "e.getCode",
+          "lineNumber": 46
+        },
+        {
+          "caller": "handleBiz",
+          "callee": "e.getMessage",
+          "lineNumber": 46
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "log.warn",
+          "lineNumber": 56
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "e.getCode",
+          "lineNumber": 56
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "e.getMessage",
+          "lineNumber": 56
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "MDC.get",
+          "lineNumber": 56
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "e.getCode",
+          "lineNumber": 58
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "ResultCode.AUTH_FORBIDDEN.getCode",
+          "lineNumber": 58
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "ResponseEntity.status(status).body",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "ResponseEntity.status",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "Result.error",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "e.getCode",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleAuth",
+          "callee": "e.getMessage",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleNotLogin",
+          "callee": "log.warn",
+          "lineNumber": 69
+        },
+        {
+          "caller": "handleNotLogin",
+          "callee": "e.getType",
+          "lineNumber": 69
+        },
+        {
+          "caller": "handleNotLogin",
+          "callee": "e.getMessage",
+          "lineNumber": 69
+        },
+        {
+          "caller": "handleNotLogin",
+          "callee": "MDC.get",
+          "lineNumber": 69
+        },
+        {
+          "caller": "handleNotLogin",
+          "callee": "ResponseEntity.status(HttpStatus.UNAUTHORIZED).body",
+          "lineNumber": 70
+        },
+        {
+          "caller": "handleNotLogin",
+          "callee": "ResponseEntity.status",
+          "lineNumber": 70
+        },
+        {
+          "caller": "handleNotLogin",
+          "callee": "Result.error",
+          "lineNumber": 70
+        },
+        {
+          "caller": "handleNotRole",
+          "callee": "log.warn",
+          "lineNumber": 80
+        },
+        {
+          "caller": "handleNotRole",
+          "callee": "e.getRole",
+          "lineNumber": 80
+        },
+        {
+          "caller": "handleNotRole",
+          "callee": "MDC.get",
+          "lineNumber": 80
+        },
+        {
+          "caller": "handleNotRole",
+          "callee": "ResponseEntity.status(HttpStatus.FORBIDDEN).body",
+          "lineNumber": 81
+        },
+        {
+          "caller": "handleNotRole",
+          "callee": "ResponseEntity.status",
+          "lineNumber": 81
+        },
+        {
+          "caller": "handleNotRole",
+          "callee": "Result.error",
+          "lineNumber": 82
+        },
+        {
+          "caller": "handleNotRole",
+          "callee": "e.getRole",
+          "lineNumber": 82
+        },
+        {
+          "caller": "handleSaToken",
+          "callee": "log.warn",
+          "lineNumber": 92
+        },
+        {
+          "caller": "handleSaToken",
+          "callee": "e.getMessage",
+          "lineNumber": 92
+        },
+        {
+          "caller": "handleSaToken",
+          "callee": "MDC.get",
+          "lineNumber": 92
+        },
+        {
+          "caller": "handleSaToken",
+          "callee": "ResponseEntity.status(HttpStatus.UNAUTHORIZED).body",
+          "lineNumber": 93
+        },
+        {
+          "caller": "handleSaToken",
+          "callee": "ResponseEntity.status",
+          "lineNumber": 93
+        },
+        {
+          "caller": "handleSaToken",
+          "callee": "Result.error",
+          "lineNumber": 94
+        },
+        {
+          "caller": "handleSaToken",
+          "callee": "e.getMessage",
+          "lineNumber": 94
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "e.getBindingResult().getFieldErrors().stream()\n                .map(fe -> fe.getField() + \" \" + fe.getDefaultMessage()).collect",
+          "lineNumber": 104
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "e.getBindingResult().getFieldErrors().stream().map",
+          "lineNumber": 104
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "e.getBindingResult().getFieldErrors().stream",
+          "lineNumber": 104
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "e.getBindingResult().getFieldErrors",
+          "lineNumber": 104
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "e.getBindingResult",
+          "lineNumber": 104
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "fe.getField",
+          "lineNumber": 105
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "fe.getDefaultMessage",
+          "lineNumber": 105
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "Collectors.joining",
+          "lineNumber": 106
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "log.warn",
+          "lineNumber": 107
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "MDC.get",
+          "lineNumber": 107
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "ResponseEntity.status(HttpStatus.BAD_REQUEST).body",
+          "lineNumber": 108
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "ResponseEntity.status",
+          "lineNumber": 108
+        },
+        {
+          "caller": "handleValidation",
+          "callee": "Result.error",
+          "lineNumber": 108
+        },
+        {
+          "caller": "handleNotReadable",
+          "callee": "log.warn",
+          "lineNumber": 118
+        },
+        {
+          "caller": "handleNotReadable",
+          "callee": "MDC.get",
+          "lineNumber": 118
+        },
+        {
+          "caller": "handleNotReadable",
+          "callee": "ResponseEntity.status(HttpStatus.BAD_REQUEST).body",
+          "lineNumber": 119
+        },
+        {
+          "caller": "handleNotReadable",
+          "callee": "ResponseEntity.status",
+          "lineNumber": 119
+        },
+        {
+          "caller": "handleNotReadable",
+          "callee": "Result.error",
+          "lineNumber": 119
+        },
+        {
+          "caller": "handleAny",
+          "callee": "log.error",
+          "lineNumber": 129
+        },
+        {
+          "caller": "handleAny",
+          "callee": "e.getClass().getSimpleName",
+          "lineNumber": 129
+        },
+        {
+          "caller": "handleAny",
+          "callee": "e.getClass",
+          "lineNumber": 129
+        },
+        {
+          "caller": "handleAny",
+          "callee": "MDC.get",
+          "lineNumber": 129
+        },
+        {
+          "caller": "handleAny",
+          "callee": "ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body",
+          "lineNumber": 130
+        },
+        {
+          "caller": "handleAny",
+          "callee": "ResponseEntity.status",
+          "lineNumber": 130
+        },
+        {
+          "caller": "handleAny",
+          "callee": "Result.error",
+          "lineNumber": 131
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 9,
+        "functionCount": 8,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 51,
+      "functions": [
+        {
+          "name": "handleBiz_returnsCorrectCodeAndStatus",
+          "startLine": 24,
+          "endLine": 35,
+          "params": []
+        },
+        {
+          "name": "handleAuth_returns401_forInvalidCredentials",
+          "startLine": 37,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "handleAuth_returns403_forForbidden",
+          "startLine": 45,
+          "endLine": 51,
+          "params": []
+        },
+        {
+          "name": "handleAny_returns500_andHidesRealMessage",
+          "startLine": 53,
+          "endLine": 63,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "GlobalExceptionHandlerTest",
+          "startLine": 20,
+          "endLine": 64,
+          "methods": [
+            "handleBiz_returnsCorrectCodeAndStatus",
+            "handleAuth_returns401_forInvalidCredentials",
+            "handleAuth_returns403_forForbidden",
+            "handleAny_returns500_andHidesRealMessage"
+          ],
+          "properties": [
+            "handler"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "new BizException",
+          "lineNumber": 26
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "handler.handleBiz",
+          "lineNumber": 28
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "assertThat(resp.getStatusCode()).isEqualTo",
+          "lineNumber": 30
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "assertThat",
+          "lineNumber": 30
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "resp.getStatusCode",
+          "lineNumber": 30
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "assertThat(resp.getBody()).isNotNull",
+          "lineNumber": 31
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "assertThat",
+          "lineNumber": 31
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "resp.getBody",
+          "lineNumber": 31
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "assertThat(resp.getBody().getCode()).isEqualTo",
+          "lineNumber": 32
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "assertThat",
+          "lineNumber": 32
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "resp.getBody().getCode",
+          "lineNumber": 32
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "resp.getBody",
+          "lineNumber": 32
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "assertThat(resp.getBody().getMsg()).isEqualTo",
+          "lineNumber": 33
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "assertThat",
+          "lineNumber": 33
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "resp.getBody().getMsg",
+          "lineNumber": 33
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "resp.getBody",
+          "lineNumber": 33
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "assertThat(resp.getBody().getData()).isNull",
+          "lineNumber": 34
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "assertThat",
+          "lineNumber": 34
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "resp.getBody().getData",
+          "lineNumber": 34
+        },
+        {
+          "caller": "handleBiz_returnsCorrectCodeAndStatus",
+          "callee": "resp.getBody",
+          "lineNumber": 34
+        },
+        {
+          "caller": "handleAuth_returns401_forInvalidCredentials",
+          "callee": "handler.handleAuth",
+          "lineNumber": 39
+        },
+        {
+          "caller": "handleAuth_returns401_forInvalidCredentials",
+          "callee": "AuthException.invalidCredentials",
+          "lineNumber": 39
+        },
+        {
+          "caller": "handleAuth_returns401_forInvalidCredentials",
+          "callee": "assertThat(resp.getStatusCode()).isEqualTo",
+          "lineNumber": 41
+        },
+        {
+          "caller": "handleAuth_returns401_forInvalidCredentials",
+          "callee": "assertThat",
+          "lineNumber": 41
+        },
+        {
+          "caller": "handleAuth_returns401_forInvalidCredentials",
+          "callee": "resp.getStatusCode",
+          "lineNumber": 41
+        },
+        {
+          "caller": "handleAuth_returns401_forInvalidCredentials",
+          "callee": "assertThat(resp.getBody().getCode()).isEqualTo",
+          "lineNumber": 42
+        },
+        {
+          "caller": "handleAuth_returns401_forInvalidCredentials",
+          "callee": "assertThat",
+          "lineNumber": 42
+        },
+        {
+          "caller": "handleAuth_returns401_forInvalidCredentials",
+          "callee": "resp.getBody().getCode",
+          "lineNumber": 42
+        },
+        {
+          "caller": "handleAuth_returns401_forInvalidCredentials",
+          "callee": "resp.getBody",
+          "lineNumber": 42
+        },
+        {
+          "caller": "handleAuth_returns401_forInvalidCredentials",
+          "callee": "ResultCode.AUTH_INVALID_CREDENTIALS.getCode",
+          "lineNumber": 42
+        },
+        {
+          "caller": "handleAuth_returns403_forForbidden",
+          "callee": "handler.handleAuth",
+          "lineNumber": 47
+        },
+        {
+          "caller": "handleAuth_returns403_forForbidden",
+          "callee": "AuthException.forbidden",
+          "lineNumber": 47
+        },
+        {
+          "caller": "handleAuth_returns403_forForbidden",
+          "callee": "assertThat(resp.getStatusCode()).isEqualTo",
+          "lineNumber": 49
+        },
+        {
+          "caller": "handleAuth_returns403_forForbidden",
+          "callee": "assertThat",
+          "lineNumber": 49
+        },
+        {
+          "caller": "handleAuth_returns403_forForbidden",
+          "callee": "resp.getStatusCode",
+          "lineNumber": 49
+        },
+        {
+          "caller": "handleAuth_returns403_forForbidden",
+          "callee": "assertThat(resp.getBody().getCode()).isEqualTo",
+          "lineNumber": 50
+        },
+        {
+          "caller": "handleAuth_returns403_forForbidden",
+          "callee": "assertThat",
+          "lineNumber": 50
+        },
+        {
+          "caller": "handleAuth_returns403_forForbidden",
+          "callee": "resp.getBody().getCode",
+          "lineNumber": 50
+        },
+        {
+          "caller": "handleAuth_returns403_forForbidden",
+          "callee": "resp.getBody",
+          "lineNumber": 50
+        },
+        {
+          "caller": "handleAuth_returns403_forForbidden",
+          "callee": "ResultCode.AUTH_FORBIDDEN.getCode",
+          "lineNumber": 50
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "handler.handleAny",
+          "lineNumber": 56
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "new RuntimeException",
+          "lineNumber": 56
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "assertThat(resp.getStatusCode()).isEqualTo",
+          "lineNumber": 58
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "assertThat",
+          "lineNumber": 58
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "resp.getStatusCode",
+          "lineNumber": 58
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "assertThat(resp.getBody().getCode()).isEqualTo",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "assertThat",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "resp.getBody().getCode",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "resp.getBody",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "ResultCode.INTERNAL_ERROR.getCode",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "assertThat(resp.getBody().getMsg()).isEqualTo",
+          "lineNumber": 60
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "assertThat",
+          "lineNumber": 60
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "resp.getBody().getMsg",
+          "lineNumber": 60
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "resp.getBody",
+          "lineNumber": 60
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "assertThat(resp.getBody().getMsg()).doesNotContain",
+          "lineNumber": 62
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "assertThat",
+          "lineNumber": 62
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "resp.getBody().getMsg",
+          "lineNumber": 62
+        },
+        {
+          "caller": "handleAny_returns500_andHidesRealMessage",
+          "callee": "resp.getBody",
+          "lineNumber": 62
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 1
+      }
+    }
+  ]
+}

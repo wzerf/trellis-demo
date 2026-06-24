@@ -1,0 +1,185 @@
+{
+  "nodes": [
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/api-audit-log.json",
+      "type": "config",
+      "name": "api-audit-log.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/api-audit-log.json",
+      "summary": "en-US locale module providing field labels, placeholders, and CRUD status messages for the API audit log page.",
+      "tags": ["i18n", "locale", "audit-log", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/api.json",
+      "type": "config",
+      "name": "api.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/api.json",
+      "summary": "en-US locale module for the API management page, covering path, method, module, sync action confirmations, and operation feedback strings.",
+      "tags": ["i18n", "locale", "api-management", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/dashboard.json",
+      "type": "config",
+      "name": "dashboard.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/dashboard.json",
+      "summary": "en-US locale module for the dashboard, providing grouped labels for stats, charts, traffic sources, categories, devices, and time-series data.",
+      "tags": ["i18n", "locale", "dashboard", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/data-access-audit-log.json",
+      "type": "config",
+      "name": "data-access-audit-log.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/data-access-audit-log.json",
+      "summary": "en-US locale module for the data access audit log page, including access type enumerations (READ/CREATE/UPDATE/DELETE) and query placeholders.",
+      "tags": ["i18n", "locale", "audit-log", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/dict-entry.json",
+      "type": "config",
+      "name": "dict-entry.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/dict-entry.json",
+      "summary": "en-US locale module for the dictionary entry management page, with field labels, validation messages, and i18n-aware title editing dialog strings.",
+      "tags": ["i18n", "locale", "dictionary", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/dict-type.json",
+      "type": "config",
+      "name": "dict-type.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/dict-type.json",
+      "summary": "en-US locale module for the dictionary type management page, covering type name/code fields, status mapping, and CRUD operation feedback.",
+      "tags": ["i18n", "locale", "dictionary", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/file.json",
+      "type": "config",
+      "name": "file.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/file.json",
+      "summary": "en-US locale module for the file management page, including upload/edit/delete actions, file name validation, and storage provider mapping labels.",
+      "tags": ["i18n", "locale", "file-management", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/inbox.json",
+      "type": "config",
+      "name": "inbox.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/inbox.json",
+      "summary": "en-US locale module for the inbox page, providing read/unread status labels, mark-read action feedback, and empty state hints.",
+      "tags": ["i18n", "locale", "inbox", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/internal-message.json",
+      "type": "config",
+      "name": "internal-message.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/internal-message.json",
+      "summary": "en-US locale module for the internal message management page, covering title/content/category fields, status maps, and type enumerations.",
+      "tags": ["i18n", "locale", "internal-message", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/language.json",
+      "type": "config",
+      "name": "language.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/language.json",
+      "summary": "en-US locale module for the language management page, including native name, language code, enabled/default flags, and yes/no toggles.",
+      "tags": ["i18n", "locale", "language-management", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/login-audit-log.json",
+      "type": "config",
+      "name": "login-audit-log.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/login-audit-log.json",
+      "summary": "en-US locale module for the login audit log page, including action type enum (LOGIN/LOGOUT/SESSION_EXPIRED/KICKED_OUT/PASSWORD_RESET) and risk level labels.",
+      "tags": ["i18n", "locale", "audit-log", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/login-policy.json",
+      "type": "config",
+      "name": "login-policy.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/login-policy.json",
+      "summary": "en-US locale module for the login policy management page, covering target/type/method/value fields, reason input, and policy type/method mapping.",
+      "tags": ["i18n", "locale", "login-policy", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/menu.json",
+      "type": "config",
+      "name": "menu.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/menu.json",
+      "summary": "en-US locale module for the menu management page, including menu name/title, parent/order, icon/path/component, authority, and advanced tab settings (keepAlive/affix/hideInMenu, etc.).",
+      "tags": ["i18n", "locale", "menu-management", "en-US", "module-locale"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/message-category.json",
+      "type": "config",
+      "name": "message-category.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/message-category.json",
+      "summary": "en-US locale module for the message category management page, covering category name/code, sort order, status, and CRUD feedback messages.",
+      "tags": ["i18n", "locale", "message-category", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/operation-audit-log.json",
+      "type": "config",
+      "name": "operation-audit-log.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/operation-audit-log.json",
+      "summary": "en-US locale module for the operation audit log page, providing field labels, query placeholders, and load-failure hint for user operation tracing.",
+      "tags": ["i18n", "locale", "audit-log", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/org-unit.json",
+      "type": "config",
+      "name": "org-unit.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/org-unit.json",
+      "summary": "en-US locale module for the organization unit management page, covering unit name/code, parent unit, leader, sort order, status, and operation feedback.",
+      "tags": ["i18n", "locale", "org-unit", "en-US", "module-locale"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/permission-audit-log.json",
+      "type": "config",
+      "name": "permission-audit-log.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/permission-audit-log.json",
+      "summary": "en-US locale module for the permission audit log page, providing concise field labels, query placeholders, and a fetch-failure hint for permission change tracing.",
+      "tags": ["i18n", "locale", "audit-log", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/permission-group.json",
+      "type": "config",
+      "name": "permission-group.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/permission-group.json",
+      "summary": "en-US locale module for the permission group management page, covering group name/code, parent group, sort order, status, and CRUD feedback messages.",
+      "tags": ["i18n", "locale", "permission-group", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/permission.json",
+      "type": "config",
+      "name": "permission.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/permission.json",
+      "summary": "en-US locale module for the permission management page, including permission name/code/type, parent permission, sort order, status, and validation messages.",
+      "tags": ["i18n", "locale", "permission-management", "en-US", "module-locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/en-US/_modules/position.json",
+      "type": "config",
+      "name": "position.json",
+      "filePath": "apps/react-admin/src/locales/en-US/_modules/position.json",
+      "summary": "en-US locale module for the position management page, covering position name/code, level, sort order, status, job description, and CRUD feedback.",
+      "tags": ["i18n", "locale", "position-management", "en-US", "module-locale"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

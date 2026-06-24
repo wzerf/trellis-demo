@@ -1,0 +1,4091 @@
+{
+  "fileNodes": [
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "type": "file",
+      "name": "AuthController.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "summary": "鉴权 Controller,提供登录、登出、当前用户信息三个 HTTP 接口(/api/v1/auth/login、/logout、/info),集成 Sa-Token 签发 token 并返回统一 Result 包装。",
+      "tags": [
+        "api-handler",
+        "rest-controller",
+        "auth",
+        "sa-token",
+        "swagger"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "type": "file",
+      "name": "LoginRequest.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "summary": "登录请求 DTO,包含 username/password 字段,使用 Jakarta Validation 做非空与长度校验,并通过 Swagger @Schema 标注示例与边界。",
+      "tags": [
+        "dto",
+        "validation",
+        "swagger",
+        "data-model"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "type": "file",
+      "name": "LoginResponse.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "summary": "登录成功响应 VO,包含 Sa-Token 颁发的 token、userId、username、nickname 四个字段,前端据此写入请求头。",
+      "tags": [
+        "vo",
+        "data-model",
+        "auth",
+        "swagger"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "type": "file",
+      "name": "UserInfoVO.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "summary": "当前用户信息响应 VO(/api/v1/auth/info 接口),暴露 id、username、nickname、status(启用/禁用)、createTime 字段。",
+      "tags": [
+        "vo",
+        "data-model",
+        "user-info",
+        "swagger"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "type": "file",
+      "name": "ResultFormatTest.java",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "summary": "Result / ObjectResult / ListResult 响应体序列化测试类，使用 Jackson ObjectMapper 验证 JSON 严格包含 3 字段（code、msg、data）且不含 traceId，同时覆盖子类的 null 回退语义（{} 与 []）。",
+      "tags": [
+        "test",
+        "junit",
+        "serialization",
+        "result-format",
+        "json"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "file",
+      "name": "AuthException.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "summary": "鉴权异常类,统一封装 Sa-Token 抛出的 NotLoginException/NotRoleException 等,提供 notLogin、invalidCredentials、tokenExpired、forbidden 静态工厂方法。",
+      "tags": [
+        "exception",
+        "auth",
+        "sa-token",
+        "runtime-exception"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "file",
+      "name": "BizException.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "summary": "业务异常基类,所有受控业务错误通过 BizException 抛出,提供 of(code)/of(code,msg) 静态工厂,由 GlobalExceptionHandler 统一转为 Result。",
+      "tags": [
+        "exception",
+        "business",
+        "runtime-exception",
+        "factory"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "file",
+      "name": "Result.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "summary": "统一 API 响应体(Q13 决策,严格 3 字段 code/msg/data),traceId 通过 X-Trace-Id 响应头暴露,data 在 error 时为 null 且 Jackson 不输出。提供 ok/okObj/okList/error 工厂方法和 isSuccess 判定。",
+      "tags": [
+        "data-model",
+        "api-response",
+        "factory",
+        "swagger",
+        "tested"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "type": "file",
+      "name": "GlobalExceptionHandler.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "summary": "Spring @RestControllerAdvice 全局异常处理器,统一将 BizException/AuthException/Sa-Token/参数校验/请求体解析/兜底异常转为 Result 响应体并选择对应 HTTP 状态码;traceId 通过 MDC 写入日志而非 body。",
+      "tags": [
+        "middleware",
+        "exception-handler",
+        "api-handler",
+        "sa-token",
+        "spring",
+        "tested"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "type": "file",
+      "name": "ListResult.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "summary": "Result 的列表型子类，data 为 null 时回退为空 List（序列化为 []），便于 Swagger / OpenAPI 直接展开 array schema 而非嵌套泛型。",
+      "tags": [
+        "response-wrapper",
+        "generic",
+        "api-handler",
+        "data-model",
+        "json",
+        "tested"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "type": "file",
+      "name": "ObjectResult.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "summary": "Result 的对象型子类，data 为 null 时回退为空 Map（序列化为 {}），让 Swagger / OpenAPI 通过具体子类泛型展开 data schema；约定 T 应为 JSON 对象类型而非标量。",
+      "tags": [
+        "response-wrapper",
+        "generic",
+        "api-handler",
+        "data-model",
+        "json",
+        "tested"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "file",
+      "name": "ResultCode.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "summary": "业务码枚举(Q13 决策后移除 3xxx 限流段),分段规则:0 成功、1xxx 通用、2xxx 鉴权(2001 未登录/2002 凭证错误/2003 token 过期/2004 无权限)、4xxx 业务。",
+      "tags": [
+        "enum",
+        "api-response",
+        "business-code"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "type": "file",
+      "name": "GlobalExceptionHandlerTest.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "summary": "GlobalExceptionHandler 的 JUnit 5 单元测试,覆盖业务异常状态码选择、AuthException 401/403 分支、兜底 handler 隐藏真实异常信息等关键场景(Q13 决策验证)。",
+      "tags": [
+        "test",
+        "junit",
+        "exception-handler",
+        "assertj"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "type": "file",
+      "name": "RedisKeys.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "summary": "公共常量类，集中管理 Redis Key 前缀与 MDC 上下文 key，供 sa-token、链路追踪等模块复用。",
+      "tags": [
+        "constants",
+        "utility",
+        "redis",
+        "mdc",
+        "java"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "type": "file",
+      "name": "SecurityConstants.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "summary": "定义鉴权相关常量的 final 工具类，集中维护 Sa-Token 名称、默认角色与 MDC 用户 key，供 common / infra 层共享。",
+      "tags": [
+        "constant",
+        "security",
+        "utility",
+        "shared"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "type": "file",
+      "name": "TraceIdFilter.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "summary": "Spring Web 过滤器实现，继承 OncePerRequestFilter：在请求入口读取或生成 traceId，写入 SLF4J MDC 与响应头 X-Trace-Id，finally 中清理 MDC。",
+      "tags": [
+        "filter",
+        "middleware",
+        "trace-id",
+        "spring",
+        "mdc",
+        "observability",
+        "tested"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "type": "file",
+      "name": "TraceIdFilterTest.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "summary": "TraceIdFilter 的 JUnit 5 单元测试，覆盖 traceId 自动生成、请求头透传以及 MDC 清理三个核心契约。",
+      "tags": [
+        "test",
+        "junit",
+        "filter",
+        "trace-id",
+        "unit-test"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "type": "file",
+      "name": "SaTokenConfig.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "summary": "Sa-Token 工具配置类（Q3 决策：Redis 模式），提供 currentUserIdOrNull 静态方法供 Logback MDC 使用。",
+      "tags": [
+        "sa-token",
+        "authentication",
+        "redis",
+        "utility",
+        "tested"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "type": "file",
+      "name": "SaTokenConfigure.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "summary": "Sa-Token 工具类：放弃 SaServletFilter（与 Jakarta EE 11 不兼容），仅保留 currentUserIdOrNull 工具方法，鉴权交由 SaInterceptor + WebConfig 处理。",
+      "tags": [
+        "sa-token",
+        "security",
+        "utility",
+        "spring"
+      ]
+    },
+    {
+      "id": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql:sys_user",
+      "type": "table",
+      "name": "sys_user",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "summary": "Flyway 迁移 V1：创建 sys_user 系统用户表，使用 BIGINT UNSIGNED 主键、utf8mb4_0900_ai_ci 字符集、InnoDB 引擎，并对 username 建立 uniq_sys_user_username 唯一索引。",
+      "tags": [
+        "schema",
+        "migration",
+        "database",
+        "user-table",
+        "innodb"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "type": "file",
+      "name": "V1__init_sys_user.sql",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "summary": "Flyway 数据库迁移 V1，定义 sys_user 表的 schema（snake_case 字段、审计时间戳、唯一索引），遵循 v5 部分约定。",
+      "tags": [
+        "migration",
+        "schema",
+        "database",
+        "flyway",
+        "data"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql",
+      "type": "file",
+      "name": "V2__seed_admin_user.sql",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql",
+      "summary": "Flyway 数据库迁移 V2，向 sys_user 表插入默认 admin 用户（BCrypt 哈希密码），仅在 dev profile 加载，prod 通过 migration-prod 目录排除。",
+      "tags": [
+        "migration",
+        "seed",
+        "database",
+        "flyway",
+        "dev-only"
+      ]
+    },
+    {
+      "id": "config:.mcp.json",
+      "type": "config",
+      "name": ".mcp.json",
+      "filePath": ".mcp.json",
+      "summary": "MCP 服务器注册表,为 Claude Code/Codex 等客户端声明 codegraph、sketch、playwright 三个 MCP 服务入口。",
+      "tags": [
+        "configuration",
+        "mcp",
+        "tooling",
+        "integration"
+      ]
+    },
+    {
+      "id": "config:Makefile",
+      "type": "config",
+      "name": "Makefile",
+      "filePath": "Makefile",
+      "summary": "项目引导脚本,提供 init / install 目标,自动检查并安装 vp (Vite+)、ctx7 (context7) 与 codegraph 三个外部 CLI 工具。",
+      "tags": [
+        "build",
+        "toolchain",
+        "bootstrap",
+        "dev"
+      ]
+    },
+    {
+      "id": "config:lefthook.yml",
+      "type": "config",
+      "name": "lefthook.yml",
+      "filePath": "lefthook.yml",
+      "summary": "Git hooks 配置,统一管理 pre-commit / pre-push / commit-msg 等门禁,运行 Vite+ 流水线、Java Spotless/Checkstyle/Error Prone、codegraph sync 与 commitlint 校验。",
+      "tags": [
+        "git-hooks",
+        "ci-cd",
+        "lint",
+        "type-check",
+        "governance"
+      ]
+    },
+    {
+      "id": "config:opencode.jsonc",
+      "type": "config",
+      "name": "opencode.jsonc",
+      "filePath": "opencode.jsonc",
+      "summary": "opencode CLI 工具的 MCP 配置,启用 codegraph、sketch、playwright 三个 MCP 服务作为本地/远程扩展点。",
+      "tags": [
+        "configuration",
+        "mcp",
+        "tooling"
+      ]
+    },
+    {
+      "id": "config:package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "package.json",
+      "summary": "根 package.json,声明工程元信息(trellis-demo / 私有 / ESM / Node >=22.12 / pnpm@11.6.0),提供 ready/dev/dev:vben 脚本,并通过 catalog 引入 commitlint/lefthook/vite-plus 等开发依赖。",
+      "tags": [
+        "configuration",
+        "package-manager",
+        "build",
+        "dev"
+      ]
+    },
+    {
+      "id": "config:pnpm-workspace.yaml",
+      "type": "config",
+      "name": "pnpm-workspace.yaml",
+      "filePath": "pnpm-workspace.yaml",
+      "summary": "pnpm 工作区配置,声明 apps/*、packages/*、tools/* 包范围并排除 vue-vben-admin/react-admin 子工作区;启用 catalog 模式集中管理 vite/vitest/commitlint 等共享依赖版本,并为 lefthook/esbuild 等原生包开启 allowBuilds。",
+      "tags": [
+        "configuration",
+        "package-manager",
+        "monorepo",
+        "catalog",
+        "workspace"
+      ]
+    },
+    {
+      "id": "config:tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "tsconfig.json",
+      "summary": "TypeScript 根配置,启用 nodenext 模块解析、allowImportingTsExtensions 与 esModuleInterop,并设置 noEmit 防止根配置直接产生产物,由各子包 tsconfig 继承。",
+      "tags": [
+        "configuration",
+        "typescript",
+        "build-system"
+      ]
+    },
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "AI 助手的总入口文档,合并 Trellis 工作流、context7 文档查询指引、Vite+ 工具链使用与 CodeGraph 检索建议,用于规范代理在仓库内的协作行为。",
+      "tags": [
+        "documentation",
+        "governance",
+        "ai-agent",
+        "toolchain",
+        "entry-point"
+      ]
+    },
+    {
+      "id": "document:CLAUDE.md",
+      "type": "document",
+      "name": "CLAUDE.md",
+      "filePath": "CLAUDE.md",
+      "summary": "Claude Code 专用系统提醒,通过单行 <system-reminder> 强制要求 Claude 在会话开始时先阅读 AGENTS.md。",
+      "tags": [
+        "documentation",
+        "governance",
+        "ai-agent"
+      ]
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "项目自述文件,介绍 Vite+ monorepo starter 的用途,并提供 ready/test/build/dev 四类常用 `vp run` 入门命令。",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "overview"
+      ]
+    },
+    {
+      "id": "document:apps/backend-mock-template/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "apps/backend-mock-template/README.md",
+      "summary": "Vben Admin mock 后端服务的说明文档,介绍该 Nitro mock 服务的作用、运行方式以及与 vite 插件的集成关系,用于前端开发时提供模拟数据支持。",
+      "tags": [
+        "documentation",
+        "mock-backend",
+        "nitro",
+        "entry-point"
+      ]
+    },
+    {
+      "id": "config:apps/backend-mock-template/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "apps/backend-mock-template/package.json",
+      "summary": "定义 @vben/backend-mock 包元数据及构建脚本(nitro build / nitro dev),声明 nitropack、h3、@faker-js/faker、jsonwebtoken 等运行时与开发依赖。",
+      "tags": [
+        "configuration",
+        "package-manifest",
+        "nitro",
+        "build-system"
+      ]
+    },
+    {
+      "id": "config:apps/backend-mock-template/tsconfig.build.json",
+      "type": "config",
+      "name": "tsconfig.build.json",
+      "filePath": "apps/backend-mock-template/tsconfig.build.json",
+      "summary": "TypeScript 构建专用配置,继承基础 tsconfig.json,并在编译输出时排除 node_modules、test、dist 与所有 *spec.ts 文件。",
+      "tags": [
+        "configuration",
+        "typescript",
+        "build-system"
+      ]
+    },
+    {
+      "id": "config:apps/backend-mock-template/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "apps/backend-mock-template/tsconfig.json",
+      "summary": "基础 TypeScript 配置,继承自 Nitro 自动生成的 .nitro/types/tsconfig.json,以获取 Nitro 框架的类型定义与编译选项。",
+      "tags": [
+        "configuration",
+        "typescript",
+        "nitro"
+      ]
+    },
+    {
+      "id": "file:apps/website-template/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "apps/website-template/index.html",
+      "summary": "Vite 网站模板的入口 HTML 文档,挂载 `<div id=\"app\">` 节点并以 ES module 方式加载 `/src/main.ts`,为整个 website-template 应用提供 HTML 容器。",
+      "tags": [
+        "entry-point",
+        "html",
+        "vite",
+        "markup",
+        "es-module"
+      ]
+    },
+    {
+      "id": "config:apps/website-template/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "apps/website-template/package.json",
+      "summary": "website-template 子包的 npm 配置,声明 ESM 类型、TypeScript/Vite/vite-plus 依赖,以及 `dev` / `build` / `preview` 等通过 `vp` (vite-plus) 运行的脚本。",
+      "tags": [
+        "configuration",
+        "package-manifest",
+        "vite",
+        "typescript",
+        "build-system"
+      ]
+    },
+    {
+      "id": "config:apps/website-template/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "apps/website-template/tsconfig.json",
+      "summary": "website-template 子包的 TypeScript 编译器配置,启用 bundler 模块解析、ES2023 目标、DOM 类型与 `vite-plus/client` 类型,并开启严格未使用变量与 `verbatimModuleSyntax` 等 lint 选项。",
+      "tags": [
+        "configuration",
+        "typescript",
+        "build-system",
+        "strict",
+        "bundler"
+      ]
+    },
+    {
+      "id": "document:backend/db/docs/db-conventions.md",
+      "type": "document",
+      "name": "db-conventions.md",
+      "filePath": "backend/db/docs/db-conventions.md",
+      "summary": "java-admin 后台管理系统的数据库设计与命名约定文档(v5+),涵盖字符集、命名规范、主键策略、审计/启停/软删三态、索引与外键策略、枚举与 JSON 字段、CRUD 写模板、日志表、ABAC/Casbin 边界以及迁移注意事项,共 17 个章节、45 个小节。",
+      "tags": [
+        "documentation",
+        "database",
+        "conventions",
+        "schema-design",
+        "rbac"
+      ]
+    },
+    {
+      "id": "document:backend/db/docs/er.md",
+      "type": "document",
+      "name": "er.md",
+      "filePath": "backend/db/docs/er.md",
+      "summary": "java-admin 后台管理数据库的 ER 关系与基数总览(v5+),覆盖核心模块的 1:N、M:N、1:1/0..1 关系、软引用清单、关联表设计、RBAC+ABAC 双层数据流、日志三表关联、Temporal 边界、物化路径以及软删时间戳模式,共 10 个章节。",
+      "tags": [
+        "documentation",
+        "database",
+        "er-diagram",
+        "cardinality",
+        "schema-design"
+      ]
+    },
+    {
+      "id": "document:backend/db/docs/tables.md",
+      "type": "document",
+      "name": "tables.md",
+      "filePath": "backend/db/docs/tables.md",
+      "summary": "java-admin 后台管理数据库的表字段速查手册(v5+),按 RBAC、API 管理、菜单管理、I18n、字典、ABAC、日志、Temporal、Casbin 9 大模块列出 26 张核心表的字段、类型与用途,是后端代码与迁移脚本的字段级字典。",
+      "tags": [
+        "documentation",
+        "database",
+        "schema",
+        "field-reference",
+        "data-dictionary"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "type": "config",
+      "name": "checkstyle.xml",
+      "filePath": "backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "summary": "java-admin 后端的 Checkstyle 主配置，继承 Palantir Baseline 规则集，定义完整的代码风格检查模块（命名、复杂度、import、Javadoc 等），并通过 SuppressionFilter 加载两个外部抑制文件。",
+      "tags": [
+        "checkstyle",
+        "代码规范",
+        "java",
+        "build-tools",
+        "静态检查"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "type": "config",
+      "name": "checkstyle-suppressions.xml",
+      "filePath": "backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "summary": "java-admin 后端 Checkstyle 的“祖父条款”基线抑制文件，针对 4 个已有模块（common / service / infra / api）的 main 与 test 全量豁免，作为 Palantir Baseline 规则集在 2026-06-14 落地时的过渡方案。",
+      "tags": [
+        "checkstyle",
+        "抑制规则",
+        "java",
+        "代码规范",
+        "迁移基线"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "type": "config",
+      "name": "custom-suppressions.xml",
+      "filePath": "backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "summary": "项目自定义的 Checkstyle 抑制占位文件，当前刻意保持空内容，用于存放不随 baselineUpdateConfig 自动覆盖的逐条规则放宽（如生成代码），以 optional 形式被 SuppressionFilter 加载。",
+      "tags": [
+        "checkstyle",
+        "抑制规则",
+        "占位配置",
+        "java",
+        "可选配置"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "type": "config",
+      "name": "application.yml",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "summary": "java-admin-api 的 Spring Boot 基础配置：默认激活 dev profile，定义 Flyway、Nacos（双 dataId 共享+dev 覆盖）、Sa-Token（Redis 模式，30 天 token）、Easy-Query（underlined 命名转换）、服务端口（默认 4080）和日志级别。",
+      "tags": [
+        "configuration",
+        "spring-boot",
+        "profile",
+        "nacos",
+        "sa-token"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-api/src/main/resources/application-dev.yml",
+      "type": "config",
+      "name": "application-dev.yml",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/application-dev.yml",
+      "summary": "dev profile 配置：本地 MySQL（端口 4336，库 javaadmin_dev）与 Redis（端口 4379，密码 123456）连接、HikariCP 连接池（max=16）、完整 Flyway 迁移目录（V1+V2 种子用户）、com.wshake 包 DEBUG 日志、knife4j API 文档开启（中文）。",
+      "tags": [
+        "configuration",
+        "spring-boot",
+        "profile",
+        "dev",
+        "datasource"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-api/src/main/resources/application-prod.yml",
+      "type": "config",
+      "name": "application-prod.yml",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/application-prod.yml",
+      "summary": "prod profile 配置：MySQL/Redis 连接信息全部由环境变量注入（MYSQL_HOST、REDIS_PASSWORD 等必填）、HikariCP/Lettuce 池扩大（max=32）、仅加载 Flyway V1（无种子用户的 migration-prod 目录）、knife4j 默认关闭以避免 API 文档公网泄露。",
+      "tags": [
+        "configuration",
+        "spring-boot",
+        "profile",
+        "prod",
+        "security"
+      ]
+    },
+    {
+      "id": "document:packages/utils-template/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "packages/utils-template/README.md",
+      "summary": "Vite Plus 模板项目的入门文档,介绍开发流程(安装依赖、运行测试、构建库)的常用命令。",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "overview",
+        "template"
+      ]
+    },
+    {
+      "id": "config:packages/utils-template/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "packages/utils-template/package.json",
+      "summary": "定义 utils-template 包的元数据、ESM 入口、打包脚本(dev/build/test/check)与开发依赖(vite-plus、typescript、@types/node 等)。",
+      "tags": [
+        "configuration",
+        "package",
+        "build-system",
+        "esm"
+      ]
+    },
+    {
+      "id": "config:packages/utils-template/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "packages/utils-template/tsconfig.json",
+      "summary": "TypeScript 编译器配置,启用 strict 模式,使用 nodenext 模块解析,允许导入 .ts 扩展名,并生成 .d.ts 声明文件(noEmit 表示仅做类型检查)。",
+      "tags": [
+        "configuration",
+        "typescript",
+        "build-system",
+        "type-check"
+      ]
+    },
+    {
+      "id": "file:.commitlintrc.js",
+      "type": "file",
+      "name": ".commitlintrc.js",
+      "filePath": ".commitlintrc.js",
+      "summary": "根目录 commitlint 配置，使用 @commitlint/config-conventional 规则；子模块 vue-vben-admin 自带 override。",
+      "tags": [
+        "configuration",
+        "commitlint",
+        "conventional-commits"
+      ]
+    },
+    {
+      "id": "file:.gitmodules",
+      "type": "file",
+      "name": ".gitmodules",
+      "filePath": ".gitmodules",
+      "summary": "声明 apps/vue-vben-admin 子模块，从 wshake7/vue-vben-admin 拉取。",
+      "tags": [
+        "configuration",
+        "git",
+        "submodule"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "type": "file",
+      "name": "auth/codes.ts",
+      "filePath": "apps/backend-mock-template/api/auth/codes.ts",
+      "summary": "Nitro GET /api/auth/codes 端点，验证 access token 后返回当前用户的权限码列表。",
+      "tags": [
+        "endpoint",
+        "auth",
+        "nitro",
+        "h3"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/auth/codes.ts:codes",
+      "type": "endpoint",
+      "name": "GET /api/auth/codes",
+      "filePath": "apps/backend-mock-template/api/auth/codes.ts",
+      "summary": "读取 Authorization 头验证 JWT，从 MOCK_CODES 返回当前用户 codes 数组。",
+      "tags": [
+        "endpoint",
+        "auth",
+        "jwt",
+        "GET"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "type": "file",
+      "name": "auth/login.post.ts",
+      "filePath": "apps/backend-mock-template/api/auth/login.post.ts",
+      "summary": "Nitro POST /api/auth/login 端点，校验用户名密码后签发 access/refresh token 并写 cookie。",
+      "tags": [
+        "endpoint",
+        "auth",
+        "login",
+        "nitro",
+        "h3"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/auth/login.post.ts:login.post",
+      "type": "endpoint",
+      "name": "POST /api/auth/login",
+      "filePath": "apps/backend-mock-template/api/auth/login.post.ts",
+      "summary": "读取 body 中的 username/password，匹配 MOCK_USERS，生成 access + refresh JWT 并通过 Set-Cookie 下发 refresh token。",
+      "tags": [
+        "endpoint",
+        "auth",
+        "login",
+        "POST",
+        "jwt"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/auth/logout.post.ts",
+      "type": "file",
+      "name": "auth/logout.post.ts",
+      "filePath": "apps/backend-mock-template/api/auth/logout.post.ts",
+      "summary": "Nitro POST /api/auth/logout 端点，清除 refresh token cookie。",
+      "tags": [
+        "endpoint",
+        "auth",
+        "logout",
+        "nitro",
+        "h3"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/auth/logout.post.ts:logout.post",
+      "type": "endpoint",
+      "name": "POST /api/auth/logout",
+      "filePath": "apps/backend-mock-template/api/auth/logout.post.ts",
+      "summary": "若存在 refresh token cookie 则清除，返回成功响应。",
+      "tags": [
+        "endpoint",
+        "auth",
+        "logout",
+        "POST"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "type": "file",
+      "name": "auth/refresh.post.ts",
+      "filePath": "apps/backend-mock-template/api/auth/refresh.post.ts",
+      "summary": "Nitro POST /api/auth/refresh 端点，验证 refresh token cookie 后重新签发 access token 并刷新 cookie。",
+      "tags": [
+        "endpoint",
+        "auth",
+        "refresh",
+        "nitro",
+        "h3"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/auth/refresh.post.ts:refresh.post",
+      "type": "endpoint",
+      "name": "POST /api/auth/refresh",
+      "filePath": "apps/backend-mock-template/api/auth/refresh.post.ts",
+      "summary": "从 cookie 读取 refresh token，验签并查 MOCK_USERS 后颁发新的 access token。",
+      "tags": [
+        "endpoint",
+        "auth",
+        "refresh",
+        "POST",
+        "jwt"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/demo/bigint.ts",
+      "type": "file",
+      "name": "demo/bigint.ts",
+      "filePath": "apps/backend-mock-template/api/demo/bigint.ts",
+      "summary": "Nitro GET /api/demo/bigint 端点，验证 token 后返回带 BigInt id 的字符串 JSON 用于前端精度测试。",
+      "tags": [
+        "endpoint",
+        "demo",
+        "bigint",
+        "nitro",
+        "h3"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/demo/bigint.ts:bigint",
+      "type": "endpoint",
+      "name": "GET /api/demo/bigint",
+      "filePath": "apps/backend-mock-template/api/demo/bigint.ts",
+      "summary": "返回包含两个超大整数 id 的字符串 JSON，模拟长整型精度场景。",
+      "tags": [
+        "endpoint",
+        "demo",
+        "bigint",
+        "GET"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/menu/all.ts",
+      "type": "file",
+      "name": "menu/all.ts",
+      "filePath": "apps/backend-mock-template/api/menu/all.ts",
+      "summary": "Nitro GET /api/menu/all 端点，按当前用户角色返回对应的菜单树。",
+      "tags": [
+        "endpoint",
+        "menu",
+        "rbac",
+        "nitro",
+        "h3"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/menu/all.ts:all",
+      "type": "endpoint",
+      "name": "GET /api/menu/all",
+      "filePath": "apps/backend-mock-template/api/menu/all.ts",
+      "summary": "根据 token 中的 username 查找 MOCK_MENUS，返回匹配用户的菜单数组。",
+      "tags": [
+        "endpoint",
+        "menu",
+        "rbac",
+        "GET"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/status.ts",
+      "type": "file",
+      "name": "status.ts",
+      "filePath": "apps/backend-mock-template/api/status.ts",
+      "summary": "Nitro GET /api/status 端点，把 query.status 设置为响应状态码用于前端测试。",
+      "tags": [
+        "endpoint",
+        "status",
+        "nitro",
+        "h3",
+        "test-helper"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/status.ts:status",
+      "type": "endpoint",
+      "name": "GET /api/status",
+      "filePath": "apps/backend-mock-template/api/status.ts",
+      "summary": "把 query 中的 status 字段作为 HTTP 状态码原样返回，用于前端错误处理测试。",
+      "tags": [
+        "endpoint",
+        "status",
+        "GET",
+        "test-helper"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/dept/.post.ts",
+      "type": "file",
+      "name": "system/dept/.post.ts",
+      "filePath": "apps/backend-mock-template/api/system/dept/.post.ts",
+      "summary": "Nitro POST /api/system/dept 端点，验证 token 后 sleep 600ms 返回 null 模拟新增部门。",
+      "tags": [
+        "endpoint",
+        "system",
+        "dept",
+        "mock",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/dept/.post.ts:.post",
+      "type": "endpoint",
+      "name": "POST /api/system/dept",
+      "filePath": "apps/backend-mock-template/api/system/dept/.post.ts",
+      "summary": "校验 JWT 后延迟 600ms 返回成功响应，模拟部门创建延迟。",
+      "tags": [
+        "endpoint",
+        "system",
+        "dept",
+        "POST",
+        "mock"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "type": "file",
+      "name": "system/dept/[id].delete.ts",
+      "filePath": "apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "summary": "Nitro DELETE /api/system/dept/[id] 端点，验证 token 后 sleep 1000ms 模拟删除部门。",
+      "tags": [
+        "endpoint",
+        "system",
+        "dept",
+        "mock",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/dept/[id].delete.ts:[id].delete",
+      "type": "endpoint",
+      "name": "DELETE /api/system/dept/[id]",
+      "filePath": "apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "summary": "校验 JWT 后延迟 1 秒返回成功响应，模拟部门删除延迟。",
+      "tags": [
+        "endpoint",
+        "system",
+        "dept",
+        "DELETE",
+        "mock"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "type": "file",
+      "name": "system/dept/[id].put.ts",
+      "filePath": "apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "summary": "Nitro PUT /api/system/dept/[id] 端点，验证 token 后 sleep 2000ms 模拟编辑部门。",
+      "tags": [
+        "endpoint",
+        "system",
+        "dept",
+        "mock",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/dept/[id].put.ts:[id].put",
+      "type": "endpoint",
+      "name": "PUT /api/system/dept/[id]",
+      "filePath": "apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "summary": "校验 JWT 后延迟 2 秒返回成功响应，模拟部门编辑延迟。",
+      "tags": [
+        "endpoint",
+        "system",
+        "dept",
+        "PUT",
+        "mock"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "type": "file",
+      "name": "system/dept/list.ts",
+      "filePath": "apps/backend-mock-template/api/system/dept/list.ts",
+      "summary": "Nitro GET /api/system/dept/list 端点，验证 token 后用 faker 返回 10 条带子节点的部门列表。",
+      "tags": [
+        "endpoint",
+        "system",
+        "dept",
+        "faker",
+        "mock-data",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/dept/list.ts:list",
+      "type": "endpoint",
+      "name": "GET /api/system/dept/list",
+      "filePath": "apps/backend-mock-template/api/system/dept/list.ts",
+      "summary": "校验 JWT 后返回 deepClone 的 10 条部门 mock 列表（含子节点）。",
+      "tags": [
+        "endpoint",
+        "system",
+        "dept",
+        "GET",
+        "mock"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "type": "file",
+      "name": "system/menu/list.ts",
+      "filePath": "apps/backend-mock-template/api/system/menu/list.ts",
+      "summary": "Nitro GET /api/system/menu/list 端点，验证 token 后返回 MOCK_MENU_LIST。",
+      "tags": [
+        "endpoint",
+        "system",
+        "menu",
+        "mock-data",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/menu/list.ts:list",
+      "type": "endpoint",
+      "name": "GET /api/system/menu/list",
+      "filePath": "apps/backend-mock-template/api/system/menu/list.ts",
+      "summary": "校验 JWT 后返回 MOCK_MENU_LIST 常量。",
+      "tags": [
+        "endpoint",
+        "system",
+        "menu",
+        "GET"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "type": "file",
+      "name": "system/menu/name-exists.ts",
+      "filePath": "apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "summary": "Nitro GET /api/system/menu/name-exists 端点，检查 menu name 是否已被占用（编辑时排除自己）。",
+      "tags": [
+        "endpoint",
+        "system",
+        "menu",
+        "validation",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/menu/name-exists.ts:name-exists",
+      "type": "endpoint",
+      "name": "GET /api/system/menu/name-exists",
+      "filePath": "apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "summary": "递归遍历 MOCK_MENU_LIST 构造 name→id map，校验 query 中的 name 是否冲突。",
+      "tags": [
+        "endpoint",
+        "system",
+        "menu",
+        "validation",
+        "GET"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "type": "file",
+      "name": "system/menu/path-exists.ts",
+      "filePath": "apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "summary": "Nitro GET /api/system/menu/path-exists 端点，检查 menu path 是否已被占用。",
+      "tags": [
+        "endpoint",
+        "system",
+        "menu",
+        "validation",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/menu/path-exists.ts:path-exists",
+      "type": "endpoint",
+      "name": "GET /api/system/menu/path-exists",
+      "filePath": "apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "summary": "递归遍历 MOCK_MENU_LIST 构造 path→id map，校验 query 中的 path 是否冲突。",
+      "tags": [
+        "endpoint",
+        "system",
+        "menu",
+        "validation",
+        "GET"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "type": "file",
+      "name": "system/role/list.ts",
+      "filePath": "apps/backend-mock-template/api/system/role/list.ts",
+      "summary": "Nitro GET /api/system/role/list 端点，验证 token 后用 faker 返回分页的角色列表（支持多条件过滤）。",
+      "tags": [
+        "endpoint",
+        "system",
+        "role",
+        "pagination",
+        "faker",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/role/list.ts:list",
+      "type": "endpoint",
+      "name": "GET /api/system/role/list",
+      "filePath": "apps/backend-mock-template/api/system/role/list.ts",
+      "summary": "校验 JWT 后按 name/id/remark/startTime/endTime/status 过滤 mockData，返回分页响应。",
+      "tags": [
+        "endpoint",
+        "system",
+        "role",
+        "GET",
+        "pagination"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "type": "file",
+      "name": "system/user/[id].delete.ts",
+      "filePath": "apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "summary": "Nitro DELETE /api/system/user/[id] 端点，从共享 mockUserList 删除指定 id 并返回被删记录。",
+      "tags": [
+        "endpoint",
+        "system",
+        "user",
+        "delete",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/user/[id].delete.ts:[id].delete",
+      "type": "endpoint",
+      "name": "DELETE /api/system/user/[id]",
+      "filePath": "apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "summary": "读取路由参数 id，从 getMockUserList 中移除并返回该用户；缺失返回 400/404。",
+      "tags": [
+        "endpoint",
+        "system",
+        "user",
+        "DELETE"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/user/[id].put.ts",
+      "type": "file",
+      "name": "system/user/[id].put.ts",
+      "filePath": "apps/backend-mock-template/api/system/user/[id].put.ts",
+      "summary": "Nitro PUT /api/system/user/[id] 端点，从共享 mockUserList 更新指定用户并返回最新记录。",
+      "tags": [
+        "endpoint",
+        "system",
+        "user",
+        "update",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/user/[id].put.ts:[id].put",
+      "type": "endpoint",
+      "name": "PUT /api/system/user/[id]",
+      "filePath": "apps/backend-mock-template/api/system/user/[id].put.ts",
+      "summary": "读取路由参数 id 和 body，合并更新 mockUserList 中对应项；缺失返回 400/404。",
+      "tags": [
+        "endpoint",
+        "system",
+        "user",
+        "PUT"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/user/create.post.ts",
+      "type": "file",
+      "name": "system/user/create.post.ts",
+      "filePath": "apps/backend-mock-template/api/system/user/create.post.ts",
+      "summary": "Nitro POST /api/system/user/create 端点，校验 body 后向共享 mockUserList 头部插入新用户。",
+      "tags": [
+        "endpoint",
+        "system",
+        "user",
+        "create",
+        "faker",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/user/create.post.ts:create.post",
+      "type": "endpoint",
+      "name": "POST /api/system/user/create",
+      "filePath": "apps/backend-mock-template/api/system/user/create.post.ts",
+      "summary": "校验 username 必填且不重复，构造新用户（含 faker uuid）后返回成功响应。",
+      "tags": [
+        "endpoint",
+        "system",
+        "user",
+        "POST",
+        "create"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "type": "file",
+      "name": "system/user/list.ts",
+      "filePath": "apps/backend-mock-template/api/system/user/list.ts",
+      "summary": "Nitro GET /api/system/user/list 端点，验证 token 后用 faker 生成 20 条种子用户并写入共享列表。",
+      "tags": [
+        "endpoint",
+        "system",
+        "user",
+        "pagination",
+        "faker",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/user/list.ts:list",
+      "type": "endpoint",
+      "name": "GET /api/system/user/list",
+      "filePath": "apps/backend-mock-template/api/system/user/list.ts",
+      "summary": "首次请求写入种子数据，后续按 page/pageSize/username/realName/status 过滤后返回分页结果。",
+      "tags": [
+        "endpoint",
+        "system",
+        "user",
+        "GET",
+        "pagination"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/table/list.ts",
+      "type": "file",
+      "name": "table/list.ts",
+      "filePath": "apps/backend-mock-template/api/table/list.ts",
+      "summary": "Nitro GET /api/table/list 端点，验证 token 后用 faker 返回 100 条带分页排序的表格数据。",
+      "tags": [
+        "endpoint",
+        "table",
+        "pagination",
+        "sorting",
+        "faker",
+        "nitro"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/table/list.ts:list",
+      "type": "endpoint",
+      "name": "GET /api/table/list",
+      "filePath": "apps/backend-mock-template/api/table/list.ts",
+      "summary": "校验 JWT 后按 sortBy/sortOrder 排序 100 条 mock 数据，返回分页响应。",
+      "tags": [
+        "endpoint",
+        "table",
+        "GET",
+        "pagination",
+        "sorting"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/test.get.ts",
+      "type": "file",
+      "name": "test.get.ts",
+      "filePath": "apps/backend-mock-template/api/test.get.ts",
+      "summary": "Nitro GET /api/test 端点，烟雾测试 handler，返回字符串 'Test get handler'。",
+      "tags": [
+        "endpoint",
+        "smoke-test",
+        "nitro",
+        "h3"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/test.get.ts:test.get",
+      "type": "endpoint",
+      "name": "GET /api/test",
+      "filePath": "apps/backend-mock-template/api/test.get.ts",
+      "summary": "最简单的 GET handler，用于连通性测试。",
+      "tags": [
+        "endpoint",
+        "smoke-test",
+        "GET"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/test.post.ts",
+      "type": "file",
+      "name": "test.post.ts",
+      "filePath": "apps/backend-mock-template/api/test.post.ts",
+      "summary": "Nitro POST /api/test 端点，烟雾测试 handler，返回字符串 'Test post handler'。",
+      "tags": [
+        "endpoint",
+        "smoke-test",
+        "nitro",
+        "h3"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/test.post.ts:test.post",
+      "type": "endpoint",
+      "name": "POST /api/test",
+      "filePath": "apps/backend-mock-template/api/test.post.ts",
+      "summary": "最简单的 POST handler，用于连通性测试。",
+      "tags": [
+        "endpoint",
+        "smoke-test",
+        "POST"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "type": "file",
+      "name": "timezone/getTimezone.ts",
+      "filePath": "apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "summary": "Nitro GET /api/timezone/getTimezone 端点，验证 token 后返回时区列表。",
+      "tags": [
+        "endpoint",
+        "timezone",
+        "nitro",
+        "h3"
+      ]
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/timezone/getTimezone.ts:getTimezone",
+      "type": "endpoint",
+      "name": "GET /api/timezone/getTimezone",
+      "filePath": "apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "summary": "校验 JWT 后返回 timezone-utils 中的 getTimezone() 结果。",
+      "tags": [
+        "endpoint",
+        "timezone",
+        "GET"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/timezone/getTimezoneOptions.ts",
+      "type": "file",
+      "name": "getTimezoneOptions.ts",
+      "filePath": "apps/backend-mock-template/api/timezone/getTimezoneOptions.ts",
+      "summary": "Nitro mock 接口，返回所有可用时区选项（label/value 形式），供前端时区设置下拉框使用。",
+      "tags": [
+        "api-handler",
+        "timezone",
+        "mock",
+        "endpoint"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/timezone/setTimezone.ts",
+      "type": "file",
+      "name": "setTimezone.ts",
+      "filePath": "apps/backend-mock-template/api/timezone/setTimezone.ts",
+      "summary": "Nitro mock 接口，校验 Bearer Token 后将用户请求中的时区写入进程级状态，并对非法值返回 400。",
+      "tags": [
+        "api-handler",
+        "timezone",
+        "mock",
+        "endpoint",
+        "auth"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/upload.ts",
+      "type": "file",
+      "name": "upload.ts",
+      "filePath": "apps/backend-mock-template/api/upload.ts",
+      "summary": "Nitro mock 上传接口，校验 token 后返回一个固定的演示图片 URL，供前端 upload 组件联调使用。",
+      "tags": [
+        "api-handler",
+        "upload",
+        "mock",
+        "endpoint",
+        "auth"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/user/info.ts",
+      "type": "file",
+      "name": "info.ts",
+      "filePath": "apps/backend-mock-template/api/user/info.ts",
+      "summary": "Nitro mock 接口，从 JWT 中解析当前用户信息并返回，未携带或失效 token 时返回 401。",
+      "tags": [
+        "api-handler",
+        "user",
+        "mock",
+        "endpoint",
+        "auth"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/error.ts",
+      "type": "file",
+      "name": "error.ts",
+      "filePath": "apps/backend-mock-template/error.ts",
+      "summary": "Nitro 自定义 dev 错误处理器，开发模式下将错误信息写入响应体并中断请求。",
+      "tags": [
+        "error-handler",
+        "middleware",
+        "dev-tooling"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/middleware/1.api.ts",
+      "type": "file",
+      "name": "1.api.ts",
+      "filePath": "apps/backend-mock-template/middleware/1.api.ts",
+      "summary": "全局 Nitro 中间件：动态回显 Origin 处理 CORS、对 OPTIONS 预检返回 204，并禁用演示环境对 /api/system/* 的写操作。",
+      "tags": [
+        "middleware",
+        "cors",
+        "mock",
+        "request-guard"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/routes/[...].ts",
+      "type": "file",
+      "name": "[...].ts",
+      "filePath": "apps/backend-mock-template/routes/[...].ts",
+      "summary": "Nitro 根路由 catch-all，未匹配 API 路径时返回 index HTML 介绍页与示例链接列表。",
+      "tags": [
+        "middleware",
+        "fallback-route",
+        "mock",
+        "landing-page"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/nitro.config.ts",
+      "type": "file",
+      "name": "nitro.config.ts",
+      "filePath": "apps/backend-mock-template/nitro.config.ts",
+      "summary": "Nitro 服务配置：挂载自定义错误处理器、为 /api/** 启用 CORS 与凭据头（Origin 由中间件动态回显）。",
+      "tags": [
+        "configuration",
+        "cors",
+        "build-system",
+        "nitro"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "file",
+      "name": "cookie-utils.ts",
+      "filePath": "apps/backend-mock-template/utils/cookie-utils.ts",
+      "summary": "封装 h3 的 setCookie/getCookie/deleteCookie，针对 refreshToken 的读写清操作提供统一 API。",
+      "tags": [
+        "utility",
+        "cookie",
+        "auth",
+        "helper"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "file",
+      "name": "jwt-utils.ts",
+      "filePath": "apps/backend-mock-template/utils/jwt-utils.ts",
+      "summary": "JWT 工具集：签发/校验 access 与 refresh Token，并在校验时从 MOCK_USERS 中反查用户信息。",
+      "tags": [
+        "utility",
+        "jwt",
+        "auth",
+        "helper"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "file",
+      "name": "mock-data.ts",
+      "filePath": "apps/backend-mock-template/utils/mock-data.ts",
+      "summary": "演示环境统一 mock 数据源：用户、权限码、菜单树、字典与时区选项，集中供各 API 端点消费。",
+      "tags": [
+        "mock",
+        "data-source",
+        "fixture",
+        "config"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "file",
+      "name": "response.ts",
+      "filePath": "apps/backend-mock-template/utils/response.ts",
+      "summary": "统一响应构造工具：成功/分页/错误响应、403/401 状态码辅助、sleep 模拟延迟与数组分页。",
+      "tags": [
+        "utility",
+        "response",
+        "pagination",
+        "error-handler",
+        "helper"
+      ]
+    },
+    {
+      "id": "file:apps/backend-mock-template/utils/timezone-utils.ts",
+      "type": "file",
+      "name": "timezone-utils.ts",
+      "filePath": "apps/backend-mock-template/utils/timezone-utils.ts",
+      "summary": "进程级时区状态读写小工具。",
+      "tags": [
+        "utility",
+        "timezone",
+        "state"
+      ]
+    },
+    {
+      "id": "file:apps/website-template/src/counter.ts",
+      "type": "file",
+      "name": "counter.ts",
+      "filePath": "apps/website-template/src/counter.ts",
+      "summary": "Vite 官网模板的计数器小工具：把按钮与点击自增逻辑绑定，并在初始值渲染到按钮文案。",
+      "tags": [
+        "utility",
+        "ui",
+        "counter",
+        "dom"
+      ]
+    },
+    {
+      "id": "file:apps/website-template/src/main.ts",
+      "type": "file",
+      "name": "main.ts",
+      "filePath": "apps/website-template/src/main.ts",
+      "summary": "Vite + TS 官网模板入口，注入 logo/hero 资源与文案到 #app，并把计数器绑定到 #counter 按钮。",
+      "tags": [
+        "entry-point",
+        "ui",
+        "template"
+      ]
+    },
+    {
+      "id": "file:apps/website-template/src/style.css",
+      "type": "file",
+      "name": "style.css",
+      "filePath": "apps/website-template/src/style.css",
+      "summary": "Vite 官网模板样式（.hero/.counter/.center 等），含浅深色主题、布局与品牌色变量。",
+      "tags": [
+        "stylesheet",
+        "ui",
+        "template",
+        "theming"
+      ]
+    },
+    {
+      "id": "file:backend/db/schema.sql",
+      "type": "file",
+      "name": "schema.sql",
+      "filePath": "backend/db/schema.sql",
+      "summary": "核心业务数据库 schema：sys_user/sys_role/sys_menu/sys_api 等权限模型，辅以字典、i18n、Casbin 与多种日志/工作流执行归档表。",
+      "tags": [
+        "database",
+        "schema",
+        "rbac",
+        "casbin",
+        "i18n",
+        "temporal"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:casbin_rule",
+      "type": "table",
+      "name": "casbin_rule",
+      "filePath": "backend/db/schema.sql",
+      "summary": "Casbin 权限规则表（ptype+v0..v5），承载 RBAC 策略持久化。",
+      "tags": [
+        "database",
+        "casbin",
+        "rbac",
+        "policy"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_user",
+      "type": "table",
+      "name": "sys_user",
+      "filePath": "backend/db/schema.sql",
+      "summary": "系统用户主表，含账号/密码哈希/昵称/联系方式/最后登录与软删字段。",
+      "tags": [
+        "database",
+        "user",
+        "rbac"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_role",
+      "type": "table",
+      "name": "sys_role",
+      "filePath": "backend/db/schema.sql",
+      "summary": "角色表，支持 parent_id 层级与启用/软删字段。",
+      "tags": [
+        "database",
+        "role",
+        "rbac"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_api",
+      "type": "table",
+      "name": "sys_api",
+      "filePath": "backend/db/schema.sql",
+      "summary": "接口元数据表（method/path/permission_code），用于按角色控制接口权限。",
+      "tags": [
+        "database",
+        "api",
+        "rbac"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_menu",
+      "type": "table",
+      "name": "sys_menu",
+      "filePath": "backend/db/schema.sql",
+      "summary": "前端菜单表（type/component/icon/tree_path/metadata），支持层级与隐藏开关。",
+      "tags": [
+        "database",
+        "menu",
+        "rbac",
+        "ui"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:i18n_locale",
+      "type": "table",
+      "name": "i18n_locale",
+      "filePath": "backend/db/schema.sql",
+      "summary": "国际化语种表，记录 code/name 与默认语言标识。",
+      "tags": [
+        "database",
+        "i18n"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:dict_type",
+      "type": "table",
+      "name": "dict_type",
+      "filePath": "backend/db/schema.sql",
+      "summary": "字典分类表，按 code 聚合字典数据。",
+      "tags": [
+        "database",
+        "dictionary"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:temporal_task_config",
+      "type": "table",
+      "name": "temporal_task_config",
+      "filePath": "backend/db/schema.sql",
+      "summary": "Temporal 工作流任务配置表，含 code/workflow_type/task_queue/cron/retry/timeout。",
+      "tags": [
+        "database",
+        "temporal",
+        "workflow",
+        "scheduling"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:i18n_translation",
+      "type": "table",
+      "name": "i18n_translation",
+      "filePath": "backend/db/schema.sql",
+      "summary": "国际化翻译键值表，按 locale_id 关联语种。",
+      "tags": [
+        "database",
+        "i18n",
+        "translation"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:dict_data",
+      "type": "table",
+      "name": "dict_data",
+      "filePath": "backend/db/schema.sql",
+      "summary": "字典数据表，通过 type_id 关联字典分类。",
+      "tags": [
+        "database",
+        "dictionary"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_user_role",
+      "type": "table",
+      "name": "sys_user_role",
+      "filePath": "backend/db/schema.sql",
+      "summary": "用户-角色关联表。",
+      "tags": [
+        "database",
+        "rbac",
+        "join-table"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_role_api",
+      "type": "table",
+      "name": "sys_role_api",
+      "filePath": "backend/db/schema.sql",
+      "summary": "角色-API 接口权限关联表。",
+      "tags": [
+        "database",
+        "rbac",
+        "api"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_role_menu",
+      "type": "table",
+      "name": "sys_role_menu",
+      "filePath": "backend/db/schema.sql",
+      "summary": "角色-菜单关联表。",
+      "tags": [
+        "database",
+        "rbac",
+        "menu"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_menu_api",
+      "type": "table",
+      "name": "sys_menu_api",
+      "filePath": "backend/db/schema.sql",
+      "summary": "菜单-API 接口关联表。",
+      "tags": [
+        "database",
+        "menu",
+        "api"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_data_permission",
+      "type": "table",
+      "name": "sys_data_permission",
+      "filePath": "backend/db/schema.sql",
+      "summary": "数据权限规则表（subject_id/action_key/scope_field/scope_values），用于行级过滤。",
+      "tags": [
+        "database",
+        "rbac",
+        "data-scope"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:api_log",
+      "type": "table",
+      "name": "api_log",
+      "filePath": "backend/db/schema.sql",
+      "summary": "API 调用日志表，记录请求/响应/客户端与耗时等全量审计字段。",
+      "tags": [
+        "database",
+        "logging",
+        "audit"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:api_log_archive",
+      "type": "table",
+      "name": "api_log_archive",
+      "filePath": "backend/db/schema.sql",
+      "summary": "API 日志归档表（api_log_archive），含 archived_at 字段。",
+      "tags": [
+        "database",
+        "logging",
+        "archive"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:login_log",
+      "type": "table",
+      "name": "login_log",
+      "filePath": "backend/db/schema.sql",
+      "summary": "登录日志表，记录 username/success/login_method/客户端与位置等。",
+      "tags": [
+        "database",
+        "logging",
+        "auth",
+        "audit"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:login_log_archive",
+      "type": "table",
+      "name": "login_log_archive",
+      "filePath": "backend/db/schema.sql",
+      "summary": "登录日志归档表（login_log_archive）。",
+      "tags": [
+        "database",
+        "logging",
+        "archive"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:operation_log",
+      "type": "table",
+      "name": "operation_log",
+      "filePath": "backend/db/schema.sql",
+      "summary": "操作审计日志表，记录模块/动作/前后值/请求源等。",
+      "tags": [
+        "database",
+        "logging",
+        "audit"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:operation_log_archive",
+      "type": "table",
+      "name": "operation_log_archive",
+      "filePath": "backend/db/schema.sql",
+      "summary": "操作日志归档表（operation_log_archive）。",
+      "tags": [
+        "database",
+        "logging",
+        "archive"
+      ]
+    },
+    {
+      "id": "table:backend/db/schema.sql:temporal_task_execution",
+      "type": "table",
+      "name": "temporal_task_execution",
+      "filePath": "backend/db/schema.sql",
+      "summary": "Temporal 工作流执行记录表，跟踪 workflow/run 状态、起止时间与结果摘要。",
+      "tags": [
+        "database",
+        "temporal",
+        "workflow",
+        "execution"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/.mvn/jvm.config",
+      "type": "file",
+      "name": "jvm.config",
+      "filePath": "backend/java-admin/.mvn/jvm.config",
+      "summary": "Maven wrapper JVM 配置，开启 jdk.compiler 模块导出，供 Lombok/annotation processor 在 JDK 17+ 下工作。",
+      "tags": [
+        "configuration",
+        "build-system",
+        "jvm",
+        "lombok"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/deploy/.env.example",
+      "type": "file",
+      "name": ".env.example",
+      "filePath": "backend/java-admin/deploy/.env.example",
+      "summary": "java-admin 部署依赖（MySQL/Redis/Nacos）的环境变量模板，docker-compose 通过 ${VAR} 引用。",
+      "tags": [
+        "configuration",
+        "deployment",
+        "env",
+        "docker-compose"
+      ]
+    },
+    {
+      "id": "service:backend/java-admin/deploy/docker-compose.yml",
+      "type": "service",
+      "name": "docker-compose.yml",
+      "filePath": "backend/java-admin/deploy/docker-compose.yml",
+      "summary": "java-admin dev 期依赖编排：MySQL 8.4 + Redis 7 + Nacos 2.4.3，可选 Adminer，统一接入 java-admin-net。",
+      "tags": [
+        "infrastructure",
+        "orchestration",
+        "mysql",
+        "redis",
+        "nacos",
+        "dev-tooling"
+      ]
+    },
+    {
+      "id": "service:backend/java-admin/deploy/docker-compose.yml:mysql",
+      "type": "service",
+      "name": "mysql",
+      "filePath": "backend/java-admin/deploy/docker-compose.yml",
+      "summary": "MySQL 8.4 服务，使用 docker volume 持久化 + healthcheck。",
+      "tags": [
+        "mysql",
+        "database",
+        "container"
+      ]
+    },
+    {
+      "id": "service:backend/java-admin/deploy/docker-compose.yml:redis",
+      "type": "service",
+      "name": "redis",
+      "filePath": "backend/java-admin/deploy/docker-compose.yml",
+      "summary": "Redis 7 服务，开启 AOF 与 requirepass，端口由 REDIS_PORT 控制。",
+      "tags": [
+        "redis",
+        "cache",
+        "container"
+      ]
+    },
+    {
+      "id": "service:backend/java-admin/deploy/docker-compose.yml:nacos",
+      "type": "service",
+      "name": "nacos",
+      "filePath": "backend/java-admin/deploy/docker-compose.yml",
+      "summary": "Nacos 2.4.3 standalone 服务，dev 关闭鉴权，使用 Derby 持久化。",
+      "tags": [
+        "nacos",
+        "config-server",
+        "discovery",
+        "container"
+      ]
+    },
+    {
+      "id": "service:backend/java-admin/deploy/docker-compose.yml:adminer",
+      "type": "service",
+      "name": "adminer",
+      "filePath": "backend/java-admin/deploy/docker-compose.yml",
+      "summary": "Adminer（仅 dev profile 启动），通过 ADMINER_DEFAULT_SERVER 连接到同网络内的 mysql。",
+      "tags": [
+        "adminer",
+        "database-ui",
+        "container",
+        "dev-tooling"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-api/pom.xml",
+      "type": "file",
+      "name": "pom.xml",
+      "filePath": "backend/java-admin/java-admin-api/pom.xml",
+      "summary": "java-admin-api 模块的 Maven POM，声明依赖与插件（Spring Boot、Web、Knife4j 等）。",
+      "tags": [
+        "configuration",
+        "maven",
+        "build-system",
+        "spring-boot"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "type": "file",
+      "name": "Application.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "summary": "java-admin Spring Boot 应用入口，使用 @ComponentScan 聚合 api/infra/service/common 四个包。",
+      "tags": [
+        "entry-point",
+        "spring-boot",
+        "bootstrap"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "type": "file",
+      "name": "OpenApiConfig.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "summary": "OpenAPI（Swagger）配置：自定义文档元信息、注册 satoken bearerAuth 安全方案并指向 Knife4j 文档页。",
+      "tags": [
+        "configuration",
+        "openapi",
+        "knife4j",
+        "spring-boot"
+      ]
+    },
+    {
+      "id": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql:sys_user",
+      "type": "table",
+      "name": "sys_user",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql",
+      "summary": "Flyway V1 迁移（prod 副本）：创建 sys_user 表，含 status/create_time/update_time 与 username 唯一索引。",
+      "tags": [
+        "database",
+        "migration",
+        "flyway",
+        "user"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java",
+      "type": "file",
+      "name": "NacosConfigFormatTest.java",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java",
+      "summary": "针对 application.yml/application-dev.yml 的 Nacos 配置格式守护测试：校验 kebab-case、字段层级、不出现冗余/越权配置。",
+      "tags": [
+        "test",
+        "nacos",
+        "config-validation",
+        "assertj"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "type": "file",
+      "name": "SpringConfigImportCheckTest.java",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "summary": "回归测试类，验证 application.yml 在 Spring Cloud Alibaba 2025.1.x 下禁用新的 spring.config.import 解析机制，避免 IllegalArgumentException。",
+      "tags": [
+        "test",
+        "regression",
+        "spring-config",
+        "nacos",
+        "configuration-check"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-common/pom.xml",
+      "type": "config",
+      "name": "java-admin-common/pom.xml",
+      "filePath": "backend/java-admin/java-admin-common/pom.xml",
+      "summary": "Maven common 子模块 POM：通用基础库（Result/ResultCode/Exception/Constant/Util），声明 Lombok、spring-context、Jakarta Validation、Jackson 与 Swagger 注解。",
+      "tags": [
+        "maven",
+        "pom",
+        "common-module",
+        "shared-library",
+        "build-system"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-infra/pom.xml",
+      "type": "config",
+      "name": "java-admin-infra/pom.xml",
+      "filePath": "backend/java-admin/java-admin-infra/pom.xml",
+      "summary": "Maven infra 子模块 POM：基础设施（Sa-Token、Redisson、Knife4j、Flyway、MySQL、Web），依赖 common 与 service 模块。",
+      "tags": [
+        "maven",
+        "pom",
+        "infra-module",
+        "spring-boot-starter",
+        "build-system"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "type": "file",
+      "name": "FlywayMigrator.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "summary": "ApplicationRunner 实现，绕过 Spring Boot 4 下失效的 Flyway 自动装配，手工调用 Flyway.migrate()，根据 profile 选择 migration 目录。",
+      "tags": [
+        "flyway",
+        "migration",
+        "spring-boot",
+        "database",
+        "application-runner",
+        "tested"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "type": "file",
+      "name": "NacosConfig.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "summary": "Nacos Config 条件装配配置类（Q10 决策占位），依赖 nacos.config.enabled 开关。",
+      "tags": [
+        "nacos",
+        "spring-configuration",
+        "conditional",
+        "placeholder",
+        "tested"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "type": "file",
+      "name": "NacosConfigToggleProperties.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "summary": "Spring Boot @ConfigurationProperties 绑定类，将 nacos.config.enabled 提升为 IDE 可导航的类型安全属性。",
+      "tags": [
+        "nacos",
+        "configuration-properties",
+        "type-safe",
+        "ide-navigation",
+        "tested"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "type": "file",
+      "name": "WebConfig.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "summary": "Spring MVC 配置：注册 Sa-Token 注解拦截器与全局 CORS 映射（dev 期全放开）。",
+      "tags": [
+        "web-mvc",
+        "sa-token",
+        "cors",
+        "interceptor",
+        "tested"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml",
+      "type": "config",
+      "name": "logback-spring.xml",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml",
+      "summary": "Logback Spring 扩展配置：显式注册 ColorConverter，dev 用彩色控制台 pattern，prod 用文件滚动（100MB × 30 天 × 10GB）。",
+      "tags": [
+        "logback",
+        "logging",
+        "spring-profile",
+        "color"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+      "type": "file",
+      "name": "NacosConfigTest.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+      "summary": "NacosConfig 单元测试，使用 ApplicationContextRunner 验证 @ConditionalOnProperty 在 enabled=false/true/未设置三种情况下的 bean 装载行为。",
+      "tags": [
+        "test",
+        "nacos",
+        "spring-context-runner",
+        "junit"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+      "type": "file",
+      "name": "NacosConfigTogglePropertiesTest.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+      "summary": "源码级回归测试，断言 NacosConfigToggleProperties 类存在并标了 @ConfigurationProperties、NacosConfig 使用 @EnableConfigurationProperties、application.yml 保留 nacos.config.enabled 占位符。",
+      "tags": [
+        "test",
+        "nacos",
+        "regression",
+        "source-assert"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "type": "file",
+      "name": "RedissonAutoconfigCheckTest.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "summary": "Redisson/Flyway/Jackson/Sa-Token 启动失败回归测试集合，记录 5 类历史坑位的固化断言（starter 版本、Jackson 3、JWT 禁用、Redisson V2 exclude、SaTokenDao 双 bean）。",
+      "tags": [
+        "test",
+        "redisson",
+        "flyway",
+        "jackson",
+        "sa-token",
+        "regression"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-service/pom.xml",
+      "type": "config",
+      "name": "java-admin-service/pom.xml",
+      "filePath": "backend/java-admin/java-admin-service/pom.xml",
+      "summary": "Maven service 子模块 POM：业务模块（实体、Repository、Service），依赖 common 模块和 Easy-Query、Sa-Token BCrypt、Test 工具集。",
+      "tags": [
+        "maven",
+        "pom",
+        "service-module",
+        "business-logic",
+        "build-system"
+      ]
+    },
+    {
+      "id": "config:backend/java-admin/pom.xml",
+      "type": "config",
+      "name": "java-admin-parent/pom.xml",
+      "filePath": "backend/java-admin/pom.xml",
+      "summary": "Java Admin 后端 parent POM：继承 Spring Boot 4.0.7，统一依赖管理（Easy-Query、Sa-Token、Redisson、Knife4j、Flyway、Nacos），配置 Error Prone + Spotless + Checkstyle 三层质量门禁。",
+      "tags": [
+        "maven",
+        "pom",
+        "parent",
+        "spring-boot-4",
+        "dependency-management",
+        "build-system"
+      ]
+    },
+    {
+      "id": "file:packages/utils-template/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "packages/utils-template/src/index.ts",
+      "summary": "utils-template 包的入口文件，仅导出一个返回固定字符串的 fn 占位函数，作为模板演示。",
+      "tags": [
+        "entry-point",
+        "utility",
+        "template",
+        "placeholder"
+      ]
+    },
+    {
+      "id": "file:packages/utils-template/tests/index.test.ts",
+      "type": "file",
+      "name": "index.test.ts",
+      "filePath": "packages/utils-template/tests/index.test.ts",
+      "summary": "utils-template 包的最小 Vitest 测试，验证 fn() 返回固定字符串。",
+      "tags": [
+        "test",
+        "vitest",
+        "template"
+      ]
+    },
+    {
+      "id": "file:packages/utils-template/vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "packages/utils-template/vite.config.ts",
+      "summary": "utils-template 包的 Vite+ 配置：开启 dts.tsgo、exports 与 type-aware lint+fmt。",
+      "tags": [
+        "configuration",
+        "vite-plus",
+        "build-system",
+        "package-config"
+      ]
+    },
+    {
+      "id": "file:vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "vite.config.ts",
+      "summary": "Monorepo 根 Vite+ 配置：定义 staged（lint-staged 函数形式过滤 apps 子目录）、fmt/lint ignorePatterns、jsPlugins 与 type-aware 选项，统一管 apps/vue-vben-admin 与 apps/react-admin 之外的代码风格。",
+      "tags": [
+        "configuration",
+        "vite-plus",
+        "monorepo",
+        "lint-staged",
+        "build-system"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "type": "file",
+      "name": "TraceIdUtil.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "summary": "Trace ID utility for generating and parsing request correlation IDs from MDC/logback context.",
+      "tags": [
+        "utility",
+        "trace-id",
+        "observability"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java",
+      "type": "file",
+      "name": "RequestLogAspect.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java",
+      "summary": "Spring AOP aspect for request/response logging; uses Sa-Token for current user detection.",
+      "tags": [
+        "aspect",
+        "aop",
+        "logging",
+        "sa-token"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "file",
+      "name": "SysUser.java",
+      "filePath": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "summary": "JPA entity for system users; maps to sys_user table with login credentials and profile fields.",
+      "tags": [
+        "entity",
+        "jpa",
+        "user"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "type": "file",
+      "name": "SysUserRepository.java",
+      "filePath": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "summary": "Spring Data JPA repository for SysUser entity; provides finder methods by username etc.",
+      "tags": [
+        "repository",
+        "jpa",
+        "spring-data"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "type": "file",
+      "name": "AuthService.java",
+      "filePath": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "summary": "Authentication service: login/logout flows, Sa-Token issuance, credential validation against SysUserRepository.",
+      "tags": [
+        "service",
+        "auth",
+        "sa-token"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "type": "file",
+      "name": "SysUserService.java",
+      "filePath": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "summary": "System user management service: CRUD operations, profile retrieval, role/permission lookups.",
+      "tags": [
+        "service",
+        "user",
+        "crud"
+      ]
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+      "type": "file",
+      "name": "AuthServiceTest.java",
+      "filePath": "backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+      "summary": "Unit tests for AuthService login/logout flows and credential validation.",
+      "tags": [
+        "test",
+        "junit",
+        "auth"
+      ]
+    }
+  ],
+  "importEdges": [
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/logout.post.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/logout.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/demo/bigint.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/demo/bigint.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/status.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/.post.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/create.post.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/create.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/table/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/table/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/timezone-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezoneOptions.ts",
+      "target": "file:apps/backend-mock-template/utils/timezone-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezoneOptions.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/setTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/timezone-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/setTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/setTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/upload.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/upload.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/user/info.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/user/info.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/user/info.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/middleware/1.api.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/middleware/1.api.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/routes/[...].ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/website-template/src/main.ts",
+      "target": "file:apps/website-template/src/counter.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/website-template/src/main.ts",
+      "target": "file:apps/website-template/src/style.css",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:packages/utils-template/tests/index.test.ts",
+      "target": "file:packages/utils-template/src/index.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/nitro.config.ts",
+      "target": "file:apps/backend-mock-template/error.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports"
+    }
+  ],
+  "allEdges": [
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "target": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "target": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "type": "related"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "target": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql:sys_user",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "target": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql:sys_user",
+      "type": "migrates"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql",
+      "target": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql:sys_user",
+      "type": "migrates"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql",
+      "target": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "type": "depends_on"
+    },
+    {
+      "source": "config:.mcp.json",
+      "target": "config:opencode.jsonc",
+      "type": "related"
+    },
+    {
+      "source": "config:Makefile",
+      "target": "config:package.json",
+      "type": "configures"
+    },
+    {
+      "source": "config:Makefile",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "configures"
+    },
+    {
+      "source": "config:Makefile",
+      "target": "config:lefthook.yml",
+      "type": "configures"
+    },
+    {
+      "source": "config:lefthook.yml",
+      "target": "config:package.json",
+      "type": "configures"
+    },
+    {
+      "source": "config:lefthook.yml",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "depends_on"
+    },
+    {
+      "source": "config:package.json",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "configures"
+    },
+    {
+      "source": "config:tsconfig.json",
+      "target": "config:package.json",
+      "type": "configures"
+    },
+    {
+      "source": "document:CLAUDE.md",
+      "target": "document:AGENTS.md",
+      "type": "documents"
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:Makefile",
+      "type": "documents"
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "documents"
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:package.json",
+      "type": "documents"
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:lefthook.yml",
+      "type": "documents"
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:tsconfig.json",
+      "type": "documents"
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:.mcp.json",
+      "type": "documents"
+    },
+    {
+      "source": "document:README.md",
+      "target": "config:package.json",
+      "type": "documents"
+    },
+    {
+      "source": "document:README.md",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "documents"
+    },
+    {
+      "source": "config:.mcp.json",
+      "target": "config:Makefile",
+      "type": "related"
+    },
+    {
+      "source": "config:opencode.jsonc",
+      "target": "config:Makefile",
+      "type": "related"
+    },
+    {
+      "source": "document:apps/backend-mock-template/README.md",
+      "target": "config:apps/backend-mock-template/package.json",
+      "type": "documents"
+    },
+    {
+      "source": "config:apps/backend-mock-template/package.json",
+      "target": "config:apps/backend-mock-template/tsconfig.json",
+      "type": "configures"
+    },
+    {
+      "source": "config:apps/backend-mock-template/tsconfig.build.json",
+      "target": "config:apps/backend-mock-template/tsconfig.json",
+      "type": "configures"
+    },
+    {
+      "source": "config:apps/website-template/package.json",
+      "target": "file:apps/website-template/index.html",
+      "type": "configures"
+    },
+    {
+      "source": "config:apps/website-template/tsconfig.json",
+      "target": "file:apps/website-template/index.html",
+      "type": "configures"
+    },
+    {
+      "source": "config:apps/website-template/package.json",
+      "target": "config:apps/website-template/tsconfig.json",
+      "type": "related"
+    },
+    {
+      "source": "document:backend/db/docs/db-conventions.md",
+      "target": "document:backend/db/docs/tables.md",
+      "type": "related"
+    },
+    {
+      "source": "document:backend/db/docs/db-conventions.md",
+      "target": "document:backend/db/docs/er.md",
+      "type": "related"
+    },
+    {
+      "source": "document:backend/db/docs/tables.md",
+      "target": "document:backend/db/docs/er.md",
+      "type": "related"
+    },
+    {
+      "source": "document:backend/db/docs/db-conventions.md",
+      "target": "document:backend/db/docs/tables.md",
+      "type": "documents"
+    },
+    {
+      "source": "document:backend/db/docs/er.md",
+      "target": "document:backend/db/docs/tables.md",
+      "type": "documents"
+    },
+    {
+      "source": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "target": "config:backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "type": "configures"
+    },
+    {
+      "source": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "target": "config:backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "type": "configures"
+    },
+    {
+      "source": "config:backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "target": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "type": "depends_on"
+    },
+    {
+      "source": "config:backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "target": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "type": "depends_on"
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-api/src/main/resources/application-dev.yml",
+      "target": "config:backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "type": "depends_on"
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-api/src/main/resources/application-prod.yml",
+      "target": "config:backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "type": "depends_on"
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "type": "configures"
+    },
+    {
+      "source": "document:packages/utils-template/README.md",
+      "target": "config:packages/utils-template/package.json",
+      "type": "documents"
+    },
+    {
+      "source": "config:packages/utils-template/tsconfig.json",
+      "target": "config:packages/utils-template/package.json",
+      "type": "configures"
+    },
+    {
+      "source": "config:packages/utils-template/package.json",
+      "target": "config:packages/utils-template/tsconfig.json",
+      "type": "configures"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "endpoint:apps/backend-mock-template/api/auth/codes.ts:codes",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/auth/login.post.ts:login.post",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/logout.post.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/logout.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/logout.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/auth/logout.post.ts:logout.post",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/auth/refresh.post.ts:refresh.post",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/demo/bigint.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/demo/bigint.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/demo/bigint.ts",
+      "target": "endpoint:apps/backend-mock-template/api/demo/bigint.ts:bigint",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "endpoint:apps/backend-mock-template/api/menu/all.ts:all",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/status.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/status.ts",
+      "target": "endpoint:apps/backend-mock-template/api/status.ts:status",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/.post.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/dept/.post.ts:.post",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/dept/[id].delete.ts:[id].delete",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/dept/[id].put.ts:[id].put",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/dept/list.ts:list",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/menu/list.ts:list",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/menu/name-exists.ts:name-exists",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/menu/path-exists.ts:path-exists",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/role/list.ts:list",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/user/[id].delete.ts:[id].delete",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].put.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/user/[id].put.ts:[id].put",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/create.post.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/create.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/create.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/user/create.post.ts:create.post",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/user/list.ts:list",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/table/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/table/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/table/list.ts",
+      "target": "endpoint:apps/backend-mock-template/api/table/list.ts:list",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/test.get.ts",
+      "target": "endpoint:apps/backend-mock-template/api/test.get.ts:test.get",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/test.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/test.post.ts:test.post",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/timezone-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "endpoint:apps/backend-mock-template/api/timezone/getTimezone.ts:getTimezone",
+      "type": "contains"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezoneOptions.ts",
+      "target": "file:apps/backend-mock-template/utils/timezone-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezoneOptions.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/setTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/timezone-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/setTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/setTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/upload.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/upload.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/user/info.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/user/info.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/user/info.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/middleware/1.api.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/middleware/1.api.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/routes/[...].ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/website-template/src/main.ts",
+      "target": "file:apps/website-template/src/counter.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/website-template/src/main.ts",
+      "target": "file:apps/website-template/src/style.css",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:casbin_rule",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_user",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_role",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_api",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_menu",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:i18n_locale",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:dict_type",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:temporal_task_config",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:i18n_translation",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:dict_data",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_user_role",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_role_api",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_role_menu",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_menu_api",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_data_permission",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:api_log",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:api_log_archive",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:login_log",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:login_log_archive",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:operation_log",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:operation_log_archive",
+      "type": "contains"
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:temporal_task_execution",
+      "type": "contains"
+    },
+    {
+      "source": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql:sys_user",
+      "target": "table:backend/db/schema.sql:sys_user",
+      "type": "migrates"
+    },
+    {
+      "source": "service:backend/java-admin/deploy/docker-compose.yml:adminer",
+      "target": "service:backend/java-admin/deploy/docker-compose.yml:mysql",
+      "type": "depends_on"
+    },
+    {
+      "source": "config:backend/java-admin/deploy/.env.example",
+      "target": "service:backend/java-admin/deploy/docker-compose.yml",
+      "type": "configures"
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-api/pom.xml",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "type": "configures"
+    },
+    {
+      "source": "service:backend/java-admin/deploy/docker-compose.yml:mysql",
+      "target": "table:backend/db/schema.sql:sys_user",
+      "type": "provisions"
+    },
+    {
+      "source": "service:backend/java-admin/deploy/docker-compose.yml",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "type": "deploys"
+    },
+    {
+      "source": "service:backend/java-admin/deploy/docker-compose.yml",
+      "target": "config:backend/java-admin/deploy/.env.example",
+      "type": "depends_on"
+    },
+    {
+      "source": "file:packages/utils-template/tests/index.test.ts",
+      "target": "file:packages/utils-template/src/index.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "type": "depends_on"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "type": "depends_on"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "type": "depends_on"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "type": "depends_on"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "type": "depends_on"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "type": "depends_on"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "target": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "type": "tested_by"
+    },
+    {
+      "source": "config:backend/java-admin/pom.xml",
+      "target": "config:backend/java-admin/java-admin-common/pom.xml",
+      "type": "configures"
+    },
+    {
+      "source": "config:backend/java-admin/pom.xml",
+      "target": "config:backend/java-admin/java-admin-service/pom.xml",
+      "type": "configures"
+    },
+    {
+      "source": "config:backend/java-admin/pom.xml",
+      "target": "config:backend/java-admin/java-admin-infra/pom.xml",
+      "type": "configures"
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-infra/pom.xml",
+      "target": "config:backend/java-admin/java-admin-common/pom.xml",
+      "type": "depends_on"
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-infra/pom.xml",
+      "target": "config:backend/java-admin/java-admin-service/pom.xml",
+      "type": "depends_on"
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-service/pom.xml",
+      "target": "config:backend/java-admin/java-admin-common/pom.xml",
+      "type": "depends_on"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "target": "config:backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml",
+      "type": "related"
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "type": "related"
+    },
+    {
+      "source": "file:packages/utils-template/vite.config.ts",
+      "target": "file:vite.config.ts",
+      "type": "depends_on"
+    },
+    {
+      "source": "file:vite.config.ts",
+      "target": "file:packages/utils-template/vite.config.ts",
+      "type": "configures"
+    },
+    {
+      "source": "file:apps/backend-mock-template/nitro.config.ts",
+      "target": "file:apps/backend-mock-template/error.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "type": "imports"
+    },
+    {
+      "source": "service:backend/java-admin/deploy/docker-compose.yml",
+      "target": "service:backend/java-admin/deploy/docker-compose.yml:mysql",
+      "type": "contains"
+    },
+    {
+      "source": "service:backend/java-admin/deploy/docker-compose.yml",
+      "target": "service:backend/java-admin/deploy/docker-compose.yml:redis",
+      "type": "contains"
+    },
+    {
+      "source": "service:backend/java-admin/deploy/docker-compose.yml",
+      "target": "service:backend/java-admin/deploy/docker-compose.yml:nacos",
+      "type": "contains"
+    },
+    {
+      "source": "service:backend/java-admin/deploy/docker-compose.yml",
+      "target": "service:backend/java-admin/deploy/docker-compose.yml:adminer",
+      "type": "contains"
+    },
+    {
+      "source": "config:backend/java-admin/.mvn/jvm.config",
+      "target": "config:backend/java-admin/java-admin-api/pom.xml",
+      "type": "configures"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports"
+    }
+  ]
+}

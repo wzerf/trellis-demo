@@ -1,0 +1,316 @@
+{
+  "nodes": [
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "apps/react-admin/src/pages/core/error/index.ts",
+      "summary": "错误页面组件的 barrel 入口，集中 re-export Fallback、Unauthorized、Forbidden、NotFound、InternalError、Offline、ComingSoon 等 7 个错误展示组件以及 FallbackProps 类型。",
+      "tags": [
+        "barrel",
+        "error-handling",
+        "exports",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:apps/react-admin/src/pages/core/error/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "apps/react-admin/src/pages/core/error/README.md",
+      "summary": "错误页面组件目录的说明文档，覆盖 7 个错误状态组件的使用示例、FallbackProps 属性表、i18n 键、响应式样式策略以及各状态对应的 SVG 图标清单。",
+      "tags": [
+        "documentation",
+        "error-handling",
+        "ui",
+        "i18n",
+        "readme"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/router/guards/AuthGuard.tsx",
+      "type": "file",
+      "name": "AuthGuard.tsx",
+      "filePath": "apps/react-admin/src/router/guards/AuthGuard.tsx",
+      "summary": "已登录鉴权守卫组件，封装受保护路由：未登录用户被重定向到 loginPath 并附带 redirect 跳转参数，认证状态优先采用 props，其次回退到 useAuthStore 订阅的 accessToken。",
+      "tags": [
+        "route-guard",
+        "authentication",
+        "react",
+        "middleware"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/router/guards/AuthGuard.tsx:AuthGuard",
+      "type": "function",
+      "name": "AuthGuard",
+      "filePath": "apps/react-admin/src/router/guards/AuthGuard.tsx",
+      "lineRange": [
+        11,
+        25
+      ],
+      "summary": "React 组件形式的鉴权守卫：根据 isAuthenticated prop 或 useAuthStore 中 accessToken 判断登录态，未登录则返回带 redirect 参数的 Navigate 跳转。",
+      "tags": [
+        "route-guard",
+        "react-component",
+        "authentication"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/router/guards/GuestGuard.tsx",
+      "type": "file",
+      "name": "GuestGuard.tsx",
+      "filePath": "apps/react-admin/src/router/guards/GuestGuard.tsx",
+      "summary": "访客路由守卫：拦截已登录用户访问登录/注册等访客页面，优先使用 searchParams 中的 redirect 参数，否则取 useAuthStore 的 homePath，再回退到 props 默认值。",
+      "tags": [
+        "route-guard",
+        "authentication",
+        "react",
+        "middleware"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/router/guards/GuestGuard.tsx:GuestGuard",
+      "type": "function",
+      "name": "GuestGuard",
+      "filePath": "apps/react-admin/src/router/guards/GuestGuard.tsx",
+      "lineRange": [
+        15,
+        31
+      ],
+      "summary": "React 组件形式的访客守卫：已登录用户重定向到 redirect/homePath 指定的页面，未登录用户正常渲染子内容。",
+      "tags": [
+        "route-guard",
+        "react-component",
+        "authentication"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/router/guards/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "apps/react-admin/src/router/guards/index.ts",
+      "summary": "router guards 目录的 barrel 入口文件，re-export AuthGuard 与 GuestGuard。",
+      "tags": [
+        "barrel",
+        "route-guard",
+        "exports"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/router/modules/dashboard.tsx",
+      "type": "file",
+      "name": "dashboard.tsx",
+      "filePath": "apps/react-admin/src/router/modules/dashboard.tsx",
+      "summary": "Dashboard 仪表盘模块的路由配置，导出 dashboardRoutes 数组：单一路由指向 DashboardPage 页面，配置 layout-dashboard 图标与 i18n 标题键。",
+      "tags": [
+        "route-config",
+        "module",
+        "dashboard"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/router/modules/internal-message.tsx",
+      "type": "file",
+      "name": "internal-message.tsx",
+      "filePath": "apps/react-admin/src/router/modules/internal-message.tsx",
+      "summary": "内部消息模块的路由配置：包含 messages 列表、categories 分类管理以及 inbox 收件箱三个子页面，全部通过 createLazyRoute 懒加载。",
+      "tags": [
+        "route-config",
+        "module",
+        "messaging",
+        "lazy-loading"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/router/modules/log.tsx",
+      "type": "file",
+      "name": "log.tsx",
+      "filePath": "apps/react-admin/src/router/modules/log.tsx",
+      "summary": "日志审计模块的路由配置：包含登录审计、API 审计、操作审计、数据访问审计、权限审计 5 个子路由，全部懒加载并保留 keepAlive。",
+      "tags": [
+        "route-config",
+        "module",
+        "audit-log",
+        "lazy-loading"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/router/modules/opm.tsx",
+      "type": "file",
+      "name": "opm.tsx",
+      "filePath": "apps/react-admin/src/router/modules/opm.tsx",
+      "summary": "组织人员管理模块的路由配置：包含 org-units 组织架构、positions 职位、users 用户列表、users/detail/:id 用户详情以及 profile 个人资料 5 个子页面。",
+      "tags": [
+        "route-config",
+        "module",
+        "user-management",
+        "lazy-loading"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/router/modules/permissions.tsx",
+      "type": "file",
+      "name": "permissions.tsx",
+      "filePath": "apps/react-admin/src/router/modules/permissions.tsx",
+      "summary": "权限管理模块的路由配置：包含 permission 权限点、menus 菜单、apis API、roles 角色四个子页面，懒加载并配置 shield-check 顶级图标。",
+      "tags": [
+        "route-config",
+        "module",
+        "permissions",
+        "lazy-loading"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/router/modules/system.tsx",
+      "type": "file",
+      "name": "system.tsx",
+      "filePath": "apps/react-admin/src/router/modules/system.tsx",
+      "summary": "系统管理模块的精简路由配置：仅保留 user 用户管理子路由，其它 dict/files/tasks/login-policies/languages 页面目录保留但未注册路由。",
+      "tags": [
+        "route-config",
+        "module",
+        "system-management"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/router/modules/tenant.tsx",
+      "type": "file",
+      "name": "tenant.tsx",
+      "filePath": "apps/react-admin/src/router/modules/tenant.tsx",
+      "summary": "租户管理模块的路由配置：仅包含 members 租户成员管理子页面，使用 building-2 图标并标记为平台管理员模块。",
+      "tags": [
+        "route-config",
+        "module",
+        "tenant",
+        "lazy-loading"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/stores/auth.ts",
+      "type": "file",
+      "name": "auth.ts",
+      "filePath": "apps/react-admin/src/stores/auth.ts",
+      "summary": "基于 zustand 的认证状态 store，管理 accessToken、accessTokenExpireAt、userInfo、loginLoading、error；封装 login/logout/refreshToken/reauthenticate/forceLogout 等动作并支持 remember-me 双 storage 持久化。",
+      "tags": [
+        "state-management",
+        "zustand",
+        "authentication",
+        "persistence",
+        "token"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/stores/auth.ts:useAuthStore",
+      "type": "function",
+      "name": "useAuthStore",
+      "filePath": "apps/react-admin/src/stores/auth.ts",
+      "lineRange": [
+        133,
+        268
+      ],
+      "summary": "zustand 认证 store hook，定义 token、userInfo、loginLoading、error 状态以及 login/logout/refreshToken/reauthenticate/forceLogout/setUserInfo/clearError/$reset/hydrate 等动作。",
+      "tags": [
+        "state-management",
+        "zustand",
+        "hook",
+        "authentication"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:apps/react-admin/src/router/guards/AuthGuard.tsx",
+      "target": "function:apps/react-admin/src/router/guards/AuthGuard.tsx:AuthGuard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:apps/react-admin/src/router/guards/AuthGuard.tsx",
+      "target": "function:apps/react-admin/src/router/guards/AuthGuard.tsx:AuthGuard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/router/guards/GuestGuard.tsx",
+      "target": "function:apps/react-admin/src/router/guards/GuestGuard.tsx:GuestGuard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:apps/react-admin/src/router/guards/GuestGuard.tsx",
+      "target": "function:apps/react-admin/src/router/guards/GuestGuard.tsx:GuestGuard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/router/guards/index.ts",
+      "target": "file:apps/react-admin/src/router/guards/AuthGuard.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/router/guards/index.ts",
+      "target": "file:apps/react-admin/src/router/guards/GuestGuard.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/stores/auth.ts",
+      "target": "function:apps/react-admin/src/stores/auth.ts:useAuthStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:apps/react-admin/src/stores/auth.ts",
+      "target": "function:apps/react-admin/src/stores/auth.ts:useAuthStore",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "document:apps/react-admin/src/pages/core/error/README.md",
+      "target": "file:apps/react-admin/src/pages/core/error/index.ts",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:apps/react-admin/src/router/guards/AuthGuard.tsx",
+      "target": "function:apps/react-admin/src/stores/auth.ts:useAuthStore",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/router/guards/GuestGuard.tsx",
+      "target": "function:apps/react-admin/src/stores/auth.ts:useAuthStore",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

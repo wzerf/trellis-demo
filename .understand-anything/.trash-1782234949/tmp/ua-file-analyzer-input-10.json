@@ -1,0 +1,9 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "backend/db/docs/db-conventions.md", "language": "markdown", "sizeLines": 468, "fileCategory": "docs"},
+    {"path": "backend/db/docs/er.md", "language": "markdown", "sizeLines": 307, "fileCategory": "docs"},
+    {"path": "backend/db/docs/tables.md", "language": "markdown", "sizeLines": 496, "fileCategory": "docs"}
+  ],
+  "batchImportData": {}
+}

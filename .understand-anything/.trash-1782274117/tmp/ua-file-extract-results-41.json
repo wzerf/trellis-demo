@@ -1,0 +1,3117 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/core/router/utils/menu.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 61,
+      "nonEmptyLines": 53,
+      "functions": [
+        {
+          "name": "sortMenuTree",
+          "startLine": 9,
+          "endLine": 22,
+          "params": [
+            "menuList"
+          ]
+        },
+        {
+          "name": "transformRoutesToMenu",
+          "startLine": 24,
+          "endLine": 61,
+          "params": [
+            "routes",
+            "permissions",
+            "parentPath"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "transformRoutesToMenu",
+          "line": 24,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "sortMenuTree",
+          "callee": "menuList\n    .map((menu) => ({\n      ...menu,\n      // 递归排序子菜单\n      children: menu.children?.length ? sortMenuTree(menu.children) : undefined,\n    }))\n    .sort",
+          "lineNumber": 10
+        },
+        {
+          "caller": "sortMenuTree",
+          "callee": "menuList\n    .map",
+          "lineNumber": 10
+        },
+        {
+          "caller": "sortMenuTree",
+          "callee": "sortMenuTree",
+          "lineNumber": 14
+        },
+        {
+          "caller": "transformRoutesToMenu",
+          "callee": "routes\n    .filter((route) => {\n      // 过滤掉隐藏菜单或没有权限的路由\n      if (route.meta?.hideInMenu) return false;\n\n      const meta = route.meta;\n      // 如果有权限要求且用户不在权限列表中，则过滤\n      return !(meta?.authority?.length && !meta.authority.some((code: string) => permissions.includes(code)));\n    })\n    .map((route) => {\n      // 处理路径：将相对路径转换为绝对路径\n      const fullPath = route.path?.startsWith('/')\n        ? route.path\n        : `${parentPath}/${route.path}`.replace(/\\/+/g, '/');\n\n      const menuItem: any = {\n        path: fullPath, // 使用完整路径作为 key\n        name: route.label || route.meta?.title,\n        icon: route.meta?.icon,\n        order: route.meta?.order, // 提取排序字段\n      };\n\n      if (route.children) {\n        menuItem.children = transformRoutesToMenu(route.children, permissions, fullPath);\n      }\n\n      return menuItem;\n    })\n    .filter",
+          "lineNumber": 29
+        },
+        {
+          "caller": "transformRoutesToMenu",
+          "callee": "routes\n    .filter((route) => {\n      // 过滤掉隐藏菜单或没有权限的路由\n      if (route.meta?.hideInMenu) return false;\n\n      const meta = route.meta;\n      // 如果有权限要求且用户不在权限列表中，则过滤\n      return !(meta?.authority?.length && !meta.authority.some((code: string) => permissions.includes(code)));\n    })\n    .map",
+          "lineNumber": 29
+        },
+        {
+          "caller": "transformRoutesToMenu",
+          "callee": "routes\n    .filter",
+          "lineNumber": 29
+        },
+        {
+          "caller": "transformRoutesToMenu",
+          "callee": "meta.authority.some",
+          "lineNumber": 36
+        },
+        {
+          "caller": "transformRoutesToMenu",
+          "callee": "permissions.includes",
+          "lineNumber": 36
+        },
+        {
+          "caller": "transformRoutesToMenu",
+          "callee": "route.path?.startsWith",
+          "lineNumber": 40
+        },
+        {
+          "caller": "transformRoutesToMenu",
+          "callee": "`${parentPath}/${route.path}`.replace",
+          "lineNumber": 42
+        },
+        {
+          "caller": "transformRoutesToMenu",
+          "callee": "transformRoutesToMenu",
+          "lineNumber": 52
+        },
+        {
+          "caller": "transformRoutesToMenu",
+          "callee": "sortMenuTree",
+          "lineNumber": 60
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/merge-route-modules.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 96,
+      "nonEmptyLines": 84,
+      "functions": [
+        {
+          "name": "mergeRouteModules",
+          "startLine": 14,
+          "endLine": 70,
+          "params": [
+            "routeModules",
+            "options"
+          ]
+        },
+        {
+          "name": "mergeRouteModulesAsync",
+          "startLine": 77,
+          "endLine": 96,
+          "params": [
+            "routeModules"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "mergeRouteModules",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "mergeRouteModulesAsync",
+          "line": 77,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "mergeRouteModules",
+          "callee": "Object.entries",
+          "lineNumber": 27
+        },
+        {
+          "caller": "mergeRouteModules",
+          "callee": "Array.isArray",
+          "lineNumber": 35
+        },
+        {
+          "caller": "mergeRouteModules",
+          "callee": "moduleRoutes.forEach",
+          "lineNumber": 50
+        },
+        {
+          "caller": "mergeRouteModules",
+          "callee": "mergedRoutes.push",
+          "lineNumber": 58
+        },
+        {
+          "caller": "mergeRouteModules",
+          "callee": "console.warn",
+          "lineNumber": 60
+        },
+        {
+          "caller": "mergeRouteModules",
+          "callee": "mergedRoutes.sort",
+          "lineNumber": 66
+        },
+        {
+          "caller": "mergeRouteModules",
+          "callee": "(a.path || '').localeCompare",
+          "lineNumber": 66
+        },
+        {
+          "caller": "mergeRouteModulesAsync",
+          "callee": "Promise.all",
+          "lineNumber": 80
+        },
+        {
+          "caller": "mergeRouteModulesAsync",
+          "callee": "Object.values(routeModules).map",
+          "lineNumber": 81
+        },
+        {
+          "caller": "mergeRouteModulesAsync",
+          "callee": "Object.values",
+          "lineNumber": 81
+        },
+        {
+          "caller": "mergeRouteModulesAsync",
+          "callee": "loader",
+          "lineNumber": 83
+        },
+        {
+          "caller": "mergeRouteModulesAsync",
+          "callee": "Array.isArray",
+          "lineNumber": 84
+        },
+        {
+          "caller": "mergeRouteModulesAsync",
+          "callee": "console.warn",
+          "lineNumber": 89
+        },
+        {
+          "caller": "mergeRouteModulesAsync",
+          "callee": "results.flat",
+          "lineNumber": 95
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/reset-routes.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 77,
+      "nonEmptyLines": 69,
+      "functions": [
+        {
+          "name": "resetAccessibleRoutes",
+          "startLine": 14,
+          "endLine": 23,
+          "params": [
+            "allRoutes",
+            "staticRouteNames"
+          ]
+        },
+        {
+          "name": "filterRoutesByWhitelist",
+          "startLine": 28,
+          "endLine": 59,
+          "params": [
+            "routes",
+            "whitelist"
+          ]
+        },
+        {
+          "name": "extractRouteNames",
+          "startLine": 66,
+          "endLine": 77,
+          "params": [
+            "routes"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "resetAccessibleRoutes",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "extractRouteNames",
+          "line": 66,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "resetAccessibleRoutes",
+          "callee": "staticRouteNames.filter",
+          "lineNumber": 19
+        },
+        {
+          "caller": "resetAccessibleRoutes",
+          "callee": "filterRoutesByWhitelist",
+          "lineNumber": 22
+        },
+        {
+          "caller": "filterRoutesByWhitelist",
+          "callee": "routes.reduce",
+          "lineNumber": 32
+        },
+        {
+          "caller": "filterRoutesByWhitelist",
+          "callee": "console.warn",
+          "lineNumber": 35
+        },
+        {
+          "caller": "filterRoutesByWhitelist",
+          "callee": "whitelist.has",
+          "lineNumber": 40
+        },
+        {
+          "caller": "filterRoutesByWhitelist",
+          "callee": "filterRoutesByWhitelist",
+          "lineNumber": 44
+        },
+        {
+          "caller": "filterRoutesByWhitelist",
+          "callee": "acc.push",
+          "lineNumber": 53
+        },
+        {
+          "caller": "extractRouteNames",
+          "callee": "traverseTreeValues<AppRouteObject, string | undefined>(\n        routes,\n        (route) => {\n            if (!route.name) {\n                console.warn(`Route with path \"${route.path}\" is missing a \"name\" field.`);\n                return undefined;\n            }\n            return route.name;\n        }\n    ).filter",
+          "lineNumber": 67
+        },
+        {
+          "caller": "extractRouteNames",
+          "callee": "traverseTreeValues",
+          "lineNumber": 67
+        },
+        {
+          "caller": "extractRouteNames",
+          "callee": "console.warn",
+          "lineNumber": 71
+        },
+        {
+          "caller": "extractRouteNames",
+          "callee": "Boolean",
+          "lineNumber": 76
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/storage/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "exports": [
+        {
+          "name": "StorageManager",
+          "line": 1,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/storage/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 414,
+      "nonEmptyLines": 305,
+      "sections": [
+        {
+          "heading": "存储管理模块 (StorageManager)",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "概述",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "核心特性",
+          "level": 3,
+          "line": 7
+        },
+        {
+          "heading": "模块结构",
+          "level": 2,
+          "line": 20
+        },
+        {
+          "heading": "导入方式",
+          "level": 3,
+          "line": 30
+        },
+        {
+          "heading": "快速开始",
+          "level": 2,
+          "line": 43
+        },
+        {
+          "heading": "创建实例",
+          "level": 3,
+          "line": 45
+        },
+        {
+          "heading": "基本读写",
+          "level": 3,
+          "line": 66
+        },
+        {
+          "heading": "配置选项",
+          "level": 2,
+          "line": 98
+        },
+        {
+          "heading": "缓存驱逐策略",
+          "level": 2,
+          "line": 132
+        },
+        {
+          "heading": "批量操作",
+          "level": 2,
+          "line": 148
+        },
+        {
+          "heading": "批量获取",
+          "level": 3,
+          "line": 152
+        },
+        {
+          "heading": "批量设置",
+          "level": 3,
+          "line": 162
+        },
+        {
+          "heading": "批量移除",
+          "level": 3,
+          "line": 183
+        },
+        {
+          "heading": "批量检查存在",
+          "level": 3,
+          "line": 191
+        },
+        {
+          "heading": "进度回调",
+          "level": 3,
+          "line": 198
+        },
+        {
+          "heading": "多标签页同步",
+          "level": 2,
+          "line": 211
+        },
+        {
+          "heading": "性能指标",
+          "level": 2,
+          "line": 237
+        },
+        {
+          "heading": "API 参考",
+          "level": 2,
+          "line": 270
+        },
+        {
+          "heading": "基础操作（IStorageCache 接口）",
+          "level": 3,
+          "line": 272
+        },
+        {
+          "heading": "批量操作",
+          "level": 3,
+          "line": 285
+        },
+        {
+          "heading": "高级方法",
+          "level": 3,
+          "line": 294
+        },
+        {
+          "heading": "典型场景",
+          "level": 2,
+          "line": 305
+        },
+        {
+          "heading": "场景一：字典数据缓存",
+          "level": 3,
+          "line": 307
+        },
+        {
+          "heading": "场景二：模块级独立存储",
+          "level": 3,
+          "line": 327
+        },
+        {
+          "heading": "场景三：配额受限的临时缓存",
+          "level": 3,
+          "line": 341
+        },
+        {
+          "heading": "常见问题",
+          "level": 2,
+          "line": 359
+        },
+        {
+          "heading": "Q1: TTL 过期是被动清理还是主动清理？",
+          "level": 3,
+          "line": 361
+        },
+        {
+          "heading": "Q2: 多个 StorageManager 实例的 prefix 可以相同吗？",
+          "level": 3,
+          "line": 365
+        },
+        {
+          "heading": "Q3: 和直接使用 localStorage 有什么区别？",
+          "level": 3,
+          "line": 369
+        },
+        {
+          "heading": "Q4: 存储的数据格式是什么？",
+          "level": 3,
+          "line": 380
+        },
+        {
+          "heading": "Q5: 在 SSR 环境下安全吗？",
+          "level": 3,
+          "line": 393
+        },
+        {
+          "heading": "注意事项",
+          "level": 2,
+          "line": 399
+        },
+        {
+          "heading": "相关文件",
+          "level": 2,
+          "line": 410
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 34
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/storage/storage.class.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 817,
+      "nonEmptyLines": 703,
+      "classes": [
+        {
+          "name": "StorageManager",
+          "startLine": 14,
+          "endLine": 815,
+          "methods": [
+            "constructor",
+            "getFullKey",
+            "getMetaKey",
+            "readMeta",
+            "writeMeta",
+            "updateMetaOnAccess",
+            "updateMetaOnSet",
+            "removeMeta",
+            "getAllMeta",
+            "parseValue",
+            "serializeValue",
+            "getItem",
+            "setItem",
+            "removeItem",
+            "hasItem",
+            "clear",
+            "clearExpiredItems",
+            "key",
+            "length",
+            "getRawStorage",
+            "getItems",
+            "setItems",
+            "removeItems",
+            "hasItems",
+            "_normalizeBatchValue",
+            "checkAndEvict",
+            "sortByEvictionPriority",
+            "initSync",
+            "handleSyncMessage",
+            "broadcast",
+            "onSync",
+            "trackMetric",
+            "updateHitRate",
+            "debounceReportMetrics",
+            "updateQuotaUsage",
+            "getMetrics",
+            "resetMetrics"
+          ],
+          "properties": [
+            "prefix",
+            "storage",
+            "options",
+            "defaultTTL",
+            "tabId",
+            "channel",
+            "metrics",
+            "metricsDebounceTimer",
+            "onMetricsCallback",
+            "onSyncCallback"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "StorageManager",
+          "line": 817,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "Math.random().toString(36).substring",
+          "lineNumber": 63
+        },
+        {
+          "caller": "constructor",
+          "callee": "Math.random().toString",
+          "lineNumber": 63
+        },
+        {
+          "caller": "constructor",
+          "callee": "Math.random",
+          "lineNumber": 63
+        },
+        {
+          "caller": "constructor",
+          "callee": "this.initSync",
+          "lineNumber": 75
+        },
+        {
+          "caller": "constructor",
+          "callee": "this.updateQuotaUsage().catch",
+          "lineNumber": 76
+        },
+        {
+          "caller": "constructor",
+          "callee": "this.updateQuotaUsage",
+          "lineNumber": 76
+        },
+        {
+          "caller": "readMeta",
+          "callee": "this.storage.getItem",
+          "lineNumber": 91
+        },
+        {
+          "caller": "readMeta",
+          "callee": "this.getMetaKey",
+          "lineNumber": 91
+        },
+        {
+          "caller": "readMeta",
+          "callee": "JSON.parse",
+          "lineNumber": 94
+        },
+        {
+          "caller": "writeMeta",
+          "callee": "this.storage.setItem",
+          "lineNumber": 102
+        },
+        {
+          "caller": "writeMeta",
+          "callee": "this.getMetaKey",
+          "lineNumber": 102
+        },
+        {
+          "caller": "writeMeta",
+          "callee": "JSON.stringify",
+          "lineNumber": 102
+        },
+        {
+          "caller": "writeMeta",
+          "callee": "console.warn",
+          "lineNumber": 104
+        },
+        {
+          "caller": "updateMetaOnAccess",
+          "callee": "this.readMeta",
+          "lineNumber": 112
+        },
+        {
+          "caller": "updateMetaOnAccess",
+          "callee": "Date.now",
+          "lineNumber": 115
+        },
+        {
+          "caller": "updateMetaOnAccess",
+          "callee": "this.writeMeta",
+          "lineNumber": 116
+        },
+        {
+          "caller": "updateMetaOnAccess",
+          "callee": "this.writeMeta",
+          "lineNumber": 119
+        },
+        {
+          "caller": "updateMetaOnAccess",
+          "callee": "Date.now",
+          "lineNumber": 123
+        },
+        {
+          "caller": "updateMetaOnSet",
+          "callee": "Date.now",
+          "lineNumber": 136
+        },
+        {
+          "caller": "updateMetaOnSet",
+          "callee": "Date.now",
+          "lineNumber": 138
+        },
+        {
+          "caller": "updateMetaOnSet",
+          "callee": "this.readMeta",
+          "lineNumber": 141
+        },
+        {
+          "caller": "updateMetaOnSet",
+          "callee": "Date.now",
+          "lineNumber": 146
+        },
+        {
+          "caller": "updateMetaOnSet",
+          "callee": "this.writeMeta",
+          "lineNumber": 149
+        },
+        {
+          "caller": "removeMeta",
+          "callee": "this.storage.removeItem",
+          "lineNumber": 157
+        },
+        {
+          "caller": "removeMeta",
+          "callee": "this.getMetaKey",
+          "lineNumber": 157
+        },
+        {
+          "caller": "removeMeta",
+          "callee": "console.warn",
+          "lineNumber": 159
+        },
+        {
+          "caller": "getAllMeta",
+          "callee": "this.storage.key",
+          "lineNumber": 168
+        },
+        {
+          "caller": "getAllMeta",
+          "callee": "k?.startsWith",
+          "lineNumber": 169
+        },
+        {
+          "caller": "getAllMeta",
+          "callee": "k.slice",
+          "lineNumber": 170
+        },
+        {
+          "caller": "getAllMeta",
+          "callee": "this.readMeta",
+          "lineNumber": 171
+        },
+        {
+          "caller": "getAllMeta",
+          "callee": "map.set",
+          "lineNumber": 172
+        },
+        {
+          "caller": "parseValue",
+          "callee": "JSON.parse",
+          "lineNumber": 184
+        },
+        {
+          "caller": "parseValue",
+          "callee": "Date.now",
+          "lineNumber": 186
+        },
+        {
+          "caller": "parseValue",
+          "callee": "this.trackMetric",
+          "lineNumber": 187
+        },
+        {
+          "caller": "parseValue",
+          "callee": "console.error",
+          "lineNumber": 192
+        },
+        {
+          "caller": "parseValue",
+          "callee": "this.trackMetric",
+          "lineNumber": 193
+        },
+        {
+          "caller": "serializeValue",
+          "callee": "Date.now",
+          "lineNumber": 204
+        },
+        {
+          "caller": "serializeValue",
+          "callee": "Date.now",
+          "lineNumber": 206
+        },
+        {
+          "caller": "serializeValue",
+          "callee": "JSON.stringify",
+          "lineNumber": 210
+        },
+        {
+          "caller": "getItem",
+          "callee": "this.getFullKey",
+          "lineNumber": 219
+        },
+        {
+          "caller": "getItem",
+          "callee": "this.storage.getItem",
+          "lineNumber": 220
+        },
+        {
+          "caller": "getItem",
+          "callee": "this.trackMetric",
+          "lineNumber": 224
+        },
+        {
+          "caller": "getItem",
+          "callee": "this.parseValue",
+          "lineNumber": 228
+        },
+        {
+          "caller": "getItem",
+          "callee": "this.storage.removeItem",
+          "lineNumber": 232
+        },
+        {
+          "caller": "getItem",
+          "callee": "this.removeMeta",
+          "lineNumber": 233
+        },
+        {
+          "caller": "getItem",
+          "callee": "this.trackMetric",
+          "lineNumber": 239
+        },
+        {
+          "caller": "getItem",
+          "callee": "this.updateMetaOnAccess",
+          "lineNumber": 240
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.getFullKey",
+          "lineNumber": 251
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.serializeValue",
+          "lineNumber": 253
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.storage.setItem",
+          "lineNumber": 254
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.updateMetaOnSet",
+          "lineNumber": 257
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.trackMetric",
+          "lineNumber": 260
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.checkAndEvict",
+          "lineNumber": 263
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.broadcast",
+          "lineNumber": 266
+        },
+        {
+          "caller": "setItem",
+          "callee": "Date.now",
+          "lineNumber": 266
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.trackMetric",
+          "lineNumber": 268
+        },
+        {
+          "caller": "setItem",
+          "callee": "console.warn",
+          "lineNumber": 271
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.clearExpiredItems",
+          "lineNumber": 272
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.serializeValue",
+          "lineNumber": 275
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.storage.setItem",
+          "lineNumber": 276
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.updateMetaOnSet",
+          "lineNumber": 277
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.trackMetric",
+          "lineNumber": 278
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.broadcast",
+          "lineNumber": 279
+        },
+        {
+          "caller": "setItem",
+          "callee": "Date.now",
+          "lineNumber": 279
+        },
+        {
+          "caller": "setItem",
+          "callee": "console.error",
+          "lineNumber": 281
+        },
+        {
+          "caller": "setItem",
+          "callee": "this.trackMetric",
+          "lineNumber": 282
+        },
+        {
+          "caller": "setItem",
+          "callee": "console.error",
+          "lineNumber": 285
+        },
+        {
+          "caller": "removeItem",
+          "callee": "this.getFullKey",
+          "lineNumber": 295
+        },
+        {
+          "caller": "removeItem",
+          "callee": "this.storage.removeItem",
+          "lineNumber": 296
+        },
+        {
+          "caller": "removeItem",
+          "callee": "this.removeMeta",
+          "lineNumber": 299
+        },
+        {
+          "caller": "removeItem",
+          "callee": "this.broadcast",
+          "lineNumber": 302
+        },
+        {
+          "caller": "removeItem",
+          "callee": "Date.now",
+          "lineNumber": 302
+        },
+        {
+          "caller": "hasItem",
+          "callee": "this.getItem",
+          "lineNumber": 309
+        },
+        {
+          "caller": "clear",
+          "callee": "this.storage.key",
+          "lineNumber": 322
+        },
+        {
+          "caller": "clear",
+          "callee": "key.startsWith",
+          "lineNumber": 323
+        },
+        {
+          "caller": "clear",
+          "callee": "key.includes",
+          "lineNumber": 325
+        },
+        {
+          "caller": "clear",
+          "callee": "keysToRemove.push",
+          "lineNumber": 326
+        },
+        {
+          "caller": "clear",
+          "callee": "this.storage.removeItem",
+          "lineNumber": 328
+        },
+        {
+          "caller": "clear",
+          "callee": "keysToRemove.forEach",
+          "lineNumber": 333
+        },
+        {
+          "caller": "clear",
+          "callee": "key.startsWith",
+          "lineNumber": 335
+        },
+        {
+          "caller": "clear",
+          "callee": "key.slice",
+          "lineNumber": 335
+        },
+        {
+          "caller": "clear",
+          "callee": "this.removeMeta",
+          "lineNumber": 336
+        },
+        {
+          "caller": "clear",
+          "callee": "this.broadcast",
+          "lineNumber": 340
+        },
+        {
+          "caller": "clear",
+          "callee": "Date.now",
+          "lineNumber": 340
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "this.storage.key",
+          "lineNumber": 353
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "key.includes",
+          "lineNumber": 357
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "key.startsWith",
+          "lineNumber": 362
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "this.storage.getItem",
+          "lineNumber": 366
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "JSON.parse",
+          "lineNumber": 369
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "Date.now",
+          "lineNumber": 370
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "keysToRemove.push",
+          "lineNumber": 371
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "keysToRemove.push",
+          "lineNumber": 375
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "keysToRemove.forEach",
+          "lineNumber": 381
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "this.storage?.removeItem",
+          "lineNumber": 382
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "key.startsWith",
+          "lineNumber": 385
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "key.slice",
+          "lineNumber": 385
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "this.removeMeta",
+          "lineNumber": 386
+        },
+        {
+          "caller": "clearExpiredItems",
+          "callee": "this.trackMetric",
+          "lineNumber": 387
+        },
+        {
+          "caller": "key",
+          "callee": "this.storage.key",
+          "lineNumber": 397
+        },
+        {
+          "caller": "key",
+          "callee": "rawKey.startsWith",
+          "lineNumber": 401
+        },
+        {
+          "caller": "key",
+          "callee": "rawKey.slice",
+          "lineNumber": 402
+        },
+        {
+          "caller": "length",
+          "callee": "this.storage.key(i)?.startsWith",
+          "lineNumber": 420
+        },
+        {
+          "caller": "length",
+          "callee": "this.storage.key",
+          "lineNumber": 420
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.getFullKey",
+          "lineNumber": 455
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.storage.getItem",
+          "lineNumber": 458
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.trackMetric",
+          "lineNumber": 462
+        },
+        {
+          "caller": "getItems",
+          "callee": "onProgress",
+          "lineNumber": 463
+        },
+        {
+          "caller": "getItems",
+          "callee": "JSON.parse",
+          "lineNumber": 467
+        },
+        {
+          "caller": "getItems",
+          "callee": "Date.now",
+          "lineNumber": 470
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.trackMetric",
+          "lineNumber": 471
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.storage.removeItem",
+          "lineNumber": 473
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.removeMeta",
+          "lineNumber": 474
+        },
+        {
+          "caller": "getItems",
+          "callee": "onProgress",
+          "lineNumber": 476
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.trackMetric",
+          "lineNumber": 485
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.updateMetaOnAccess",
+          "lineNumber": 486
+        },
+        {
+          "caller": "getItems",
+          "callee": "onProgress",
+          "lineNumber": 487
+        },
+        {
+          "caller": "getItems",
+          "callee": "console.error",
+          "lineNumber": 489
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.trackMetric",
+          "lineNumber": 490
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.storage.removeItem",
+          "lineNumber": 492
+        },
+        {
+          "caller": "getItems",
+          "callee": "this.removeMeta",
+          "lineNumber": 493
+        },
+        {
+          "caller": "getItems",
+          "callee": "onProgress",
+          "lineNumber": 495
+        },
+        {
+          "caller": "getItems",
+          "callee": "setTimeout",
+          "lineNumber": 500
+        },
+        {
+          "caller": "setItems",
+          "callee": "Object.keys",
+          "lineNumber": 525
+        },
+        {
+          "caller": "setItems",
+          "callee": "Object.entries",
+          "lineNumber": 531
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.getFullKey",
+          "lineNumber": 535
+        },
+        {
+          "caller": "setItems",
+          "callee": "this._normalizeBatchValue",
+          "lineNumber": 539
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.serializeValue",
+          "lineNumber": 540
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.storage.setItem",
+          "lineNumber": 542
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.updateMetaOnSet",
+          "lineNumber": 543
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.trackMetric",
+          "lineNumber": 545
+        },
+        {
+          "caller": "setItems",
+          "callee": "onProgress",
+          "lineNumber": 546
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.trackMetric",
+          "lineNumber": 548
+        },
+        {
+          "caller": "setItems",
+          "callee": "String",
+          "lineNumber": 549
+        },
+        {
+          "caller": "setItems",
+          "callee": "console.warn",
+          "lineNumber": 553
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.clearExpiredItems",
+          "lineNumber": 556
+        },
+        {
+          "caller": "setItems",
+          "callee": "this._normalizeBatchValue",
+          "lineNumber": 559
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.serializeValue",
+          "lineNumber": 560
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.storage.setItem",
+          "lineNumber": 561
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.updateMetaOnSet",
+          "lineNumber": 562
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.trackMetric",
+          "lineNumber": 564
+        },
+        {
+          "caller": "setItems",
+          "callee": "onProgress",
+          "lineNumber": 565
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.trackMetric",
+          "lineNumber": 570
+        },
+        {
+          "caller": "setItems",
+          "callee": "onProgress",
+          "lineNumber": 571
+        },
+        {
+          "caller": "setItems",
+          "callee": "onProgress",
+          "lineNumber": 577
+        },
+        {
+          "caller": "setItems",
+          "callee": "setTimeout",
+          "lineNumber": 582
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.checkAndEvict",
+          "lineNumber": 587
+        },
+        {
+          "caller": "setItems",
+          "callee": "this.broadcast",
+          "lineNumber": 590
+        },
+        {
+          "caller": "setItems",
+          "callee": "Date.now",
+          "lineNumber": 590
+        },
+        {
+          "caller": "removeItems",
+          "callee": "this.getFullKey",
+          "lineNumber": 613
+        },
+        {
+          "caller": "removeItems",
+          "callee": "this.storage.removeItem",
+          "lineNumber": 614
+        },
+        {
+          "caller": "removeItems",
+          "callee": "this.removeMeta",
+          "lineNumber": 615
+        },
+        {
+          "caller": "removeItems",
+          "callee": "removed.push",
+          "lineNumber": 616
+        },
+        {
+          "caller": "removeItems",
+          "callee": "String",
+          "lineNumber": 618
+        },
+        {
+          "caller": "removeItems",
+          "callee": "this.broadcast",
+          "lineNumber": 624
+        },
+        {
+          "caller": "removeItems",
+          "callee": "Date.now",
+          "lineNumber": 624
+        },
+        {
+          "caller": "hasItems",
+          "callee": "this.getItem",
+          "lineNumber": 644
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "this.getAllMeta",
+          "lineNumber": 665
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "Array.from(allMeta.values()).reduce",
+          "lineNumber": 667
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "Array.from",
+          "lineNumber": 667
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "allMeta.values",
+          "lineNumber": 667
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "this.sortByEvictionPriority",
+          "lineNumber": 672
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "keysToEvict.push",
+          "lineNumber": 678
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "allMeta.get",
+          "lineNumber": 680
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "setTimeout",
+          "lineNumber": 686
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "keysToEvict.forEach",
+          "lineNumber": 687
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "this.removeItem",
+          "lineNumber": 687
+        },
+        {
+          "caller": "checkAndEvict",
+          "callee": "console.log",
+          "lineNumber": 688
+        },
+        {
+          "caller": "sortByEvictionPriority",
+          "callee": "Date.now",
+          "lineNumber": 696
+        },
+        {
+          "caller": "sortByEvictionPriority",
+          "callee": "Array.from",
+          "lineNumber": 697
+        },
+        {
+          "caller": "sortByEvictionPriority",
+          "callee": "metas.keys",
+          "lineNumber": 697
+        },
+        {
+          "caller": "sortByEvictionPriority",
+          "callee": "keys.sort",
+          "lineNumber": 699
+        },
+        {
+          "caller": "sortByEvictionPriority",
+          "callee": "metas.get",
+          "lineNumber": 700
+        },
+        {
+          "caller": "sortByEvictionPriority",
+          "callee": "metas.get",
+          "lineNumber": 701
+        },
+        {
+          "caller": "sortByEvictionPriority",
+          "callee": "Math.log",
+          "lineNumber": 720
+        },
+        {
+          "caller": "sortByEvictionPriority",
+          "callee": "Math.log",
+          "lineNumber": 722
+        },
+        {
+          "caller": "initSync",
+          "callee": "this.handleSyncMessage",
+          "lineNumber": 738
+        },
+        {
+          "caller": "initSync",
+          "callee": "this.onSyncCallback",
+          "lineNumber": 739
+        },
+        {
+          "caller": "broadcast",
+          "callee": "this.channel.postMessage",
+          "lineNumber": 753
+        },
+        {
+          "caller": "trackMetric",
+          "callee": "this.updateHitRate",
+          "lineNumber": 767
+        },
+        {
+          "caller": "trackMetric",
+          "callee": "this.debounceReportMetrics",
+          "lineNumber": 768
+        },
+        {
+          "caller": "debounceReportMetrics",
+          "callee": "clearTimeout",
+          "lineNumber": 778
+        },
+        {
+          "caller": "debounceReportMetrics",
+          "callee": "window.setTimeout",
+          "lineNumber": 779
+        },
+        {
+          "caller": "debounceReportMetrics",
+          "callee": "this.onMetricsCallback",
+          "lineNumber": 780
+        },
+        {
+          "caller": "updateQuotaUsage",
+          "callee": "navigator.storage.estimate",
+          "lineNumber": 787
+        },
+        {
+          "caller": "updateQuotaUsage",
+          "callee": "this.storage.key",
+          "lineNumber": 793
+        },
+        {
+          "caller": "updateQuotaUsage",
+          "callee": "this.storage.getItem",
+          "lineNumber": 794
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/storage/storage.types.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 218,
+      "nonEmptyLines": 199,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 7,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/pagination.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 144,
+      "nonEmptyLines": 123,
+      "classes": [
+        {
+          "name": "PaginationQuery",
+          "startLine": 2,
+          "endLine": 136,
+          "methods": [
+            "constructor",
+            "removeNullUndefined",
+            "makeQueryString",
+            "makeOrderBy",
+            "noPaging",
+            "orderByString",
+            "queryString",
+            "formattedFieldMask",
+            "toRawParams"
+          ],
+          "properties": [
+            "paging",
+            "formValues",
+            "fieldMask",
+            "orderBy",
+            "isTenantUser"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "PaginationQuery",
+          "line": 2,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "removeNullUndefined",
+          "callee": "Object.fromEntries",
+          "lineNumber": 26
+        },
+        {
+          "caller": "removeNullUndefined",
+          "callee": "Object.entries(obj).filter",
+          "lineNumber": 27
+        },
+        {
+          "caller": "removeNullUndefined",
+          "callee": "Object.entries",
+          "lineNumber": 27
+        },
+        {
+          "caller": "makeQueryString",
+          "callee": "this.removeNullUndefined",
+          "lineNumber": 46
+        },
+        {
+          "caller": "makeQueryString",
+          "callee": "Array.isArray",
+          "lineNumber": 51
+        },
+        {
+          "caller": "makeQueryString",
+          "callee": "JSON.stringify",
+          "lineNumber": 52
+        },
+        {
+          "caller": "makeQueryString",
+          "callee": "Object.keys",
+          "lineNumber": 56
+        },
+        {
+          "caller": "makeQueryString",
+          "callee": "Object.keys",
+          "lineNumber": 65
+        },
+        {
+          "caller": "makeQueryString",
+          "callee": "JSON.stringify",
+          "lineNumber": 69
+        },
+        {
+          "caller": "makeQueryString",
+          "callee": "JSON.stringify",
+          "lineNumber": 73
+        },
+        {
+          "caller": "makeOrderBy",
+          "callee": "JSON.stringify",
+          "lineNumber": 88
+        },
+        {
+          "caller": "orderByString",
+          "callee": "PaginationQuery.makeOrderBy",
+          "lineNumber": 98
+        },
+        {
+          "caller": "queryString",
+          "callee": "PaginationQuery.makeQueryString",
+          "lineNumber": 103
+        },
+        {
+          "caller": "formattedFieldMask",
+          "callee": "Array.isArray",
+          "lineNumber": 111
+        },
+        {
+          "caller": "formattedFieldMask",
+          "callee": "this.fieldMask.filter(Boolean).join",
+          "lineNumber": 112
+        },
+        {
+          "caller": "formattedFieldMask",
+          "callee": "this.fieldMask.filter",
+          "lineNumber": 112
+        },
+        {
+          "caller": "formattedFieldMask",
+          "callee": "this.fieldMask.trim",
+          "lineNumber": 116
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useAuth.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 56,
+      "functions": [
+        {
+          "name": "useAuth",
+          "startLine": 11,
+          "endLine": 64,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "useAuth",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getUserInfo",
+          "callee": "fetchUserInfo",
+          "lineNumber": 14
+        },
+        {
+          "caller": "getUserInfo",
+          "callee": "console.error",
+          "lineNumber": 16
+        },
+        {
+          "caller": "getAccessCodes",
+          "callee": "fetchAccessCodes",
+          "lineNumber": 22
+        },
+        {
+          "caller": "getUserPermissionCodes",
+          "callee": "useUserStore.getState",
+          "lineNumber": 26
+        },
+        {
+          "caller": "getUserPermissionCodes",
+          "callee": "Promise.all",
+          "lineNumber": 30
+        },
+        {
+          "caller": "getUserPermissionCodes",
+          "callee": "getUserInfo",
+          "lineNumber": 31
+        },
+        {
+          "caller": "getUserPermissionCodes",
+          "callee": "getAccessCodes",
+          "lineNumber": 32
+        },
+        {
+          "caller": "getUserPermissionCodes",
+          "callee": "console.warn",
+          "lineNumber": 36
+        },
+        {
+          "caller": "getUserPermissionCodes",
+          "callee": "useAuthStore.getState().setUserInfo",
+          "lineNumber": 41
+        },
+        {
+          "caller": "getUserPermissionCodes",
+          "callee": "useAuthStore.getState",
+          "lineNumber": 41
+        },
+        {
+          "caller": "getUserPermissionCodes",
+          "callee": "userStore.setUserRoles",
+          "lineNumber": 44
+        },
+        {
+          "caller": "getUserPermissionCodes",
+          "callee": "userStore.setAccessCodes",
+          "lineNumber": 45
+        },
+        {
+          "caller": "getUserPermissionCodes",
+          "callee": "userStore.setUserInfo",
+          "lineNumber": 46
+        },
+        {
+          "caller": "loginLoading",
+          "callee": "useAuthStore.getState",
+          "lineNumber": 55
+        },
+        {
+          "caller": "useAuth",
+          "callee": "useAuthStore.getState",
+          "lineNumber": 57
+        },
+        {
+          "caller": "useAuth",
+          "callee": "useAuthStore.getState",
+          "lineNumber": 58
+        },
+        {
+          "caller": "useAuth",
+          "callee": "useAuthStore.getState",
+          "lineNumber": 59
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useClipboard.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 52,
+      "nonEmptyLines": 43,
+      "functions": [
+        {
+          "name": "useClipboard",
+          "startLine": 6,
+          "endLine": 52,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "useClipboard",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useClipboard",
+          "callee": "useState",
+          "lineNumber": 7
+        },
+        {
+          "caller": "useClipboard",
+          "callee": "useState",
+          "lineNumber": 8
+        },
+        {
+          "caller": "useClipboard",
+          "callee": "useEffect",
+          "lineNumber": 10
+        },
+        {
+          "caller": "useClipboard",
+          "callee": "setTimeout",
+          "lineNumber": 13
+        },
+        {
+          "caller": "useClipboard",
+          "callee": "setIsCopied",
+          "lineNumber": 13
+        },
+        {
+          "caller": "useClipboard",
+          "callee": "clearTimeout",
+          "lineNumber": 15
+        },
+        {
+          "caller": "copyText",
+          "callee": "navigator.clipboard.writeText",
+          "lineNumber": 22
+        },
+        {
+          "caller": "copyText",
+          "callee": "setIsCopied",
+          "lineNumber": 23
+        },
+        {
+          "caller": "copyText",
+          "callee": "document.createElement",
+          "lineNumber": 28
+        },
+        {
+          "caller": "copyText",
+          "callee": "document.body.appendChild",
+          "lineNumber": 31
+        },
+        {
+          "caller": "copyText",
+          "callee": "textArea.select",
+          "lineNumber": 32
+        },
+        {
+          "caller": "copyText",
+          "callee": "document.execCommand",
+          "lineNumber": 34
+        },
+        {
+          "caller": "copyText",
+          "callee": "document.body.removeChild",
+          "lineNumber": 35
+        },
+        {
+          "caller": "copyText",
+          "callee": "setIsCopied",
+          "lineNumber": 38
+        },
+        {
+          "caller": "copyText",
+          "callee": "i18next.t",
+          "lineNumber": 42
+        },
+        {
+          "caller": "copyText",
+          "callee": "i18next.t",
+          "lineNumber": 44
+        },
+        {
+          "caller": "copyText",
+          "callee": "setError",
+          "lineNumber": 45
+        },
+        {
+          "caller": "copyText",
+          "callee": "setIsCopied",
+          "lineNumber": 46
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useDictCache.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 56,
+      "nonEmptyLines": 47,
+      "functions": [
+        {
+          "name": "fetchAllDictEntries",
+          "startLine": 27,
+          "endLine": 30,
+          "params": []
+        },
+        {
+          "name": "getDictEntriesByTypeCode",
+          "startLine": 32,
+          "endLine": 34,
+          "params": [
+            "typeCode"
+          ]
+        },
+        {
+          "name": "getDictEntriesOptionsByTypeCode",
+          "startLine": 36,
+          "endLine": 38,
+          "params": [
+            "_typeCode"
+          ]
+        },
+        {
+          "name": "resetDictCache",
+          "startLine": 40,
+          "endLine": 44,
+          "params": []
+        },
+        {
+          "name": "getDictEntryLabel",
+          "startLine": 46,
+          "endLine": 48,
+          "params": [
+            "_row"
+          ]
+        },
+        {
+          "name": "getDictEntryLabelByValue",
+          "startLine": 50,
+          "endLine": 52,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "getDictTypes",
+          "startLine": 54,
+          "endLine": 56,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "fetchAllDictEntries",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "getDictEntriesByTypeCode",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "getDictEntriesOptionsByTypeCode",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "resetDictCache",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "getDictEntryLabel",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "getDictEntryLabelByValue",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "getDictTypes",
+          "line": 54,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useEcharts.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 139,
+      "nonEmptyLines": 128,
+      "functions": [
+        {
+          "name": "useEcharts",
+          "startLine": 83,
+          "endLine": 139,
+          "params": [
+            "options",
+            "data"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "useEcharts",
+          "line": 83,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useEcharts",
+          "callee": "useRef",
+          "lineNumber": 84
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "useRef",
+          "lineNumber": 85
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "useRef",
+          "lineNumber": 86
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "useRef",
+          "lineNumber": 87
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "useCallback",
+          "lineNumber": 90
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "echartsRef.current.dispose",
+          "lineNumber": 92
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "resizeObserverRef.current.disconnect",
+          "lineNumber": 96
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "debouncedResizeRef.current.cancel",
+          "lineNumber": 100
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "useEffect",
+          "lineNumber": 106
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "echarts.init",
+          "lineNumber": 110
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "echartsRef.current.setOption",
+          "lineNumber": 111
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "debounce",
+          "lineNumber": 114
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "echartsRef.current?.resize",
+          "lineNumber": 115
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "resizeObserverRef.current.observe",
+          "lineNumber": 124
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "dispose",
+          "lineNumber": 127
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "useEffect",
+          "lineNumber": 132
+        },
+        {
+          "caller": "useEcharts",
+          "callee": "echartsRef.current.setOption",
+          "lineNumber": 134
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useKeyStroke.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 51,
+      "nonEmptyLines": 44,
+      "functions": [
+        {
+          "name": "useKeyStroke",
+          "startLine": 13,
+          "endLine": 51,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "useKeyStroke",
+          "line": 13,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "onKeyDown",
+          "callee": "options.ArrowUp",
+          "lineNumber": 22
+        },
+        {
+          "caller": "onKeyDown",
+          "callee": "options.ArrowDown",
+          "lineNumber": 27
+        },
+        {
+          "caller": "onKeyDown",
+          "callee": "options.ArrowLeft",
+          "lineNumber": 32
+        },
+        {
+          "caller": "onKeyDown",
+          "callee": "options.ArrowRight",
+          "lineNumber": 37
+        },
+        {
+          "caller": "onKeyDown",
+          "callee": "options.Enter",
+          "lineNumber": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useProTableScrollY.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 93,
+      "nonEmptyLines": 78,
+      "functions": [
+        {
+          "name": "useProTableScrollY",
+          "startLine": 13,
+          "endLine": 93,
+          "params": [
+            "containerRef"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "useProTableScrollY",
+          "line": 13,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useProTableScrollY",
+          "callee": "useEffect",
+          "lineNumber": 16
+        },
+        {
+          "caller": "resize",
+          "callee": "cancelAnimationFrame",
+          "lineNumber": 23
+        },
+        {
+          "caller": "resize",
+          "callee": "requestAnimationFrame",
+          "lineNumber": 24
+        },
+        {
+          "caller": "resize",
+          "callee": "container.querySelector",
+          "lineNumber": 25
+        },
+        {
+          "caller": "resize",
+          "callee": "container.getBoundingClientRect",
+          "lineNumber": 31
+        },
+        {
+          "caller": "resize",
+          "callee": "tableBody.getBoundingClientRect",
+          "lineNumber": 32
+        },
+        {
+          "caller": "resize",
+          "callee": "container.querySelector",
+          "lineNumber": 38
+        },
+        {
+          "caller": "resize",
+          "callee": "getComputedStyle",
+          "lineNumber": 41
+        },
+        {
+          "caller": "resize",
+          "callee": "parseFloat",
+          "lineNumber": 44
+        },
+        {
+          "caller": "resize",
+          "callee": "parseFloat",
+          "lineNumber": 45
+        },
+        {
+          "caller": "resize",
+          "callee": "Math.max",
+          "lineNumber": 52
+        },
+        {
+          "caller": "useProTableScrollY",
+          "callee": "setTimeout",
+          "lineNumber": 69
+        },
+        {
+          "caller": "useProTableScrollY",
+          "callee": "setTimeout",
+          "lineNumber": 70
+        },
+        {
+          "caller": "useProTableScrollY",
+          "callee": "setTimeout",
+          "lineNumber": 71
+        },
+        {
+          "caller": "useProTableScrollY",
+          "callee": "setTimeout",
+          "lineNumber": 72
+        },
+        {
+          "caller": "useProTableScrollY",
+          "callee": "resizeObserver.observe",
+          "lineNumber": 77
+        },
+        {
+          "caller": "useProTableScrollY",
+          "callee": "mutationObserver.observe",
+          "lineNumber": 81
+        },
+        {
+          "caller": "useProTableScrollY",
+          "callee": "cancelAnimationFrame",
+          "lineNumber": 84
+        },
+        {
+          "caller": "useProTableScrollY",
+          "callee": "timers.forEach",
+          "lineNumber": 85
+        },
+        {
+          "caller": "useProTableScrollY",
+          "callee": "resizeObserver.disconnect",
+          "lineNumber": 86
+        },
+        {
+          "caller": "useProTableScrollY",
+          "callee": "mutationObserver.disconnect",
+          "lineNumber": 87
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useTableScrollHeight.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 161,
+      "nonEmptyLines": 140,
+      "functions": [
+        {
+          "name": "useTableScrollHeight",
+          "startLine": 30,
+          "endLine": 104,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "useAutoTableHeight",
+          "startLine": 113,
+          "endLine": 161,
+          "params": [
+            "extraOffset"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "useTableScrollHeight",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "useAutoTableHeight",
+          "line": 113,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useTableScrollHeight",
+          "callee": "useState",
+          "lineNumber": 56
+        },
+        {
+          "caller": "useTableScrollHeight",
+          "callee": "useCallback",
+          "lineNumber": 59
+        },
+        {
+          "caller": "useTableScrollHeight",
+          "callee": "setViewportHeight",
+          "lineNumber": 60
+        },
+        {
+          "caller": "useTableScrollHeight",
+          "callee": "useEffect",
+          "lineNumber": 64
+        },
+        {
+          "caller": "useTableScrollHeight",
+          "callee": "updateViewportHeight",
+          "lineNumber": 65
+        },
+        {
+          "caller": "useTableScrollHeight",
+          "callee": "window.addEventListener",
+          "lineNumber": 66
+        },
+        {
+          "caller": "useTableScrollHeight",
+          "callee": "window.removeEventListener",
+          "lineNumber": 68
+        },
+        {
+          "caller": "useTableScrollHeight",
+          "callee": "useCallback",
+          "lineNumber": 73
+        },
+        {
+          "caller": "useTableScrollHeight",
+          "callee": "Math.max",
+          "lineNumber": 90
+        },
+        {
+          "caller": "useTableScrollHeight",
+          "callee": "calculateHeight",
+          "lineNumber": 103
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "useState",
+          "lineNumber": 114
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "useRef",
+          "lineNumber": 115
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "useRef",
+          "lineNumber": 116
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "useRef",
+          "lineNumber": 117
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "useEffect",
+          "lineNumber": 120
+        },
+        {
+          "caller": "calculateExcludeHeight",
+          "callee": "setExcludeHeight",
+          "lineNumber": 139
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "calculateExcludeHeight",
+          "lineNumber": 143
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "observer.observe",
+          "lineNumber": 148
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "observer.observe",
+          "lineNumber": 149
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "observer.observe",
+          "lineNumber": 150
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "observer.disconnect",
+          "lineNumber": 153
+        },
+        {
+          "caller": "useAutoTableHeight",
+          "callee": "useTableScrollHeight",
+          "lineNumber": 157
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useTime.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 23,
+      "functions": [
+        {
+          "name": "useTimes",
+          "startLine": 7,
+          "endLine": 27,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "useTimes",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useTimes",
+          "callee": "useRef",
+          "lineNumber": 8
+        },
+        {
+          "caller": "useTimes",
+          "callee": "useState",
+          "lineNumber": 9
+        },
+        {
+          "caller": "useTimes",
+          "callee": "dayjs().format",
+          "lineNumber": 9
+        },
+        {
+          "caller": "useTimes",
+          "callee": "dayjs",
+          "lineNumber": 9
+        },
+        {
+          "caller": "useTimes",
+          "callee": "useEffect",
+          "lineNumber": 11
+        },
+        {
+          "caller": "useTimes",
+          "callee": "setInterval",
+          "lineNumber": 12
+        },
+        {
+          "caller": "useTimes",
+          "callee": "setTime",
+          "lineNumber": 13
+        },
+        {
+          "caller": "useTimes",
+          "callee": "dayjs().format",
+          "lineNumber": 13
+        },
+        {
+          "caller": "useTimes",
+          "callee": "dayjs",
+          "lineNumber": 13
+        },
+        {
+          "caller": "useTimes",
+          "callee": "clearInterval",
+          "lineNumber": 18
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useTitle.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 11,
+      "nonEmptyLines": 10,
+      "functions": [
+        {
+          "name": "useTitle",
+          "startLine": 3,
+          "endLine": 11,
+          "params": [
+            "title"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "useTitle",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useTitle",
+          "callee": "useEffect",
+          "lineNumber": 4
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useTokenRefresh.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 47,
+      "functions": [
+        {
+          "name": "computeNextInterval",
+          "startLine": 14,
+          "endLine": 26,
+          "params": []
+        },
+        {
+          "name": "scheduleRefresh",
+          "startLine": 28,
+          "endLine": 42,
+          "params": []
+        },
+        {
+          "name": "startRefreshTimer",
+          "startLine": 44,
+          "endLine": 46,
+          "params": []
+        },
+        {
+          "name": "stopRefreshTimer",
+          "startLine": 48,
+          "endLine": 53,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "startRefreshTimer",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "stopRefreshTimer",
+          "line": 48,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "computeNextInterval",
+          "callee": "useAuthStore.getState",
+          "lineNumber": 15
+        },
+        {
+          "caller": "computeNextInterval",
+          "callee": "Date.now",
+          "lineNumber": 16
+        },
+        {
+          "caller": "computeNextInterval",
+          "callee": "Math.floor",
+          "lineNumber": 20
+        },
+        {
+          "caller": "computeNextInterval",
+          "callee": "Math.max",
+          "lineNumber": 21
+        },
+        {
+          "caller": "computeNextInterval",
+          "callee": "Math.min",
+          "lineNumber": 23
+        },
+        {
+          "caller": "scheduleRefresh",
+          "callee": "stopRefreshTimer",
+          "lineNumber": 29
+        },
+        {
+          "caller": "tick",
+          "callee": "useAuthStore.getState().refreshToken",
+          "lineNumber": 32
+        },
+        {
+          "caller": "tick",
+          "callee": "useAuthStore.getState",
+          "lineNumber": 32
+        },
+        {
+          "caller": "tick",
+          "callee": "console.error",
+          "lineNumber": 34
+        },
+        {
+          "caller": "tick",
+          "callee": "globalThis.setTimeout",
+          "lineNumber": 37
+        },
+        {
+          "caller": "tick",
+          "callee": "computeNextInterval",
+          "lineNumber": 37
+        },
+        {
+          "caller": "scheduleRefresh",
+          "callee": "globalThis.setTimeout",
+          "lineNumber": 41
+        },
+        {
+          "caller": "scheduleRefresh",
+          "callee": "computeNextInterval",
+          "lineNumber": 41
+        },
+        {
+          "caller": "startRefreshTimer",
+          "callee": "scheduleRefresh",
+          "lineNumber": 45
+        },
+        {
+          "caller": "stopRefreshTimer",
+          "callee": "globalThis.clearTimeout",
+          "lineNumber": 50
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useWatermark.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 80,
+      "nonEmptyLines": 73,
+      "functions": [
+        {
+          "name": "useWatermark",
+          "startLine": 14,
+          "endLine": 80,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "useWatermark",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Watermark",
+          "callee": "document.getElementById",
+          "lineNumber": 23
+        },
+        {
+          "caller": "Watermark",
+          "callee": "Math.floor",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Watermark",
+          "callee": "document.createElement",
+          "lineNumber": 45
+        },
+        {
+          "caller": "Watermark",
+          "callee": "Math.floor",
+          "lineNumber": 48
+        },
+        {
+          "caller": "Watermark",
+          "callee": "document.createElement",
+          "lineNumber": 54
+        },
+        {
+          "caller": "Watermark",
+          "callee": "document.body.appendChild",
+          "lineNumber": 64
+        },
+        {
+          "caller": "RemoveWatermark",
+          "callee": "document.getElementById",
+          "lineNumber": 70
+        },
+        {
+          "caller": "RemoveWatermark",
+          "callee": "document.getElementById",
+          "lineNumber": 73
+        },
+        {
+          "caller": "RemoveWatermark",
+          "callee": "document.getElementById",
+          "lineNumber": 74
+        },
+        {
+          "caller": "RemoveWatermark",
+          "callee": "document.body.removeChild",
+          "lineNumber": 75
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/index.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 18,
+      "nonEmptyLines": 16,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/layouts/BlankLayout/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 10,
+      "functions": [
+        {
+          "name": "BlankLayout",
+          "startLine": 8,
+          "endLine": 10,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/ErrorFallback/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 136,
+      "nonEmptyLines": 127,
+      "functions": [
+        {
+          "name": "ErrorFallback",
+          "startLine": 24,
+          "endLine": 134,
+          "params": [
+            "{\n  error,\n  resetErrorBoundary,\n  componentStack,\n  showDetails = import.meta.env.DEV,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ErrorFallback",
+          "line": 24,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ErrorFallback",
+          "callee": "useNavigate",
+          "lineNumber": 30
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "useState",
+          "lineNumber": 31
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "useI18n",
+          "lineNumber": 32
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "useEffect",
+          "lineNumber": 35
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "console.error",
+          "lineNumber": 37
+        },
+        {
+          "caller": "handleCopy",
+          "callee": "navigator.clipboard.writeText",
+          "lineNumber": 48
+        },
+        {
+          "caller": "handleCopy",
+          "callee": "setCopied",
+          "lineNumber": 49
+        },
+        {
+          "caller": "handleCopy",
+          "callee": "message.success",
+          "lineNumber": 50
+        },
+        {
+          "caller": "handleCopy",
+          "callee": "t",
+          "lineNumber": 50
+        },
+        {
+          "caller": "handleCopy",
+          "callee": "setTimeout",
+          "lineNumber": 51
+        },
+        {
+          "caller": "handleCopy",
+          "callee": "setCopied",
+          "lineNumber": 51
+        },
+        {
+          "caller": "handleCopy",
+          "callee": "message.error",
+          "lineNumber": 53
+        },
+        {
+          "caller": "handleCopy",
+          "callee": "t",
+          "lineNumber": 53
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 65
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 68
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 73
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "navigate",
+          "lineNumber": 76
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 77
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "window.location.reload",
+          "lineNumber": 79
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 80
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 89
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 93
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 93
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 100
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "error.toString",
+          "lineNumber": 103
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 109
+        },
+        {
+          "caller": "ErrorFallback",
+          "callee": "t",
+          "lineNumber": 120
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/ErrorFallback/RouteErrorFallback.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 13,
+      "functions": [
+        {
+          "name": "RouteErrorFallback",
+          "startLine": 8,
+          "endLine": 15,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "RouteErrorFallback",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "RouteErrorFallback",
+          "callee": "useRouteError",
+          "lineNumber": 9
+        },
+        {
+          "caller": "RouteErrorFallback",
+          "callee": "String",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/ErrorFallback/utils/report.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 30,
+      "functions": [
+        {
+          "name": "reportError",
+          "startLine": 13,
+          "endLine": 33,
+          "params": [
+            "error",
+            "componentStack"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "reportError",
+          "line": 13,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "reportError",
+          "callee": "Date.now",
+          "lineNumber": 21
+        },
+        {
+          "caller": "reportError",
+          "callee": "console.debug",
+          "lineNumber": 31
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

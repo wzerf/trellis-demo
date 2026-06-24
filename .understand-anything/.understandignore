@@ -1,0 +1,43 @@
+# .understandignore — patterns for files/dirs to exclude from analysis
+# Syntax: same as .gitignore (globs, # comments, ! negation, trailing / for dirs)
+# Built-in defaults (always excluded unless negated):
+#   node_modules/, .git/, dist/, build/, obj/, *.lock, *.min.js, etc.
+
+# --- Tooling & environment config (not project source) ---
+/.agents/
+/.claude/
+/.opencode/
+/.codex/
+/.trae/
+/.vscode/
+/.idea/
+/.codegraph/
+/.trellis/
+/.understand-anything/
+/.understand-anything-tmp/
+
+# --- Vendored sub-monorepos (excluded from root pnpm-workspace.yaml) ---
+# These are full third-party admin templates that the demo uses as showcase
+# apps. They have their own pnpm-workspace.yaml and are NOT part of the
+# trellis-demo monorepo proper. Analyzing them inflates the graph with
+# off-the-shelf admin code unrelated to the starter's design.
+# /apps/vue-vben-admin/
+# /apps/react-admin/
+
+# --- Build / vendor outputs ---
+/coverage/
+/.turbo/
+/.next/
+/.nuxt/
+/.cache/
+/.output/
+/.nitro/
+/.vite-plus/
+/.server/
+/public/
+
+# --- Lockfile (project metadata, not source) ---
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+bun.lockb

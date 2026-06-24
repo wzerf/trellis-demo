@@ -1,0 +1,180 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/ContentContainer.style.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 30,
+      "nonEmptyLines": 26,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/PageContainer.style.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 29,
+      "nonEmptyLines": 25,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 129,
+      "nonEmptyLines": 102,
+      "sections": [
+        {
+          "heading": "PageContainer & ContentContainer 使用指南",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "概述",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "PageContainer",
+          "level": 3,
+          "line": 5
+        },
+        {
+          "heading": "ContentContainer",
+          "level": 3,
+          "line": 12
+        },
+        {
+          "heading": "组件层级",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "使用示例",
+          "level": 2,
+          "line": 28
+        },
+        {
+          "heading": "固定高度（列表页、表格页）",
+          "level": 3,
+          "line": 30
+        },
+        {
+          "heading": "自适应高度（详情页、表单页）",
+          "level": 3,
+          "line": 52
+        },
+        {
+          "heading": "ContentContainer Props",
+          "level": 2,
+          "line": 73
+        },
+        {
+          "heading": "样式规范",
+          "level": 2,
+          "line": 104
+        },
+        {
+          "heading": "固定高度模式",
+          "level": 3,
+          "line": 106
+        },
+        {
+          "heading": "自适应高度模式",
+          "level": 3,
+          "line": 115
+        },
+        {
+          "heading": "注意事项",
+          "level": 2,
+          "line": 124
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 13
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/USAGE.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 192,
+      "nonEmptyLines": 156,
+      "sections": [
+        {
+          "heading": "页面刷新功能使用说明",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "概述",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "工作原理",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "使用方法",
+          "level": 2,
+          "line": 13
+        },
+        {
+          "heading": "基础用法",
+          "level": 3,
+          "line": 15
+        },
+        {
+          "heading": "完整示例",
+          "level": 3,
+          "line": 40
+        },
+        {
+          "heading": "Dashboard 示例",
+          "level": 3,
+          "line": 98
+        },
+        {
+          "heading": "API 说明",
+          "level": 2,
+          "line": 134
+        },
+        {
+          "heading": "PageContainer Props",
+          "level": 3,
+          "line": 136
+        },
+        {
+          "heading": "工作流程",
+          "level": 3,
+          "line": 144
+        },
+        {
+          "heading": "注意事项",
+          "level": 2,
+          "line": 158
+        },
+        {
+          "heading": "与全屏功能的配合",
+          "level": 2,
+          "line": 177
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 12
+      }
+    }
+  ]
+}

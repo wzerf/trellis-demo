@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "document:backend/db/docs/db-conventions.md",
+      "type": "document",
+      "name": "db-conventions.md",
+      "filePath": "backend/db/docs/db-conventions.md",
+      "summary": "后台管理数据库约定文档（v5+），覆盖字符集与排序规则、命名规范、主键 ID 策略、审计/启停/软删字段、软删感知唯一约束、索引策略、外键策略、枚举与 JSON 字段、读写操作模板、日志表、ABAC 数据权限、Casbin rule 表、角色层级与菜单物化路径等设计动机与开发准则。",
+      "tags": ["documentation", "database", "conventions", "schema-design", "rbac"],
+      "complexity": "complex",
+      "languageNotes": "使用中文撰写，配套 backend/db/schema.sql；明确划分为 17 个二级与三级章节，结构化表格密集。"
+    },
+    {
+      "id": "document:backend/db/docs/er.md",
+      "type": "document",
+      "name": "er.md",
+      "filePath": "backend/db/docs/er.md",
+      "summary": "ER 关系与基数总览（v5+），以 ASCII 关系图与表格形式展示 RBAC、I18n、字典、Temporal 任务、Casbin、日志六大模块的实体关系、M:N/1:N 关联、软引用清单、关联表规则、RBAC+ABAC 双层数据流以及时间戳与一致性窗口等边界。",
+      "tags": ["documentation", "database", "er-diagram", "cardinality", "rbac"],
+      "complexity": "moderate",
+      "languageNotes": "包含一个大型 ASCII 关系总览图，便于在纯 Markdown 环境下直观阅读表间关系。"
+    },
+    {
+      "id": "document:backend/db/docs/tables.md",
+      "type": "document",
+      "name": "tables.md",
+      "filePath": "backend/db/docs/tables.md",
+      "summary": "表字段速查（v5+），按 RBAC、API 管理、菜单管理、I18n、字典、ABAC 数据权限、日志、Temporal 任务调度、Casbin 九大模块逐表列出 22 张表的字段类型、必填、默认值、说明以及索引与外键约束信息。",
+      "tags": ["documentation", "database", "schema", "field-reference", "rbac"],
+      "complexity": "complex",
+      "languageNotes": "使用统一表格模板逐表呈现字段、索引、外键三类信息，便于与 schema.sql 双向对照。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:backend/db/docs/er.md",
+      "target": "document:backend/db/docs/tables.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:backend/db/docs/er.md",
+      "target": "document:backend/db/docs/db-conventions.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:backend/db/docs/tables.md",
+      "target": "document:backend/db/docs/db-conventions.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java", "language": "java", "sizeLines": 90, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-common/pom.xml", "language": "xml", "sizeLines": 43, "fileCategory": "config"},
+    {"path": "backend/java-admin/java-admin-infra/pom.xml", "language": "xml", "sizeLines": 94, "fileCategory": "config"},
+    {"path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java", "language": "java", "sizeLines": 71, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java", "language": "java", "sizeLines": 22, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java", "language": "java", "sizeLines": 27, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java", "language": "java", "sizeLines": 31, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java", "language": "java", "sizeLines": 42, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml", "language": "xml", "sizeLines": 77, "fileCategory": "config"},
+    {"path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java", "language": "java", "sizeLines": 44, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java", "language": "java", "sizeLines": 77, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java", "language": "java", "sizeLines": 145, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-service/pom.xml", "language": "xml", "sizeLines": 64, "fileCategory": "config"},
+    {"path": "backend/java-admin/pom.xml", "language": "xml", "sizeLines": 398, "fileCategory": "config"},
+    {"path": "packages/utils-template/src/index.ts", "language": "typescript", "sizeLines": 3, "fileCategory": "code"},
+    {"path": "packages/utils-template/tests/index.test.ts", "language": "typescript", "sizeLines": 6, "fileCategory": "code"},
+    {"path": "packages/utils-template/vite.config.ts", "language": "typescript", "sizeLines": 17, "fileCategory": "code"},
+    {"path": "vite.config.ts", "language": "typescript", "sizeLines": 55, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "packages/utils-template/tests/index.test.ts": ["packages/utils-template/src/index.ts"]
+  }
+}

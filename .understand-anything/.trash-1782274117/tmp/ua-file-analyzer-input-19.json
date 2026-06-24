@@ -1,0 +1,29 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": ".mcp.json", "language": "json", "sizeLines": 22, "fileCategory": "config"},
+    {"path": "AGENTS.md", "language": "markdown", "sizeLines": 74, "fileCategory": "docs"},
+    {"path": "CLAUDE.md", "language": "markdown", "sizeLines": 1, "fileCategory": "docs"},
+    {"path": "Makefile", "language": "makefile", "sizeLines": 48, "fileCategory": "infra"},
+    {"path": "README.md", "language": "markdown", "sizeLines": 29, "fileCategory": "docs"},
+    {"path": "lefthook.yml", "language": "yaml", "sizeLines": 70, "fileCategory": "config"},
+    {"path": "opencode.jsonc", "language": "jsonc", "sizeLines": 20, "fileCategory": "config"},
+    {"path": "package.json", "language": "json", "sizeLines": 21, "fileCategory": "config"},
+    {"path": "pnpm-workspace.yaml", "language": "yaml", "sizeLines": 48, "fileCategory": "config"},
+    {"path": "skills-lock.json", "language": "json", "sizeLines": 47, "fileCategory": "config"},
+    {"path": "tsconfig.json", "language": "json", "sizeLines": 9, "fileCategory": "config"}
+  ],
+  "batchImportData": {
+    ".mcp.json": [],
+    "AGENTS.md": [],
+    "CLAUDE.md": [],
+    "Makefile": [],
+    "README.md": [],
+    "lefthook.yml": [],
+    "opencode.jsonc": [],
+    "package.json": [],
+    "pnpm-workspace.yaml": [],
+    "skills-lock.json": [],
+    "tsconfig.json": []
+  }
+}

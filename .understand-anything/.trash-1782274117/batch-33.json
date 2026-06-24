@@ -1,0 +1,48 @@
+{
+  "nodes": [
+    {
+      "id": "config:backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "type": "config",
+      "name": "checkstyle-suppressions.xml",
+      "filePath": "backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "summary": "java-admin 后端的 Checkstyle suppressions 配置文件,按 8 条 glob 规则对现有 4 个模块（common / service / infra / api,含 main 与 test 源集）全部 Java 文件做一次性基线豁免,避免 Palantir Baseline 高标准规则集对历史 36+ Java 文件产生大规模 diff;新文件/新模块不允许加入此文件,默认按 error 严格度走完整规则集。",
+      "tags": ["checkstyle", "suppressions", "configuration", "code-quality", "java-admin"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "type": "config",
+      "name": "checkstyle.xml",
+      "filePath": "backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "summary": "java-admin 后端主 Checkstyle 规则集,源自 Palantir Baseline Style 规则集,启用 TreeWalker 下大量检查（命名、ImportOrder、IllegalImport/IllegalType、RegexpSinglelineJava、RightCurly、CyclomaticComplexity、Javadoc 等),并通过 SuppressionFilter 链接 checkstyle-suppressions.xml 与 custom-suppressions.xml,对 module-info.java 排除执行;severity=error,违反即 mvn verify 失败。",
+      "tags": ["checkstyle", "code-quality", "configuration", "palantir-baseline", "java-admin"],
+      "complexity": "complex",
+      "languageNotes": "Checkstyle Checker/TreeWalker 模块化声明,使用 SuppressionFilter 链式挂载多个 suppression 文件,RegexpSinglelineJava 用 id 区分多组互不覆盖的禁用模式。"
+    },
+    {
+      "id": "config:backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "type": "config",
+      "name": "custom-suppressions.xml",
+      "filePath": "backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "summary": "java-admin 后端 Checkstyle 的项目级自定义 suppressions 文件,设计为供未来基线更新自动化不被覆盖的逐条豁免入口（生成代码、特殊场景等）;当前刻意保持空,所有 suppressions 都集中在 checkstyle-suppressions.xml,在 checkstyle.xml 中以 optional=true 方式加载。",
+      "tags": ["checkstyle", "suppressions", "configuration", "code-quality", "java-admin"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "target": "config:backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "target": "config:backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

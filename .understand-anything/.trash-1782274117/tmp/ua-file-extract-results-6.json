@@ -1,0 +1,860 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 8,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 23,
+      "nonEmptyLines": 17,
+      "classes": [
+        {
+          "name": "FileDownloader",
+          "startLine": 6,
+          "endLine": 21,
+          "methods": [
+            "constructor",
+            "download"
+          ],
+          "properties": [
+            "client"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "FileDownloader",
+          "line": 23,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "download",
+          "callee": "await this.client.get",
+          "lineNumber": 19
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/modules/interceptor.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 29,
+      "classes": [
+        {
+          "name": "InterceptorManager",
+          "startLine": 15,
+          "endLine": 35,
+          "methods": [
+            "constructor",
+            "addRequestInterceptor",
+            "addResponseInterceptor"
+          ],
+          "properties": [
+            "axiosInstance"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "InterceptorManager",
+          "line": 37,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addRequestInterceptor",
+          "callee": "this.axiosInstance.interceptors.request.use",
+          "lineNumber": 26
+        },
+        {
+          "caller": "addResponseInterceptor",
+          "callee": "this.axiosInstance.interceptors.response.use",
+          "lineNumber": 33
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/modules/uploader.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 40,
+      "nonEmptyLines": 32,
+      "classes": [
+        {
+          "name": "FileUploader",
+          "startLine": 5,
+          "endLine": 38,
+          "methods": [
+            "constructor",
+            "upload"
+          ],
+          "properties": [
+            "client"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "FileUploader",
+          "line": 40,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "upload",
+          "callee": "Object.entries(data).forEach",
+          "lineNumber": 19
+        },
+        {
+          "caller": "upload",
+          "callee": "Object.entries",
+          "lineNumber": 19
+        },
+        {
+          "caller": "upload",
+          "callee": "formData.append",
+          "lineNumber": 20
+        },
+        {
+          "caller": "upload",
+          "callee": "this.client.request",
+          "lineNumber": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 143,
+      "nonEmptyLines": 124,
+      "functions": [
+        {
+          "name": "authenticateResponseInterceptor",
+          "startLine": 16,
+          "endLine": 112,
+          "params": [
+            "{\n  client,\n  doReAuthenticate,\n  doRefreshToken,\n  enableRefreshToken,\n  formatToken,\n}"
+          ]
+        },
+        {
+          "name": "errorMessageResponseInterceptor",
+          "startLine": 120,
+          "endLine": 143,
+          "params": [
+            "makeErrorMessage",
+            "getErrorMsg"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "authenticateResponseInterceptor",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "errorMessageResponseInterceptor",
+          "line": 120,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "config.url?.includes",
+          "lineNumber": 40
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "doReAuthenticate",
+          "lineNumber": 41
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "Object.assign",
+          "lineNumber": 42
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "doReAuthenticate",
+          "lineNumber": 50
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "Object.assign",
+          "lineNumber": 53
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "client.refreshTokenQueue.push",
+          "lineNumber": 61
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "formatToken",
+          "lineNumber": 62
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "resolve",
+          "lineNumber": 63
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "client.request",
+          "lineNumber": 63
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "doRefreshToken",
+          "lineNumber": 74
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "client.refreshTokenQueue.forEach",
+          "lineNumber": 78
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "callback",
+          "lineNumber": 78
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "doReAuthenticate",
+          "lineNumber": 80
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "Object.assign",
+          "lineNumber": 81
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "Promise.reject",
+          "lineNumber": 84
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "client.refreshTokenQueue.forEach",
+          "lineNumber": 88
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "callback",
+          "lineNumber": 88
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "client.request",
+          "lineNumber": 92
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "client.refreshTokenQueue.forEach",
+          "lineNumber": 95
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "callback",
+          "lineNumber": 95
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "console.error",
+          "lineNumber": 98
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "doReAuthenticate",
+          "lineNumber": 100
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "Object.assign",
+          "lineNumber": 103
+        },
+        {
+          "caller": "authenticateResponseInterceptor",
+          "callee": "Promise.reject",
+          "lineNumber": 106
+        },
+        {
+          "caller": "errorMessageResponseInterceptor",
+          "callee": "axios.isCancel",
+          "lineNumber": 127
+        },
+        {
+          "caller": "errorMessageResponseInterceptor",
+          "callee": "Promise.reject",
+          "lineNumber": 128
+        },
+        {
+          "caller": "errorMessageResponseInterceptor",
+          "callee": "Promise.reject",
+          "lineNumber": 133
+        },
+        {
+          "caller": "errorMessageResponseInterceptor",
+          "callee": "getErrorMsg",
+          "lineNumber": 137
+        },
+        {
+          "caller": "errorMessageResponseInterceptor",
+          "callee": "makeErrorMessage",
+          "lineNumber": 138
+        },
+        {
+          "caller": "errorMessageResponseInterceptor",
+          "callee": "Promise.reject",
+          "lineNumber": 140
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/request-api.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 15,
+      "functions": [
+        {
+          "name": "requestApi",
+          "startLine": 3,
+          "endLine": 16,
+          "params": [
+            "{\n  path,\n  method,\n  body,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "requestApi",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "requestApi",
+          "callee": "RequestClient.getInstance().request",
+          "lineNumber": 12
+        },
+        {
+          "caller": "requestApi",
+          "callee": "RequestClient.getInstance",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/request-client.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 279,
+      "nonEmptyLines": 249,
+      "classes": [
+        {
+          "name": "RequestClient",
+          "startLine": 17,
+          "endLine": 277,
+          "methods": [
+            "init",
+            "getInstance",
+            "constructor",
+            "formatToken",
+            "setupInterceptors",
+            "useTokenInterceptor",
+            "useRequestIdInterceptor",
+            "useLocaleInterceptor",
+            "useResponseDataInterceptor",
+            "useAuthInterceptor",
+            "useErrorMessageInterceptor",
+            "delete",
+            "get",
+            "post",
+            "put",
+            "request"
+          ],
+          "properties": [
+            "instance",
+            "addRequestInterceptor",
+            "addResponseInterceptor",
+            "download",
+            "isRefreshing",
+            "refreshTokenQueue",
+            "upload",
+            "_instance"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "RequestClient",
+          "line": 279,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "merge",
+          "lineNumber": 66
+        },
+        {
+          "caller": "constructor",
+          "callee": "axios.create",
+          "lineNumber": 67
+        },
+        {
+          "caller": "constructor",
+          "callee": "bindMethods",
+          "lineNumber": 69
+        },
+        {
+          "caller": "constructor",
+          "callee": "interceptorManager.addRequestInterceptor.bind",
+          "lineNumber": 73
+        },
+        {
+          "caller": "constructor",
+          "callee": "interceptorManager.addResponseInterceptor.bind",
+          "lineNumber": 75
+        },
+        {
+          "caller": "constructor",
+          "callee": "fileUploader.upload.bind",
+          "lineNumber": 79
+        },
+        {
+          "caller": "constructor",
+          "callee": "fileDownloader.download.bind",
+          "lineNumber": 82
+        },
+        {
+          "caller": "constructor",
+          "callee": "this.setupInterceptors",
+          "lineNumber": 88
+        },
+        {
+          "caller": "setupInterceptors",
+          "callee": "this.useTokenInterceptor",
+          "lineNumber": 103
+        },
+        {
+          "caller": "setupInterceptors",
+          "callee": "this.useRequestIdInterceptor",
+          "lineNumber": 104
+        },
+        {
+          "caller": "setupInterceptors",
+          "callee": "this.useLocaleInterceptor",
+          "lineNumber": 105
+        },
+        {
+          "caller": "setupInterceptors",
+          "callee": "this.useAuthInterceptor",
+          "lineNumber": 107
+        },
+        {
+          "caller": "setupInterceptors",
+          "callee": "this.useResponseDataInterceptor",
+          "lineNumber": 108
+        },
+        {
+          "caller": "setupInterceptors",
+          "callee": "this.useErrorMessageInterceptor",
+          "lineNumber": 109
+        },
+        {
+          "caller": "useTokenInterceptor",
+          "callee": "this.addRequestInterceptor",
+          "lineNumber": 116
+        },
+        {
+          "caller": "useTokenInterceptor",
+          "callee": "callbacks.getToken",
+          "lineNumber": 119
+        },
+        {
+          "caller": "useTokenInterceptor",
+          "callee": "this.formatToken",
+          "lineNumber": 120
+        },
+        {
+          "caller": "useRequestIdInterceptor",
+          "callee": "this.addRequestInterceptor",
+          "lineNumber": 131
+        },
+        {
+          "caller": "useRequestIdInterceptor",
+          "callee": "defaultIdGenerator",
+          "lineNumber": 133
+        },
+        {
+          "caller": "useLocaleInterceptor",
+          "callee": "this.addRequestInterceptor",
+          "lineNumber": 146
+        },
+        {
+          "caller": "useLocaleInterceptor",
+          "callee": "callbacks.getLocale",
+          "lineNumber": 149
+        },
+        {
+          "caller": "useResponseDataInterceptor",
+          "callee": "this.addResponseInterceptor",
+          "lineNumber": 164
+        },
+        {
+          "caller": "useResponseDataInterceptor",
+          "callee": "Object.assign",
+          "lineNumber": 181
+        },
+        {
+          "caller": "useResponseDataInterceptor",
+          "callee": "String",
+          "lineNumber": 181
+        },
+        {
+          "caller": "useResponseDataInterceptor",
+          "callee": "Object.assign",
+          "lineNumber": 189
+        },
+        {
+          "caller": "useAuthInterceptor",
+          "callee": "this.addResponseInterceptor",
+          "lineNumber": 198
+        },
+        {
+          "caller": "useAuthInterceptor",
+          "callee": "authenticateResponseInterceptor",
+          "lineNumber": 199
+        },
+        {
+          "caller": "useAuthInterceptor",
+          "callee": "console.warn",
+          "lineNumber": 202
+        },
+        {
+          "caller": "useAuthInterceptor",
+          "callee": "callbacks.onReAuthenticate",
+          "lineNumber": 204
+        },
+        {
+          "caller": "useAuthInterceptor",
+          "callee": "console.error",
+          "lineNumber": 206
+        },
+        {
+          "caller": "useAuthInterceptor",
+          "callee": "callbacks.refreshToken",
+          "lineNumber": 213
+        },
+        {
+          "caller": "useAuthInterceptor",
+          "callee": "this.formatToken.bind",
+          "lineNumber": 218
+        },
+        {
+          "caller": "useErrorMessageInterceptor",
+          "callee": "this.addResponseInterceptor",
+          "lineNumber": 227
+        },
+        {
+          "caller": "useErrorMessageInterceptor",
+          "callee": "errorMessageResponseInterceptor",
+          "lineNumber": 228
+        },
+        {
+          "caller": "useErrorMessageInterceptor",
+          "callee": "callbacks.onError",
+          "lineNumber": 229
+        },
+        {
+          "caller": "delete",
+          "callee": "this.request",
+          "lineNumber": 238
+        },
+        {
+          "caller": "get",
+          "callee": "this.request",
+          "lineNumber": 245
+        },
+        {
+          "caller": "post",
+          "callee": "this.request",
+          "lineNumber": 252
+        },
+        {
+          "caller": "put",
+          "callee": "this.request",
+          "lineNumber": 259
+        },
+        {
+          "caller": "request",
+          "callee": "this.instance",
+          "lineNumber": 267
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/types.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 62,
+      "nonEmptyLines": 53,
+      "exports": [
+        {
+          "name": "RequestClientCallbacks",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "HttpResponse",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "MakeErrorMessageFn",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "RequestClientOptions",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "RequestContentType",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "RequestInterceptorConfig",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "RequestResponse",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "ResponseInterceptorConfig",
+          "line": 53,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 8,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/utils.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 105,
+      "nonEmptyLines": 91,
+      "functions": [
+        {
+          "name": "makeUpdateMask",
+          "startLine": 8,
+          "endLine": 10,
+          "params": [
+            "keys"
+          ]
+        },
+        {
+          "name": "defaultIdGenerator",
+          "startLine": 15,
+          "endLine": 27,
+          "params": []
+        },
+        {
+          "name": "getDefaultErrorMsg",
+          "startLine": 34,
+          "endLine": 85,
+          "params": [
+            "error"
+          ]
+        },
+        {
+          "name": "bindMethods",
+          "startLine": 87,
+          "endLine": 105,
+          "params": [
+            "instance"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "makeUpdateMask",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "defaultIdGenerator",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "getDefaultErrorMsg",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "bindMethods",
+          "line": 87,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "makeUpdateMask",
+          "callee": "[...keys, 'id'].join",
+          "lineNumber": 9
+        },
+        {
+          "caller": "defaultIdGenerator",
+          "callee": "(\n      globalThis as unknown as { crypto?: { randomUUID?: () => string } }\n    )?.crypto?.randomUUID",
+          "lineNumber": 18
+        },
+        {
+          "caller": "defaultIdGenerator",
+          "callee": "Math.random().toString(36).slice",
+          "lineNumber": 26
+        },
+        {
+          "caller": "defaultIdGenerator",
+          "callee": "Math.random().toString",
+          "lineNumber": 26
+        },
+        {
+          "caller": "defaultIdGenerator",
+          "callee": "Math.random",
+          "lineNumber": 26
+        },
+        {
+          "caller": "defaultIdGenerator",
+          "callee": "Date.now().toString",
+          "lineNumber": 26
+        },
+        {
+          "caller": "defaultIdGenerator",
+          "callee": "Date.now",
+          "lineNumber": 26
+        },
+        {
+          "caller": "getDefaultErrorMsg",
+          "callee": "String",
+          "lineNumber": 36
+        },
+        {
+          "caller": "getDefaultErrorMsg",
+          "callee": "errStr.includes",
+          "lineNumber": 37
+        },
+        {
+          "caller": "getDefaultErrorMsg",
+          "callee": "String(error.message).includes",
+          "lineNumber": 46
+        },
+        {
+          "caller": "getDefaultErrorMsg",
+          "callee": "String",
+          "lineNumber": 46
+        },
+        {
+          "caller": "getDefaultErrorMsg",
+          "callee": "message?.trim",
+          "lineNumber": 74
+        },
+        {
+          "caller": "getDefaultErrorMsg",
+          "callee": "message.trim",
+          "lineNumber": 75
+        },
+        {
+          "caller": "bindMethods",
+          "callee": "Object.getPrototypeOf",
+          "lineNumber": 88
+        },
+        {
+          "caller": "bindMethods",
+          "callee": "Object.getOwnPropertyNames",
+          "lineNumber": 89
+        },
+        {
+          "caller": "bindMethods",
+          "callee": "propertyNames.forEach",
+          "lineNumber": 91
+        },
+        {
+          "caller": "bindMethods",
+          "callee": "Object.getOwnPropertyDescriptor",
+          "lineNumber": 92
+        },
+        {
+          "caller": "bindMethods",
+          "callee": "propertyValue.bind",
+          "lineNumber": 102
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    }
+  ]
+}

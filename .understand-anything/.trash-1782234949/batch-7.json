@@ -1,0 +1,232 @@
+{
+  "nodes": [
+    {
+      "id": "config:.mcp.json",
+      "type": "config",
+      "name": ".mcp.json",
+      "filePath": ".mcp.json",
+      "summary": "MCP 服务器注册表,为 Claude Code/Codex 等客户端声明 codegraph、sketch、playwright 三个 MCP 服务入口。",
+      "tags": ["configuration", "mcp", "tooling", "integration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Makefile",
+      "type": "config",
+      "name": "Makefile",
+      "filePath": "Makefile",
+      "summary": "项目引导脚本,提供 init / install 目标,自动检查并安装 vp (Vite+)、ctx7 (context7) 与 codegraph 三个外部 CLI 工具。",
+      "tags": ["build", "toolchain", "bootstrap", "dev"],
+      "complexity": "moderate",
+      "languageNotes": "Makefile 通过 uname 判断平台并分派 curl / powershell 安装脚本,实现跨平台工具链引导。"
+    },
+    {
+      "id": "config:lefthook.yml",
+      "type": "config",
+      "name": "lefthook.yml",
+      "filePath": "lefthook.yml",
+      "summary": "Git hooks 配置,统一管理 pre-commit / pre-push / commit-msg 等门禁,运行 Vite+ 流水线、Java Spotless/Checkstyle/Error Prone、codegraph sync 与 commitlint 校验。",
+      "tags": ["git-hooks", "ci-cd", "lint", "type-check", "governance"],
+      "complexity": "complex",
+      "languageNotes": "通过 glob 区分 Java 与 TS 工作区门禁;commit-msg 调用 commitlint 强制 Conventional Commits。"
+    },
+    {
+      "id": "config:opencode.jsonc",
+      "type": "config",
+      "name": "opencode.jsonc",
+      "filePath": "opencode.jsonc",
+      "summary": "opencode CLI 工具的 MCP 配置,启用 codegraph、sketch、playwright 三个 MCP 服务作为本地/远程扩展点。",
+      "tags": ["configuration", "mcp", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "package.json",
+      "summary": "根 package.json,声明工程元信息(trellis-demo / 私有 / ESM / Node >=22.12 / pnpm@11.6.0),提供 ready/dev/dev:vben 脚本,并通过 catalog 引入 commitlint/lefthook/vite-plus 等开发依赖。",
+      "tags": ["configuration", "package-manager", "build", "dev"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:pnpm-workspace.yaml",
+      "type": "config",
+      "name": "pnpm-workspace.yaml",
+      "filePath": "pnpm-workspace.yaml",
+      "summary": "pnpm 工作区配置,声明 apps/*、packages/*、tools/* 包范围并排除 vue-vben-admin/react-admin 子工作区;启用 catalog 模式集中管理 vite/vitest/commitlint 等共享依赖版本,并为 lefthook/esbuild 等原生包开启 allowBuilds。",
+      "tags": ["configuration", "package-manager", "monorepo", "catalog", "workspace"],
+      "complexity": "complex",
+      "languageNotes": "catalogMode: prefer 与 overrides 配合,实现跨子包单一版本约束;allowBuilds 是 pnpm 11+ 引入的安装脚本白名单机制。"
+    },
+    {
+      "id": "config:tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "tsconfig.json",
+      "summary": "TypeScript 根配置,启用 nodenext 模块解析、allowImportingTsExtensions 与 esModuleInterop,并设置 noEmit 防止根配置直接产生产物,由各子包 tsconfig 继承。",
+      "tags": ["configuration", "typescript", "build-system"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "AI 助手的总入口文档,合并 Trellis 工作流、context7 文档查询指引、Vite+ 工具链使用与 CodeGraph 检索建议,用于规范代理在仓库内的协作行为。",
+      "tags": ["documentation", "governance", "ai-agent", "toolchain", "entry-point"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:CLAUDE.md",
+      "type": "document",
+      "name": "CLAUDE.md",
+      "filePath": "CLAUDE.md",
+      "summary": "Claude Code 专用系统提醒,通过单行 <system-reminder> 强制要求 Claude 在会话开始时先阅读 AGENTS.md。",
+      "tags": ["documentation", "governance", "ai-agent"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "项目自述文件,介绍 Vite+ monorepo starter 的用途,并提供 ready/test/build/dev 四类常用 `vp run` 入门命令。",
+      "tags": ["documentation", "entry-point", "overview"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:.mcp.json",
+      "target": "config:opencode.jsonc",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Makefile",
+      "target": "config:package.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Makefile",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Makefile",
+      "target": "config:lefthook.yml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:lefthook.yml",
+      "target": "config:package.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:lefthook.yml",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:package.json",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:tsconfig.json",
+      "target": "config:package.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:CLAUDE.md",
+      "target": "document:AGENTS.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:Makefile",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:lefthook.yml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:tsconfig.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:.mcp.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "config:package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:.mcp.json",
+      "target": "config:Makefile",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:opencode.jsonc",
+      "target": "config:Makefile",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

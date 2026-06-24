@@ -1,0 +1,421 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "type": "file",
+      "name": "NacosConfigToggleProperties.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "summary": "为 nacos.config.enabled 提供类型安全的 @ConfigurationProperties 绑定类，替代旧的 @Value 写法，被 NacosConfig 的 @ConditionalOnProperty 引用。",
+      "tags": ["configuration-properties", "nacos", "type-safe-config", "spring-boot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java:NacosConfigToggleProperties",
+      "type": "class",
+      "name": "NacosConfigToggleProperties",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "lineRange": [18, 27],
+      "summary": "绑定 nacos.config 前缀的布尔开关，默认 false，由 NacosConfig 用作 @ConditionalOnProperty 条件。",
+      "tags": ["configuration-properties", "nacos", "spring-boot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "type": "file",
+      "name": "SaTokenConfig.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "summary": "Sa-Token 工具配置类：占位 @Configuration + 静态 currentUserIdOrNull() 工具方法（用于 Logback MDC），SaTokenDao 由 starter 自动装配。",
+      "tags": ["satoken", "auth", "spring-boot", "configuration", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java:SaTokenConfig",
+      "type": "class",
+      "name": "SaTokenConfig",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "lineRange": [18, 31],
+      "summary": "占位 @Configuration 类，提供 currentUserIdOrNull() 静态工具读取当前登录用户 id，SaTokenDao 由 starter 自动装配。",
+      "tags": ["satoken", "auth", "configuration", "spring-boot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java:currentUserIdOrNull",
+      "type": "function",
+      "name": "currentUserIdOrNull",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "lineRange": [24, 30],
+      "summary": "静态工具：登录态有效时返回当前登录用户 id（Long），未登录或异常返回 null，用于 Logback MDC 注入。",
+      "tags": ["utility", "satoken", "auth", "mdc"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "type": "file",
+      "name": "WebConfig.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "summary": "Web MVC 配置：注册 Sa-Token 拦截器做注解式鉴权（@SaCheckLogin / @SaCheckRole / @SaCheckPermission），并配置宽松的 CORS 用于 dev 环境。",
+      "tags": ["web-mvc", "cors", "interceptor", "satoken", "spring-boot"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:WebConfig",
+      "type": "class",
+      "name": "WebConfig",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "lineRange": [14, 42],
+      "summary": "实现 WebMvcConfigurer，启用 Sa-Token 拦截器（放行登录/文档接口）并配置 CORS 跨域映射。",
+      "tags": ["web-mvc", "cors", "interceptor", "satoken"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:addInterceptors",
+      "type": "function",
+      "name": "addInterceptors",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "lineRange": [17, 30],
+      "summary": "注册 SaInterceptor 到 /** 路径，并排除登录、Knife4j 文档、Swagger 文档、错误页等公开端点。",
+      "tags": ["interceptor", "satoken", "web-mvc"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:addCorsMappings",
+      "type": "function",
+      "name": "addCorsMappings",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "lineRange": [32, 41],
+      "summary": "配置 /** 路径的 CORS：通配 origin、GET/POST/PUT/DELETE/OPTIONS 方法、任意 header、允许 credentials，1 小时缓存。",
+      "tags": ["cors", "web-mvc"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml",
+      "type": "config",
+      "name": "logback-spring.xml",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml",
+      "summary": "Spring Boot 4 兼容的 Logback 配置：显式注册 %clr 颜色转换规则，按 dev/prod profile 分别配置彩色控制台与文件滚动日志。",
+      "tags": ["logging", "logback", "configuration", "spring-boot"],
+      "complexity": "moderate",
+      "languageNotes": "显式 <conversionRule> 是 Spring Boot 4 必需的——SB 4 移除了 META-INF/services 自动注册。"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+      "type": "file",
+      "name": "NacosConfigTest.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+      "summary": "NacosConfig 装配行为的 SpringBootTest：通过 nacos.config.enabled 属性 true/false 验证相关 bean 是否被 ConditionalOnProperty 触发。",
+      "tags": ["test", "nacos", "spring-boot", "conditional"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java:NacosConfigTest",
+      "type": "class",
+      "name": "NacosConfigTest",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+      "lineRange": [22, 44],
+      "summary": "用 ApplicationContextRunner 验证 nacos.config.enabled 在 default/false/未设置 三个场景下的 bean 装配行为。",
+      "tags": ["test", "nacos", "spring-boot"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+      "type": "file",
+      "name": "NacosConfigTogglePropertiesTest.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+      "summary": "纯源码静态断言测试：检查 NacosConfigToggleProperties 类带 @ConfigurationProperties 注解、NacosConfig 使用 @EnableConfigurationProperties、application.yml 仍保留 nacos.config.enabled 开关。",
+      "tags": ["test", "configuration-properties", "static-assertion", "nacos"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java:NacosConfigTogglePropertiesTest",
+      "type": "class",
+      "name": "NacosConfigTogglePropertiesTest",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+      "lineRange": [30, 77],
+      "summary": "通过读取源文件做 grep-like 断言：保证 toggle 属性类存在、@EnableConfigurationProperties 用法、application.yml 配置未丢失。",
+      "tags": ["test", "configuration-properties", "nacos"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "type": "file",
+      "name": "RedissonAutoconfigCheckTest.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "summary": "Redisson 4.5 + Spring Boot 4 装配健康度回归测试：检查父 POM 版本锁定、starter 依赖、application.yml 排除 V2 auto-config、FlywayMigrator 存在、Sa-Token Dao 不被手工声明等。",
+      "tags": ["test", "redisson", "sa-token", "flyway", "regression", "spring-boot"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java:RedissonAutoconfigCheckTest",
+      "type": "class",
+      "name": "RedissonAutoconfigCheckTest",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "lineRange": [30, 145],
+      "summary": "8 个静态断言 + 1 个文件读取工具，覆盖 Redisson/Sa-Token starter 依赖、YAML 排雷、FlywayMigrator 存在性，充当升级后的回归保险。",
+      "tags": ["test", "redisson", "sa-token", "flyway"],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-service/pom.xml",
+      "type": "config",
+      "name": "java-admin-service/pom.xml",
+      "filePath": "backend/java-admin/java-admin-service/pom.xml",
+      "summary": "java-admin-service 子模块 POM：声明对 common 的依赖，引入 Easy-Query sql-springboot4-starter、MySQL 驱动（provided）、Sa-Token BCrypt，以及 JUnit5/Mockito/AssertJ 测试栈。",
+      "tags": ["maven", "build-system", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:backend/java-admin/pom.xml",
+      "type": "config",
+      "name": "java-admin/pom.xml",
+      "filePath": "backend/java-admin/pom.xml",
+      "summary": "java-admin 父 POM（reactor）：聚合 4 个子模块（common/service/infra/api），继承 spring-boot-starter-parent 4.0.7，统一定义 Easy-Query/Sa-Token/Redisson/Knife4j/MySQL/Lombok/Flyway/SCA 版本号与 dependencyManagement。",
+      "tags": ["maven", "build-system", "configuration", "parent-pom"],
+      "complexity": "complex",
+      "languageNotes": "聚合 4 个 Maven 模块并锁定 SB 4.0.7 配套版本（Redisson 4.5.0、Spring Cloud Alibaba 2025.1.0.0）。"
+    },
+    {
+      "id": "file:packages/utils-template/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "packages/utils-template/src/index.ts",
+      "summary": "utils-template 模板包入口：导出一个占位 fn() 函数，作为 tsdown/vite-plus 打包目标的最小可运行示例。",
+      "tags": ["template", "entry-point", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/utils-template/src/index.ts:fn",
+      "type": "function",
+      "name": "fn",
+      "filePath": "packages/utils-template/src/index.ts",
+      "lineRange": [1, 3],
+      "summary": "模板包占位函数：返回字符串 'Hello, tsdown!'，用作最小导出样例。",
+      "tags": ["template", "utility", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/utils-template/tests/index.test.ts",
+      "type": "file",
+      "name": "index.test.ts",
+      "filePath": "packages/utils-template/tests/index.test.ts",
+      "summary": "utils-template 模板包的最小测试：使用 vite-plus/test 断言 fn() 返回 'Hello, tsdown!'。",
+      "tags": ["test", "template"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/utils-template/vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "packages/utils-template/vite.config.ts",
+      "summary": "utils-template 子包 vite-plus 配置：开启 dts (tsgo) + exports，启用 type-aware lint，作为子包打包/校验模板。",
+      "tags": ["build-system", "vite-plus", "configuration", "template"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "vite.config.ts",
+      "summary": "monorepo 根 vite-plus 配置：lint-staged 仅对根 workspace 文件运行 vp check --fix，过滤掉 vue-vben-admin / react-admin 子 app；fmt/lint 同样排除两个子 app。",
+      "tags": ["build-system", "vite-plus", "configuration", "monorepo", "lint-staged"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java:NacosConfigToggleProperties",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java:NacosConfigToggleProperties",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java:SaTokenConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java:SaTokenConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java:SaTokenConfig",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java:currentUserIdOrNull",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java:currentUserIdOrNull",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:WebConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:WebConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:WebConfig",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:addInterceptors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:WebConfig",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:addCorsMappings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:addInterceptors",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java:addCorsMappings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java:NacosConfigTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java:NacosConfigTogglePropertiesTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java:RedissonAutoconfigCheckTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "target": "config:backend/java-admin/pom.xml",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:backend/java-admin/pom.xml",
+      "target": "config:backend/java-admin/java-admin-service/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-service/pom.xml",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/utils-template/src/index.ts",
+      "target": "function:packages/utils-template/src/index.ts:fn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/utils-template/src/index.ts",
+      "target": "function:packages/utils-template/src/index.ts:fn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/utils-template/tests/index.test.ts",
+      "target": "file:packages/utils-template/src/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/utils-template/tests/index.test.ts",
+      "target": "file:packages/utils-template/src/index.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/utils-template/vite.config.ts",
+      "target": "file:packages/utils-template/src/index.ts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:vite.config.ts",
+      "target": "file:packages/utils-template/src/index.ts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

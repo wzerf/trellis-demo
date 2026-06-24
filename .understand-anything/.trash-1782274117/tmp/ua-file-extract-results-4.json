@@ -1,0 +1,588 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 9,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 153,
+      "nonEmptyLines": 135,
+      "functions": [
+        {
+          "name": "SkeletonBlock",
+          "startLine": 13,
+          "endLine": 57,
+          "params": [
+            "{\n  width = '100%',\n  height = '1em',\n  shape = 'round',\n  animation = 'wave',\n  className = '',\n  style,\n  children,\n}"
+          ]
+        },
+        {
+          "name": "Skeleton",
+          "startLine": 62,
+          "endLine": 143,
+          "params": [
+            "{\n  active = true,\n  delay = 0,\n  blocks,\n  preset,\n  rows = 3,\n  rowWidths,\n  width,\n  height,\n  shape = 'round',\n  animation = 'wave',\n  className = '',\n  style,\n  children,\n}"
+          ]
+        },
+        {
+          "name": "SkeletonCompat",
+          "startLine": 146,
+          "endLine": 151,
+          "params": [
+            "props"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "SkeletonBlock",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "SkeletonCompat",
+          "line": 146,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "SkeletonBlock",
+          "callee": "useSkeletonAnimation",
+          "lineNumber": 22
+        },
+        {
+          "caller": "SkeletonBlock",
+          "callee": "useMemo",
+          "lineNumber": 28
+        },
+        {
+          "caller": "SkeletonBlock",
+          "callee": "`\n        skeleton-block\n        ${animationClass}\n        ${shape === 'circle' ? 'skeleton-circle' : ''}\n        ${className}\n      `.trim",
+          "lineNumber": 45
+        },
+        {
+          "caller": "Skeleton",
+          "callee": "useSkeletonAnimation",
+          "lineNumber": 77
+        },
+        {
+          "caller": "Skeleton",
+          "callee": "useI18n",
+          "lineNumber": 82
+        },
+        {
+          "caller": "Skeleton",
+          "callee": "useMemo",
+          "lineNumber": 85
+        },
+        {
+          "caller": "Skeleton",
+          "callee": "Array.from({ length: rows }).map",
+          "lineNumber": 90
+        },
+        {
+          "caller": "Skeleton",
+          "callee": "Array.from",
+          "lineNumber": 90
+        },
+        {
+          "caller": "Skeleton",
+          "callee": "`\n        skeleton-container\n        ${animationClass}\n        ${className}\n      `.trim",
+          "lineNumber": 122
+        },
+        {
+          "caller": "Skeleton",
+          "callee": "t",
+          "lineNumber": 129
+        },
+        {
+          "caller": "Skeleton",
+          "callee": "allBlocks.map",
+          "lineNumber": 131
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 59,
+      "nonEmptyLines": 41,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/hooks/useSkeletonAnimation.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 58,
+      "nonEmptyLines": 49,
+      "functions": [
+        {
+          "name": "useSkeletonAnimation",
+          "startLine": 19,
+          "endLine": 58,
+          "params": [
+            "{\n  active = true,\n  animation = 'wave',\n  delay = 0,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "useSkeletonAnimation",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useSkeletonAnimation",
+          "callee": "useState",
+          "lineNumber": 24
+        },
+        {
+          "caller": "useSkeletonAnimation",
+          "callee": "useRef",
+          "lineNumber": 25
+        },
+        {
+          "caller": "useSkeletonAnimation",
+          "callee": "useEffect",
+          "lineNumber": 28
+        },
+        {
+          "caller": "useSkeletonAnimation",
+          "callee": "setTimeout",
+          "lineNumber": 30
+        },
+        {
+          "caller": "useSkeletonAnimation",
+          "callee": "setVisible",
+          "lineNumber": 31
+        },
+        {
+          "caller": "useSkeletonAnimation",
+          "callee": "setVisible",
+          "lineNumber": 34
+        },
+        {
+          "caller": "useSkeletonAnimation",
+          "callee": "clearTimeout",
+          "lineNumber": 38
+        },
+        {
+          "caller": "useSkeletonAnimation",
+          "callee": "useEffect",
+          "lineNumber": 46
+        },
+        {
+          "caller": "useSkeletonAnimation",
+          "callee": "clearTimeout",
+          "lineNumber": 49
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/CardSkeleton.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 73,
+      "nonEmptyLines": 64,
+      "functions": [
+        {
+          "name": "CardSkeleton",
+          "startLine": 19,
+          "endLine": 71,
+          "params": [
+            "{\n  active = true,\n  delay = 150,\n  className = '',\n  withCover = true,\n  withAvatar = false,\n  withActions = true,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "CardSkeleton",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "CardSkeleton",
+          "callee": "`card-skeleton border rounded-lg overflow-hidden ${className}`.trim",
+          "lineNumber": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/FormSkeleton.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 73,
+      "nonEmptyLines": 64,
+      "functions": [
+        {
+          "name": "FormSkeleton",
+          "startLine": 22,
+          "endLine": 71,
+          "params": [
+            "{\n  active = true,\n  delay = 100,\n  className = '',\n  fieldCount = 4,\n  withLabels = true,\n  withHelp = false,\n  withSubmit = true,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "FormSkeleton",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "FormSkeleton",
+          "callee": "`form-skeleton space-y-4 ${className}`.trim",
+          "lineNumber": 32
+        },
+        {
+          "caller": "FormSkeleton",
+          "callee": "Array.from({ length: fieldCount }).map",
+          "lineNumber": 33
+        },
+        {
+          "caller": "FormSkeleton",
+          "callee": "Array.from",
+          "lineNumber": 33
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/ListSkeleton.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 89,
+      "nonEmptyLines": 80,
+      "functions": [
+        {
+          "name": "ListSkeleton",
+          "startLine": 22,
+          "endLine": 87,
+          "params": [
+            "{\n  active = true,\n  delay = 100,\n  className = '',\n  itemCount = 5,\n  withAvatar = true,\n  withDescription = true,\n  withActions = false,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ListSkeleton",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ListSkeleton",
+          "callee": "`list-skeleton space-y-3 ${className}`.trim",
+          "lineNumber": 32
+        },
+        {
+          "caller": "ListSkeleton",
+          "callee": "Array.from({ length: itemCount }).map",
+          "lineNumber": 33
+        },
+        {
+          "caller": "ListSkeleton",
+          "callee": "Array.from",
+          "lineNumber": 33
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/PageSkeleton.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 87,
+      "nonEmptyLines": 82,
+      "functions": [
+        {
+          "name": "PageSkeleton",
+          "startLine": 8,
+          "endLine": 85,
+          "params": [
+            "{\n  active = true,\n  delay = 200,\n  className = '',\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "PageSkeleton",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PageSkeleton",
+          "callee": "`page-skeleton ${className}`.trim",
+          "lineNumber": 14
+        },
+        {
+          "caller": "PageSkeleton",
+          "callee": "Array.from({ length: 4 }).map",
+          "lineNumber": 35
+        },
+        {
+          "caller": "PageSkeleton",
+          "callee": "Array.from",
+          "lineNumber": 35
+        },
+        {
+          "caller": "PageSkeleton",
+          "callee": "Array.from({ length: 5 }).map",
+          "lineNumber": 54
+        },
+        {
+          "caller": "PageSkeleton",
+          "callee": "Array.from",
+          "lineNumber": 54
+        },
+        {
+          "caller": "PageSkeleton",
+          "callee": "Array.from({ length: 5 }).map",
+          "lineNumber": 67
+        },
+        {
+          "caller": "PageSkeleton",
+          "callee": "Array.from",
+          "lineNumber": 67
+        },
+        {
+          "caller": "PageSkeleton",
+          "callee": "Array.from({ length: 5 }).map",
+          "lineNumber": 69
+        },
+        {
+          "caller": "PageSkeleton",
+          "callee": "Array.from",
+          "lineNumber": 69
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/TableSkeleton.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 102,
+      "nonEmptyLines": 87,
+      "functions": [
+        {
+          "name": "TableSkeleton",
+          "startLine": 26,
+          "endLine": 100,
+          "params": [
+            "{\n  active = true,\n  delay = 150,\n  className = '',\n  columns = 5,\n  rows = 6,\n  columnWidths,\n  withActions = true,\n  withSelection = true,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "TableSkeleton",
+          "line": 26,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "TableSkeleton",
+          "callee": "useMemo",
+          "lineNumber": 37
+        },
+        {
+          "caller": "TableSkeleton",
+          "callee": "configs.push",
+          "lineNumber": 41
+        },
+        {
+          "caller": "TableSkeleton",
+          "callee": "configs.push",
+          "lineNumber": 48
+        },
+        {
+          "caller": "TableSkeleton",
+          "callee": "configs.push",
+          "lineNumber": 54
+        },
+        {
+          "caller": "TableSkeleton",
+          "callee": "`table-skeleton ${className}`.trim",
+          "lineNumber": 61
+        },
+        {
+          "caller": "TableSkeleton",
+          "callee": "colConfigs.map",
+          "lineNumber": 64
+        },
+        {
+          "caller": "TableSkeleton",
+          "callee": "Array.from({ length: rows }).map",
+          "lineNumber": 77
+        },
+        {
+          "caller": "TableSkeleton",
+          "callee": "Array.from",
+          "lineNumber": 77
+        },
+        {
+          "caller": "TableSkeleton",
+          "callee": "colConfigs.map",
+          "lineNumber": 79
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/utils/generateBlocks.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 41,
+      "nonEmptyLines": 37,
+      "functions": [
+        {
+          "name": "generateSkeletonBlocks",
+          "startLine": 8,
+          "endLine": 41,
+          "params": [
+            "dataSample",
+            "options"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "generateSkeletonBlocks",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "traverse",
+          "callee": "blocks.push",
+          "lineNumber": 23
+        },
+        {
+          "caller": "traverse",
+          "callee": "blocks.push",
+          "lineNumber": 25
+        },
+        {
+          "caller": "traverse",
+          "callee": "Math.min",
+          "lineNumber": 25
+        },
+        {
+          "caller": "traverse",
+          "callee": "blocks.push",
+          "lineNumber": 27
+        },
+        {
+          "caller": "traverse",
+          "callee": "blocks.push",
+          "lineNumber": 29
+        },
+        {
+          "caller": "traverse",
+          "callee": "Array.isArray",
+          "lineNumber": 30
+        },
+        {
+          "caller": "traverse",
+          "callee": "Math.min",
+          "lineNumber": 31
+        },
+        {
+          "caller": "traverse",
+          "callee": "traverse",
+          "lineNumber": 32
+        },
+        {
+          "caller": "traverse",
+          "callee": "Object.values(value).forEach",
+          "lineNumber": 35
+        },
+        {
+          "caller": "traverse",
+          "callee": "Object.values",
+          "lineNumber": 35
+        },
+        {
+          "caller": "traverse",
+          "callee": "traverse",
+          "lineNumber": 35
+        },
+        {
+          "caller": "generateSkeletonBlocks",
+          "callee": "traverse",
+          "lineNumber": 39
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

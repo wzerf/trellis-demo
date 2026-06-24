@@ -1,0 +1,376 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 11,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".mcp.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 22,
+      "nonEmptyLines": 22,
+      "sections": [
+        {
+          "heading": "mcpServers",
+          "level": 1,
+          "line": 2
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 74,
+      "nonEmptyLines": 43,
+      "sections": [
+        {
+          "heading": "Trellis Instructions",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "Steps",
+          "level": 2,
+          "line": 31
+        },
+        {
+          "heading": "Using Vite+, the Unified Toolchain for the Web",
+          "level": 1,
+          "line": 48
+        },
+        {
+          "heading": "Review Checklist",
+          "level": 2,
+          "line": 54
+        },
+        {
+          "heading": "CodeGraph",
+          "level": 2,
+          "line": 65
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "CLAUDE.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "path": "Makefile",
+      "language": "makefile",
+      "fileCategory": "infra",
+      "totalLines": 48,
+      "nonEmptyLines": 43,
+      "steps": [
+        {
+          "name": "install",
+          "startLine": 3,
+          "endLine": 6
+        },
+        {
+          "name": "init",
+          "startLine": 7,
+          "endLine": 12
+        },
+        {
+          "name": "check-vp",
+          "startLine": 13,
+          "endLine": 24
+        },
+        {
+          "name": "check-context7",
+          "startLine": 25,
+          "endLine": 36
+        },
+        {
+          "name": "check-codegraph",
+          "startLine": 37,
+          "endLine": 49
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "stepCount": 5
+      }
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 29,
+      "nonEmptyLines": 19,
+      "sections": [
+        {
+          "heading": "Vite+ Monorepo Starter",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Development",
+          "level": 2,
+          "line": 5
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "lefthook.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 70,
+      "nonEmptyLines": 63,
+      "sections": [
+        {
+          "heading": "pre-commit",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "post-checkout",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "post-merge",
+          "level": 1,
+          "line": 33
+        },
+        {
+          "heading": "post-rewrite",
+          "level": 1,
+          "line": 38
+        },
+        {
+          "heading": "post-commit",
+          "level": 1,
+          "line": 43
+        },
+        {
+          "heading": "pre-push",
+          "level": 1,
+          "line": 48
+        },
+        {
+          "heading": "commit-msg",
+          "level": 1,
+          "line": 65
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "path": "opencode.jsonc",
+      "language": "jsonc",
+      "fileCategory": "config",
+      "totalLines": 20,
+      "nonEmptyLines": 20,
+      "sections": [
+        {
+          "heading": "$schema",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "mcp",
+          "level": 1,
+          "line": 3
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 21,
+      "nonEmptyLines": 21,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "private",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "type",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "scripts",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "devDependencies",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "engines",
+          "level": 1,
+          "line": 17
+        },
+        {
+          "heading": "packageManager",
+          "level": 1,
+          "line": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 48,
+      "nonEmptyLines": 46,
+      "sections": [
+        {
+          "heading": "packages",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "catalogMode",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "catalog",
+          "level": 1,
+          "line": 16
+        },
+        {
+          "heading": "overrides",
+          "level": 1,
+          "line": 30
+        },
+        {
+          "heading": "peerDependencyRules",
+          "level": 1,
+          "line": 33
+        },
+        {
+          "heading": "allowBuilds",
+          "level": 1,
+          "line": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "skills-lock.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 47,
+      "nonEmptyLines": 47,
+      "sections": [
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "skills",
+          "level": 1,
+          "line": 3
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "tsconfig.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 9,
+      "nonEmptyLines": 9,
+      "sections": [
+        {
+          "heading": "compilerOptions",
+          "level": 1,
+          "line": 2
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    }
+  ]
+}

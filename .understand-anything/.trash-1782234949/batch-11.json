@@ -1,0 +1,62 @@
+{
+  "nodes": [
+    {
+      "id": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "type": "config",
+      "name": "checkstyle.xml",
+      "filePath": "backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "summary": "java-admin 后端的 Checkstyle 主配置，继承 Palantir Baseline 规则集，定义完整的代码风格检查模块（命名、复杂度、import、Javadoc 等），并通过 SuppressionFilter 加载两个外部抑制文件。",
+      "tags": ["checkstyle", "代码规范", "java", "build-tools", "静态检查"],
+      "complexity": "complex",
+      "languageNotes": "基于 Palantir Baseline Java Style Guide，配置为 severity=error，集成 SuppressionFilter 链式加载多个外部抑制文件。"
+    },
+    {
+      "id": "config:backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "type": "config",
+      "name": "checkstyle-suppressions.xml",
+      "filePath": "backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "summary": "java-admin 后端 Checkstyle 的“祖父条款”基线抑制文件，针对 4 个已有模块（common / service / infra / api）的 main 与 test 全量豁免，作为 Palantir Baseline 规则集在 2026-06-14 落地时的过渡方案。",
+      "tags": ["checkstyle", "抑制规则", "java", "代码规范", "迁移基线"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "type": "config",
+      "name": "custom-suppressions.xml",
+      "filePath": "backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "summary": "项目自定义的 Checkstyle 抑制占位文件，当前刻意保持空内容，用于存放不随 baselineUpdateConfig 自动覆盖的逐条规则放宽（如生成代码），以 optional 形式被 SuppressionFilter 加载。",
+      "tags": ["checkstyle", "抑制规则", "占位配置", "java", "可选配置"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "target": "config:backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "target": "config:backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "target": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "target": "config:backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "apps/react-admin/src/core/transport/sse/index.ts", "language": "typescript", "sizeLines": 11, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/core/transport/sse/sse_client.ts", "language": "typescript", "sizeLines": 282, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/core/transport/sse/types.ts", "language": "typescript", "sizeLines": 38, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "apps/react-admin/src/core/transport/sse/index.ts": ["apps/react-admin/src/core/transport/sse/sse_client.ts"],
+    "apps/react-admin/src/core/transport/sse/sse_client.ts": ["apps/react-admin/src/core/transport/sse/types.ts"],
+    "apps/react-admin/src/core/transport/sse/types.ts": []
+  }
+}

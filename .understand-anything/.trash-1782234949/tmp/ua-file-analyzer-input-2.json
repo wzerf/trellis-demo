@@ -1,0 +1,19 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java", "language": "java", "sizeLines": 32, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java", "language": "java", "sizeLines": 35, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java", "language": "java", "sizeLines": 103, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java", "language": "java", "sizeLines": 38, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java", "language": "java", "sizeLines": 133, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java", "language": "java", "sizeLines": 64, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java": [],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java": ["backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java", "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java", "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java", "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java"],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java": ["backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java", "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java", "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java", "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java"]
+  }
+}

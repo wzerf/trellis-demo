@@ -1,0 +1,81 @@
+{
+  "nodes": [
+    {
+      "id": "file:apps/react-admin/src/styles/global.css",
+      "type": "file",
+      "name": "global.css",
+      "filePath": "apps/react-admin/src/styles/global.css",
+      "summary": "全局基础样式：重置 margin/padding/box-sizing，锁定 html/body 高度并禁用全局滚动条，定义 #root 为 flex 容器覆盖 ProLayout 的高度传递，并定制全局 webkit 滚动条样式与 Ant Design 表格操作列图标按钮的悬停点击区。",
+      "tags": ["css", "global-styles", "layout", "scrollbar", "reset"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/styles/page-container.css",
+      "type": "file",
+      "name": "page-container.css",
+      "filePath": "apps/react-admin/src/styles/page-container.css",
+      "summary": "面包屑导航样式：定义 .breadcrumb-item 悬停过渡与主色高亮效果，以及带容器背景的 .breadcrumb-item-bg 胶囊样式，使用 Ant Design 的 CSS 变量适配明暗主题。",
+      "tags": ["css", "breadcrumb", "navigation", "theming"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/styles/pro-components-dark.css",
+      "type": "file",
+      "name": "pro-components-dark.css",
+      "filePath": "apps/react-admin/src/styles/pro-components-dark.css",
+      "summary": "Pro 组件暗黑模式适配：覆盖 ProPageContainer、ProTable、分页器、搜索表单的背景与文字色，并统一 ProTable 顶部搜索/工具栏/表格主体/分页器四段的圆角对称性，最后用 [data-theme='dark'] 修正空数据占位与 Empty 状态。",
+      "tags": ["css", "dark-mode", "pro-components", "table", "theming"],
+      "complexity": "complex",
+      "languageNotes": "通过 !important 强制覆盖 Ant Design 主题变量，并使用 [data-theme='dark'] 属性选择器配合 CSS 变量实现主题切换。"
+    },
+    {
+      "id": "file:apps/react-admin/src/styles/pro-layout-overrides.css",
+      "type": "file",
+      "name": "pro-layout-overrides.css",
+      "filePath": "apps/react-admin/src/styles/pro-layout-overrides.css",
+      "summary": "ProLayout 视觉覆盖：自定义滚动条宽度、菜单项悬停与选中态（明暗双主题）、顶栏阴影、移动端侧边栏 z-index 提升，并移除 ProPageContainer 内容区的默认内边距。",
+      "tags": ["css", "pro-layout", "sidebar", "responsive", "theming"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/styles/skeleton-force-dark.css",
+      "type": "file",
+      "name": "skeleton-force-dark.css",
+      "filePath": "apps/react-admin/src/styles/skeleton-force-dark.css",
+      "summary": "Ant Design 骨架屏暗黑模式强制覆盖：定义 [data-theme='dark'] 下标题、段落、头像、按钮、输入框、图片 6 类骨架元素的底色与高亮渐变动画，并禁用亮色模式下的渐变背景防止主题污染。",
+      "tags": ["css", "dark-mode", "skeleton", "loading", "theming"],
+      "complexity": "moderate",
+      "languageNotes": "使用 linear-gradient 90deg 模拟 Ant Design 骨架屏动画，并通过 [data-theme='dark'] / [data-theme='light'] 双属性选择器做主题隔离。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:apps/react-admin/src/styles/global.css",
+      "target": "file:apps/react-admin/src/main.tsx",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/styles/pro-components-dark.css",
+      "target": "file:apps/react-admin/src/main.tsx",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/styles/pro-layout-overrides.css",
+      "target": "file:apps/react-admin/src/main.tsx",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/styles/skeleton-force-dark.css",
+      "target": "file:apps/react-admin/src/main.tsx",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

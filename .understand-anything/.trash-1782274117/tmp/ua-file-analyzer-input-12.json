@@ -1,0 +1,15 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "apps/react-admin/src/router/config/auth.tsx", "language": "typescript", "sizeLines": 36, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/router/config/error-routes.tsx", "language": "typescript", "sizeLines": 64, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/router/config/static.tsx", "language": "typescript", "sizeLines": 34, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/router/index.tsx", "language": "typescript", "sizeLines": 221, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "apps/react-admin/src/router/config/auth.tsx": [],
+    "apps/react-admin/src/router/config/error-routes.tsx": [],
+    "apps/react-admin/src/router/config/static.tsx": [],
+    "apps/react-admin/src/router/index.tsx": ["apps/react-admin/src/router/config/auth.tsx", "apps/react-admin/src/router/config/error-routes.tsx", "apps/react-admin/src/router/config/static.tsx"]
+  }
+}

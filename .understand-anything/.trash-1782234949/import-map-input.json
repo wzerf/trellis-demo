@@ -1,0 +1,2370 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "files": [
+    {
+      "path": ".commitlintrc.js",
+      "language": "javascript",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".gitmodules",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".mcp.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/backend-mock-template/api/auth/codes.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/auth/login.post.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/auth/logout.post.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/auth/refresh.post.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/demo/bigint.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/menu/all.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/status.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/dept/.post.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/dept/list.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/menu/list.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/role/list.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/user/[id].put.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/user/create.post.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/user/list.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/table/list.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/test.get.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/test.post.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/timezone/getTimezoneOptions.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/timezone/setTimezone.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/upload.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/api/user/info.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/error.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/middleware/1.api.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/nitro.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/backend-mock-template/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/backend-mock-template/routes/[...].ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/tsconfig.build.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/backend-mock-template/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/backend-mock-template/utils/cookie-utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/utils/jwt-utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/utils/mock-data.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/utils/response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/backend-mock-template/utils/timezone-utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/.env.development",
+      "language": "config",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/.env.production",
+      "language": "config",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/.prettierignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/eslint.config.js",
+      "language": "javascript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/index.html",
+      "language": "html",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/pnpm-workspace.yaml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/api/client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/admin-portal.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/api-audit-log.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/api.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/auth.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/data-access-audit-log.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/dict.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/file-transfer.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/file.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/internal-message.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/language.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/login-audit-log.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/login-policy.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/menu.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/operation-audit-log.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/org-unit.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/permission-audit-log.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/permission-group.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/permission.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/policy-evaluation-log.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/position.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/role.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/task.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/tenant.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/user-profile.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/hooks/user.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/api/rest/auth.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/rest/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/rest/menu.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/rest/request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/rest/types.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/api/rest/user.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/App.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/app.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/auto-imports.d.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/bootstrap.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/bussiness/AuthLayout/AuthLayout.style.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/components/bussiness/AuthLayout/icons/SloganIcon.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/bussiness/AuthLayout/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/CodeEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/Editor.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/JsonEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/MarkdownEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/monaco-loader.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/tiptap-editor.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/constants.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/extensions.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/nodes.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/useTiptapEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/types.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Loading/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/components/common/PageContainer/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/config/constants.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/access/access-control.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/access/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/access/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/core/access/use-access.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/constants.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/components/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/config/i18n.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/hooks/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/hooks/useI18n.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/hooks/useLocaleSync.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/utils/detector.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/utils/formatter.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/utils/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/utils/sync.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/AppearancePanel.style.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/AppearancePanel.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/GeneralPanel.style.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/GeneralPanel.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/LayoutPanel.style.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/LayoutPanel.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/PreferencesPanel.style.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/ShortcutKeyPanel.style.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/ShortcutKeyPanel.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/ThemeProvider/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/config/constants.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/config/default.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/config/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/hooks/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/hooks/useLocale.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/hooks/usePreferences.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/hooks/useThemeConfig.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/store/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/types/app.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/types/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/types/layout.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/types/preferences-root.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/types/theme.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/utils/merge.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/query-client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/factory.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/generators/generate-menus.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/generators/generate-routes-backend.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/generators/generate-routes-frontend.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/generators/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/types/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/inject-redirect.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/lazy.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/loader.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/menu.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/merge-route-modules.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/reset-routes.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/sort-routes.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/router/utils/transform-meta-to-handle.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/storage/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/storage/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/core/storage/storage.class.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/storage/storage.types.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/modules/interceptor.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/modules/uploader.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/pagination.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/request-api.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/request-client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/types.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/rest/utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/sse/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/sse/sse_client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/core/transport/sse/types.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useAuth.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useClipboard.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useDictCache.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useEcharts.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useKeyStroke.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useProTableScrollY.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useTableScrollHeight.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useTime.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useTitle.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useTokenRefresh.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/hooks/useWatermark.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/index.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/BlankLayout/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/ErrorFallback/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/ErrorFallback/RouteErrorFallback.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/ErrorFallback/utils/report.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/hooks/useSkeletonAnimation.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/CardSkeleton.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/FormSkeleton.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/ListSkeleton.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/PageSkeleton.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/TableSkeleton.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/styles.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/utils/generateBlocks.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/ContentContainer.style.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/ContentContainer.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/PageContainer.style.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/types.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/USAGE.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/IFrameLayout/iframe-layout.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/IFrameLayout/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/Footer.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/SiderMenu.style.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/TabsBar/tabsbar.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/types.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/UserLayout/components/background.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/UserLayout/components/Background.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/UserLayout/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/layouts/UserLayout/UserLayout.style.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_core/auth.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_core/common.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_core/editor.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_core/routes.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/api-audit-log.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/api.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/dashboard.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/data-access-audit-log.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/dict-entry.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/dict-type.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/file.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/inbox.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/internal-message.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/language.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/login-audit-log.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/login-policy.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/menu.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/message-category.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/operation-audit-log.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/org-unit.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/permission-audit-log.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/permission-group.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/permission.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/position.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/preferences.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/profile.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/role.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/task.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/tenant.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/user-detail.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/_modules/user.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/en-US/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/locales/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_core/auth.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_core/common.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_core/editor.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_core/routes.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/api-audit-log.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/api.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/dashboard.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/data-access-audit-log.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/dict-entry.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/dict-type.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/file.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/inbox.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/internal-message.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/language.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/login-audit-log.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/login-policy.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/menu.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/message-category.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/operation-audit-log.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/org-unit.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/permission-audit-log.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/permission-group.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/permission.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/position.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/preferences.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/profile.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/role.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/task.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/tenant.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/user-detail.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/_modules/user.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/src/locales/zh-CN/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/main.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/BarChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/LineChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/SourceDonutChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/SourcePieChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/StatsCard.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/TrendChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/VisitRadarChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/system/user/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/auth/auth-form.style.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/auth/login/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/auth/login/login.style.less",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/401.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/403.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/404.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/500.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/ComingSoon.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/Fallback.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/fallback.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/icons/Icon401.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/icons/Icon403.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/icons/Icon404.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/icons/Icon500.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/icons/IconComingSoon.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/icons/IconOffline.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/Offline.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/react-admin/src/router/config/auth.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/config/error-routes.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/config/static.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/guards/AuthGuard.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/guards/GuestGuard.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/guards/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/modules/dashboard.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/modules/internal-message.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/modules/log.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/modules/opm.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/modules/permissions.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/modules/system.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/router/modules/tenant.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/stores/auth.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/stores/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/stores/pageRefresh.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/stores/tabs.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/stores/user.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/styles/global.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/styles/page-container.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/styles/pro-components-dark.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/styles/pro-layout-overrides.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/styles/skeleton-force-dark.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/react-admin/src/types/env.d.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/types/global.d.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/color.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/crypto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/date.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/diff.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/inference.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/merge.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/nprogress.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/theme.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/tree.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/url.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/src/utils/utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/stylelint.config.mjs",
+      "language": "javascript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/react-admin/tsconfig.app.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/tsconfig.node.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/react-admin/vite.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/website-template/index.html",
+      "language": "html",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/website-template/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/website-template/src/counter.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/website-template/src/main.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/website-template/src/style.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "apps/website-template/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/db/docs/db-conventions.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "backend/db/docs/er.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "backend/db/docs/tables.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "backend/db/schema.sql",
+      "language": "sql",
+      "fileCategory": "data"
+    },
+    {
+      "path": "backend/java-admin/.mvn/jvm.config",
+      "language": "config",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/deploy/.env.example",
+      "language": "config",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/deploy/docker-compose.yml",
+      "language": "yaml",
+      "fileCategory": "infra"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/resources/application-dev.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/resources/application-prod.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql",
+      "language": "sql",
+      "fileCategory": "data"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "language": "sql",
+      "fileCategory": "data"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql",
+      "language": "sql",
+      "fileCategory": "data"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-service/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/java-admin/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "CLAUDE.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "lefthook.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "Makefile",
+      "language": "makefile",
+      "fileCategory": "infra"
+    },
+    {
+      "path": "opencode.jsonc",
+      "language": "jsonc",
+      "fileCategory": "config"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/utils-template/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/utils-template/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/utils-template/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/utils-template/tests/index.test.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/utils-template/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/utils-template/vite.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "vite.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    }
+  ]
+}

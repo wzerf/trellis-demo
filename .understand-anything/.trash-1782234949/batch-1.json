@@ -1,0 +1,532 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "type": "file",
+      "name": "AuthController.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "summary": "鉴权 Controller,提供登录、登出、当前用户信息三个 HTTP 接口(/api/v1/auth/login、/logout、/info),集成 Sa-Token 签发 token 并返回统一 Result 包装。",
+      "tags": ["api-handler", "rest-controller", "auth", "sa-token", "swagger"],
+      "complexity": "moderate",
+      "languageNotes": "使用 @RestControllerAdvice 风格的 Swagger OpenAPI 注解描述错误码,Result 严格 3 字段契约(Q13 决策)。"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "type": "file",
+      "name": "LoginRequest.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "summary": "登录请求 DTO,包含 username/password 字段,使用 Jakarta Validation 做非空与长度校验,并通过 Swagger @Schema 标注示例与边界。",
+      "tags": ["dto", "validation", "swagger", "data-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "type": "file",
+      "name": "LoginResponse.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "summary": "登录成功响应 VO,包含 Sa-Token 颁发的 token、userId、username、nickname 四个字段,前端据此写入请求头。",
+      "tags": ["vo", "data-model", "auth", "swagger"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "type": "file",
+      "name": "UserInfoVO.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "summary": "当前用户信息响应 VO(/api/v1/auth/info 接口),暴露 id、username、nickname、status(启用/禁用)、createTime 字段。",
+      "tags": ["vo", "data-model", "user-info", "swagger"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "type": "file",
+      "name": "ResultFormatTest.java",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "summary": "Result 序列化格式的 JUnit 单元测试,验证响应体严格包含 code/msg/data 三字段、traceId 不出现,以及 ObjectResult/ListResult 的 null 回退语义。",
+      "tags": ["test", "serialization", "validation", "junit", "jackson"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "file",
+      "name": "AuthException.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "summary": "鉴权异常类,统一封装 Sa-Token 抛出的 NotLoginException/NotRoleException 等,提供 notLogin、invalidCredentials、tokenExpired、forbidden 静态工厂方法。",
+      "tags": ["exception", "auth", "sa-token", "runtime-exception"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "file",
+      "name": "BizException.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "summary": "业务异常基类,所有受控业务错误通过 BizException 抛出,提供 of(code)/of(code,msg) 静态工厂,由 GlobalExceptionHandler 统一转为 Result。",
+      "tags": ["exception", "business", "runtime-exception", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "file",
+      "name": "Result.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "summary": "统一 API 响应体(Q13 决策),严格 3 字段 code/msg/data,error 时 data 字段由 Jackson @JsonInclude 排除,提供 ok/okObj/okList/error 工厂方法及 isSuccess 判定。",
+      "tags": ["data-model", "api-response", "generic", "jackson", "factory"],
+      "complexity": "moderate",
+      "languageNotes": "泛型 Result<T> + @JsonInclude(NON_NULL) 配合 ObjectResult/ListResult 子类实现 Swagger schema 展开与 null 回退语义。"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "type": "file",
+      "name": "GlobalExceptionHandler.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "summary": "Spring 全局异常处理器(@RestControllerAdvice),将 BizException/AuthException/Sa-Token/参数校验/请求体解析等异常统一映射为带 HTTP 状态码的 Result,日志包含 traceId。",
+      "tags": ["exception-handler", "rest-controller-advice", "middleware", "sa-token", "validation"],
+      "complexity": "complex",
+      "languageNotes": "通过 @ExceptionHandler 按异常类型分发,业务码阈值(>=4000)决定 HTTP 4xx/2xx;traceId 仅记录日志,不出现在 body(Q13 决策)。"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:AuthController",
+      "type": "class",
+      "name": "AuthController",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "lineRange": [36, 118],
+      "summary": "鉴权 Controller,提供 /api/v1/auth 路径下登录、登出、当前用户信息三个端点,依赖 AuthService 与 SysUserService 完成业务逻辑。",
+      "tags": ["rest-controller", "auth", "api-handler"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:login",
+      "type": "function",
+      "name": "login",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "lineRange": [49, 71],
+      "summary": "POST /api/v1/auth/login,接收 LoginRequest 校验后调用 AuthService 登录,Sa-Token 颁发 token,返回 LoginResponse。",
+      "tags": ["api-handler", "auth", "sa-token"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:logout",
+      "type": "function",
+      "name": "logout",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "lineRange": [76, 90],
+      "summary": "POST /api/v1/auth/logout,调用 Sa-Token 注销当前 token,返回成功 Result。",
+      "tags": ["api-handler", "auth", "sa-token"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:info",
+      "type": "function",
+      "name": "info",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "lineRange": [95, 117],
+      "summary": "GET /api/v1/auth/info,校验 Sa-Token 登录态后从 SysUserService 读取当前用户,封装为 UserInfoVO 返回。",
+      "tags": ["api-handler", "auth", "user-info"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java:LoginRequest",
+      "type": "class",
+      "name": "LoginRequest",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "lineRange": [13, 36],
+      "summary": "登录请求 DTO,包含 username(3-64 字符)与 password(6-64 字符)字段,带 @NotBlank/@Size 校验。",
+      "tags": ["dto", "validation", "data-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java:LoginResponse",
+      "type": "class",
+      "name": "LoginResponse",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "lineRange": [12, 31],
+      "summary": "登录响应 VO,包含 token、userId、username、nickname 四个字段,全参构造由 Lombok @AllArgsConstructor 提供。",
+      "tags": ["vo", "data-model", "auth"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java:UserInfoVO",
+      "type": "class",
+      "name": "UserInfoVO",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "lineRange": [13, 35],
+      "summary": "当前用户信息响应 VO(/api/v1/auth/info),包含 id、username、nickname、status、createTime 字段。",
+      "tags": ["vo", "data-model", "user-info"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java:ResultFormatTest",
+      "type": "class",
+      "name": "ResultFormatTest",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "lineRange": [22, 179],
+      "summary": "Result 序列化格式的 JUnit 5 测试类,15 个 @Test 方法覆盖 ok/error 字段、isSuccess 判定以及 ObjectResult/ListResult 的 null 回退。",
+      "tags": ["test", "serialization", "junit"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java:AuthException",
+      "type": "class",
+      "name": "AuthException",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "lineRange": [14, 49],
+      "summary": "鉴权异常类,继承 RuntimeException,提供 3 个构造函数与 4 个静态工厂(notLogin/invalidCredentials/tokenExpired/forbidden)。",
+      "tags": ["exception", "auth", "runtime-exception"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java:BizException",
+      "type": "class",
+      "name": "BizException",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "lineRange": [14, 42],
+      "summary": "业务异常基类,继承 RuntimeException,提供 3 个构造函数与 2 个静态工厂 of(ResultCode)/of(ResultCode,String)。",
+      "tags": ["exception", "business", "runtime-exception"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:Result",
+      "type": "class",
+      "name": "Result",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "lineRange": [19, 103],
+      "summary": "统一 API 响应体泛型类,T 为业务数据类型,严格 3 字段 code/msg/data,提供 ok/okObj/okList/error 工厂与 isSuccess 判定。",
+      "tags": ["data-model", "api-response", "generic", "jackson"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:GlobalExceptionHandler",
+      "type": "class",
+      "name": "GlobalExceptionHandler",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "lineRange": [32, 133],
+      "summary": "Spring @RestControllerAdvice 全局异常处理器,8 个 @ExceptionHandler 分别处理 BizException/AuthException/Sa-Token 异常/参数校验/请求体解析/兜底异常。",
+      "tags": ["exception-handler", "rest-controller-advice", "middleware"],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:AuthController",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:login",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:logout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:info",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java:LoginRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java:LoginResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java:UserInfoVO",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "class:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java:ResultFormatTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java:AuthException",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java:BizException",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:Result",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:GlobalExceptionHandler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:AuthController",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:login",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:logout",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+      "target": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:info",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java:LoginRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java:LoginResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java:UserInfoVO",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java:AuthException",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java:BizException",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:Result",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:GlobalExceptionHandler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:login",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:info",
+      "target": "file:backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java:info",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java:AuthException",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

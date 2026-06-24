@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_core/auth.json",
+      "type": "config",
+      "name": "auth.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_core/auth.json",
+      "summary": "简体中文 (zh-CN) 登录与注册页面的核心 i18n 词条：欢迎语、占位符、按钮文案、表单校验提示、登录/注册成功与失败提示。",
+      "tags": ["configuration", "i18n", "locale", "auth", "react-admin"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_core/common.json",
+      "type": "config",
+      "name": "common.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_core/common.json",
+      "summary": "简体中文 (zh-CN) 全局通用词条：按钮、头部、侧边栏、标签页、剪贴板、占位符与请求错误等核心 UI 文案。",
+      "tags": ["configuration", "i18n", "locale", "common-ui", "react-admin"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_core/editor.json",
+      "type": "config",
+      "name": "editor.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_core/editor.json",
+      "summary": "简体中文 (zh-CN) 富文本编辑器工具栏词条：加粗、斜体、列表、表格、对齐、撤销重做以及图片/视频/iframe 插入等操作文案。",
+      "tags": ["configuration", "i18n", "locale", "rich-editor", "react-admin"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_core/routes.json",
+      "type": "config",
+      "name": "routes.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_core/routes.json",
+      "summary": "简体中文 (zh-CN) 路由菜单名称词条：仪表盘、租户、权限、审计日志、组织、用户、系统配置以及错误页等导航标题。",
+      "tags": ["configuration", "i18n", "locale", "routes", "react-admin"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": []
+}

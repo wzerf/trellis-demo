@@ -1,0 +1,15 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java", "language": "java", "sizeLines": 17, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java", "language": "java", "sizeLines": 28, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java", "language": "java", "sizeLines": 45, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java", "language": "java", "sizeLines": 59, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java": [],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java": ["backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java", "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java"],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java": ["backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java", "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java"]
+  }
+}

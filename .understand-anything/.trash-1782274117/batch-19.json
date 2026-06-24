@@ -1,0 +1,199 @@
+{
+  "nodes": [
+    {
+      "id": "config:.mcp.json",
+      "type": "config",
+      "name": ".mcp.json",
+      "filePath": ".mcp.json",
+      "summary": "MCP servers configures codegraph (stdio)、sketch (http) and playwright (npx) three MCP servers, providing code indexing, sketch and browser automation capabilities to Claude Code.",
+      "tags": ["configuration", "mcp", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "AI assistant project manual: contains Trellis instructions, context7 (ctx7) document retrieval guide, Vite+ toolchain usage and CodeGraph code retrieval rules.",
+      "tags": ["documentation", "ai-assistant", "conventions", "tooling"],
+      "complexity": "moderate",
+      "languageNotes": "Contains multiple marker blocks (TRELLIS / context7 / VITE PLUS / CODEGRAPH) preserved as inserts in agent context."
+    },
+    {
+      "id": "document:CLAUDE.md",
+      "type": "document",
+      "name": "CLAUDE.md",
+      "filePath": "CLAUDE.md",
+      "summary": "Single-line prompt file reminding Claude Code to first read AGENTS.md before performing any task.",
+      "tags": ["documentation", "ai-assistant", "pointer"],
+      "complexity": "simple"
+    },
+    {
+      "id": "service:Makefile",
+      "type": "service",
+      "name": "Makefile",
+      "filePath": "Makefile",
+      "summary": "Toolchain bootstrap script: installs vp (Vite+), ctx7 (context7), codegraph, and initializes the codegraph index.",
+      "tags": ["infrastructure", "toolchain", "bootstrap", "make"],
+      "complexity": "moderate",
+      "languageNotes": "Detects OS (Darwin/Linux/Windows) and selects the appropriate installer pipeline."
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Project README: briefly introduces the Vite+ monorepo starter and lists common `vp run` commands (ready/test/build/dev).",
+      "tags": ["documentation", "entry-point", "overview"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:lefthook.yml",
+      "type": "config",
+      "name": "lefthook.yml",
+      "filePath": "lefthook.yml",
+      "summary": "Git hooks config: pre-commit runs vp staged + Spotless Java formatting + codegraph sync; pre-push runs full check + Java checkstyle + Error Prone; commit-msg enforces conventional commits.",
+      "tags": ["configuration", "git-hooks", "ci-cd", "quality-gate"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:opencode.jsonc",
+      "type": "config",
+      "name": "opencode.jsonc",
+      "filePath": "opencode.jsonc",
+      "summary": "OpenCode client MCP config: enables the same codegraph / sketch / playwright servers as .mcp.json for OpenCode.",
+      "tags": ["configuration", "mcp", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "package.json",
+      "summary": "Monorepo root manifest: ESM project, Node >=22.12, pnpm 11.6; declares ready/dev/dev:vben scripts and top-level devDependencies (commitlint, lefthook, vite-plus) bound to the pnpm catalog.",
+      "tags": ["configuration", "package-manager", "build-system"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:pnpm-workspace.yaml",
+      "type": "config",
+      "name": "pnpm-workspace.yaml",
+      "filePath": "pnpm-workspace.yaml",
+      "summary": "pnpm workspace definition: globs apps/*, packages/*, tools/* and excludes the self-contained vue-vben-admin and react-admin subtrees; defines shared version catalog, overrides, peerDependencyRules and allowBuilds.",
+      "tags": ["configuration", "package-manager", "workspace", "monorepo"],
+      "complexity": "moderate",
+      "languageNotes": "Uses catalogMode=prefer so member packages can reference versions via `catalog:`."
+    },
+    {
+      "id": "config:skills-lock.json",
+      "type": "config",
+      "name": "skills-lock.json",
+      "filePath": "skills-lock.json",
+      "summary": "Skills lockfile: pins source path and SHA256 hash for each skill (caveman, diagnose, grill-me, handoff, tdd, to-issues, to-prd) sourced from vinvcn/mattpocock-skills-zh-CN.",
+      "tags": ["configuration", "skills", "lockfile"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "tsconfig.json",
+      "summary": "Minimal root tsconfig: nodenext module/resolution, noEmit, allowImportingTsExtensions and esModuleInterop — a base config extended by member packages.",
+      "tags": ["configuration", "typescript", "build-system"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:CLAUDE.md",
+      "target": "document:AGENTS.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "config:package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "service:Makefile",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:lefthook.yml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:tsconfig.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:lefthook.yml",
+      "target": "config:package.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:package.json",
+      "target": "config:pnpm-workspace.yaml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:tsconfig.json",
+      "target": "config:package.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:.mcp.json",
+      "target": "config:opencode.jsonc",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:opencode.jsonc",
+      "target": "config:.mcp.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:skills-lock.json",
+      "target": "config:package.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "service:Makefile",
+      "target": "config:package.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "apps/react-admin/src/layouts/MainLayout/components/Footer.tsx", "language": "typescript", "sizeLines": 25, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx", "language": "typescript", "sizeLines": 476, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx", "language": "typescript", "sizeLines": 79, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx", "language": "typescript", "sizeLines": 230, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx", "language": "typescript", "sizeLines": 663, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts", "language": "typescript", "sizeLines": 25, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts", "language": "typescript", "sizeLines": 37, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/layouts/MainLayout/index.tsx", "language": "typescript", "sizeLines": 336, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx", "language": "typescript", "sizeLines": 27, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "apps/react-admin/src/layouts/MainLayout/components/Footer.tsx": [],
+    "apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx": [],
+    "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx": [],
+    "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx": ["apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx", "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/SiderMenu.style.less", "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx"],
+    "apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx": ["apps/react-admin/src/layouts/MainLayout/components/TabsBar/tabsbar.css", "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx"],
+    "apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts": [],
+    "apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts": [],
+    "apps/react-admin/src/layouts/MainLayout/index.tsx": ["apps/react-admin/src/layouts/MainLayout/components/Footer.tsx", "apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx", "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx", "apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx", "apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts", "apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts"],
+    "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx": []
+  }
+}

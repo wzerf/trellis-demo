@@ -1,0 +1,474 @@
+{
+  "nodes": [
+    {
+      "id": "file:apps/react-admin/src/components/bussiness/AuthLayout/icons/SloganIcon.tsx",
+      "type": "file",
+      "name": "SloganIcon.tsx",
+      "filePath": "apps/react-admin/src/components/bussiness/AuthLayout/icons/SloganIcon.tsx",
+      "summary": "认证页左侧品牌区装饰用的内联 SVG 标语图标组件,由 AuthLayout 调用,仅作展示用途。",
+      "tags": ["svg-icon", "auth-layout", "branding", "asset", "inline-svg"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/bussiness/AuthLayout/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "apps/react-admin/src/components/bussiness/AuthLayout/index.tsx",
+      "summary": "通用认证页面布局组件,左侧品牌区 + 右侧表单区,集成主题/语言切换、版权与底部链接,用于登录/注册/找回密码等页面。",
+      "tags": ["auth-layout", "layout", "i18n", "theme-toggle", "business-component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/bussiness/AuthLayout/index.tsx:AuthLayout",
+      "type": "function",
+      "name": "AuthLayout",
+      "filePath": "apps/react-admin/src/components/bussiness/AuthLayout/index.tsx",
+      "lineRange": [35, 147],
+      "summary": "渲染双栏认证布局:左侧品牌展示(SloganIcon + 标题/描述)与右上角工具栏(语言/主题切换),右侧渲染 children 表单与可选的 footerLink 和版权。",
+      "tags": ["layout", "auth", "i18n", "theme-toggle"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:apps/react-admin/src/components/common/Editor/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "apps/react-admin/src/components/common/Editor/README.md",
+      "summary": "编辑器组件使用说明文档,涵盖 5 种编辑器(Tiptap/Markdown/JSON/Code/PlainText)、Props 详解、antd Form 集成、图片上传、动态切换编辑器与扩展开发指引,共 24 个章节。",
+      "tags": ["documentation", "editor", "tiptap", "api-reference", "usage-guide"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/Editor.tsx",
+      "type": "file",
+      "name": "Editor.tsx",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/Editor.tsx",
+      "summary": "主编排组件,根据 editorType 用 React.lazy 动态加载对应的子编辑器(Tiptap/Markdown/JSON/Code/PlainText),并透传统一 Props。",
+      "tags": ["editor", "dynamic-import", "lazy", "factory", "component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/Editor/src/Editor.tsx:Editor",
+      "type": "function",
+      "name": "Editor",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/Editor.tsx",
+      "lineRange": [12, 75],
+      "summary": "根据 editorType 选择懒加载的子编辑器并通过 Suspense 渲染,统一透传 value/height/options/onChange 等参数。",
+      "tags": ["editor", "lazy-load", "dispatcher"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx",
+      "type": "file",
+      "name": "PlainTextEditor.tsx",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx",
+      "summary": "最简的纯文本编辑器,基于原生 textarea,支持受控 value/disabled/placeholder 与 onChange/onReady 回调。",
+      "tags": ["editor", "plain-text", "textarea", "simple"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx:PlainTextEditor",
+      "type": "function",
+      "name": "PlainTextEditor",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx",
+      "lineRange": [12, 48],
+      "summary": "受控 textarea 包装组件,数字高度自动转 px,挂载时通过 useEffect 触发 onReady。",
+      "tags": ["editor", "textarea", "controlled-input"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/tiptap-editor.css",
+      "type": "file",
+      "name": "tiptap-editor.css",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/tiptap-editor.css",
+      "summary": "Tiptap 富文本编辑器专用样式表,约 712 行有效 CSS,覆盖工具栏/状态栏/模态框/全屏/暗色模式/代码块等视觉细节。",
+      "tags": ["css", "tiptap", "styling", "theming", "dark-mode"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx",
+      "type": "file",
+      "name": "TiptapEditor.tsx",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx",
+      "summary": "基于 Tiptap 的现代富文本编辑器,集成 StarterKit + 颜色/表格/任务/链接/图片/对齐等扩展,支持深色模式同步、图片上传、链接/代码块/视频/Iframe 模态框与全屏。",
+      "tags": ["editor", "tiptap", "rich-text", "rich", "lowlight"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx:TiptapEditor",
+      "type": "function",
+      "name": "TiptapEditor",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx",
+      "lineRange": [54, 286],
+      "summary": "装配 Tiptap editor 实例与自定义工具栏/状态栏,处理 value 同步、disabled 切换、深色模式追踪、链接/代码块/视频/Iframe 模态框流程。",
+      "tags": ["editor", "tiptap", "rich-text", "modal-flow"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/constants.ts",
+      "type": "file",
+      "name": "constants.ts",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/constants.ts",
+      "summary": "代码块语言选项下拉数据,包含 19 种常见语言的 value/label 映射,供 Tiptap 工具栏与 CodeBlockModal 共用。",
+      "tags": ["constants", "language-list", "tiptap", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/extensions.ts",
+      "type": "file",
+      "name": "extensions.ts",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/extensions.ts",
+      "summary": "自定义 Tiptap CodeBlockLowlight 扩展,在原生代码块基础上增加 data-language 属性和语言下拉选择器 NodeView。",
+      "tags": ["tiptap", "extension", "code-block", "node-view", "lowlight"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx",
+      "type": "file",
+      "name": "LinkModal.tsx",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx",
+      "summary": "Tiptap 工具栏的链接插入模态框,使用 antd Modal + Input 收集 URL,支持回车确认与 i18n。",
+      "tags": ["modal", "tiptap", "link", "antd", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx:LinkModal",
+      "type": "function",
+      "name": "LinkModal",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx",
+      "lineRange": [12, 34],
+      "summary": "受控的 antd Modal,内部展示 URL 输入框,确认/取消/输入均通过回调通知父组件。",
+      "tags": ["modal", "tiptap", "link"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx",
+      "type": "file",
+      "name": "modals.tsx",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx",
+      "summary": "聚合三种 Tiptap 模态框:代码块(语言+内容)、视频(URL+宽度)、Iframe(URL+宽高+标题+全屏),均使用 antd 组件与 i18n。",
+      "tags": ["modal", "tiptap", "code-block", "video", "iframe"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx:CodeBlockModal",
+      "type": "function",
+      "name": "CodeBlockModal",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx",
+      "lineRange": [16, 63],
+      "summary": "代码块插入模态框,提供语言下拉(Select 搜索)与代码内容 textarea,通过回调把语言/内容传回父组件。",
+      "tags": ["modal", "tiptap", "code-block"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx:VideoModal",
+      "type": "function",
+      "name": "VideoModal",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx",
+      "lineRange": [76, 127],
+      "summary": "视频插入模态框,收集 URL 与宽度,作为 CustomVideo 节点的入参。",
+      "tags": ["modal", "tiptap", "video"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx:IframeModal",
+      "type": "function",
+      "name": "IframeModal",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx",
+      "lineRange": [146, 236],
+      "summary": "Iframe 嵌入模态框,收集 URL/宽/高/标题/允许全屏等参数,作为 CustomIframe 节点的入参。",
+      "tags": ["modal", "tiptap", "iframe"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/nodes.ts",
+      "type": "file",
+      "name": "nodes.ts",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/nodes.ts",
+      "summary": "定义 Tiptap 自定义节点 CustomVideo 与 CustomIframe,提供 HTML 解析/渲染与 insertContent 命令。",
+      "tags": ["tiptap", "node", "video", "iframe", "extension"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx",
+      "type": "file",
+      "name": "StatusBar.tsx",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx",
+      "summary": "Tiptap 编辑器底部状态栏,展示字数/字符/光标行号,以及当前主题(亮/暗)徽标。",
+      "tags": ["tiptap", "statusbar", "metrics", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx:StatusBar",
+      "type": "function",
+      "name": "StatusBar",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx",
+      "lineRange": [10, 35],
+      "summary": "纯展示组件,把字数/字符/行号/主题徽标渲染为水平栏,文案走 i18n。",
+      "tags": ["tiptap", "statusbar", "presentational"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx",
+      "type": "file",
+      "name": "Toolbar.tsx",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx",
+      "summary": "Tiptap 编辑器工具栏,约 470 行,涵盖标题/格式/字号/颜色/高亮/列表/表格/对齐/链接/图片/撤销重做等十余组按钮,完全 i18n。",
+      "tags": ["tiptap", "toolbar", "rich-text", "i18n", "ui-controls"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx:Toolbar",
+      "type": "function",
+      "name": "Toolbar",
+      "filePath": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx",
+      "lineRange": [10, 482],
+      "summary": "按功能分组渲染工具栏按钮(H1-H3、粗斜体、字号、颜色、列表、表格、对齐、链接/图片/撤销重做等),active 态由 isActive 判定,点击触发 actions 回调。",
+      "tags": ["tiptap", "toolbar", "rich-text", "i18n"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Editor/types.ts",
+      "type": "file",
+      "name": "types.ts",
+      "filePath": "apps/react-admin/src/components/common/Editor/types.ts",
+      "summary": "编辑器模块的 TypeScript 类型定义:EditorType 枚举(5 种编辑器)+ EditorProps 统一接口,带 Markdown/JSON/Code 的可选 options。",
+      "tags": ["type-definition", "editor", "typescript", "api-contract"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/Loading/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "apps/react-admin/src/components/common/Loading/index.tsx",
+      "summary": "主题化 Loading 组件 ThemeLoading,根据 preferences 同步 antd 主题,支持 fullScreen、进度环、loading/success/error 状态与自动隐藏。",
+      "tags": ["loading", "antd", "theme", "feedback", "ui-component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/Loading/index.tsx:ThemeLoading",
+      "type": "function",
+      "name": "ThemeLoading",
+      "filePath": "apps/react-admin/src/components/common/Loading/index.tsx",
+      "lineRange": [30, 160],
+      "summary": "包装 antd ConfigProvider + Spin/Progress,渲染图标/文字/可选进度环,根据 status 切换 success/error/loading 视觉,fullScreen 模式覆盖全屏。",
+      "tags": ["loading", "antd", "theme", "progress"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/components/common/PageContainer/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "apps/react-admin/src/components/common/PageContainer/index.tsx",
+      "summary": "对 ant-design/pro-components PageContainer 的轻量封装,统一传递 title/children/extra。",
+      "tags": ["page-container", "pro-components", "wrapper", "simple"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/components/common/PageContainer/index.tsx:Index",
+      "type": "function",
+      "name": "Index",
+      "filePath": "apps/react-admin/src/components/common/PageContainer/index.tsx",
+      "lineRange": [10, 19],
+      "summary": "直接转发 title/children/extra 到 ProPageContainer 的薄包装组件。",
+      "tags": ["page-container", "wrapper", "presentational"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/config/constants.ts",
+      "type": "file",
+      "name": "constants.ts",
+      "filePath": "apps/react-admin/src/config/constants.ts",
+      "summary": "全局常量配置:路由路径 ROUTES、表格/分页/滚动配置 TABLE、布局高度 LAYOUT_HEIGHTS、HTTP 方法列表 METHOD_LIST 与业务阈值 BUSINESS。",
+      "tags": ["constants", "config", "routes", "magic-numbers", "app-config"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/access/access-control.tsx",
+      "type": "file",
+      "name": "access-control.tsx",
+      "filePath": "apps/react-admin/src/core/access/access-control.tsx",
+      "summary": "权限控制组件 AccessControl,根据 type(code/role/authority)调用 useAccess 鉴权,有权限时渲染 children,无权限时渲染 fallback。",
+      "tags": ["access-control", "auth", "guard", "react-component", "permission"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/access/access-control.tsx:AccessControl",
+      "type": "function",
+      "name": "AccessControl",
+      "filePath": "apps/react-admin/src/core/access/access-control.tsx",
+      "lineRange": [42, 66],
+      "summary": "通过 useAccess 取出三种鉴权方法,按 type 路由到 hasAccessByCodes/Roles/Authority,根据结果渲染 children 或 fallback。",
+      "tags": ["access-control", "auth", "guard"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/access/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "apps/react-admin/src/core/access/index.ts",
+      "summary": "core/access 模块的统一 barrel 导出,聚合 useAccess、静态鉴权方法与 AccessControl 组件及类型。",
+      "tags": ["barrel", "access-control", "module-entry", "exports"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:apps/react-admin/src/core/access/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "apps/react-admin/src/core/access/README.md",
+      "summary": "权限管理模块完整文档,共 26 个章节,涵盖核心特性/模块结构/权限数据来源/三种使用方式/Hook API/AccessControl 组件 API/流程图/常见问题/前缀规范。",
+      "tags": ["documentation", "access-control", "auth", "api-reference", "module-guide"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/access/use-access.ts",
+      "type": "file",
+      "name": "use-access.ts",
+      "filePath": "apps/react-admin/src/core/access/use-access.ts",
+      "summary": "权限鉴权核心模块:导出 useAccess Hook、getAccessStatic 静态方法、纯函数 checkAccessByRoles/Codes/Authority,数据源来自 useUserStore 的 userRoles/accessCodes。",
+      "tags": ["access-control", "auth", "hook", "pure-functions", "store-integration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/access/use-access.ts:checkAccessByRoles",
+      "type": "function",
+      "name": "checkAccessByRoles",
+      "filePath": "apps/react-admin/src/core/access/use-access.ts",
+      "lineRange": [16, 20],
+      "summary": "纯函数,基于角色 Set 判断 requiredRoles 是否有任一匹配项,空要求默认通过。",
+      "tags": ["access-control", "auth", "pure-function"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/access/use-access.ts:checkAccessByCodes",
+      "type": "function",
+      "name": "checkAccessByCodes",
+      "filePath": "apps/react-admin/src/core/access/use-access.ts",
+      "lineRange": [22, 26],
+      "summary": "纯函数,基于权限码 Set 判断 requiredCodes 是否有任一匹配项,空要求默认通过。",
+      "tags": ["access-control", "auth", "pure-function"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/access/use-access.ts:checkAccessByAuthority",
+      "type": "function",
+      "name": "checkAccessByAuthority",
+      "filePath": "apps/react-admin/src/core/access/use-access.ts",
+      "lineRange": [28, 36],
+      "summary": "纯函数,合并角色码与权限码 Set 后判断 meta.authority 数组是否命中,空数组默认通过。",
+      "tags": ["access-control", "auth", "pure-function"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/access/use-access.ts:useAccess",
+      "type": "function",
+      "name": "useAccess",
+      "filePath": "apps/react-admin/src/core/access/use-access.ts",
+      "lineRange": [50, 101],
+      "summary": "React Hook,从 useUserStore 订阅 userRoles/accessCodes,返回四个稳定化的 useCallback 鉴权函数与原始数据。",
+      "tags": ["access-control", "auth", "hook", "store-subscribe"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/access/use-access.ts:getAccessStatic",
+      "type": "function",
+      "name": "getAccessStatic",
+      "filePath": "apps/react-admin/src/core/access/use-access.ts",
+      "lineRange": [112, 142],
+      "summary": "非组件场景下的静态鉴权入口,通过 useUserStore.getState() 取快照,提供与 useAccess 同形的鉴权方法用于路由生成等。",
+      "tags": ["access-control", "auth", "static-helper"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/constants.ts",
+      "type": "file",
+      "name": "constants.ts",
+      "filePath": "apps/react-admin/src/core/constants.ts",
+      "summary": "core 模块占位常量文件,当前为空内容(0 行非空),预留后续扩展。",
+      "tags": ["constants", "placeholder", "empty"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/i18n/components/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "apps/react-admin/src/core/i18n/components/index.ts",
+      "summary": "i18n/components 子目录的 barrel 文件,一行 re-export 导出 LocaleSwitcher。",
+      "tags": ["barrel", "i18n", "re-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx",
+      "summary": "语言切换下拉组件 LocaleSwitcher,基于 antd Select 展示 supportedLocales,变更时调用 useLocaleSync.changeLocale 同步全局偏好。",
+      "tags": ["locale-switcher", "i18n", "antd", "preferences", "ui-component"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx:LocaleSwitcher",
+      "type": "function",
+      "name": "LocaleSwitcher",
+      "filePath": "apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx",
+      "lineRange": [11, 25],
+      "summary": "小尺寸下拉,标签带旗帜 emoji,onChange 调用 changeLocale 触发全局 locale 切换。",
+      "tags": ["locale-switcher", "i18n"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:apps/react-admin/src/components/bussiness/AuthLayout/index.tsx", "target": "file:apps/react-admin/src/components/bussiness/AuthLayout/AuthLayout.style.less", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:apps/react-admin/src/components/bussiness/AuthLayout/index.tsx", "target": "file:apps/react-admin/src/components/bussiness/AuthLayout/icons/SloganIcon.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:apps/react-admin/src/components/bussiness/AuthLayout/index.tsx", "target": "function:apps/react-admin/src/components/bussiness/AuthLayout/index.tsx:AuthLayout", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/Editor.tsx", "target": "file:apps/react-admin/src/components/common/Editor/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/Editor.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/Editor.tsx:Editor", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx:PlainTextEditor", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx", "target": "file:apps/react-admin/src/components/common/Editor/src/tiptap-editor.css", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx:TiptapEditor", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx:LinkModal", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx", "target": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/constants.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx:CodeBlockModal", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx:VideoModal", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx:IframeModal", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx:StatusBar", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx:Toolbar", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/Loading/index.tsx", "target": "function:apps/react-admin/src/components/common/Loading/index.tsx:ThemeLoading", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/common/PageContainer/index.tsx", "target": "function:apps/react-admin/src/components/common/PageContainer/index.tsx:Index", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/core/access/access-control.tsx", "target": "file:apps/react-admin/src/core/access/use-access.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:apps/react-admin/src/core/access/access-control.tsx", "target": "function:apps/react-admin/src/core/access/access-control.tsx:AccessControl", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/core/access/use-access.ts", "target": "function:apps/react-admin/src/core/access/use-access.ts:checkAccessByRoles", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/core/access/use-access.ts", "target": "function:apps/react-admin/src/core/access/use-access.ts:checkAccessByCodes", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/core/access/use-access.ts", "target": "function:apps/react-admin/src/core/access/use-access.ts:checkAccessByAuthority", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/core/access/use-access.ts", "target": "function:apps/react-admin/src/core/access/use-access.ts:useAccess", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/core/access/use-access.ts", "target": "function:apps/react-admin/src/core/access/use-access.ts:getAccessStatic", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx", "target": "function:apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx:LocaleSwitcher", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:apps/react-admin/src/components/bussiness/AuthLayout/index.tsx", "target": "function:apps/react-admin/src/components/bussiness/AuthLayout/index.tsx:AuthLayout", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/Editor.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/Editor.tsx:Editor", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx:PlainTextEditor", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx:TiptapEditor", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx:LinkModal", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx:CodeBlockModal", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx:VideoModal", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx:IframeModal", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx:StatusBar", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx", "target": "function:apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx:Toolbar", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/components/common/Loading/index.tsx", "target": "function:apps/react-admin/src/components/common/Loading/index.tsx:ThemeLoading", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/core/access/access-control.tsx", "target": "function:apps/react-admin/src/core/access/access-control.tsx:AccessControl", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/core/access/use-access.ts", "target": "function:apps/react-admin/src/core/access/use-access.ts:useAccess", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/core/access/use-access.ts", "target": "function:apps/react-admin/src/core/access/use-access.ts:getAccessStatic", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/core/access/use-access.ts", "target": "function:apps/react-admin/src/core/access/use-access.ts:checkAccessByRoles", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/core/access/use-access.ts", "target": "function:apps/react-admin/src/core/access/use-access.ts:checkAccessByCodes", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/core/access/use-access.ts", "target": "function:apps/react-admin/src/core/access/use-access.ts:checkAccessByAuthority", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx", "target": "function:apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx:LocaleSwitcher", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:apps/react-admin/src/core/access/access-control.tsx", "target": "function:apps/react-admin/src/core/access/use-access.ts:useAccess", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:apps/react-admin/src/core/access/access-control.tsx:AccessControl", "target": "function:apps/react-admin/src/core/access/use-access.ts:useAccess", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "document:apps/react-admin/src/components/common/Editor/README.md", "target": "file:apps/react-admin/src/components/common/Editor/src/Editor.tsx", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "document:apps/react-admin/src/components/common/Editor/README.md", "target": "file:apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "document:apps/react-admin/src/components/common/Editor/README.md", "target": "file:apps/react-admin/src/components/common/Editor/types.ts", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "document:apps/react-admin/src/core/access/README.md", "target": "file:apps/react-admin/src/core/access/use-access.ts", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "document:apps/react-admin/src/core/access/README.md", "target": "file:apps/react-admin/src/core/access/access-control.tsx", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "document:apps/react-admin/src/core/access/README.md", "target": "file:apps/react-admin/src/core/access/index.ts", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:apps/react-admin/src/core/access/index.ts", "target": "file:apps/react-admin/src/core/access/use-access.ts", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:apps/react-admin/src/core/access/index.ts", "target": "file:apps/react-admin/src/core/access/access-control.tsx", "type": "related", "direction": "forward", "weight": 0.5}
+  ]
+}

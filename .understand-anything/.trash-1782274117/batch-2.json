@@ -1,0 +1,465 @@
+{
+  "nodes": [
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/401.tsx",
+      "type": "file",
+      "name": "401.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/401.tsx",
+      "summary": "401 未授权错误页面组件，封装 Fallback 并设置 status='401'。",
+      "tags": ["error-page", "react-component", "route-handler", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/403.tsx",
+      "type": "file",
+      "name": "403.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/403.tsx",
+      "summary": "403 禁止访问错误页面组件，封装 Fallback 并设置 status='403'。",
+      "tags": ["error-page", "react-component", "route-handler", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/404.tsx",
+      "type": "file",
+      "name": "404.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/404.tsx",
+      "summary": "404 页面未找到错误页面组件，封装 Fallback 并设置 status='404'。",
+      "tags": ["error-page", "react-component", "route-handler", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/500.tsx",
+      "type": "file",
+      "name": "500.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/500.tsx",
+      "summary": "500 服务器内部错误页面组件，封装 Fallback 并设置 status='500'。",
+      "tags": ["error-page", "react-component", "route-handler", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/ComingSoon.tsx",
+      "type": "file",
+      "name": "ComingSoon.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/ComingSoon.tsx",
+      "summary": "即将推出占位页面组件，封装 Fallback 并设置 status='coming-soon'。",
+      "tags": ["placeholder-page", "react-component", "route-handler", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "type": "file",
+      "name": "Fallback.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "summary": "通用错误/异常展示组件，根据 status 渲染对应图标、文案与回退/刷新按钮，所有错误页面的核心实现。",
+      "tags": ["error-page", "react-component", "i18n", "fallback", "component"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/Offline.tsx",
+      "type": "file",
+      "name": "Offline.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/Offline.tsx",
+      "summary": "网络离线提示页面组件，封装 Fallback 并设置 status='offline'。",
+      "tags": ["error-page", "react-component", "route-handler", "offline"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/fallback.ts",
+      "type": "file",
+      "name": "fallback.ts",
+      "filePath": "apps/react-admin/src/pages/core/error/fallback.ts",
+      "summary": "FallbackProps 类型定义文件，声明 status / title / description / image / homePath 等可配置项。",
+      "tags": ["type-definition", "props", "typescript"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/icons/Icon401.tsx",
+      "type": "file",
+      "name": "Icon401.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/Icon401.tsx",
+      "summary": "401 错误页面的内联 SVG 锁形图标组件。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/icons/Icon403.tsx",
+      "type": "file",
+      "name": "Icon403.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/Icon403.tsx",
+      "summary": "403 错误页面的内联 SVG 插画图标组件。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/icons/Icon404.tsx",
+      "type": "file",
+      "name": "Icon404.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/Icon404.tsx",
+      "summary": "404 错误页面的内联 SVG 插画图标组件。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/icons/Icon500.tsx",
+      "type": "file",
+      "name": "Icon500.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/Icon500.tsx",
+      "summary": "500 错误页面的内联 SVG 插画图标组件（服务器宕机主题）。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/icons/IconComingSoon.tsx",
+      "type": "file",
+      "name": "IconComingSoon.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/IconComingSoon.tsx",
+      "summary": "Coming Soon 占位页面的内联 SVG 火箭图标组件。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/pages/core/error/icons/IconOffline.tsx",
+      "type": "file",
+      "name": "IconOffline.tsx",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/IconOffline.tsx",
+      "summary": "离线页面的内联 SVG 断网插画图标组件。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/401.tsx:Unauthorized",
+      "type": "function",
+      "name": "Unauthorized",
+      "filePath": "apps/react-admin/src/pages/core/error/401.tsx",
+      "lineRange": [6, 8],
+      "summary": "渲染 status='401' 的 Fallback 组件，对应未授权场景。",
+      "tags": ["react-component", "error-page"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/403.tsx:Forbidden",
+      "type": "function",
+      "name": "Forbidden",
+      "filePath": "apps/react-admin/src/pages/core/error/403.tsx",
+      "lineRange": [6, 8],
+      "summary": "渲染 status='403' 的 Fallback 组件，对应禁止访问场景。",
+      "tags": ["react-component", "error-page"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/404.tsx:NotFound",
+      "type": "function",
+      "name": "NotFound",
+      "filePath": "apps/react-admin/src/pages/core/error/404.tsx",
+      "lineRange": [6, 8],
+      "summary": "渲染 status='404' 的 Fallback 组件，对应页面未找到场景。",
+      "tags": ["react-component", "error-page"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/500.tsx:InternalError",
+      "type": "function",
+      "name": "InternalError",
+      "filePath": "apps/react-admin/src/pages/core/error/500.tsx",
+      "lineRange": [6, 8],
+      "summary": "渲染 status='500' 的 Fallback 组件，对应服务器错误场景。",
+      "tags": ["react-component", "error-page"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/ComingSoon.tsx:ComingSoon",
+      "type": "function",
+      "name": "ComingSoon",
+      "filePath": "apps/react-admin/src/pages/core/error/ComingSoon.tsx",
+      "lineRange": [6, 8],
+      "summary": "渲染 status='coming-soon' 的 Fallback 组件，对应即将推出占位场景。",
+      "tags": ["react-component", "placeholder-page"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/Offline.tsx:Offline",
+      "type": "function",
+      "name": "Offline",
+      "filePath": "apps/react-admin/src/pages/core/error/Offline.tsx",
+      "lineRange": [6, 8],
+      "summary": "渲染 status='offline' 的 Fallback 组件，对应离线场景。",
+      "tags": ["react-component", "error-page", "offline"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/Fallback.tsx:Fallback",
+      "type": "function",
+      "name": "Fallback",
+      "filePath": "apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "lineRange": [23, 147],
+      "summary": "通用错误页核心组件，根据 status 切换图标、文案与按钮（返回/刷新），并通过 useMemo 缓存计算结果。",
+      "tags": ["react-component", "i18n", "error-page", "fallback"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/icons/Icon401.tsx:Icon401",
+      "type": "function",
+      "name": "Icon401",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/Icon401.tsx",
+      "lineRange": [4, 78],
+      "summary": "渲染 401 错误页面所用的内联 SVG 锁形图标（命名导出）。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/icons/Icon403.tsx:Icon403",
+      "type": "function",
+      "name": "Icon403",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/Icon403.tsx",
+      "lineRange": [3, 155],
+      "summary": "渲染 403 错误页面所用的内联 SVG 插画图标。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/icons/Icon404.tsx:IllustrationIcon",
+      "type": "function",
+      "name": "IllustrationIcon",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/Icon404.tsx",
+      "lineRange": [3, 158],
+      "summary": "渲染 404 错误页面所用的内联 SVG 插画图标（局部命名为 IllustrationIcon）。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/icons/Icon500.tsx:ServerDownIcon",
+      "type": "function",
+      "name": "ServerDownIcon",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/Icon500.tsx",
+      "lineRange": [2, 218],
+      "summary": "渲染 500 错误页面所用的内联 SVG 插画图标（服务器宕机主题）。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/icons/IconComingSoon.tsx:IconComingSoon",
+      "type": "function",
+      "name": "IconComingSoon",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/IconComingSoon.tsx",
+      "lineRange": [4, 67],
+      "summary": "渲染 Coming Soon 占位页面所用的内联 SVG 火箭图标（命名导出）。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/pages/core/error/icons/IconOffline.tsx:IconOffline",
+      "type": "function",
+      "name": "IconOffline",
+      "filePath": "apps/react-admin/src/pages/core/error/icons/IconOffline.tsx",
+      "lineRange": [4, 111],
+      "summary": "渲染离线页面所用的内联 SVG 断网插画图标（命名导出）。",
+      "tags": ["icon", "svg", "react-component"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/401.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/403.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/404.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/500.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/ComingSoon.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/Fallback.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/fallback.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/icons/Icon401.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/icons/Icon403.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/icons/Icon404.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/icons/Icon500.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/icons/IconComingSoon.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/icons/IconOffline.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Offline.tsx",
+      "target": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/401.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/401.tsx:Unauthorized",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/403.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/403.tsx:Forbidden",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/404.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/404.tsx:NotFound",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/500.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/500.tsx:InternalError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/ComingSoon.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/ComingSoon.tsx:ComingSoon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Offline.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/Offline.tsx:Offline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/Fallback.tsx:Fallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/icons/Icon401.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/icons/Icon401.tsx:Icon401",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/icons/Icon403.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/icons/Icon403.tsx:Icon403",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/icons/Icon404.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/icons/Icon404.tsx:IllustrationIcon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/icons/Icon500.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/icons/Icon500.tsx:ServerDownIcon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/icons/IconComingSoon.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/icons/IconComingSoon.tsx:IconComingSoon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/icons/IconOffline.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/icons/IconOffline.tsx:IconOffline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/Fallback.tsx",
+      "target": "function:apps/react-admin/src/pages/core/error/Fallback.tsx:Fallback",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/pages/core/error/fallback.ts",
+      "target": "function:apps/react-admin/src/pages/core/error/Fallback.tsx:Fallback",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

@@ -1,0 +1,1645 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 13,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/AppearancePanel.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 167,
+      "nonEmptyLines": 156,
+      "functions": [
+        {
+          "name": "AppearancePanel",
+          "startLine": 37,
+          "endLine": 167,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "AppearancePanel",
+          "line": 37,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "AppearancePanel",
+          "callee": "usePreferencesStore",
+          "lineNumber": 38
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "useTranslation",
+          "lineNumber": 39
+        },
+        {
+          "caller": "handleThemeModeChange",
+          "callee": "setPreferences",
+          "lineNumber": 43
+        },
+        {
+          "caller": "handleBuiltinThemeChange",
+          "callee": "BUILTIN_THEMES.find",
+          "lineNumber": 48
+        },
+        {
+          "caller": "handleBuiltinThemeChange",
+          "callee": "setPreferences",
+          "lineNumber": 50
+        },
+        {
+          "caller": "handleRadiusChange",
+          "callee": "setPreferences",
+          "lineNumber": 56
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 63
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "handleThemeModeChange",
+          "lineNumber": 65
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 71
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "handleThemeModeChange",
+          "lineNumber": 73
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 77
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "handleThemeModeChange",
+          "lineNumber": 79
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 83
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 91
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "setPreferences",
+          "lineNumber": 94
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 98
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "setPreferences",
+          "lineNumber": 101
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 108
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "BUILTIN_THEMES.map",
+          "lineNumber": 110
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "handleBuiltinThemeChange",
+          "lineNumber": 114
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 129
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 137
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "handleRadiusChange",
+          "lineNumber": 141
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 149
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 151
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "setPreferences",
+          "lineNumber": 154
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "t",
+          "lineNumber": 158
+        },
+        {
+          "caller": "AppearancePanel",
+          "callee": "setPreferences",
+          "lineNumber": 161
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/GeneralPanel.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 126,
+      "nonEmptyLines": 112,
+      "functions": [
+        {
+          "name": "GeneralPanel",
+          "startLine": 22,
+          "endLine": 126,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "GeneralPanel",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GeneralPanel",
+          "callee": "usePreferencesStore",
+          "lineNumber": 23
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "useTranslation",
+          "lineNumber": 24
+        },
+        {
+          "caller": "handleLanguageChange",
+          "callee": "setPreferences",
+          "lineNumber": 27
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 33
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 36
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "LANGUAGE_OPTIONS.map",
+          "lineNumber": 39
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 39
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 46
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "setPreferences",
+          "lineNumber": 49
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 54
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "setPreferences",
+          "lineNumber": 57
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 62
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "setPreferences",
+          "lineNumber": 65
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 71
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 74
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "setPreferences",
+          "lineNumber": 77
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 82
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "setPreferences",
+          "lineNumber": 85
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 90
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "setPreferences",
+          "lineNumber": 93
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "TRANSITION_OPTIONS.map",
+          "lineNumber": 101
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "setPreferences",
+          "lineNumber": 107
+        },
+        {
+          "caller": "GeneralPanel",
+          "callee": "t",
+          "lineNumber": 118
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/LayoutPanel.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 560,
+      "nonEmptyLines": 544,
+      "functions": [
+        {
+          "name": "LayoutPanel",
+          "startLine": 44,
+          "endLine": 560,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "LayoutPanel",
+          "line": 44,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "LayoutPanel",
+          "callee": "usePreferencesStore",
+          "lineNumber": 45
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "useTranslation",
+          "lineNumber": 46
+        },
+        {
+          "caller": "handleLayoutChange",
+          "callee": "setPreferences",
+          "lineNumber": 49
+        },
+        {
+          "caller": "handleContentCompactChange",
+          "callee": "setPreferences",
+          "lineNumber": 53
+        },
+        {
+          "caller": "handleSidebarWidthChange",
+          "callee": "setPreferences",
+          "lineNumber": 58
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "LAYOUT_OPTIONS.map",
+          "lineNumber": 68
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "handleLayoutChange",
+          "lineNumber": 72
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 165
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "CONTENT_COMPACT_OPTIONS.map",
+          "lineNumber": 177
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "handleContentCompactChange",
+          "lineNumber": 181
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 190
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 198
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 200
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 203
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 207
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 210
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 214
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 218
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 222
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "handleSidebarWidthChange",
+          "lineNumber": 227
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "handleSidebarWidthChange",
+          "lineNumber": 240
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 249
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 251
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 254
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 258
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 261
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 262
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 263
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 266
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 273
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 275
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 278
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 279
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 282
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 286
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 289
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 293
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 296
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 303
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 305
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 308
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 312
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 315
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 319
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 322
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 326
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 329
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 333
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 336
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 337
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 340
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 347
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 349
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 352
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 356
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 359
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 363
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 366
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 370
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 373
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 377
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 380
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 384
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 387
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 391
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 395
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 396
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 397
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 398
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 401
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 408
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 410
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 413
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 417
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 420
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 424
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 427
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 431
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 434
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 438
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 441
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 445
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 448
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 452
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 455
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 459
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 462
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 466
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 470
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 471
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 472
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 476
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 484
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 486
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 489
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 493
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 497
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 504
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 506
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 509
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 513
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 517
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 522
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 526
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 531
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 535
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 540
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 544
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "t",
+          "lineNumber": 549
+        },
+        {
+          "caller": "LayoutPanel",
+          "callee": "setPreferences",
+          "lineNumber": 553
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/ShortcutKeyPanel.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 67,
+      "nonEmptyLines": 61,
+      "functions": [
+        {
+          "name": "ShortcutKeyPanel",
+          "startLine": 7,
+          "endLine": 67,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ShortcutKeyPanel",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "usePreferencesStore",
+          "lineNumber": 8
+        },
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "useTranslation",
+          "lineNumber": 9
+        },
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "t",
+          "lineNumber": 14
+        },
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "t",
+          "lineNumber": 17
+        },
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "setPreferences",
+          "lineNumber": 20
+        },
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "t",
+          "lineNumber": 25
+        },
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "setPreferences",
+          "lineNumber": 32
+        },
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "t",
+          "lineNumber": 38
+        },
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "setPreferences",
+          "lineNumber": 45
+        },
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "t",
+          "lineNumber": 51
+        },
+        {
+          "caller": "ShortcutKeyPanel",
+          "callee": "setPreferences",
+          "lineNumber": 59
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/PreferencesPanel/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 106,
+      "nonEmptyLines": 94,
+      "functions": [
+        {
+          "name": "PreferencesPanel",
+          "startLine": 35,
+          "endLine": 106,
+          "params": [
+            "{ open, onClose }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "PreferencesPanel",
+          "line": 35,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PreferencesPanel",
+          "callee": "usePreferencesStore",
+          "lineNumber": 36
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "useTranslation",
+          "lineNumber": 37
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "useState",
+          "lineNumber": 38
+        },
+        {
+          "caller": "handleReset",
+          "callee": "resetPreferences",
+          "lineNumber": 43
+        },
+        {
+          "caller": "handleCopy",
+          "callee": "console.log",
+          "lineNumber": 48
+        },
+        {
+          "caller": "handleLogout",
+          "callee": "useAuthStore.getState().logout",
+          "lineNumber": 53
+        },
+        {
+          "caller": "handleLogout",
+          "callee": "useAuthStore.getState",
+          "lineNumber": 53
+        },
+        {
+          "caller": "handleLogout",
+          "callee": "console.error",
+          "lineNumber": 55
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "t",
+          "lineNumber": 64
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "t",
+          "lineNumber": 65
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "t",
+          "lineNumber": 68
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "t",
+          "lineNumber": 69
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "t",
+          "lineNumber": 82
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "t",
+          "lineNumber": 85
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "TAB_OPTIONS.map",
+          "lineNumber": 93
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "t",
+          "lineNumber": 93
+        },
+        {
+          "caller": "PreferencesPanel",
+          "callee": "setActiveTab",
+          "lineNumber": 95
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/components/ThemeProvider/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 138,
+      "nonEmptyLines": 117,
+      "functions": [
+        {
+          "name": "ThemeProvider",
+          "startLine": 24,
+          "endLine": 138,
+          "params": [
+            "{ children }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ThemeProvider",
+          "line": 24,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ThemeProvider",
+          "callee": "usePreferencesStore",
+          "lineNumber": 26
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "usePreferencesStore",
+          "lineNumber": 27
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "useState",
+          "lineNumber": 30
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "useEffect",
+          "lineNumber": 31
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "window.matchMedia",
+          "lineNumber": 34
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "setSystemIsDark",
+          "lineNumber": 35
+        },
+        {
+          "caller": "handleChange",
+          "callee": "setSystemIsDark",
+          "lineNumber": 37
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "mediaQuery.addEventListener",
+          "lineNumber": 38
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "mediaQuery.removeEventListener",
+          "lineNumber": 39
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "useMemo",
+          "lineNumber": 43
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "useMemo",
+          "lineNumber": 48
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "algorithms.push",
+          "lineNumber": 50
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "algorithms.push",
+          "lineNumber": 51
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "Number.parseInt",
+          "lineNumber": 60
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "useEffect",
+          "lineNumber": 67
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "root.setAttribute",
+          "lineNumber": 81
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "root.removeAttribute",
+          "lineNumber": 87
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "useEffect",
+          "lineNumber": 92
+        },
+        {
+          "caller": "ThemeProvider",
+          "callee": "useMemo",
+          "lineNumber": 110
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/config/constants.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 88,
+      "nonEmptyLines": 80,
+      "exports": [
+        {
+          "name": "COLOR_PRESETS",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "BUILT_IN_THEME_PRESETS",
+          "line": 86,
+          "isDefault": false
+        },
+        {
+          "name": "BuiltinThemePreset",
+          "line": 88,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/config/default.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 117,
+      "nonEmptyLines": 115,
+      "exports": [
+        {
+          "name": "defaultPreferences",
+          "line": 117,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/hooks/usePreferences.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 105,
+      "nonEmptyLines": 90,
+      "functions": [
+        {
+          "name": "usePreferences",
+          "startLine": 9,
+          "endLine": 105,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "usePreferences",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "usePreferences",
+          "callee": "usePreferencesStore",
+          "lineNumber": 15
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 18
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 19
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 20
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 21
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 22
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 23
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 24
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 25
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 26
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 27
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 28
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 29
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 30
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 33
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "window.matchMedia",
+          "lineNumber": 35
+        },
+        {
+          "caller": "usePreferences",
+          "callee": "useMemo",
+          "lineNumber": 38
+        },
+        {
+          "caller": "updatePreferences",
+          "callee": "setPreferences",
+          "lineNumber": 44
+        },
+        {
+          "caller": "updateTheme",
+          "callee": "setPreferences",
+          "lineNumber": 48
+        },
+        {
+          "caller": "updateApp",
+          "callee": "setPreferences",
+          "lineNumber": 52
+        },
+        {
+          "caller": "toggleTheme",
+          "callee": "updateTheme",
+          "lineNumber": 58
+        },
+        {
+          "caller": "setThemeMode",
+          "callee": "updateTheme",
+          "lineNumber": 62
+        },
+        {
+          "caller": "setLanguage",
+          "callee": "updateApp",
+          "lineNumber": 67
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/hooks/useThemeConfig.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 45,
+      "nonEmptyLines": 38,
+      "functions": [
+        {
+          "name": "useThemeConfig",
+          "startLine": 6,
+          "endLine": 45,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "useThemeConfig",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useThemeConfig",
+          "callee": "usePreferencesStore",
+          "lineNumber": 7
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "useState",
+          "lineNumber": 10
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "window.matchMedia",
+          "lineNumber": 11
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "useEffect",
+          "lineNumber": 14
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "window.matchMedia",
+          "lineNumber": 15
+        },
+        {
+          "caller": "handler",
+          "callee": "setSystemIsDark",
+          "lineNumber": 16
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "mediaQuery.addEventListener",
+          "lineNumber": 17
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "mediaQuery.removeEventListener",
+          "lineNumber": 18
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "useMemo",
+          "lineNumber": 22
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "useMemo",
+          "lineNumber": 29
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "algorithms.push",
+          "lineNumber": 31
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "algorithms.push",
+          "lineNumber": 32
+        },
+        {
+          "caller": "useThemeConfig",
+          "callee": "Number.parseInt",
+          "lineNumber": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/store/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 40,
+      "nonEmptyLines": 33,
+      "exports": [
+        {
+          "name": "usePreferencesStore",
+          "line": 16,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/types/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 4,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/preferences/utils/merge.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 56,
+      "nonEmptyLines": 50,
+      "functions": [
+        {
+          "name": "mergeDeep",
+          "startLine": 7,
+          "endLine": 44,
+          "params": [
+            "target",
+            "source"
+          ]
+        },
+        {
+          "name": "isPlainObject",
+          "startLine": 49,
+          "endLine": 56,
+          "params": [
+            "value"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "mergeDeep",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "isPlainObject",
+          "line": 49,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "mergeDeep",
+          "callee": "Object.prototype.hasOwnProperty.call",
+          "lineNumber": 11
+        },
+        {
+          "caller": "mergeDeep",
+          "callee": "isValidElement",
+          "lineNumber": 17
+        },
+        {
+          "caller": "mergeDeep",
+          "callee": "console.warn",
+          "lineNumber": 22
+        },
+        {
+          "caller": "mergeDeep",
+          "callee": "String",
+          "lineNumber": 22
+        },
+        {
+          "caller": "mergeDeep",
+          "callee": "isPlainObject",
+          "lineNumber": 28
+        },
+        {
+          "caller": "mergeDeep",
+          "callee": "isPlainObject",
+          "lineNumber": 29
+        },
+        {
+          "caller": "mergeDeep",
+          "callee": "mergeDeep",
+          "lineNumber": 31
+        },
+        {
+          "caller": "isPlainObject",
+          "callee": "Object.prototype.toString.call",
+          "lineNumber": 53
+        },
+        {
+          "caller": "isPlainObject",
+          "callee": "Array.isArray",
+          "lineNumber": 54
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "apps/react-admin/src/components/common/Editor/src/CodeEditor.tsx", "language": "typescript", "sizeLines": 214, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/components/common/Editor/src/JsonEditor.tsx", "language": "typescript", "sizeLines": 239, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/components/common/Editor/src/MarkdownEditor.tsx", "language": "typescript", "sizeLines": 202, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/useTiptapEditor.tsx", "language": "typescript", "sizeLines": 372, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/components/common/Editor/src/monaco-loader.ts", "language": "typescript", "sizeLines": 34, "fileCategory": "code"},
+    {"path": "apps/react-admin/src/components/common/Editor/src/utils.ts", "language": "typescript", "sizeLines": 12, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "apps/react-admin/src/components/common/Editor/src/CodeEditor.tsx": ["apps/react-admin/src/components/common/Editor/src/monaco-loader.ts", "apps/react-admin/src/components/common/Editor/src/utils.ts"],
+    "apps/react-admin/src/components/common/Editor/src/JsonEditor.tsx": ["apps/react-admin/src/components/common/Editor/src/utils.ts"],
+    "apps/react-admin/src/components/common/Editor/src/MarkdownEditor.tsx": ["apps/react-admin/src/components/common/Editor/src/utils.ts"],
+    "apps/react-admin/src/components/common/Editor/src/TiptapEditor/useTiptapEditor.tsx": ["apps/react-admin/src/components/common/Editor/src/utils.ts"],
+    "apps/react-admin/src/components/common/Editor/src/monaco-loader.ts": [],
+    "apps/react-admin/src/components/common/Editor/src/utils.ts": []
+  }
+}

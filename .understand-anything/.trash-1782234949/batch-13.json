@@ -1,0 +1,55 @@
+{
+  "nodes": [
+    {
+      "id": "document:packages/utils-template/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "packages/utils-template/README.md",
+      "summary": "Vite Plus 模板项目的入门文档,介绍开发流程(安装依赖、运行测试、构建库)的常用命令。",
+      "tags": ["documentation", "entry-point", "overview", "template"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/utils-template/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "packages/utils-template/package.json",
+      "summary": "定义 utils-template 包的元数据、ESM 入口、打包脚本(dev/build/test/check)与开发依赖(vite-plus、typescript、@types/node 等)。",
+      "tags": ["configuration", "package", "build-system", "esm"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/utils-template/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "packages/utils-template/tsconfig.json",
+      "summary": "TypeScript 编译器配置,启用 strict 模式,使用 nodenext 模块解析,允许导入 .ts 扩展名,并生成 .d.ts 声明文件(noEmit 表示仅做类型检查)。",
+      "tags": ["configuration", "typescript", "build-system", "type-check"],
+      "complexity": "simple",
+      "languageNotes": "使用 nodenext 模块解析与 verbatimModuleSyntax 严格模式,符合现代 ESM 包发布要求。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:packages/utils-template/README.md",
+      "target": "config:packages/utils-template/package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:packages/utils-template/tsconfig.json",
+      "target": "config:packages/utils-template/package.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/utils-template/package.json",
+      "target": "config:packages/utils-template/tsconfig.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

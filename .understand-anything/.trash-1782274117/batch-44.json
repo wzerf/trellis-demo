@@ -1,0 +1,1283 @@
+{
+  "nodes": [
+    {
+      "id": "file:apps/react-admin/src/utils/merge.ts",
+      "type": "file",
+      "name": "merge.ts",
+      "filePath": "apps/react-admin/src/utils/merge.ts",
+      "summary": "提供深合并工具 (merge / createMerge / mergeWithArrayOverride) 与 isPlainObject 判定,用于 react-admin 中的配置合并。",
+      "tags": ["utility", "merge", "typescript", "object-deep-merge"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/merge.ts:merge",
+      "type": "function",
+      "name": "merge",
+      "filePath": "apps/react-admin/src/utils/merge.ts",
+      "lineRange": [7, 36],
+      "summary": "递归合并 source 到 target,仅合并普通对象;遇到非对象 source 字段直接覆盖。",
+      "tags": ["merge", "utility", "recursive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/merge.ts:createMerge",
+      "type": "function",
+      "name": "createMerge",
+      "filePath": "apps/react-admin/src/utils/merge.ts",
+      "lineRange": [43, 88],
+      "summary": "工厂函数,生成带 customizer 的合并器,可对每个键自定义返回值。",
+      "tags": ["merge", "factory", "customizer"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/utils/nprogress.ts",
+      "type": "file",
+      "name": "nprogress.ts",
+      "filePath": "apps/react-admin/src/utils/nprogress.ts",
+      "summary": "按需懒加载 nprogress 库并暴露 startProgress / stopProgress,供路由切换显示顶部进度条。",
+      "tags": ["utility", "nprogress", "lazy-load", "router"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/nprogress.ts:startProgress",
+      "type": "function",
+      "name": "startProgress",
+      "filePath": "apps/react-admin/src/utils/nprogress.ts",
+      "lineRange": [29, 32],
+      "summary": "懒加载 nprogress 并调用 start(),触发顶部进度条显示。",
+      "tags": ["nprogress", "lazy-load", "progress"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/nprogress.ts:stopProgress",
+      "type": "function",
+      "name": "stopProgress",
+      "filePath": "apps/react-admin/src/utils/nprogress.ts",
+      "lineRange": [38, 41],
+      "summary": "懒加载 nprogress 并调用 done(),关闭进度条。",
+      "tags": ["nprogress", "lazy-load", "progress"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/utils/theme.ts",
+      "type": "file",
+      "name": "theme.ts",
+      "filePath": "apps/react-admin/src/utils/theme.ts",
+      "summary": "react-admin 主题系统核心:基于主色生成 9 级浅/深变体,产出 CSS 变量并动态应用到 documentElement。",
+      "tags": ["theme", "color", "css-variables", "dark-mode", "utility"],
+      "complexity": "complex",
+      "languageNotes": "通过 requestAnimationFrame 与 setProperty 注入 CSS 变量,实现 0 闪烁的运行时主题切换。"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/theme.ts:getDarkColor",
+      "type": "function",
+      "name": "getDarkColor",
+      "filePath": "apps/react-admin/src/utils/theme.ts",
+      "lineRange": [9, 13],
+      "summary": "将 hex 颜色按 level (0-1) 比例与黑色混合,生成对应的深色变体。",
+      "tags": ["color", "darken", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/theme.ts:getLightColor",
+      "type": "function",
+      "name": "getLightColor",
+      "filePath": "apps/react-admin/src/utils/theme.ts",
+      "lineRange": [21, 25],
+      "summary": "将 hex 颜色按 level (0-1) 比例与白色混合,生成对应的浅色变体。",
+      "tags": ["color", "lighten", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/theme.ts:generateThemeColors",
+      "type": "function",
+      "name": "generateThemeColors",
+      "filePath": "apps/react-admin/src/utils/theme.ts",
+      "lineRange": [32, 48],
+      "summary": "基于主题主色生成 1-9 级浅/深变体集,按 light/dark 模式选择变体方向。",
+      "tags": ["theme", "color-palette", "generator"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/theme.ts:generateColorVariables",
+      "type": "function",
+      "name": "generateColorVariables",
+      "filePath": "apps/react-admin/src/utils/theme.ts",
+      "lineRange": [72, 177],
+      "summary": "根据主题配置对象批量生成完整 CSS 变量映射(主色/成功/警告/危险/中性色),每色生成 9 级变体。",
+      "tags": ["theme", "css-variables", "generator"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/theme.ts:applyTheme",
+      "type": "function",
+      "name": "applyTheme",
+      "filePath": "apps/react-admin/src/utils/theme.ts",
+      "lineRange": [243, 255],
+      "summary": "将颜色变量通过 requestAnimationFrame 写入 :root 元素的 CSS 变量,实现无闪烁主题应用。",
+      "tags": ["theme", "css-variables", "dom"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/theme.ts:toggleDarkMode",
+      "type": "function",
+      "name": "toggleDarkMode",
+      "filePath": "apps/react-admin/src/utils/theme.ts",
+      "lineRange": [262, 268],
+      "summary": "在 document.documentElement 上切换 dark class,触发全局暗色模式。",
+      "tags": ["theme", "dark-mode", "dom"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/theme.ts:toggleSidebarColor",
+      "type": "function",
+      "name": "toggleSidebarColor",
+      "filePath": "apps/react-admin/src/utils/theme.ts",
+      "lineRange": [275, 281],
+      "summary": "在 documentElement 上切换 blue-sidebar class,切换侧边栏配色方案。",
+      "tags": ["theme", "sidebar", "dom"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/utils/tree.ts",
+      "type": "file",
+      "name": "tree.ts",
+      "filePath": "apps/react-admin/src/utils/tree.ts",
+      "summary": "通用树形数据工具:traverseTreeValues / filterTree / mapTree,用于菜单与权限树处理。",
+      "tags": ["utility", "tree", "recursion", "filter", "map"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/tree.ts:traverseTreeValues",
+      "type": "function",
+      "name": "traverseTreeValues",
+      "filePath": "apps/react-admin/src/utils/tree.ts",
+      "lineRange": [13, 41],
+      "summary": "DFS 遍历树,通过 getValue 取值并返回去重后的值数组,支持子节点字段名配置。",
+      "tags": ["tree", "traverse", "dfs"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/tree.ts:filterTree",
+      "type": "function",
+      "name": "filterTree",
+      "filePath": "apps/react-admin/src/utils/tree.ts",
+      "lineRange": [50, 72],
+      "summary": "按 filter 谓词过滤树节点,父节点无子节点时自动裁剪。",
+      "tags": ["tree", "filter", "recursion"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/tree.ts:mapTree",
+      "type": "function",
+      "name": "mapTree",
+      "filePath": "apps/react-admin/src/utils/tree.ts",
+      "lineRange": [80, 95],
+      "summary": "对树节点应用 mapper,生成新树(结构不变)。",
+      "tags": ["tree", "map", "recursion"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/utils/url.ts",
+      "type": "file",
+      "name": "url.ts",
+      "filePath": "apps/react-admin/src/utils/url.ts",
+      "summary": "URL 查询串解析小工具:getUrlAllParam / getUrlParam,兼容 ?key=value&... 形式。",
+      "tags": ["utility", "url", "query-string"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/url.ts:getUrlAllParam",
+      "type": "function",
+      "name": "getUrlAllParam",
+      "filePath": "apps/react-admin/src/utils/url.ts",
+      "lineRange": [6, 22],
+      "summary": "解析查询串为键值对象,处理首字符 ? 与缺失值。",
+      "tags": ["url", "query-string", "parse"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/url.ts:getUrlParam",
+      "type": "function",
+      "name": "getParam",
+      "filePath": "apps/react-admin/src/utils/url.ts",
+      "lineRange": [29, 35],
+      "summary": "从查询串中获取指定 key 的值,内部复用 getUrlAllParam。",
+      "tags": ["url", "query-string", "parse"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/utils/utils.ts",
+      "type": "file",
+      "name": "utils.ts",
+      "filePath": "apps/react-admin/src/utils/utils.ts",
+      "summary": "react-admin 通用工具集:颜色加深、类方法自动 bind、滚动定位、数字千分位格式化。",
+      "tags": ["utility", "color", "scroll", "formatter", "bind"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/utils/utils.ts:bindMethods",
+      "type": "function",
+      "name": "bindMethods",
+      "filePath": "apps/react-admin/src/utils/utils.ts",
+      "lineRange": [32, 50],
+      "summary": "遍历实例原型上所有方法,自动 bind this 到实例,常用于跨模块传递时丢失 this 的场景。",
+      "tags": ["utility", "bind", "this", "reflection"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/stylelint.config.mjs",
+      "type": "config",
+      "name": "stylelint.config.mjs",
+      "filePath": "apps/react-admin/stylelint.config.mjs",
+      "summary": "stylelint 配置,继承 @south/stylelint 共享 preset,作为 react-admin 应用的样式规范。",
+      "tags": ["stylelint", "configuration", "lint"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "apps/react-admin/vite.config.ts",
+      "summary": "react-admin 应用的 Vite 构建配置(46 行),定义开发/构建选项。",
+      "tags": ["vite", "build-config", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/website-template/src/counter.ts",
+      "type": "file",
+      "name": "counter.ts",
+      "filePath": "apps/website-template/src/counter.ts",
+      "summary": "website-template 的计数器小工具,导出 setupCounter 用于按钮点击自增。",
+      "tags": ["utility", "counter", "dom"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/website-template/src/counter.ts:setupCounter",
+      "type": "function",
+      "name": "setupCounter",
+      "filePath": "apps/website-template/src/counter.ts",
+      "lineRange": [1, 9],
+      "summary": "为指定 button 元素绑定 click 自增,并实时更新 innerHTML。",
+      "tags": ["counter", "dom", "event-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/website-template/src/main.ts",
+      "type": "file",
+      "name": "main.ts",
+      "filePath": "apps/website-template/src/main.ts",
+      "summary": "website-template 应用入口:挂载 hero 区域、文档与社交链接区块,并初始化计数器。",
+      "tags": ["entry-point", "vite", "dom", "template"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/website-template/src/style.css",
+      "type": "file",
+      "name": "style.css",
+      "filePath": "apps/website-template/src/style.css",
+      "summary": "website-template 的全局样式表(292 行),包含 hero、counter、链接与社交区块的视觉规范。",
+      "tags": ["css", "stylesheet", "styling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/db/schema.sql",
+      "type": "file",
+      "name": "schema.sql",
+      "filePath": "backend/db/schema.sql",
+      "summary": "后端完整数据库 schema(741 行),定义 22 张表:用户/角色/菜单/接口权限/i18n/字典/日志/临时任务等领域模型,含逻辑删除与归档表。",
+      "tags": ["database", "schema", "sql", "rbac", "logging", "migration"],
+      "complexity": "complex",
+      "languageNotes": "统一使用 deleted_at 软删字段,日志表(api/login/operation)同时提供热表与 _archive 归档表,符合生产冷热分离模式。"
+    },
+    {
+      "id": "table:backend/db/schema.sql:casbin_rule",
+      "type": "table",
+      "name": "casbin_rule",
+      "filePath": "backend/db/schema.sql",
+      "summary": "Casbin RBAC 策略表,存储 ptype/v0..v5 形式的权限规则。",
+      "tags": ["rbac", "casbin", "policy"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_user",
+      "type": "table",
+      "name": "sys_user",
+      "filePath": "backend/db/schema.sql",
+      "summary": "系统用户表,记录账号、密码哈希、昵称、邮箱、手机、头像、语言、最近登录信息与软删字段。",
+      "tags": ["user", "auth", "rbac"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_role",
+      "type": "table",
+      "name": "sys_role",
+      "filePath": "backend/db/schema.sql",
+      "summary": "系统角色表,支持父子层级(parent_id)与排序。",
+      "tags": ["rbac", "role", "hierarchy"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_api",
+      "type": "table",
+      "name": "sys_api",
+      "filePath": "backend/db/schema.sql",
+      "summary": "系统接口资源表,记录 method/path/permission_code/api_group,供细粒度权限控制。",
+      "tags": ["rbac", "api", "permission"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_menu",
+      "type": "table",
+      "name": "sys_menu",
+      "filePath": "backend/db/schema.sql",
+      "summary": "系统菜单表,支持父子层级、组件路径、图标、redirect、tree_path 与 metadata JSON,驱动前端动态路由。",
+      "tags": ["menu", "rbac", "frontend-routing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:backend/db/schema.sql:i18n_locale",
+      "type": "table",
+      "name": "i18n_locale",
+      "filePath": "backend/db/schema.sql",
+      "summary": "i18n 语言环境表,标记默认语言与启用状态。",
+      "tags": ["i18n", "locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:dict_type",
+      "type": "table",
+      "name": "dict_type",
+      "filePath": "backend/db/schema.sql",
+      "summary": "字典类型表,按 code 分类管理运行时枚举。",
+      "tags": ["dictionary", "enum"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:temporal_task_config",
+      "type": "table",
+      "name": "temporal_task_config",
+      "filePath": "backend/db/schema.sql",
+      "summary": "Temporal 工作流任务配置表:workflow_type、task_queue、cron_expr、retry_policy、timeout 等参数。",
+      "tags": ["workflow", "temporal", "scheduler"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:backend/db/schema.sql:i18n_translation",
+      "type": "table",
+      "name": "i18n_translation",
+      "filePath": "backend/db/schema.sql",
+      "summary": "i18n 翻译条目表,通过 locale_id + translation_key 唯一索引定位文案。",
+      "tags": ["i18n", "translation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:dict_data",
+      "type": "table",
+      "name": "dict_data",
+      "filePath": "backend/db/schema.sql",
+      "summary": "字典数据表,type_id 关联 dict_type,提供 value/label/排序/默认标记。",
+      "tags": ["dictionary", "enum"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_user_role",
+      "type": "table",
+      "name": "sys_user_role",
+      "filePath": "backend/db/schema.sql",
+      "summary": "用户-角色关联表,典型的 RBAC 桥表。",
+      "tags": ["rbac", "user-role", "junction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_role_api",
+      "type": "table",
+      "name": "sys_role_api",
+      "filePath": "backend/db/schema.sql",
+      "summary": "角色-API 关联表,控制角色可访问的接口资源。",
+      "tags": ["rbac", "role-api", "junction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_role_menu",
+      "type": "table",
+      "name": "sys_role_menu",
+      "filePath": "backend/db/schema.sql",
+      "summary": "角色-菜单关联表,控制角色可见的前端菜单。",
+      "tags": ["rbac", "role-menu", "junction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_menu_api",
+      "type": "table",
+      "name": "sys_menu_api",
+      "filePath": "backend/db/schema.sql",
+      "summary": "菜单-API 关联表,建立菜单页面与后端接口的多对多关系。",
+      "tags": ["rbac", "menu-api", "junction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/db/schema.sql:sys_data_permission",
+      "type": "table",
+      "name": "sys_data_permission",
+      "filePath": "backend/db/schema.sql",
+      "summary": "行级数据权限表,通过 subject_id/action_key/scope_field/scope_values 描述谁能对哪些字段做哪些操作。",
+      "tags": ["rbac", "data-permission", "row-level"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:backend/db/schema.sql:api_log",
+      "type": "table",
+      "name": "api_log",
+      "filePath": "backend/db/schema.sql",
+      "summary": "API 访问日志表(热表),记录请求/响应/客户端/位置等完整审计信息,含变更前后的 diff 字段。",
+      "tags": ["logging", "audit", "api"],
+      "complexity": "complex"
+    },
+    {
+      "id": "table:backend/db/schema.sql:api_log_archive",
+      "type": "table",
+      "name": "api_log_archive",
+      "filePath": "backend/db/schema.sql",
+      "summary": "API 日志归档表,与 api_log 同构,用于冷数据长期保留。",
+      "tags": ["logging", "archive", "cold-storage"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:backend/db/schema.sql:login_log",
+      "type": "table",
+      "name": "login_log",
+      "filePath": "backend/db/schema.sql",
+      "summary": "登录日志表(热表),记录登录结果、客户端、位置、失败原因等。",
+      "tags": ["logging", "audit", "auth"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:backend/db/schema.sql:login_log_archive",
+      "type": "table",
+      "name": "login_log_archive",
+      "filePath": "backend/db/schema.sql",
+      "summary": "登录日志归档表,与 login_log 同构,用于冷数据归档。",
+      "tags": ["logging", "archive", "cold-storage"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:backend/db/schema.sql:operation_log",
+      "type": "table",
+      "name": "operation_log",
+      "filePath": "backend/db/schema.sql",
+      "summary": "操作日志表(热表),记录 CRUD 操作的 before/after diff 与 request_id 关联。",
+      "tags": ["logging", "audit", "crud"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:backend/db/schema.sql:operation_log_archive",
+      "type": "table",
+      "name": "operation_log_archive",
+      "filePath": "backend/db/schema.sql",
+      "summary": "操作日志归档表,与 operation_log 同构,用于冷数据归档。",
+      "tags": ["logging", "archive", "cold-storage"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:backend/db/schema.sql:temporal_task_execution",
+      "type": "table",
+      "name": "temporal_task_execution",
+      "filePath": "backend/db/schema.sql",
+      "summary": "Temporal 工作流执行记录表,记录 workflow_id/run_id/状态/起止时间/失败原因等。",
+      "tags": ["workflow", "temporal", "execution-log"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/.mvn/jvm.config",
+      "type": "config",
+      "name": "jvm.config",
+      "filePath": "backend/java-admin/.mvn/jvm.config",
+      "summary": "Maven Wrapper 的 JVM 启动参数配置(10 行),控制 mvn 进程的内存等选项。",
+      "tags": ["maven", "jvm", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/deploy/.env.example",
+      "type": "config",
+      "name": ".env.example",
+      "filePath": "backend/java-admin/deploy/.env.example",
+      "summary": "java-admin 部署环境变量模板:MySQL/Redis/Nacos 的连接参数示例。",
+      "tags": ["env", "configuration", "deployment", "template"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/deploy/docker-compose.yml",
+      "type": "service",
+      "name": "docker-compose.yml",
+      "filePath": "backend/java-admin/deploy/docker-compose.yml",
+      "summary": "java-admin 开发环境依赖编排:MySQL 8.4 + Redis 7 + Nacos 容器,带 healthcheck 与自定义网络。",
+      "tags": ["docker-compose", "infrastructure", "mysql", "redis", "nacos", "orchestration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "backend/java-admin/java-admin-api/pom.xml",
+      "summary": "java-admin-api 模块的 Maven 配置,声明 spring-boot 父依赖与 infra/common 子模块依赖。",
+      "tags": ["maven", "pom", "spring-boot", "build-system"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "type": "file",
+      "name": "Application.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "summary": "java-admin-api 的 Spring Boot 启动入口,@SpringBootApplication + main() 引导。",
+      "tags": ["spring-boot", "entry-point", "java"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java:Application",
+      "type": "class",
+      "name": "Application",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "lineRange": [14, 21],
+      "summary": "Spring Boot 主类,提供 main() 入口,委托 SpringApplication.run 启动容器。",
+      "tags": ["spring-boot", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "type": "file",
+      "name": "OpenApiConfig.java",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "summary": "SpringDoc OpenAPI 配置:声明 API 文档元信息,并注册 bearerAuth (satoken) 安全方案供 Knife4j 使用。",
+      "tags": ["springdoc", "openapi", "configuration", "java"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java:OpenApiConfig",
+      "type": "class",
+      "name": "OpenApiConfig",
+      "filePath": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "lineRange": [24, 47],
+      "summary": "@Configuration 类,提供 customOpenAPI Bean 定义 OpenAPI 文档(标题/版本/联系人/安全方案)。",
+      "tags": ["springdoc", "openapi", "configuration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql",
+      "type": "file",
+      "name": "V1__init_sys_user.sql",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql",
+      "summary": "Flyway 生产环境初始化脚本(V1),在 prod 库中创建 sys_user 表。",
+      "tags": ["flyway", "migration", "database", "prod"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql:sys_user",
+      "type": "table",
+      "name": "sys_user",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql",
+      "summary": "Flyway V1 在生产环境初始化的 sys_user 表(简版,仅基础列)。",
+      "tags": ["flyway", "migration", "user"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java",
+      "type": "file",
+      "name": "NacosConfigFormatTest.java",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java",
+      "summary": "Nacos 配置格式契约测试,断言 application.yml 中 server-addr/extension-configs 等字段符合 starter 规范。",
+      "tags": ["test", "nacos", "configuration", "contract"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java:NacosConfigFormatTest",
+      "type": "class",
+      "name": "NacosConfigFormatTest",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java",
+      "lineRange": [28, 132],
+      "summary": "JUnit5 测试类,6 个 @Test 用例校验 application.yml 中 Nacos 配置的格式正确性(kebab-case、enabled 开关、不能有 fail-fast 等)。",
+      "tags": ["test", "junit", "nacos", "contract"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "type": "file",
+      "name": "SpringConfigImportCheckTest.java",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "summary": "Spring Cloud Config import 契约测试,断言 nacos import-check 已禁用且 extension-configs 正确声明。",
+      "tags": ["test", "spring-config", "nacos", "contract"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java:SpringConfigImportCheckTest",
+      "type": "class",
+      "name": "SpringConfigImportCheckTest",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "lineRange": [28, 90],
+      "summary": "JUnit5 测试类,5 个 @Test 用例校验 application.yml 中 spring.config.import 与 nacos.config.enabled 等关键开关。",
+      "tags": ["test", "junit", "spring-config", "contract"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "backend/java-admin/java-admin-common/pom.xml",
+      "summary": "java-admin-common 模块的 Maven 配置(43 行),提供公共 DTO/枚举/工具。",
+      "tags": ["maven", "pom", "build-system"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "backend/java-admin/java-admin-infra/pom.xml",
+      "summary": "java-admin-infra 模块的 Maven 配置(94 行),声明 Nacos/Flyway 依赖与 common 模块依赖。",
+      "tags": ["maven", "pom", "nacos", "flyway", "build-system"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "type": "file",
+      "name": "FlywayMigrator.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "summary": "Spring Boot 启动后手动执行 Flyway 迁移的 ApplicationRunner,按 profile 切换 migration 目录。",
+      "tags": ["flyway", "migration", "spring-boot", "java", "application-runner"],
+      "complexity": "moderate",
+      "languageNotes": "绕开 Spring Boot 4 + Flyway 10 自动装配失效问题,显式调用 Flyway.configure().migrate(),profile 区分 dev/migration vs prod/migration-prod。"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java:FlywayMigrator",
+      "type": "class",
+      "name": "FlywayMigrator",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "lineRange": [27, 71],
+      "summary": "@Component ApplicationRunner,启动时根据 activeProfile 选择 db/migration 或 db/migration-prod 并执行 Flyway 迁移。",
+      "tags": ["flyway", "migration", "spring-boot"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "type": "file",
+      "name": "NacosConfig.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "summary": "Nacos 配置条件装配占位类,通过 @ConditionalOnProperty 绑定 nacos.config.enabled 开关。",
+      "tags": ["nacos", "configuration", "java", "conditional"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java:NacosConfig",
+      "type": "class",
+      "name": "NacosConfig",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "lineRange": [17, 22],
+      "summary": "@Configuration 占位类,启用 NacosConfigToggleProperties 并由 nacos.config.enabled 控制激活。",
+      "tags": ["nacos", "configuration", "conditional"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:apps/website-template/src/main.ts",
+      "target": "file:apps/website-template/src/counter.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/website-template/src/main.ts",
+      "target": "file:apps/website-template/src/style.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/merge.ts",
+      "target": "function:apps/react-admin/src/utils/merge.ts:merge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/merge.ts",
+      "target": "function:apps/react-admin/src/utils/merge.ts:createMerge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/merge.ts",
+      "target": "function:apps/react-admin/src/utils/merge.ts:merge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/merge.ts",
+      "target": "function:apps/react-admin/src/utils/merge.ts:createMerge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/nprogress.ts",
+      "target": "function:apps/react-admin/src/utils/nprogress.ts:startProgress",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/nprogress.ts",
+      "target": "function:apps/react-admin/src/utils/nprogress.ts:stopProgress",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/nprogress.ts",
+      "target": "function:apps/react-admin/src/utils/nprogress.ts:startProgress",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/nprogress.ts",
+      "target": "function:apps/react-admin/src/utils/nprogress.ts:stopProgress",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:getDarkColor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:getLightColor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:generateThemeColors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:generateColorVariables",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:applyTheme",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:toggleDarkMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:toggleSidebarColor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:getDarkColor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:getLightColor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:generateThemeColors",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:generateColorVariables",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:applyTheme",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:toggleDarkMode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "function:apps/react-admin/src/utils/theme.ts:toggleSidebarColor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/theme.ts",
+      "target": "file:apps/react-admin/src/utils/color.ts",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/tree.ts",
+      "target": "function:apps/react-admin/src/utils/tree.ts:traverseTreeValues",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/tree.ts",
+      "target": "function:apps/react-admin/src/utils/tree.ts:filterTree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/tree.ts",
+      "target": "function:apps/react-admin/src/utils/tree.ts:mapTree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/tree.ts",
+      "target": "function:apps/react-admin/src/utils/tree.ts:traverseTreeValues",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/tree.ts",
+      "target": "function:apps/react-admin/src/utils/tree.ts:filterTree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/tree.ts",
+      "target": "function:apps/react-admin/src/utils/tree.ts:mapTree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/url.ts",
+      "target": "function:apps/react-admin/src/utils/url.ts:getUrlAllParam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/url.ts",
+      "target": "function:apps/react-admin/src/utils/url.ts:getUrlParam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/url.ts",
+      "target": "function:apps/react-admin/src/utils/url.ts:getUrlAllParam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/url.ts",
+      "target": "function:apps/react-admin/src/utils/url.ts:getUrlParam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/utils.ts",
+      "target": "function:apps/react-admin/src/utils/utils.ts:bindMethods",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/utils/utils.ts",
+      "target": "function:apps/react-admin/src/utils/utils.ts:bindMethods",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/website-template/src/counter.ts",
+      "target": "function:apps/website-template/src/counter.ts:setupCounter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/website-template/src/counter.ts",
+      "target": "function:apps/website-template/src/counter.ts:setupCounter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:casbin_rule",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_role",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_api",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_menu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:i18n_locale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:dict_type",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:temporal_task_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:i18n_translation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:dict_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_user_role",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_role_api",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_role_menu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_menu_api",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:sys_data_permission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:api_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:api_log_archive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:login_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:login_log_archive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:operation_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:operation_log_archive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/db/schema.sql",
+      "target": "table:backend/db/schema.sql:temporal_task_execution",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java:Application",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java:Application",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java:OpenApiConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java:OpenApiConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql",
+      "target": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql:sys_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/common/NacosConfigFormatTest.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/common/NacosConfigFormatTest.java:NacosConfigFormatTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "target": "class:backend/java-admin/java-admin-api/src/main/java/com/wshake/infra/config/SpringConfigImportCheckTest.java:SpringConfigImportCheckTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java:FlywayMigrator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java:FlywayMigrator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java:NacosConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java:NacosConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "target": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql:sys_user",
+      "type": "migrates",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "target": "table:backend/db/schema.sql:sys_user",
+      "type": "migrates",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/common/NacosConfigFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-infra/pom.xml",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-infra/pom.xml",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-api/pom.xml",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-api/pom.xml",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-common/pom.xml",
+      "target": "config:backend/java-admin/java-admin-infra/pom.xml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "service:backend/java-admin/deploy/docker-compose.yml",
+      "target": "config:backend/java-admin/deploy/.env.example",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "service:backend/java-admin/deploy/docker-compose.yml",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "type": "serves",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "target": "file:backend/db/schema.sql",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/vite.config.ts",
+      "target": "file:apps/react-admin/src/utils/merge.ts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:apps/react-admin/stylelint.config.mjs",
+      "target": "file:apps/website-template/src/style.css",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

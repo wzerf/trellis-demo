@@ -1,0 +1,47 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "type": "file",
+      "name": "V1__init_sys_user.sql",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "summary": "Flyway 数据库迁移脚本，创建 sys_user 系统用户表，包含 BIGINT UNSIGNED 主键、唯一用户名索引、审计时间戳，并采用 utf8mb4/InnoDB 引擎。",
+      "tags": ["sql", "migration", "flyway", "database", "schema-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql",
+      "type": "file",
+      "name": "V2__seed_admin_user.sql",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql",
+      "summary": "Flyway 数据迁移脚本，向 sys_user 表插入默认 admin 账户（BCrypt 加密密码），仅在 dev profile 下加载。",
+      "tags": ["sql", "migration", "flyway", "seed-data", "database"],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql:sys_user",
+      "type": "table",
+      "name": "sys_user",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "summary": "系统用户表，存储登录账号信息，包含 username/password/nickname/status 字段与 create_time/update_time 审计时间戳，username 字段具有唯一性约束。",
+      "tags": ["user-account", "authentication", "mysql", "innodb"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+      "target": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql:sys_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql",
+      "target": "table:backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql:sys_user",
+      "type": "migrates",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

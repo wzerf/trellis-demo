@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "config:backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "type": "config",
+      "name": "application.yml",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "summary": "java-admin-api 的 Spring Boot 基础配置：默认激活 dev profile，定义 Flyway、Nacos（双 dataId 共享+dev 覆盖）、Sa-Token（Redis 模式，30 天 token）、Easy-Query（underlined 命名转换）、服务端口（默认 4080）和日志级别。",
+      "tags": ["configuration", "spring-boot", "profile", "nacos", "sa-token"],
+      "complexity": "moderate",
+      "languageNotes": "使用 Spring profile 机制：基础配置激活 dev 指向 application-dev.yml；Nacos 采用双 dataId 共享配置 + 环境覆盖模式。"
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-api/src/main/resources/application-dev.yml",
+      "type": "config",
+      "name": "application-dev.yml",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/application-dev.yml",
+      "summary": "dev profile 配置：本地 MySQL（端口 4336，库 javaadmin_dev）与 Redis（端口 4379，密码 123456）连接、HikariCP 连接池（max=16）、完整 Flyway 迁移目录（V1+V2 种子用户）、com.wshake 包 DEBUG 日志、knife4j API 文档开启（中文）。",
+      "tags": ["configuration", "spring-boot", "profile", "dev", "datasource"],
+      "complexity": "moderate",
+      "languageNotes": "端口采用 4000 段（4336/4379）避开常见开发冲突；Redis 强制非空密码避免 Lettuce 发 AUTH 空密码被拒。"
+    },
+    {
+      "id": "config:backend/java-admin/java-admin-api/src/main/resources/application-prod.yml",
+      "type": "config",
+      "name": "application-prod.yml",
+      "filePath": "backend/java-admin/java-admin-api/src/main/resources/application-prod.yml",
+      "summary": "prod profile 配置：MySQL/Redis 连接信息全部由环境变量注入（MYSQL_HOST、REDIS_PASSWORD 等必填）、HikariCP/Lettuce 池扩大（max=32）、仅加载 Flyway V1（无种子用户的 migration-prod 目录）、knife4j 默认关闭以避免 API 文档公网泄露。",
+      "tags": ["configuration", "spring-boot", "profile", "prod", "security"],
+      "complexity": "moderate",
+      "languageNotes": "生产环境所有敏感信息（数据库/Redis 凭证）依赖环境变量注入，无默认值；knife4j 通过 KNIFE4J_ENABLE 环境变量可控。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:backend/java-admin/java-admin-api/src/main/resources/application-dev.yml",
+      "target": "config:backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-api/src/main/resources/application-prod.yml",
+      "target": "config:backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/java-admin/java-admin-api/src/main/resources/application.yml",
+      "target": "file:backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

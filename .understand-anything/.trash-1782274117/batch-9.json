@@ -1,0 +1,257 @@
+{
+  "nodes": [
+    {
+      "id": "file:apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts",
+      "type": "file",
+      "name": "useBreadcrumb.ts",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts",
+      "summary": "提供 useBreadcrumb hook，根据当前路由 matches 自动计算面包屑数据并支持 i18n 与图标渲染。",
+      "tags": ["hook", "react", "breadcrumb", "i18n", "navigation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts",
+      "type": "file",
+      "name": "usePageTitle.ts",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts",
+      "summary": "提供 usePageTitle hook，解析菜单 i18n key 并在 effect 中同步更新 document.title。",
+      "tags": ["hook", "react", "i18n", "page-title", "document-title"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/components/PageContainer/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/index.tsx",
+      "summary": "PageContainer 页面容器组件，组合面包屑、标题、权限校验、刷新/全屏等操作按钮并透传 ProPageContainer 的原生属性。",
+      "tags": ["component", "page-container", "layout", "permission", "react"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/components/PageContainer/types.ts",
+      "type": "file",
+      "name": "types.ts",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/types.ts",
+      "summary": "定义 PageContainerProps 与 BreadcrumbItem 接口，集中维护页面容器的属性与面包屑条目契约。",
+      "tags": ["type-definition", "interface", "react", "page-container"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx",
+      "type": "file",
+      "name": "breadcrumb-render.tsx",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx",
+      "summary": "提供 renderBreadcrumbItems 工具函数，把面包屑 items 渲染为支持图标与点击跳转的 React 节点。",
+      "tags": ["utility", "breadcrumb", "renderer", "react"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts",
+      "type": "file",
+      "name": "permission.ts",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts",
+      "summary": "提供 checkPagePermission 与 checkButtonPermission 工具函数，对比用户权限码与所需权限并返回布尔结果。",
+      "tags": ["utility", "permission", "authorization", "rbac"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts:useBreadcrumb",
+      "type": "function",
+      "name": "useBreadcrumb",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts",
+      "lineRange": [23, 89],
+      "summary": "React hook：基于 React Router 的 useMatches 与 i18n 自动生成面包屑 items，支持手动覆盖、首页与图标显示开关。",
+      "tags": ["hook", "react", "breadcrumb", "i18n", "router"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts:usePageTitle",
+      "type": "function",
+      "name": "usePageTitle",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts",
+      "lineRange": [20, 82],
+      "summary": "React hook：根据 manualTitle / routeTitle / defaultTitle 解析并翻译 i18n key，使用 useEffect 同步更新 document.title。",
+      "tags": ["hook", "react", "i18n", "document-title", "effect"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/components/PageContainer/index.tsx:PageContainer",
+      "type": "function",
+      "name": "PageContainer",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/index.tsx",
+      "lineRange": [23, 313],
+      "summary": "页面容器组件：组合面包屑、标题、权限校验、加载骨架、刷新/全屏按钮与 ProPageContainer 渲染，透传其余属性。",
+      "tags": ["component", "page-container", "layout", "permission", "react"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx:renderBreadcrumbItems",
+      "type": "function",
+      "name": "renderBreadcrumbItems",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx",
+      "lineRange": [3, 25],
+      "summary": "工具函数：把面包屑 items 数组映射为带图标与点击导航的 React 节点列表，供 PageContainer 使用。",
+      "tags": ["utility", "breadcrumb", "renderer", "react"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts:checkPagePermission",
+      "type": "function",
+      "name": "checkPagePermission",
+      "filePath": "apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts",
+      "lineRange": [9, 21],
+      "summary": "工具函数：检查用户权限列表是否包含所需的单个或多个权限码（任一匹配即通过）。",
+      "tags": ["utility", "permission", "authorization", "rbac"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts",
+      "target": "file:apps/react-admin/src/layouts/components/PageContainer/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/components/PageContainer/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/index.tsx",
+      "target": "file:apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx",
+      "target": "file:apps/react-admin/src/layouts/components/PageContainer/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts",
+      "target": "file:apps/react-admin/src/layouts/components/PageContainer/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts:useBreadcrumb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts:useBreadcrumb",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts:usePageTitle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts:usePageTitle",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/index.tsx",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/index.tsx:PageContainer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/index.tsx",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/index.tsx:PageContainer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx:renderBreadcrumbItems",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx:renderBreadcrumbItems",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts:checkPagePermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts:checkPagePermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:apps/react-admin/src/layouts/components/PageContainer/index.tsx:PageContainer",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts:useBreadcrumb",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "function:apps/react-admin/src/layouts/components/PageContainer/index.tsx:PageContainer",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts:usePageTitle",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "function:apps/react-admin/src/layouts/components/PageContainer/index.tsx:PageContainer",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts:checkPagePermission",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "function:apps/react-admin/src/layouts/components/PageContainer/index.tsx:PageContainer",
+      "target": "function:apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx:renderBreadcrumbItems",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

@@ -1,0 +1,1072 @@
+{
+  "nodes": [
+    {
+      "id": "file:.commitlintrc.js",
+      "type": "file",
+      "name": ".commitlintrc.js",
+      "filePath": ".commitlintrc.js",
+      "summary": "根目录 commitlint 配置，使用 @commitlint/config-conventional 规则；子模块 vue-vben-admin 自带 override。",
+      "tags": ["configuration", "commitlint", "conventional-commits"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.gitmodules",
+      "type": "file",
+      "name": ".gitmodules",
+      "filePath": ".gitmodules",
+      "summary": "声明 apps/vue-vben-admin 子模块，从 wshake7/vue-vben-admin 拉取。",
+      "tags": ["configuration", "git", "submodule"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "type": "file",
+      "name": "auth/codes.ts",
+      "filePath": "apps/backend-mock-template/api/auth/codes.ts",
+      "summary": "Nitro GET /api/auth/codes 端点，验证 access token 后返回当前用户的权限码列表。",
+      "tags": ["endpoint", "auth", "nitro", "h3"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/auth/codes.ts:codes",
+      "type": "endpoint",
+      "name": "GET /api/auth/codes",
+      "filePath": "apps/backend-mock-template/api/auth/codes.ts",
+      "summary": "读取 Authorization 头验证 JWT，从 MOCK_CODES 返回当前用户 codes 数组。",
+      "tags": ["endpoint", "auth", "jwt", "GET"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "type": "file",
+      "name": "auth/login.post.ts",
+      "filePath": "apps/backend-mock-template/api/auth/login.post.ts",
+      "summary": "Nitro POST /api/auth/login 端点，校验用户名密码后签发 access/refresh token 并写 cookie。",
+      "tags": ["endpoint", "auth", "login", "nitro", "h3"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/auth/login.post.ts:login.post",
+      "type": "endpoint",
+      "name": "POST /api/auth/login",
+      "filePath": "apps/backend-mock-template/api/auth/login.post.ts",
+      "summary": "读取 body 中的 username/password，匹配 MOCK_USERS，生成 access + refresh JWT 并通过 Set-Cookie 下发 refresh token。",
+      "tags": ["endpoint", "auth", "login", "POST", "jwt"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/auth/logout.post.ts",
+      "type": "file",
+      "name": "auth/logout.post.ts",
+      "filePath": "apps/backend-mock-template/api/auth/logout.post.ts",
+      "summary": "Nitro POST /api/auth/logout 端点，清除 refresh token cookie。",
+      "tags": ["endpoint", "auth", "logout", "nitro", "h3"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/auth/logout.post.ts:logout.post",
+      "type": "endpoint",
+      "name": "POST /api/auth/logout",
+      "filePath": "apps/backend-mock-template/api/auth/logout.post.ts",
+      "summary": "若存在 refresh token cookie 则清除，返回成功响应。",
+      "tags": ["endpoint", "auth", "logout", "POST"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "type": "file",
+      "name": "auth/refresh.post.ts",
+      "filePath": "apps/backend-mock-template/api/auth/refresh.post.ts",
+      "summary": "Nitro POST /api/auth/refresh 端点，验证 refresh token cookie 后重新签发 access token 并刷新 cookie。",
+      "tags": ["endpoint", "auth", "refresh", "nitro", "h3"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/auth/refresh.post.ts:refresh.post",
+      "type": "endpoint",
+      "name": "POST /api/auth/refresh",
+      "filePath": "apps/backend-mock-template/api/auth/refresh.post.ts",
+      "summary": "从 cookie 读取 refresh token，验签并查 MOCK_USERS 后颁发新的 access token。",
+      "tags": ["endpoint", "auth", "refresh", "POST", "jwt"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/demo/bigint.ts",
+      "type": "file",
+      "name": "demo/bigint.ts",
+      "filePath": "apps/backend-mock-template/api/demo/bigint.ts",
+      "summary": "Nitro GET /api/demo/bigint 端点，验证 token 后返回带 BigInt id 的字符串 JSON 用于前端精度测试。",
+      "tags": ["endpoint", "demo", "bigint", "nitro", "h3"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/demo/bigint.ts:bigint",
+      "type": "endpoint",
+      "name": "GET /api/demo/bigint",
+      "filePath": "apps/backend-mock-template/api/demo/bigint.ts",
+      "summary": "返回包含两个超大整数 id 的字符串 JSON，模拟长整型精度场景。",
+      "tags": ["endpoint", "demo", "bigint", "GET"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/menu/all.ts",
+      "type": "file",
+      "name": "menu/all.ts",
+      "filePath": "apps/backend-mock-template/api/menu/all.ts",
+      "summary": "Nitro GET /api/menu/all 端点，按当前用户角色返回对应的菜单树。",
+      "tags": ["endpoint", "menu", "rbac", "nitro", "h3"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/menu/all.ts:all",
+      "type": "endpoint",
+      "name": "GET /api/menu/all",
+      "filePath": "apps/backend-mock-template/api/menu/all.ts",
+      "summary": "根据 token 中的 username 查找 MOCK_MENUS，返回匹配用户的菜单数组。",
+      "tags": ["endpoint", "menu", "rbac", "GET"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/status.ts",
+      "type": "file",
+      "name": "status.ts",
+      "filePath": "apps/backend-mock-template/api/status.ts",
+      "summary": "Nitro GET /api/status 端点，把 query.status 设置为响应状态码用于前端测试。",
+      "tags": ["endpoint", "status", "nitro", "h3", "test-helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/status.ts:status",
+      "type": "endpoint",
+      "name": "GET /api/status",
+      "filePath": "apps/backend-mock-template/api/status.ts",
+      "summary": "把 query 中的 status 字段作为 HTTP 状态码原样返回，用于前端错误处理测试。",
+      "tags": ["endpoint", "status", "GET", "test-helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/dept/.post.ts",
+      "type": "file",
+      "name": "system/dept/.post.ts",
+      "filePath": "apps/backend-mock-template/api/system/dept/.post.ts",
+      "summary": "Nitro POST /api/system/dept 端点，验证 token 后 sleep 600ms 返回 null 模拟新增部门。",
+      "tags": ["endpoint", "system", "dept", "mock", "nitro"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/dept/.post.ts:.post",
+      "type": "endpoint",
+      "name": "POST /api/system/dept",
+      "filePath": "apps/backend-mock-template/api/system/dept/.post.ts",
+      "summary": "校验 JWT 后延迟 600ms 返回成功响应，模拟部门创建延迟。",
+      "tags": ["endpoint", "system", "dept", "POST", "mock"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "type": "file",
+      "name": "system/dept/[id].delete.ts",
+      "filePath": "apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "summary": "Nitro DELETE /api/system/dept/[id] 端点，验证 token 后 sleep 1000ms 模拟删除部门。",
+      "tags": ["endpoint", "system", "dept", "mock", "nitro"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/dept/[id].delete.ts:[id].delete",
+      "type": "endpoint",
+      "name": "DELETE /api/system/dept/[id]",
+      "filePath": "apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "summary": "校验 JWT 后延迟 1 秒返回成功响应，模拟部门删除延迟。",
+      "tags": ["endpoint", "system", "dept", "DELETE", "mock"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "type": "file",
+      "name": "system/dept/[id].put.ts",
+      "filePath": "apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "summary": "Nitro PUT /api/system/dept/[id] 端点，验证 token 后 sleep 2000ms 模拟编辑部门。",
+      "tags": ["endpoint", "system", "dept", "mock", "nitro"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/dept/[id].put.ts:[id].put",
+      "type": "endpoint",
+      "name": "PUT /api/system/dept/[id]",
+      "filePath": "apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "summary": "校验 JWT 后延迟 2 秒返回成功响应，模拟部门编辑延迟。",
+      "tags": ["endpoint", "system", "dept", "PUT", "mock"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "type": "file",
+      "name": "system/dept/list.ts",
+      "filePath": "apps/backend-mock-template/api/system/dept/list.ts",
+      "summary": "Nitro GET /api/system/dept/list 端点，验证 token 后用 faker 返回 10 条带子节点的部门列表。",
+      "tags": ["endpoint", "system", "dept", "faker", "mock-data", "nitro"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/dept/list.ts:list",
+      "type": "endpoint",
+      "name": "GET /api/system/dept/list",
+      "filePath": "apps/backend-mock-template/api/system/dept/list.ts",
+      "summary": "校验 JWT 后返回 deepClone 的 10 条部门 mock 列表（含子节点）。",
+      "tags": ["endpoint", "system", "dept", "GET", "mock"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/backend-mock-template/api/system/dept/list.ts:generateMockDataList",
+      "type": "function",
+      "name": "generateMockDataList",
+      "filePath": "apps/backend-mock-template/api/system/dept/list.ts",
+      "lineRange": [16, 44],
+      "summary": "用 @faker-js/faker 生成 count 条部门数据，部分带 children 子节点。",
+      "tags": ["utility", "mock-data", "faker"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "type": "file",
+      "name": "system/menu/list.ts",
+      "filePath": "apps/backend-mock-template/api/system/menu/list.ts",
+      "summary": "Nitro GET /api/system/menu/list 端点，验证 token 后返回 MOCK_MENU_LIST。",
+      "tags": ["endpoint", "system", "menu", "mock-data", "nitro"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/menu/list.ts:list",
+      "type": "endpoint",
+      "name": "GET /api/system/menu/list",
+      "filePath": "apps/backend-mock-template/api/system/menu/list.ts",
+      "summary": "校验 JWT 后返回 MOCK_MENU_LIST 常量。",
+      "tags": ["endpoint", "system", "menu", "GET"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "type": "file",
+      "name": "system/menu/name-exists.ts",
+      "filePath": "apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "summary": "Nitro GET /api/system/menu/name-exists 端点，检查 menu name 是否已被占用（编辑时排除自己）。",
+      "tags": ["endpoint", "system", "menu", "validation", "nitro"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/menu/name-exists.ts:name-exists",
+      "type": "endpoint",
+      "name": "GET /api/system/menu/name-exists",
+      "filePath": "apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "summary": "递归遍历 MOCK_MENU_LIST 构造 name→id map，校验 query 中的 name 是否冲突。",
+      "tags": ["endpoint", "system", "menu", "validation", "GET"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/backend-mock-template/api/system/menu/name-exists.ts:getNames",
+      "type": "function",
+      "name": "getNames",
+      "filePath": "apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "lineRange": [8, 15],
+      "summary": "递归将 menus 数组中的 name 写入闭包内的 namesMap。",
+      "tags": ["utility", "recursion", "helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "type": "file",
+      "name": "system/menu/path-exists.ts",
+      "filePath": "apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "summary": "Nitro GET /api/system/menu/path-exists 端点，检查 menu path 是否已被占用。",
+      "tags": ["endpoint", "system", "menu", "validation", "nitro"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/menu/path-exists.ts:path-exists",
+      "type": "endpoint",
+      "name": "GET /api/system/menu/path-exists",
+      "filePath": "apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "summary": "递归遍历 MOCK_MENU_LIST 构造 path→id map，校验 query 中的 path 是否冲突。",
+      "tags": ["endpoint", "system", "menu", "validation", "GET"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/backend-mock-template/api/system/menu/path-exists.ts:getPaths",
+      "type": "function",
+      "name": "getPaths",
+      "filePath": "apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "lineRange": [8, 15],
+      "summary": "递归将 menus 数组中的 path 写入闭包内的 pathMap。",
+      "tags": ["utility", "recursion", "helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "type": "file",
+      "name": "system/role/list.ts",
+      "filePath": "apps/backend-mock-template/api/system/role/list.ts",
+      "summary": "Nitro GET /api/system/role/list 端点，验证 token 后用 faker 返回分页的角色列表（支持多条件过滤）。",
+      "tags": ["endpoint", "system", "role", "pagination", "faker", "nitro"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/role/list.ts:list",
+      "type": "endpoint",
+      "name": "GET /api/system/role/list",
+      "filePath": "apps/backend-mock-template/api/system/role/list.ts",
+      "summary": "校验 JWT 后按 name/id/remark/startTime/endTime/status 过滤 mockData，返回分页响应。",
+      "tags": ["endpoint", "system", "role", "GET", "pagination"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/backend-mock-template/api/system/role/list.ts:generateMockDataList",
+      "type": "function",
+      "name": "generateMockDataList",
+      "filePath": "apps/backend-mock-template/api/system/role/list.ts",
+      "lineRange": [19, 36],
+      "summary": "用 faker 生成 count 条角色数据，permissions 取自 MOCK_MENU_LIST 递归出的 id。",
+      "tags": ["utility", "mock-data", "faker"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "type": "file",
+      "name": "system/user/[id].delete.ts",
+      "filePath": "apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "summary": "Nitro DELETE /api/system/user/[id] 端点，从共享 mockUserList 删除指定 id 并返回被删记录。",
+      "tags": ["endpoint", "system", "user", "delete", "nitro"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/user/[id].delete.ts:[id].delete",
+      "type": "endpoint",
+      "name": "DELETE /api/system/user/[id]",
+      "filePath": "apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "summary": "读取路由参数 id，从 getMockUserList 中移除并返回该用户；缺失返回 400/404。",
+      "tags": ["endpoint", "system", "user", "DELETE"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/user/[id].put.ts",
+      "type": "file",
+      "name": "system/user/[id].put.ts",
+      "filePath": "apps/backend-mock-template/api/system/user/[id].put.ts",
+      "summary": "Nitro PUT /api/system/user/[id] 端点，从共享 mockUserList 更新指定用户并返回最新记录。",
+      "tags": ["endpoint", "system", "user", "update", "nitro"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/user/[id].put.ts:[id].put",
+      "type": "endpoint",
+      "name": "PUT /api/system/user/[id]",
+      "filePath": "apps/backend-mock-template/api/system/user/[id].put.ts",
+      "summary": "读取路由参数 id 和 body，合并更新 mockUserList 中对应项；缺失返回 400/404。",
+      "tags": ["endpoint", "system", "user", "PUT"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/user/create.post.ts",
+      "type": "file",
+      "name": "system/user/create.post.ts",
+      "filePath": "apps/backend-mock-template/api/system/user/create.post.ts",
+      "summary": "Nitro POST /api/system/user/create 端点，校验 body 后向共享 mockUserList 头部插入新用户。",
+      "tags": ["endpoint", "system", "user", "create", "faker", "nitro"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/user/create.post.ts:create.post",
+      "type": "endpoint",
+      "name": "POST /api/system/user/create",
+      "filePath": "apps/backend-mock-template/api/system/user/create.post.ts",
+      "summary": "校验 username 必填且不重复，构造新用户（含 faker uuid）后返回成功响应。",
+      "tags": ["endpoint", "system", "user", "POST", "create"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "type": "file",
+      "name": "system/user/list.ts",
+      "filePath": "apps/backend-mock-template/api/system/user/list.ts",
+      "summary": "Nitro GET /api/system/user/list 端点，验证 token 后用 faker 生成 20 条种子用户并写入共享列表。",
+      "tags": ["endpoint", "system", "user", "pagination", "faker", "nitro"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/system/user/list.ts:list",
+      "type": "endpoint",
+      "name": "GET /api/system/user/list",
+      "filePath": "apps/backend-mock-template/api/system/user/list.ts",
+      "summary": "首次请求写入种子数据，后续按 page/pageSize/username/realName/status 过滤后返回分页结果。",
+      "tags": ["endpoint", "system", "user", "GET", "pagination"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/backend-mock-template/api/system/user/list.ts:generateUserListData",
+      "type": "function",
+      "name": "generateUserListData",
+      "filePath": "apps/backend-mock-template/api/system/user/list.ts",
+      "lineRange": [29, 63],
+      "summary": "基于 MOCK_USERS 三条种子加上 faker 随机账号，凑足 count 条 UserListItem。",
+      "tags": ["utility", "mock-data", "faker", "seed"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/table/list.ts",
+      "type": "file",
+      "name": "table/list.ts",
+      "filePath": "apps/backend-mock-template/api/table/list.ts",
+      "summary": "Nitro GET /api/table/list 端点，验证 token 后用 faker 返回 100 条带分页排序的表格数据。",
+      "tags": ["endpoint", "table", "pagination", "sorting", "faker", "nitro"],
+      "complexity": "complex"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/table/list.ts:list",
+      "type": "endpoint",
+      "name": "GET /api/table/list",
+      "filePath": "apps/backend-mock-template/api/table/list.ts",
+      "summary": "校验 JWT 后按 sortBy/sortOrder 排序 100 条 mock 数据，返回分页响应。",
+      "tags": ["endpoint", "table", "GET", "pagination", "sorting"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/backend-mock-template/api/table/list.ts:generateMockDataList",
+      "type": "function",
+      "name": "generateMockDataList",
+      "filePath": "apps/backend-mock-template/api/table/list.ts",
+      "lineRange": [6, 35],
+      "summary": "用 faker 生成 count 条商品/订单类表格数据，包含价格、评分、颜色、标签等字段。",
+      "tags": ["utility", "mock-data", "faker"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/test.get.ts",
+      "type": "file",
+      "name": "test.get.ts",
+      "filePath": "apps/backend-mock-template/api/test.get.ts",
+      "summary": "Nitro GET /api/test 端点，烟雾测试 handler，返回字符串 'Test get handler'。",
+      "tags": ["endpoint", "smoke-test", "nitro", "h3"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/test.get.ts:test.get",
+      "type": "endpoint",
+      "name": "GET /api/test",
+      "filePath": "apps/backend-mock-template/api/test.get.ts",
+      "summary": "最简单的 GET handler，用于连通性测试。",
+      "tags": ["endpoint", "smoke-test", "GET"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/test.post.ts",
+      "type": "file",
+      "name": "test.post.ts",
+      "filePath": "apps/backend-mock-template/api/test.post.ts",
+      "summary": "Nitro POST /api/test 端点，烟雾测试 handler，返回字符串 'Test post handler'。",
+      "tags": ["endpoint", "smoke-test", "nitro", "h3"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/test.post.ts:test.post",
+      "type": "endpoint",
+      "name": "POST /api/test",
+      "filePath": "apps/backend-mock-template/api/test.post.ts",
+      "summary": "最简单的 POST handler，用于连通性测试。",
+      "tags": ["endpoint", "smoke-test", "POST"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "type": "file",
+      "name": "timezone/getTimezone.ts",
+      "filePath": "apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "summary": "Nitro GET /api/timezone/getTimezone 端点，验证 token 后返回时区列表。",
+      "tags": ["endpoint", "timezone", "nitro", "h3"],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:apps/backend-mock-template/api/timezone/getTimezone.ts:getTimezone",
+      "type": "endpoint",
+      "name": "GET /api/timezone/getTimezone",
+      "filePath": "apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "summary": "校验 JWT 后返回 timezone-utils 中的 getTimezone() 结果。",
+      "tags": ["endpoint", "timezone", "GET"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/codes.ts",
+      "target": "endpoint:apps/backend-mock-template/api/auth/codes.ts:codes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/login.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/auth/login.post.ts:login.post",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/logout.post.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/logout.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/logout.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/auth/logout.post.ts:logout.post",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/cookie-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/auth/refresh.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/auth/refresh.post.ts:refresh.post",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/demo/bigint.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/demo/bigint.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/demo/bigint.ts",
+      "target": "endpoint:apps/backend-mock-template/api/demo/bigint.ts:bigint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/menu/all.ts",
+      "target": "endpoint:apps/backend-mock-template/api/menu/all.ts:all",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/status.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/status.ts",
+      "target": "endpoint:apps/backend-mock-template/api/status.ts:status",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/.post.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/dept/.post.ts:.post",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/dept/[id].delete.ts:[id].delete",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/dept/[id].put.ts:[id].put",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/dept/list.ts:list",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/dept/list.ts",
+      "target": "function:apps/backend-mock-template/api/system/dept/list.ts:generateMockDataList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/list.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/menu/list.ts:list",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/menu/name-exists.ts:name-exists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "target": "function:apps/backend-mock-template/api/system/menu/name-exists.ts:getNames",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/menu/path-exists.ts:path-exists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "target": "function:apps/backend-mock-template/api/system/menu/path-exists.ts:getPaths",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/role/list.ts:list",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/role/list.ts",
+      "target": "function:apps/backend-mock-template/api/system/role/list.ts:generateMockDataList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/user/[id].delete.ts:[id].delete",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].put.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/[id].put.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/user/[id].put.ts:[id].put",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/create.post.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/create.post.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/create.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/user/create.post.ts:create.post",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "file:apps/backend-mock-template/utils/mock-data.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "endpoint:apps/backend-mock-template/api/system/user/list.ts:list",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/system/user/list.ts",
+      "target": "function:apps/backend-mock-template/api/system/user/list.ts:generateUserListData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/table/list.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/table/list.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/table/list.ts",
+      "target": "endpoint:apps/backend-mock-template/api/table/list.ts:list",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/table/list.ts",
+      "target": "function:apps/backend-mock-template/api/table/list.ts:generateMockDataList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/test.get.ts",
+      "target": "endpoint:apps/backend-mock-template/api/test.get.ts:test.get",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/test.post.ts",
+      "target": "endpoint:apps/backend-mock-template/api/test.post.ts:test.post",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/jwt-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "file:apps/backend-mock-template/utils/timezone-utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "target": "endpoint:apps/backend-mock-template/api/timezone/getTimezone.ts:getTimezone",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

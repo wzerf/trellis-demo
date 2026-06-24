@@ -1,0 +1,248 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "type": "file",
+      "name": "RedisKeys.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "summary": "定义 Redis Key 前缀与 MDC 命名空间常量的工具类，承载 Sa-Token 业务前缀与 traceId 的 MDC key。",
+      "tags": ["constant", "utility", "redis", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java:RedisKeys",
+      "type": "class",
+      "name": "RedisKeys",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "lineRange": [8, 17],
+      "summary": "final 常量容器，聚合 Sa-Token 前缀与 traceId MDC key，避免散落字符串。",
+      "tags": ["constant", "utility", "redis"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "type": "file",
+      "name": "TraceIdUtil.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "summary": "提供 traceId 解析与生成工具，从 X-Trace-Id header 读取、缺失时回退到 UUID。",
+      "tags": ["utility", "trace-id", "logging"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java:TraceIdUtil",
+      "type": "class",
+      "name": "TraceIdUtil",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "lineRange": [12, 28],
+      "summary": "traceId 工具类，封装 header 常量、UUID 生成与缺失回退策略。",
+      "tags": ["utility", "trace-id", "uuid"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java:resolveOrGenerate",
+      "type": "function",
+      "name": "resolveOrGenerate",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "lineRange": [20, 25],
+      "summary": "从入参 header 值中解析 traceId，空值时回退到 UUID 生成。",
+      "tags": ["utility", "trace-id", "fallback"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "type": "file",
+      "name": "TraceIdFilter.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "summary": "Spring OncePerRequestFilter 实现，负责请求入口读取/生成 traceId、写入 MDC 与响应头，并在 finally 中清理。",
+      "tags": ["filter", "trace-id", "logging", "middleware"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java:TraceIdFilter",
+      "type": "class",
+      "name": "TraceIdFilter",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "lineRange": [29, 45],
+      "summary": "最高优先级 Spring 过滤器，复写 doFilterInternal 完成 traceId 注入、MDC 维护与响应头回传。",
+      "tags": ["filter", "trace-id", "spring", "middleware"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java:doFilterInternal",
+      "type": "function",
+      "name": "doFilterInternal",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "lineRange": [33, 44],
+      "summary": "解析或生成 traceId、写入 MDC 与响应头、调用下游过滤器链并在 finally 中清理 MDC。",
+      "tags": ["filter", "trace-id", "mdc"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "type": "file",
+      "name": "TraceIdFilterTest.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "summary": "TraceIdFilter 单元测试，验证缺失 header 时自动生成、来路 header 时透传以及请求结束后 MDC 清理。",
+      "tags": ["test", "trace-id", "junit"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java:TraceIdFilterTest",
+      "type": "class",
+      "name": "TraceIdFilterTest",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "lineRange": [24, 59],
+      "summary": "测试容器，承载 traceId 自动生成与透传两条用例。",
+      "tags": ["test", "junit", "trace-id"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java:doFilter_generatesTraceIdWhenHeaderMissing",
+      "type": "function",
+      "name": "doFilter_generatesTraceIdWhenHeaderMissing",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "lineRange": [28, 43],
+      "summary": "验证缺失 X-Trace-Id 时过滤器自动生成 traceId、写入 MDC、响应头并清空。",
+      "tags": ["test", "trace-id", "mdc"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java:doFilter_preservesIncomingTraceId",
+      "type": "function",
+      "name": "doFilter_preservesIncomingTraceId",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "lineRange": [45, 58],
+      "summary": "验证 X-Trace-Id 已存在时过滤器透传到 MDC 与响应头，不重新生成。",
+      "tags": ["test", "trace-id", "passthrough"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java:RedisKeys",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java:TraceIdUtil",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java:TraceIdUtil",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java:resolveOrGenerate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java:TraceIdFilter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java:TraceIdFilter",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java:doFilterInternal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java:TraceIdFilterTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java:TraceIdFilterTest",
+      "target": "function:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java:doFilter_generatesTraceIdWhenHeaderMissing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java:TraceIdFilterTest",
+      "target": "function:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java:doFilter_preservesIncomingTraceId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java:TraceIdFilter",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java:RedisKeys",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java:TraceIdFilter",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java:TraceIdUtil",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java:doFilterInternal",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java:resolveOrGenerate",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java:doFilter_generatesTraceIdWhenHeaderMissing",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java:doFilterInternal",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java:doFilter_preservesIncomingTraceId",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java:doFilterInternal",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

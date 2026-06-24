@@ -1,0 +1,1419 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 18,
+      "exports": [
+        {
+          "name": "Skeleton",
+          "line": 2,
+          "isDefault": false
+        },
+        {
+          "name": "SkeletonBlock",
+          "line": 2,
+          "isDefault": false
+        },
+        {
+          "name": "SkeletonCompat",
+          "line": 2,
+          "isDefault": false
+        },
+        {
+          "name": "SkeletonProps",
+          "line": 3,
+          "isDefault": false
+        },
+        {
+          "name": "SkeletonBlockProps",
+          "line": 3,
+          "isDefault": false
+        },
+        {
+          "name": "SkeletonAnimation",
+          "line": 3,
+          "isDefault": false
+        },
+        {
+          "name": "SkeletonShape",
+          "line": 3,
+          "isDefault": false
+        },
+        {
+          "name": "PageSkeleton",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "TableSkeleton",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "TableSkeletonProps",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "ListSkeleton",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "ListSkeletonProps",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "FormSkeleton",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "FormSkeletonProps",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "CardSkeleton",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "CardSkeletonProps",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "useSkeletonAnimation",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "default",
+          "line": 21,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 18,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/styles.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 112,
+      "nonEmptyLines": 98,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/layouts/components/PageContainer/ContentContainer.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 97,
+      "nonEmptyLines": 91,
+      "functions": [
+        {
+          "name": "ContentContainer",
+          "startLine": 53,
+          "endLine": 95,
+          "params": [
+            "{\n  children,\n  padding = '16px',\n  scrollable = false,\n  heightMode = 'fixed',\n  bottomMargin = 0,\n  style,\n  className,\n}"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ContentContainer",
+          "callee": "[\n    'content-container',\n    heightMode === 'auto' && 'content-container--auto',\n    heightMode === 'fixed' && 'content-container--fixed',\n    scrollable && 'content-container--scrollable',\n    className,\n  ]\n    .filter(Boolean)\n    .join",
+          "lineNumber": 62
+        },
+        {
+          "caller": "ContentContainer",
+          "callee": "[\n    'content-container',\n    heightMode === 'auto' && 'content-container--auto',\n    heightMode === 'fixed' && 'content-container--fixed',\n    scrollable && 'content-container--scrollable',\n    className,\n  ]\n    .filter",
+          "lineNumber": 62
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/IFrameLayout/iframe-layout.less",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 68,
+      "nonEmptyLines": 60,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/layouts/IFrameLayout/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 139,
+      "nonEmptyLines": 122,
+      "functions": [
+        {
+          "name": "IFrameLayout",
+          "startLine": 14,
+          "endLine": 137,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "IFrameLayout",
+          "callee": "useLocation",
+          "lineNumber": 15
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "useRef",
+          "lineNumber": 16
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "useState",
+          "lineNumber": 17
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "useState",
+          "lineNumber": 18
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "usePreferences",
+          "lineNumber": 19
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "useI18n",
+          "lineNumber": 20
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "useMemo",
+          "lineNumber": 23
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "searchParams.get",
+          "lineNumber": 30
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "useCallback",
+          "lineNumber": 39
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "setLoading",
+          "lineNumber": 40
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "setError",
+          "lineNumber": 41
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "useCallback",
+          "lineNumber": 45
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "setLoading",
+          "lineNumber": 46
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "setError",
+          "lineNumber": 47
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "t",
+          "lineNumber": 47
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "useEffect",
+          "lineNumber": 51
+        },
+        {
+          "caller": "handleMessage",
+          "callee": "console.log",
+          "lineNumber": 68
+        },
+        {
+          "caller": "handleMessage",
+          "callee": "setLoading",
+          "lineNumber": 72
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "window.addEventListener",
+          "lineNumber": 79
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "window.removeEventListener",
+          "lineNumber": 80
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "useCallback",
+          "lineNumber": 84
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "iframeRef.current.contentWindow.postMessage",
+          "lineNumber": 86
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "useEffect",
+          "lineNumber": 90
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "postMessageToIframe",
+          "lineNumber": 92
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "t",
+          "lineNumber": 102
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "t",
+          "lineNumber": 103
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "t",
+          "lineNumber": 114
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "t",
+          "lineNumber": 120
+        },
+        {
+          "caller": "IFrameLayout",
+          "callee": "t",
+          "lineNumber": 130
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/SiderMenu.style.less",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 56,
+      "nonEmptyLines": 50,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/TabsBar/tabsbar.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 292,
+      "nonEmptyLines": 243,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/types.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/UserLayout/components/background.less",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 195,
+      "nonEmptyLines": 162,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/layouts/UserLayout/components/Background.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 95,
+      "nonEmptyLines": 80,
+      "functions": [
+        {
+          "name": "Background",
+          "startLine": 20,
+          "endLine": 93,
+          "params": [
+            "{ layout }"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Background",
+          "callee": "usePreferences",
+          "lineNumber": 21
+        },
+        {
+          "caller": "Background",
+          "callee": "useMemo",
+          "lineNumber": 26
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/UserLayout/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 137,
+      "nonEmptyLines": 120,
+      "functions": [
+        {
+          "name": "UserLayout",
+          "startLine": 20,
+          "endLine": 135,
+          "params": [
+            "{ requireAuth = false }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "UserLayout",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "UserLayout",
+          "callee": "useAuthStore",
+          "lineNumber": 21
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "usePreferencesStore",
+          "lineNumber": 22
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "useThemeConfig",
+          "lineNumber": 23
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "useLocale",
+          "lineNumber": 24
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "useTranslation",
+          "lineNumber": 25
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "React.useMemo",
+          "lineNumber": 28
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "window.matchMedia",
+          "lineNumber": 30
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "React.useEffect",
+          "lineNumber": 36
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "window.matchMedia",
+          "lineNumber": 37
+        },
+        {
+          "caller": "handleChange",
+          "callee": "usePreferencesStore.getState().setPreferences",
+          "lineNumber": 41
+        },
+        {
+          "caller": "handleChange",
+          "callee": "usePreferencesStore.getState",
+          "lineNumber": 41
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "mediaQuery.addEventListener",
+          "lineNumber": 44
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "mediaQuery.removeEventListener",
+          "lineNumber": 45
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "encodeURIComponent",
+          "lineNumber": 50
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "t",
+          "lineNumber": 72
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "t",
+          "lineNumber": 83
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "t",
+          "lineNumber": 83
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "usePreferencesStore.getState().setPreferences",
+          "lineNumber": 89
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "usePreferencesStore.getState",
+          "lineNumber": 89
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "t",
+          "lineNumber": 114
+        },
+        {
+          "caller": "UserLayout",
+          "callee": "t",
+          "lineNumber": 115
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/UserLayout/UserLayout.style.less",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 225,
+      "nonEmptyLines": 192,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/main.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 45,
+      "nonEmptyLines": 36,
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 7,
+      "exports": [
+        {
+          "name": "StatsCard",
+          "line": 1,
+          "isDefault": false
+        },
+        {
+          "name": "TrendChart",
+          "line": 2,
+          "isDefault": false
+        },
+        {
+          "name": "LineChart",
+          "line": 3,
+          "isDefault": false
+        },
+        {
+          "name": "BarChart",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "VisitRadarChart",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "SourceDonutChart",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "SourcePieChart",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 7,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/SourceDonutChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 68,
+      "functions": [
+        {
+          "name": "SourceDonutChart",
+          "startLine": 9,
+          "endLine": 71,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SourceDonutChart",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "SourceDonutChart",
+          "callee": "usePreferences",
+          "lineNumber": 10
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "useI18n",
+          "lineNumber": 11
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "t",
+          "lineNumber": 22
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "t",
+          "lineNumber": 23
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "t",
+          "lineNumber": 24
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "t",
+          "lineNumber": 25
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "t",
+          "lineNumber": 33
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "t",
+          "lineNumber": 57
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "t",
+          "lineNumber": 58
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "t",
+          "lineNumber": 59
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "t",
+          "lineNumber": 60
+        },
+        {
+          "caller": "SourceDonutChart",
+          "callee": "t",
+          "lineNumber": 67
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/SourcePieChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 50,
+      "functions": [
+        {
+          "name": "SourcePieChart",
+          "startLine": 9,
+          "endLine": 53,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SourcePieChart",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "SourcePieChart",
+          "callee": "usePreferences",
+          "lineNumber": 10
+        },
+        {
+          "caller": "SourcePieChart",
+          "callee": "useI18n",
+          "lineNumber": 11
+        },
+        {
+          "caller": "SourcePieChart",
+          "callee": "t",
+          "lineNumber": 20
+        },
+        {
+          "caller": "SourcePieChart",
+          "callee": "t",
+          "lineNumber": 39
+        },
+        {
+          "caller": "SourcePieChart",
+          "callee": "t",
+          "lineNumber": 40
+        },
+        {
+          "caller": "SourcePieChart",
+          "callee": "t",
+          "lineNumber": 41
+        },
+        {
+          "caller": "SourcePieChart",
+          "callee": "t",
+          "lineNumber": 42
+        },
+        {
+          "caller": "SourcePieChart",
+          "callee": "t",
+          "lineNumber": 49
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/StatsCard.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 46,
+      "nonEmptyLines": 43,
+      "functions": [
+        {
+          "name": "StatsCard",
+          "startLine": 16,
+          "endLine": 46,
+          "params": [
+            "{ title, value, total, totalValue, icon }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "StatsCard",
+          "line": 16,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "StatsCard",
+          "callee": "usePreferences",
+          "lineNumber": 17
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/components/VisitRadarChart.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 85,
+      "nonEmptyLines": 82,
+      "functions": [
+        {
+          "name": "VisitRadarChart",
+          "startLine": 9,
+          "endLine": 85,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "VisitRadarChart",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "VisitRadarChart",
+          "callee": "usePreferences",
+          "lineNumber": 10
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "useI18n",
+          "lineNumber": 11
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 18
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 18
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 26
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 27
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 28
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 29
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 30
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 31
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 52
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 57
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 67
+        },
+        {
+          "caller": "VisitRadarChart",
+          "callee": "t",
+          "lineNumber": 81
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/dashboard/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 89,
+      "nonEmptyLines": 83,
+      "functions": [
+        {
+          "name": "Dashboard",
+          "startLine": 18,
+          "endLine": 87,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Dashboard",
+          "callee": "useTranslation",
+          "lineNumber": 19
+        },
+        {
+          "caller": "Dashboard",
+          "callee": "t",
+          "lineNumber": 24
+        },
+        {
+          "caller": "Dashboard",
+          "callee": "t",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Dashboard",
+          "callee": "t",
+          "lineNumber": 31
+        },
+        {
+          "caller": "Dashboard",
+          "callee": "t",
+          "lineNumber": 33
+        },
+        {
+          "caller": "Dashboard",
+          "callee": "t",
+          "lineNumber": 38
+        },
+        {
+          "caller": "Dashboard",
+          "callee": "t",
+          "lineNumber": 40
+        },
+        {
+          "caller": "Dashboard",
+          "callee": "t",
+          "lineNumber": 45
+        },
+        {
+          "caller": "Dashboard",
+          "callee": "t",
+          "lineNumber": 47
+        },
+        {
+          "caller": "Dashboard",
+          "callee": "statsData.map",
+          "lineNumber": 57
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/app/system/user/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 296,
+      "nonEmptyLines": 284,
+      "functions": [
+        {
+          "name": "UserPage",
+          "startLine": 36,
+          "endLine": 294,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "UserPage",
+          "callee": "useState",
+          "lineNumber": 37
+        },
+        {
+          "caller": "UserPage",
+          "callee": "useState",
+          "lineNumber": 38
+        },
+        {
+          "caller": "UserPage",
+          "callee": "useState",
+          "lineNumber": 39
+        },
+        {
+          "caller": "UserPage",
+          "callee": "useState",
+          "lineNumber": 40
+        },
+        {
+          "caller": "UserPage",
+          "callee": "Form.useForm",
+          "lineNumber": 41
+        },
+        {
+          "caller": "UserPage",
+          "callee": "useRef",
+          "lineNumber": 42
+        },
+        {
+          "caller": "UserPage",
+          "callee": "useListUsers",
+          "lineNumber": 49
+        },
+        {
+          "caller": "UserPage",
+          "callee": "useCreateUser",
+          "lineNumber": 51
+        },
+        {
+          "caller": "UserPage",
+          "callee": "message.success",
+          "lineNumber": 53
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setCreateOpen",
+          "lineNumber": 54
+        },
+        {
+          "caller": "UserPage",
+          "callee": "form.resetFields",
+          "lineNumber": 55
+        },
+        {
+          "caller": "UserPage",
+          "callee": "refetch",
+          "lineNumber": 56
+        },
+        {
+          "caller": "UserPage",
+          "callee": "message.error",
+          "lineNumber": 58
+        },
+        {
+          "caller": "UserPage",
+          "callee": "useUpdateUser",
+          "lineNumber": 60
+        },
+        {
+          "caller": "UserPage",
+          "callee": "message.success",
+          "lineNumber": 62
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setEditing",
+          "lineNumber": 63
+        },
+        {
+          "caller": "UserPage",
+          "callee": "form.resetFields",
+          "lineNumber": 64
+        },
+        {
+          "caller": "UserPage",
+          "callee": "refetch",
+          "lineNumber": 65
+        },
+        {
+          "caller": "UserPage",
+          "callee": "message.error",
+          "lineNumber": 67
+        },
+        {
+          "caller": "UserPage",
+          "callee": "useDeleteUser",
+          "lineNumber": 69
+        },
+        {
+          "caller": "UserPage",
+          "callee": "message.success",
+          "lineNumber": 71
+        },
+        {
+          "caller": "UserPage",
+          "callee": "refetch",
+          "lineNumber": 72
+        },
+        {
+          "caller": "UserPage",
+          "callee": "message.error",
+          "lineNumber": 74
+        },
+        {
+          "caller": "UserPage",
+          "callee": "roles.map",
+          "lineNumber": 87
+        },
+        {
+          "caller": "UserPage",
+          "callee": "openEdit",
+          "lineNumber": 109
+        },
+        {
+          "caller": "UserPage",
+          "callee": "deleteMutation.mutate",
+          "lineNumber": 117
+        },
+        {
+          "caller": "openEdit",
+          "callee": "setEditing",
+          "lineNumber": 129
+        },
+        {
+          "caller": "openEdit",
+          "callee": "form.setFieldsValue",
+          "lineNumber": 130
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "form\n      .validateFields()\n      .then((values) => {\n        if (editing) {\n          updateMutation.mutate({ id: editing.id, data: values });\n        } else {\n          createMutation.mutate(values);\n        }\n      })\n      .catch",
+          "lineNumber": 142
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "form\n      .validateFields()\n      .then",
+          "lineNumber": 142
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "form\n      .validateFields",
+          "lineNumber": 142
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "updateMutation.mutate",
+          "lineNumber": 146
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "createMutation.mutate",
+          "lineNumber": 148
+        },
+        {
+          "caller": "handleTableChange",
+          "callee": "setQuery",
+          "lineNumber": 155
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setSearch",
+          "lineNumber": 170
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setQuery",
+          "lineNumber": 171
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setSearch",
+          "lineNumber": 178
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setQuery",
+          "lineNumber": 179
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setSearch",
+          "lineNumber": 187
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setQuery",
+          "lineNumber": 188
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setQuery",
+          "lineNumber": 198
+        },
+        {
+          "caller": "UserPage",
+          "callee": "refetch",
+          "lineNumber": 199
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setSearch",
+          "lineNumber": 204
+        },
+        {
+          "caller": "UserPage",
+          "callee": "refetch",
+          "lineNumber": 207
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setEditing",
+          "lineNumber": 214
+        },
+        {
+          "caller": "UserPage",
+          "callee": "form.resetFields",
+          "lineNumber": 215
+        },
+        {
+          "caller": "UserPage",
+          "callee": "form.setFieldsValue",
+          "lineNumber": 216
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setCreateOpen",
+          "lineNumber": 217
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setCreateOpen",
+          "lineNumber": 244
+        },
+        {
+          "caller": "UserPage",
+          "callee": "setEditing",
+          "lineNumber": 245
+        },
+        {
+          "caller": "UserPage",
+          "callee": "form.resetFields",
+          "lineNumber": 246
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/auth/auth-form.style.less",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 221,
+      "nonEmptyLines": 183,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/auth/login/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 115,
+      "nonEmptyLines": 104,
+      "functions": [
+        {
+          "name": "Login",
+          "startLine": 9,
+          "endLine": 113,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Login",
+          "callee": "useTranslation",
+          "lineNumber": 10
+        },
+        {
+          "caller": "Login",
+          "callee": "useAuthStore",
+          "lineNumber": 11
+        },
+        {
+          "caller": "Login",
+          "callee": "useNavigate",
+          "lineNumber": 12
+        },
+        {
+          "caller": "Login",
+          "callee": "useSearchParams",
+          "lineNumber": 13
+        },
+        {
+          "caller": "Login",
+          "callee": "App.useApp",
+          "lineNumber": 14
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "login",
+          "lineNumber": 18
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "message.success",
+          "lineNumber": 26
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "t",
+          "lineNumber": 26
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "searchParams.get",
+          "lineNumber": 29
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setTimeout",
+          "lineNumber": 30
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "navigate",
+          "lineNumber": 31
+        },
+        {
+          "caller": "Login",
+          "callee": "t",
+          "lineNumber": 42
+        },
+        {
+          "caller": "Login",
+          "callee": "t",
+          "lineNumber": 44
+        },
+        {
+          "caller": "Login",
+          "callee": "t",
+          "lineNumber": 61
+        },
+        {
+          "caller": "Login",
+          "callee": "t",
+          "lineNumber": 67
+        },
+        {
+          "caller": "Login",
+          "callee": "t",
+          "lineNumber": 78
+        },
+        {
+          "caller": "Login",
+          "callee": "t",
+          "lineNumber": 84
+        },
+        {
+          "caller": "Login",
+          "callee": "t",
+          "lineNumber": 92
+        },
+        {
+          "caller": "Login",
+          "callee": "t",
+          "lineNumber": 105
+        },
+        {
+          "caller": "Login",
+          "callee": "t",
+          "lineNumber": 105
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/auth/login/login.style.less",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 86,
+      "nonEmptyLines": 72,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/pages/core/error/Fallback.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 81,
+      "nonEmptyLines": 70,
+      "metrics": {}
+    }
+  ]
+}

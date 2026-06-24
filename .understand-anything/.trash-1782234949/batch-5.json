@@ -1,0 +1,73 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "type": "file",
+      "name": "SecurityConstants.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "summary": "定义鉴权相关常量的 final 工具类，集中维护 Sa-Token 名称、默认角色与 MDC 用户 key，供 common / infra 层共享。",
+      "tags": ["constant", "security", "utility", "shared"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java:SecurityConstants",
+      "type": "class",
+      "name": "SecurityConstants",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "lineRange": [8, 20],
+      "summary": "final 常量容器，导出 TOKEN_NAME / ROLE_ADMIN / MDC_USER_ID 三个 public static final 字符串；私有构造方法禁止实例化。",
+      "tags": ["constant", "security", "sa-token", "immutable"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "type": "file",
+      "name": "SaTokenConfig.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "summary": "Sa-Token 工具配置：声明 Q3 决策（Redis 模式），并提供 currentUserIdOrNull 静态方法供 Logback MDC 取当前登录用户 id。",
+      "tags": ["configuration", "sa-token", "security", "spring"],
+      "complexity": "simple",
+      "languageNotes": "使用 @Configuration 作为占位扩展点，依赖 sa-token-spring-boot-starter 自动装配 SaTokenDao，无需手工注册 Bean。"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "type": "file",
+      "name": "SaTokenConfigure.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "summary": "Sa-Token 工具类：放弃 SaServletFilter（与 Jakarta EE 11 不兼容），仅保留 currentUserIdOrNull 工具方法，鉴权交由 SaInterceptor + WebConfig 处理。",
+      "tags": ["sa-token", "security", "utility", "spring"],
+      "complexity": "simple",
+      "languageNotes": "绕过 SaServletFilter 的兼容性坑，改用 SaInterceptor，规避 Spring Boot 4 与 javax.servlet 冲突。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java:SecurityConstants",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

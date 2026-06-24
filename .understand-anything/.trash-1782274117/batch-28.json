@@ -1,0 +1,185 @@
+{
+  "nodes": [
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/api-audit-log.json",
+      "type": "config",
+      "name": "api-audit-log.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/api-audit-log.json",
+      "summary": "API 审计日志模块的中文(zh-CN)i18n 文案，定义页面表格列标题、查询筛选占位符及成功/失败等状态文案。",
+      "tags": ["i18n", "locale", "zh-CN", "audit-log", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/api.json",
+      "type": "config",
+      "name": "api.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/api.json",
+      "summary": "API 资源管理模块的中文(zh-CN)i18n 文案，覆盖列表字段、增删改查操作文案及同步/删除二次确认提示。",
+      "tags": ["i18n", "locale", "zh-CN", "api-management", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/dashboard.json",
+      "type": "config",
+      "name": "dashboard.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/dashboard.json",
+      "summary": "仪表盘模块的中文(zh-CN)i18n 文案，包含统计指标、图表标题、来源分布、品类和设备等展示文案。",
+      "tags": ["i18n", "locale", "zh-CN", "dashboard", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/data-access-audit-log.json",
+      "type": "config",
+      "name": "data-access-audit-log.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/data-access-audit-log.json",
+      "summary": "数据访问审计日志模块的中文(zh-CN)i18n 文案，覆盖表名、访问类型(READ/CREATE/UPDATE/DELETE)和成功状态字段。",
+      "tags": ["i18n", "locale", "zh-CN", "audit-log", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/dict-entry.json",
+      "type": "config",
+      "name": "dict-entry.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/dict-entry.json",
+      "summary": "字典条目管理模块的中文(zh-CN)i18n 文案，包含标签/数值/排序/状态等字段、校验提示及 i18n 翻译行。",
+      "tags": ["i18n", "locale", "zh-CN", "dictionary", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/dict-type.json",
+      "type": "config",
+      "name": "dict-type.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/dict-type.json",
+      "summary": "字典类型管理模块的中文(zh-CN)i18n 文案，覆盖类型名称、类型编码、排序、状态及操作成功/失败提示。",
+      "tags": ["i18n", "locale", "zh-CN", "dictionary", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/file.json",
+      "type": "config",
+      "name": "file.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/file.json",
+      "summary": "文件管理模块的中文(zh-CN)i18n 文案，包含文件名、存储目录、大小、提供方及上传/删除确认与结果提示。",
+      "tags": ["i18n", "locale", "zh-CN", "file-management", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/inbox.json",
+      "type": "config",
+      "name": "inbox.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/inbox.json",
+      "summary": "收件箱模块的中文(zh-CN)i18n 文案，提供标题、内容、阅读状态、已读/删除操作及跳转链接文案。",
+      "tags": ["i18n", "locale", "zh-CN", "inbox", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/internal-message.json",
+      "type": "config",
+      "name": "internal-message.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/internal-message.json",
+      "summary": "站内消息模块的中文(zh-CN)i18n 文案，覆盖标题/内容/分类/发送人、抽屉式表单和消息状态/类型映射。",
+      "tags": ["i18n", "locale", "zh-CN", "internal-message", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/language.json",
+      "type": "config",
+      "name": "language.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/language.json",
+      "summary": "语言管理模块的中文(zh-CN)i18n 文案，定义本地名、语言名、编码、是否启用、是否默认、排序等字段文案。",
+      "tags": ["i18n", "locale", "zh-CN", "language", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/login-audit-log.json",
+      "type": "config",
+      "name": "login-audit-log.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/login-audit-log.json",
+      "summary": "登录审计日志模块的中文(zh-CN)i18n 文案，含用户名/IP、操作类型(LOGIN/LOGOUT/...)、风险等级和登录状态枚举文案。",
+      "tags": ["i18n", "locale", "zh-CN", "audit-log", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/login-policy.json",
+      "type": "config",
+      "name": "login-policy.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/login-policy.json",
+      "summary": "登录策略模块的中文(zh-CN)i18n 文案，覆盖策略类型、方法、原因、校验提示及策略类型/方法的枚举映射。",
+      "tags": ["i18n", "locale", "zh-CN", "login-policy", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/menu.json",
+      "type": "config",
+      "name": "menu.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/menu.json",
+      "summary": "菜单管理模块的中文(zh-CN)i18n 文案，覆盖菜单名/标题、路由/组件路径、权限标识、缓存/标签等高级设置及类型映射。",
+      "tags": ["i18n", "locale", "zh-CN", "menu", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/message-category.json",
+      "type": "config",
+      "name": "message-category.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/message-category.json",
+      "summary": "消息分类模块的中文(zh-CN)i18n 文案，包含名称、编码、是否启用、备注等字段及增删改结果提示。",
+      "tags": ["i18n", "locale", "zh-CN", "message-category", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/operation-audit-log.json",
+      "type": "config",
+      "name": "operation-audit-log.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/operation-audit-log.json",
+      "summary": "操作审计日志模块的中文(zh-CN)i18n 文案，含资源类型、操作(CREATE/UPDATE/DELETE)、请求 ID 和成功状态等文案。",
+      "tags": ["i18n", "locale", "zh-CN", "audit-log", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/org-unit.json",
+      "type": "config",
+      "name": "org-unit.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/org-unit.json",
+      "summary": "组织单元模块的中文(zh-CN)i18n 文案，覆盖名称/编码/类型/上级/负责人、法人实体、税务登记号及状态/类型映射。",
+      "tags": ["i18n", "locale", "zh-CN", "org-unit", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/permission-audit-log.json",
+      "type": "config",
+      "name": "permission-audit-log.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/permission-audit-log.json",
+      "summary": "权限审计日志模块的中文(zh-CN)i18n 文案，含目标类型、操作人、操作(GRANT/REVOKE)、IP 与地理位置字段文案。",
+      "tags": ["i18n", "locale", "zh-CN", "audit-log", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/permission-group.json",
+      "type": "config",
+      "name": "permission-group.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/permission-group.json",
+      "summary": "权限组模块的中文(zh-CN)i18n 文案，覆盖组名、所属模块、上级、排序、状态及全选/展开等操作文案。",
+      "tags": ["i18n", "locale", "zh-CN", "permission-group", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/permission.json",
+      "type": "config",
+      "name": "permission.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/permission.json",
+      "summary": "权限管理模块的中文(zh-CN)i18n 文案，覆盖权限名/编码、所属组、关联菜单/API、状态、同步权限和树形操作文案。",
+      "tags": ["i18n", "locale", "zh-CN", "permission", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/src/locales/zh-CN/_modules/position.json",
+      "type": "config",
+      "name": "position.json",
+      "filePath": "apps/react-admin/src/locales/zh-CN/_modules/position.json",
+      "summary": "岗位管理模块的中文(zh-CN)i18n 文案，覆盖岗位名/编码、类型、所属组织、编制、排序、状态及状态/类型枚举映射。",
+      "tags": ["i18n", "locale", "zh-CN", "position", "config"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

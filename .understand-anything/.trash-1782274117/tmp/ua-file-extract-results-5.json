@@ -1,0 +1,1849 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 9,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/Footer.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 25,
+      "nonEmptyLines": 21,
+      "functions": [
+        {
+          "name": "AppFooter",
+          "startLine": 3,
+          "endLine": 23,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "AppFooter",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "AppFooter",
+          "callee": "usePreferencesStore",
+          "lineNumber": 4
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 476,
+      "nonEmptyLines": 446,
+      "functions": [
+        {
+          "name": "HeaderContent",
+          "startLine": 50,
+          "endLine": 474,
+          "params": [
+            "{\n  userInfo,\n  collapsed,\n  isFullscreen,\n  onToggleCollapse,\n  onRefresh,\n  onToggleFullscreen,\n  onLogout,\n  isDark,\n  onToggleTheme,\n  onOpenSettings,\n  widgetConfig,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "HeaderContent",
+          "line": 50,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "HeaderContent",
+          "callee": "useI18n",
+          "lineNumber": 63
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "useTranslation",
+          "lineNumber": 64
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "useNavigate",
+          "lineNumber": 65
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "useMatches",
+          "lineNumber": 66
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "usePreferencesStore",
+          "lineNumber": 69
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "useMemo",
+          "lineNumber": 73
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "typedMatches\n      .filter((match) => {\n        // 过滤掉没有 title 的路由\n        if (!match.handle?.title) return false;\n\n        // 过滤掉 index 路由（它们通常是重定向，不应该出现在面包屑中）\n        // index 路由的 id 通常包含 \"-index\"\n        if (match.id?.includes('-index')) return false;\n\n        return true;\n      })\n      .map",
+          "lineNumber": 83
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "typedMatches\n      .filter",
+          "lineNumber": 83
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "match.id?.includes",
+          "lineNumber": 90
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "getIconFromName",
+          "lineNumber": 98
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "tRoutes",
+          "lineNumber": 103
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "navigate",
+          "lineNumber": 112
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "items.some",
+          "lineNumber": 121
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "items.unshift",
+          "lineNumber": 123
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 125
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "getIconFromName",
+          "lineNumber": 126
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "navigate",
+          "lineNumber": 127
+        },
+        {
+          "caller": "toggleLocale",
+          "callee": "usePreferencesStore.getState",
+          "lineNumber": 145
+        },
+        {
+          "caller": "toggleLocale",
+          "callee": "setPreferences",
+          "lineNumber": 146
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "toggleLocale",
+          "lineNumber": 155
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "toggleLocale",
+          "lineNumber": 161
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 170
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 179
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 209
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 209
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 222
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "breadcrumbItems.map",
+          "lineNumber": 255
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "e.preventDefault",
+          "lineNumber": 260
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "item.onClick",
+          "lineNumber": 261
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 319
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "console.log",
+          "lineNumber": 322
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 362
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 377
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 384
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 396
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 396
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 410
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 418
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 418
+        },
+        {
+          "caller": "HeaderContent",
+          "callee": "t",
+          "lineNumber": 467
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 79,
+      "nonEmptyLines": 74,
+      "functions": [
+        {
+          "name": "ControlPanel",
+          "startLine": 18,
+          "endLine": 77,
+          "params": [
+            "{\n  collapsed,\n  isDark,\n  expandOnHover,\n  onToggleExpandOnHover,\n  onToggleCollapse,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ControlPanel",
+          "line": 18,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ControlPanel",
+          "callee": "useI18n",
+          "lineNumber": 25
+        },
+        {
+          "caller": "ControlPanel",
+          "callee": "t",
+          "lineNumber": 39
+        },
+        {
+          "caller": "ControlPanel",
+          "callee": "t",
+          "lineNumber": 39
+        },
+        {
+          "caller": "ControlPanel",
+          "callee": "t",
+          "lineNumber": 58
+        },
+        {
+          "caller": "ControlPanel",
+          "callee": "t",
+          "lineNumber": 58
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 230,
+      "nonEmptyLines": 208,
+      "functions": [
+        {
+          "name": "Index",
+          "startLine": 20,
+          "endLine": 228,
+          "params": [
+            "{\n  menuData,\n  isMobile,\n  isDark,\n  openKeys,\n  selectedKeys,\n  onOpenChange,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Index",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Index",
+          "callee": "useNavigate",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Index",
+          "callee": "useTranslation",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Index",
+          "callee": "useTranslation",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Index",
+          "callee": "usePreferencesStore",
+          "lineNumber": 32
+        },
+        {
+          "caller": "Index",
+          "callee": "usePreferencesStore",
+          "lineNumber": 33
+        },
+        {
+          "caller": "Index",
+          "callee": "useState",
+          "lineNumber": 44
+        },
+        {
+          "caller": "Index",
+          "callee": "useMemo",
+          "lineNumber": 47
+        },
+        {
+          "caller": "translateLabel",
+          "callee": "label.startsWith",
+          "lineNumber": 56
+        },
+        {
+          "caller": "translateLabel",
+          "callee": "label.startsWith",
+          "lineNumber": 56
+        },
+        {
+          "caller": "translateLabel",
+          "callee": "label.includes",
+          "lineNumber": 57
+        },
+        {
+          "caller": "translateLabel",
+          "callee": "label.substring",
+          "lineNumber": 57
+        },
+        {
+          "caller": "translateLabel",
+          "callee": "label.indexOf",
+          "lineNumber": 57
+        },
+        {
+          "caller": "translateLabel",
+          "callee": "tRoutes",
+          "lineNumber": 58
+        },
+        {
+          "caller": "translateLabel",
+          "callee": "t",
+          "lineNumber": 61
+        },
+        {
+          "caller": "transformItem",
+          "callee": "items.map",
+          "lineNumber": 65
+        },
+        {
+          "caller": "transformItem",
+          "callee": "getIconFromName",
+          "lineNumber": 67
+        },
+        {
+          "caller": "transformItem",
+          "callee": "translateLabel",
+          "lineNumber": 68
+        },
+        {
+          "caller": "transformItem",
+          "callee": "transformItem",
+          "lineNumber": 69
+        },
+        {
+          "caller": "Index",
+          "callee": "transformItem",
+          "lineNumber": 72
+        },
+        {
+          "caller": "Index",
+          "callee": "useCallback",
+          "lineNumber": 76
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 79
+        },
+        {
+          "caller": "Index",
+          "callee": "setPreferences",
+          "lineNumber": 81
+        },
+        {
+          "caller": "handleMouseEnter",
+          "callee": "setIsHovering",
+          "lineNumber": 104
+        },
+        {
+          "caller": "handleMouseLeave",
+          "callee": "setIsHovering",
+          "lineNumber": 110
+        },
+        {
+          "caller": "handleToggleCollapse",
+          "callee": "setPreferences",
+          "lineNumber": 116
+        },
+        {
+          "caller": "handleToggleExpandOnHover",
+          "callee": "setIsHovering",
+          "lineNumber": 128
+        },
+        {
+          "caller": "handleToggleExpandOnHover",
+          "callee": "setIsHovering",
+          "lineNumber": 131
+        },
+        {
+          "caller": "handleToggleExpandOnHover",
+          "callee": "setPreferences",
+          "lineNumber": 134
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 170
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 663,
+      "nonEmptyLines": 616,
+      "functions": [
+        {
+          "name": "Index",
+          "startLine": 35,
+          "endLine": 661,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Index",
+          "line": 35,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Index",
+          "callee": "useLocation",
+          "lineNumber": 36
+        },
+        {
+          "caller": "Index",
+          "callee": "useNavigate",
+          "lineNumber": 37
+        },
+        {
+          "caller": "Index",
+          "callee": "useMatches",
+          "lineNumber": 38
+        },
+        {
+          "caller": "Index",
+          "callee": "usePreferencesStore",
+          "lineNumber": 39
+        },
+        {
+          "caller": "Index",
+          "callee": "useState",
+          "lineNumber": 44
+        },
+        {
+          "caller": "Index",
+          "callee": "window.matchMedia",
+          "lineNumber": 49
+        },
+        {
+          "caller": "Index",
+          "callee": "useEffect",
+          "lineNumber": 53
+        },
+        {
+          "caller": "Index",
+          "callee": "window.matchMedia",
+          "lineNumber": 54
+        },
+        {
+          "caller": "handler",
+          "callee": "setIsDark",
+          "lineNumber": 58
+        },
+        {
+          "caller": "Index",
+          "callee": "mediaQuery.addEventListener",
+          "lineNumber": 61
+        },
+        {
+          "caller": "Index",
+          "callee": "mediaQuery.removeEventListener",
+          "lineNumber": 62
+        },
+        {
+          "caller": "Index",
+          "callee": "useEffect",
+          "lineNumber": 66
+        },
+        {
+          "caller": "Index",
+          "callee": "setIsDark",
+          "lineNumber": 68
+        },
+        {
+          "caller": "Index",
+          "callee": "setIsDark",
+          "lineNumber": 69
+        },
+        {
+          "caller": "Index",
+          "callee": "setIsDark",
+          "lineNumber": 70
+        },
+        {
+          "caller": "Index",
+          "callee": "window.matchMedia",
+          "lineNumber": 70
+        },
+        {
+          "caller": "Index",
+          "callee": "useI18n",
+          "lineNumber": 73
+        },
+        {
+          "caller": "Index",
+          "callee": "useTranslation",
+          "lineNumber": 74
+        },
+        {
+          "caller": "Index",
+          "callee": "useCallback",
+          "lineNumber": 77
+        },
+        {
+          "caller": "Index",
+          "callee": "title.startsWith",
+          "lineNumber": 80
+        },
+        {
+          "caller": "Index",
+          "callee": "title.substring",
+          "lineNumber": 81
+        },
+        {
+          "caller": "Index",
+          "callee": "tRoutes",
+          "lineNumber": 82
+        },
+        {
+          "caller": "Index",
+          "callee": "title.startsWith",
+          "lineNumber": 83
+        },
+        {
+          "caller": "Index",
+          "callee": "title.substring",
+          "lineNumber": 84
+        },
+        {
+          "caller": "Index",
+          "callee": "tRoutes",
+          "lineNumber": 85
+        },
+        {
+          "caller": "Index",
+          "callee": "title.startsWith",
+          "lineNumber": 86
+        },
+        {
+          "caller": "Index",
+          "callee": "title.substring",
+          "lineNumber": 87
+        },
+        {
+          "caller": "Index",
+          "callee": "tRoutes",
+          "lineNumber": 88
+        },
+        {
+          "caller": "Index",
+          "callee": "title.startsWith",
+          "lineNumber": 89
+        },
+        {
+          "caller": "Index",
+          "callee": "title.substring",
+          "lineNumber": 90
+        },
+        {
+          "caller": "Index",
+          "callee": "tRoutes",
+          "lineNumber": 91
+        },
+        {
+          "caller": "Index",
+          "callee": "tRoutes",
+          "lineNumber": 94
+        },
+        {
+          "caller": "Index",
+          "callee": "usePageRefreshStore",
+          "lineNumber": 101
+        },
+        {
+          "caller": "Index",
+          "callee": "useState",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Index",
+          "callee": "useCallback",
+          "lineNumber": 107
+        },
+        {
+          "caller": "Index",
+          "callee": "document.documentElement.requestFullscreen",
+          "lineNumber": 109
+        },
+        {
+          "caller": "Index",
+          "callee": "setIsFullscreen",
+          "lineNumber": 110
+        },
+        {
+          "caller": "Index",
+          "callee": "document.exitFullscreen",
+          "lineNumber": 112
+        },
+        {
+          "caller": "Index",
+          "callee": "setIsFullscreen",
+          "lineNumber": 113
+        },
+        {
+          "caller": "Index",
+          "callee": "useEffect",
+          "lineNumber": 118
+        },
+        {
+          "caller": "handleFullscreenChange",
+          "callee": "setIsFullscreen",
+          "lineNumber": 120
+        },
+        {
+          "caller": "Index",
+          "callee": "document.addEventListener",
+          "lineNumber": 122
+        },
+        {
+          "caller": "Index",
+          "callee": "document.removeEventListener",
+          "lineNumber": 124
+        },
+        {
+          "caller": "Index",
+          "callee": "useState",
+          "lineNumber": 129
+        },
+        {
+          "caller": "Index",
+          "callee": "useTabsStore",
+          "lineNumber": 143
+        },
+        {
+          "caller": "Index",
+          "callee": "useMemo",
+          "lineNumber": 146
+        },
+        {
+          "caller": "Index",
+          "callee": "useMemo",
+          "lineNumber": 153
+        },
+        {
+          "caller": "Index",
+          "callee": "useMemo",
+          "lineNumber": 168
+        },
+        {
+          "caller": "Index",
+          "callee": "matches.at",
+          "lineNumber": 169
+        },
+        {
+          "caller": "Index",
+          "callee": "translateTitle",
+          "lineNumber": 173
+        },
+        {
+          "caller": "Index",
+          "callee": "console.log",
+          "lineNumber": 181
+        },
+        {
+          "caller": "Index",
+          "callee": "useEffect",
+          "lineNumber": 195
+        },
+        {
+          "caller": "Index",
+          "callee": "console.log",
+          "lineNumber": 198
+        },
+        {
+          "caller": "Index",
+          "callee": "addTab",
+          "lineNumber": 201
+        },
+        {
+          "caller": "Index",
+          "callee": "useEffect",
+          "lineNumber": 205
+        },
+        {
+          "caller": "Index",
+          "callee": "useTabsStore.getState",
+          "lineNumber": 206
+        },
+        {
+          "caller": "Index",
+          "callee": "updateAllTitles",
+          "lineNumber": 207
+        },
+        {
+          "caller": "Index",
+          "callee": "useEffect",
+          "lineNumber": 211
+        },
+        {
+          "caller": "Index",
+          "callee": "localStorage.getItem",
+          "lineNumber": 214
+        },
+        {
+          "caller": "Index",
+          "callee": "localStorage.removeItem",
+          "lineNumber": 216
+        },
+        {
+          "caller": "Index",
+          "callee": "useTabsStore.setState",
+          "lineNumber": 218
+        },
+        {
+          "caller": "Index",
+          "callee": "useMemo",
+          "lineNumber": 224
+        },
+        {
+          "caller": "Index",
+          "callee": "tabs.map",
+          "lineNumber": 225
+        },
+        {
+          "caller": "Index",
+          "callee": "getIconFromName",
+          "lineNumber": 231
+        },
+        {
+          "caller": "Index",
+          "callee": "useCallback",
+          "lineNumber": 242
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 244
+        },
+        {
+          "caller": "Index",
+          "callee": "useCallback",
+          "lineNumber": 250
+        },
+        {
+          "caller": "Index",
+          "callee": "closeTab",
+          "lineNumber": 252
+        },
+        {
+          "caller": "Index",
+          "callee": "tabs.findIndex",
+          "lineNumber": 256
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 259
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 262
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 265
+        },
+        {
+          "caller": "Index",
+          "callee": "useMemo",
+          "lineNumber": 273
+        },
+        {
+          "caller": "Index",
+          "callee": "tabs.find",
+          "lineNumber": 274
+        },
+        {
+          "caller": "Index",
+          "callee": "tabs.findIndex",
+          "lineNumber": 279
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 284
+        },
+        {
+          "caller": "Index",
+          "callee": "handleTabRemove",
+          "lineNumber": 287
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 291
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 291
+        },
+        {
+          "caller": "Index",
+          "callee": "togglePinTab",
+          "lineNumber": 293
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 300
+        },
+        {
+          "caller": "Index",
+          "callee": "reloadTab",
+          "lineNumber": 303
+        },
+        {
+          "caller": "Index",
+          "callee": "window.location.reload",
+          "lineNumber": 307
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 313
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 319
+        },
+        {
+          "caller": "Index",
+          "callee": "window.open",
+          "lineNumber": 322
+        },
+        {
+          "caller": "Index",
+          "callee": "items.push",
+          "lineNumber": 329
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 333
+        },
+        {
+          "caller": "Index",
+          "callee": "closeLeftTabs",
+          "lineNumber": 337
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 338
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 343
+        },
+        {
+          "caller": "Index",
+          "callee": "closeRightTabs",
+          "lineNumber": 347
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 348
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 353
+        },
+        {
+          "caller": "Index",
+          "callee": "tabs.filter",
+          "lineNumber": 355
+        },
+        {
+          "caller": "Index",
+          "callee": "closeOtherTabs",
+          "lineNumber": 357
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 358
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 363
+        },
+        {
+          "caller": "Index",
+          "callee": "closeAllTabs",
+          "lineNumber": 366
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 367
+        },
+        {
+          "caller": "Index",
+          "callee": "useMemo",
+          "lineNumber": 390
+        },
+        {
+          "caller": "Index",
+          "callee": "tabs.find",
+          "lineNumber": 391
+        },
+        {
+          "caller": "Index",
+          "callee": "tabs.findIndex",
+          "lineNumber": 395
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 401
+        },
+        {
+          "caller": "Index",
+          "callee": "handleTabRemove",
+          "lineNumber": 404
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 409
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 409
+        },
+        {
+          "caller": "Index",
+          "callee": "togglePinTab",
+          "lineNumber": 411
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 416
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 416
+        },
+        {
+          "caller": "Index",
+          "callee": "toggleFullscreen",
+          "lineNumber": 418
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 423
+        },
+        {
+          "caller": "Index",
+          "callee": "reloadTab",
+          "lineNumber": 426
+        },
+        {
+          "caller": "Index",
+          "callee": "triggerPageRefresh",
+          "lineNumber": 427
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 433
+        },
+        {
+          "caller": "Index",
+          "callee": "window.open",
+          "lineNumber": 436
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 444
+        },
+        {
+          "caller": "Index",
+          "callee": "closeLeftTabs",
+          "lineNumber": 448
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 449
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 455
+        },
+        {
+          "caller": "Index",
+          "callee": "closeRightTabs",
+          "lineNumber": 459
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 460
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 466
+        },
+        {
+          "caller": "Index",
+          "callee": "tabs.filter",
+          "lineNumber": 468
+        },
+        {
+          "caller": "Index",
+          "callee": "closeOtherTabs",
+          "lineNumber": 470
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 471
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 477
+        },
+        {
+          "caller": "Index",
+          "callee": "closeAllTabs",
+          "lineNumber": 480
+        },
+        {
+          "caller": "Index",
+          "callee": "navigate",
+          "lineNumber": 481
+        },
+        {
+          "caller": "Index",
+          "callee": "useCallback",
+          "lineNumber": 503
+        },
+        {
+          "caller": "Index",
+          "callee": "target.closest",
+          "lineNumber": 512
+        },
+        {
+          "caller": "Index",
+          "callee": "parseInt",
+          "lineNumber": 514
+        },
+        {
+          "caller": "Index",
+          "callee": "tabElement.getAttribute",
+          "lineNumber": 514
+        },
+        {
+          "caller": "Index",
+          "callee": "e.dataTransfer.setData",
+          "lineNumber": 515
+        },
+        {
+          "caller": "Index",
+          "callee": "String",
+          "lineNumber": 515
+        },
+        {
+          "caller": "Index",
+          "callee": "tabElement.classList.add",
+          "lineNumber": 516
+        },
+        {
+          "caller": "Index",
+          "callee": "target.closest",
+          "lineNumber": 521
+        },
+        {
+          "caller": "Index",
+          "callee": "tabElement.classList.remove",
+          "lineNumber": 523
+        },
+        {
+          "caller": "Index",
+          "callee": "document.querySelectorAll('.ant-tabs-tab.drag-over').forEach",
+          "lineNumber": 526
+        },
+        {
+          "caller": "Index",
+          "callee": "document.querySelectorAll",
+          "lineNumber": 526
+        },
+        {
+          "caller": "Index",
+          "callee": "el.classList.remove",
+          "lineNumber": 527
+        },
+        {
+          "caller": "Index",
+          "callee": "e.preventDefault",
+          "lineNumber": 531
+        },
+        {
+          "caller": "Index",
+          "callee": "target.closest",
+          "lineNumber": 535
+        },
+        {
+          "caller": "Index",
+          "callee": "document.querySelectorAll('.ant-tabs-tab.drag-over').forEach",
+          "lineNumber": 538
+        },
+        {
+          "caller": "Index",
+          "callee": "document.querySelectorAll",
+          "lineNumber": 538
+        },
+        {
+          "caller": "Index",
+          "callee": "el.classList.remove",
+          "lineNumber": 540
+        },
+        {
+          "caller": "Index",
+          "callee": "tabElement.classList.add",
+          "lineNumber": 543
+        },
+        {
+          "caller": "Index",
+          "callee": "e.preventDefault",
+          "lineNumber": 547
+        },
+        {
+          "caller": "Index",
+          "callee": "parseInt",
+          "lineNumber": 548
+        },
+        {
+          "caller": "Index",
+          "callee": "e.dataTransfer.getData",
+          "lineNumber": 548
+        },
+        {
+          "caller": "Index",
+          "callee": "target.closest",
+          "lineNumber": 551
+        },
+        {
+          "caller": "Index",
+          "callee": "parseInt",
+          "lineNumber": 553
+        },
+        {
+          "caller": "Index",
+          "callee": "tabElement.getAttribute",
+          "lineNumber": 553
+        },
+        {
+          "caller": "Index",
+          "callee": "reorderTabs",
+          "lineNumber": 555
+        },
+        {
+          "caller": "Index",
+          "callee": "document.querySelectorAll('.ant-tabs-tab.drag-over').forEach",
+          "lineNumber": 560
+        },
+        {
+          "caller": "Index",
+          "callee": "document.querySelectorAll",
+          "lineNumber": 560
+        },
+        {
+          "caller": "Index",
+          "callee": "el.classList.remove",
+          "lineNumber": 561
+        },
+        {
+          "caller": "Index",
+          "callee": "useMemo",
+          "lineNumber": 574
+        },
+        {
+          "caller": "Index",
+          "callee": "tabItems.map",
+          "lineNumber": 575
+        },
+        {
+          "caller": "Index",
+          "callee": "setContextMenuTabKey",
+          "lineNumber": 583
+        },
+        {
+          "caller": "Index",
+          "callee": "setContextMenuTabKey",
+          "lineNumber": 585
+        },
+        {
+          "caller": "Index",
+          "callee": "handleTabRemove",
+          "lineNumber": 619
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 655
+        },
+        {
+          "caller": "Index",
+          "callee": "t",
+          "lineNumber": 655
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 25,
+      "nonEmptyLines": 22,
+      "functions": [
+        {
+          "name": "useLayoutState",
+          "startLine": 3,
+          "endLine": 25,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "useLayoutState",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useLayoutState",
+          "callee": "useState",
+          "lineNumber": 4
+        },
+        {
+          "caller": "useLayoutState",
+          "callee": "useState",
+          "lineNumber": 5
+        },
+        {
+          "caller": "useLayoutState",
+          "callee": "useState",
+          "lineNumber": 6
+        },
+        {
+          "caller": "useLayoutState",
+          "callee": "useState",
+          "lineNumber": 7
+        },
+        {
+          "caller": "useLayoutState",
+          "callee": "useCallback",
+          "lineNumber": 10
+        },
+        {
+          "caller": "useLayoutState",
+          "callee": "setSelectedKeys",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 32,
+      "functions": [
+        {
+          "name": "useMenuData",
+          "startLine": 12,
+          "endLine": 37,
+          "params": [
+            "{\n  staticRoutes = [],\n  dynamicRoutes,\n  permissions,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "useMenuData",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useMenuData",
+          "callee": "useTranslation",
+          "lineNumber": 18
+        },
+        {
+          "caller": "useMenuData",
+          "callee": "useMemo",
+          "lineNumber": 21
+        },
+        {
+          "caller": "useMenuData",
+          "callee": "staticRoutes.find",
+          "lineNumber": 28
+        },
+        {
+          "caller": "useMenuData",
+          "callee": "useMemo",
+          "lineNumber": 34
+        },
+        {
+          "caller": "useMenuData",
+          "callee": "transformRoutesToMenu",
+          "lineNumber": 35
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 336,
+      "nonEmptyLines": 301,
+      "functions": [
+        {
+          "name": "MainLayout",
+          "startLine": 40,
+          "endLine": 334,
+          "params": [
+            "{ routes: dynamicRoutes }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "MainLayout",
+          "line": 40,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "MainLayout",
+          "callee": "useLocation",
+          "lineNumber": 41
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useMatches",
+          "lineNumber": 42
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useAuthStore",
+          "lineNumber": 46
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useAuthStore",
+          "lineNumber": 47
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "usePreferencesStore",
+          "lineNumber": 50
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "usePreferencesStore",
+          "lineNumber": 51
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useAccess",
+          "lineNumber": 54
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useThemeConfig",
+          "lineNumber": 57
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useState",
+          "lineNumber": 58
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "window.matchMedia",
+          "lineNumber": 62
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useEffect",
+          "lineNumber": 66
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "window.matchMedia",
+          "lineNumber": 67
+        },
+        {
+          "caller": "handler",
+          "callee": "setIsDark",
+          "lineNumber": 71
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "mediaQuery.addEventListener",
+          "lineNumber": 74
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "mediaQuery.removeEventListener",
+          "lineNumber": 75
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useEffect",
+          "lineNumber": 79
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setIsDark",
+          "lineNumber": 81
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setIsDark",
+          "lineNumber": 82
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setIsDark",
+          "lineNumber": 83
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "window.matchMedia",
+          "lineNumber": 83
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useLayoutState",
+          "lineNumber": 94
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useCallback",
+          "lineNumber": 98
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setPreferences",
+          "lineNumber": 100
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useMemo",
+          "lineNumber": 106
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "getAllPermissions",
+          "lineNumber": 106
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useMenuData",
+          "lineNumber": 107
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useState",
+          "lineNumber": 114
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useState",
+          "lineNumber": 117
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "usePageRefreshStore",
+          "lineNumber": 120
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "usePageRefreshStore",
+          "lineNumber": 121
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useEffect",
+          "lineNumber": 124
+        },
+        {
+          "caller": "checkMobile",
+          "callee": "setIsMobile",
+          "lineNumber": 127
+        },
+        {
+          "caller": "checkMobile",
+          "callee": "setPreferences",
+          "lineNumber": 129
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "checkMobile",
+          "lineNumber": 133
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "window.addEventListener",
+          "lineNumber": 134
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "window.removeEventListener",
+          "lineNumber": 135
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useMemo",
+          "lineNumber": 139
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useEffect",
+          "lineNumber": 144
+        },
+        {
+          "caller": "calculateOpenKeys",
+          "callee": "item.path?.startsWith",
+          "lineNumber": 153
+        },
+        {
+          "caller": "calculateOpenKeys",
+          "callee": "`${parentPath}/${item.path}`.replace",
+          "lineNumber": 155
+        },
+        {
+          "caller": "calculateOpenKeys",
+          "callee": "calculateOpenKeys",
+          "lineNumber": 164
+        },
+        {
+          "caller": "calculateOpenKeys",
+          "callee": "item.children.some",
+          "lineNumber": 175
+        },
+        {
+          "caller": "calculateOpenKeys",
+          "callee": "child.path?.startsWith",
+          "lineNumber": 176
+        },
+        {
+          "caller": "calculateOpenKeys",
+          "callee": "`${itemPath}/${child.path}`.replace",
+          "lineNumber": 178
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "calculateOpenKeys",
+          "lineNumber": 189
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setOpenKeys",
+          "lineNumber": 190
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useCallback",
+          "lineNumber": 194
+        },
+        {
+          "caller": "toggleTheme",
+          "callee": "setPreferences",
+          "lineNumber": 196
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setSidebarHidden",
+          "lineNumber": 208
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "document.documentElement.requestFullscreen",
+          "lineNumber": 212
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setIsFullscreen",
+          "lineNumber": 213
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "document.exitFullscreen",
+          "lineNumber": 215
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setIsFullscreen",
+          "lineNumber": 216
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setSettingsOpen",
+          "lineNumber": 222
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "useCallback",
+          "lineNumber": 237
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setPreferences",
+          "lineNumber": 238
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "headerContentRender",
+          "lineNumber": 283
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "matches.at",
+          "lineNumber": 304
+        },
+        {
+          "caller": "MainLayout",
+          "callee": "setSettingsOpen",
+          "lineNumber": 331
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 23,
+      "functions": [
+        {
+          "name": "getIconFromName",
+          "startLine": 11,
+          "endLine": 27,
+          "params": [
+            "iconName"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "getIconFromName",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getIconFromName",
+          "callee": "iconName.includes",
+          "lineNumber": 15
+        },
+        {
+          "caller": "getIconFromName",
+          "callee": "iconName.split",
+          "lineNumber": 16
+        },
+        {
+          "caller": "getIconFromName",
+          "callee": "React.createElement",
+          "lineNumber": 23
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

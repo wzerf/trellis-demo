@@ -1,0 +1,585 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "type": "file",
+      "name": "ListResult.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "summary": "Result 的数组响应子类,data 字段为 List<T>,data 为 null 时回退为空列表(序列化为 []),用于让 Swagger 直接展开 array schema 而非嵌套泛型。",
+      "tags": ["data-model", "api-response", "swagger", "generic"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java:ListResult",
+      "type": "class",
+      "name": "ListResult",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "lineRange": [15, 32],
+      "summary": "继承 Result<List<T>> 的 JSON 数组响应体,提供 of()/of(List<T>) 工厂方法,data 为 null 时回退到 Collections.emptyList。",
+      "tags": ["data-model", "api-response", "generic"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "type": "file",
+      "name": "ObjectResult.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "summary": "Result 的 JSON 对象响应子类,data 为 null 时回退为空 Map(序列化为 {}),让 Swagger 通过具体泛型 ObjectResult<UserVO> 展开 data schema;不应用于标量类型。",
+      "tags": ["data-model", "api-response", "swagger", "generic"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java:ObjectResult",
+      "type": "class",
+      "name": "ObjectResult",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "lineRange": [17, 35],
+      "summary": "继承 Result<T> 的 JSON 对象响应体,提供 of()/of(T) 工厂方法,data 为 null 时回退到 Collections.emptyMap。",
+      "tags": ["data-model", "api-response", "generic"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "file",
+      "name": "Result.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "summary": "统一 API 响应体(Q13 决策,严格 3 字段 code/msg/data),traceId 通过 X-Trace-Id 响应头暴露,data 在 error 时为 null 且 Jackson 不输出。提供 ok/okObj/okList/error 工厂方法和 isSuccess 判定。",
+      "tags": ["data-model", "api-response", "factory", "swagger"],
+      "complexity": "moderate",
+      "languageNotes": "使用 Lombok @Data 与 @JsonInclude(NON_NULL) 控制序列化,泛型 T 由 ObjectResult/ListResult 子类在 Swagger 中展开 schema。"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:Result",
+      "type": "class",
+      "name": "Result",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "lineRange": [19, 103],
+      "summary": "统一响应包装类,字段 code/msg/data 提供 ok/okObj/okList/error 工厂方法和 isSuccess 判定;traceId 不在 body。",
+      "tags": ["data-model", "api-response", "factory", "generic"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:ok",
+      "type": "function",
+      "name": "ok",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "lineRange": [46, 56],
+      "summary": "成功响应的三重重载工厂方法,无参/带 data/带 data+msg 均使用 ResultCode.SUCCESS 的 code。",
+      "tags": ["factory", "api-response"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:okObj",
+      "type": "function",
+      "name": "okObj",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "lineRange": [64, 71],
+      "summary": "委托给 ObjectResult.of() 的对象响应快捷工厂,Swagger 借此展开对象 schema。",
+      "tags": ["factory", "api-response"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:okList",
+      "type": "function",
+      "name": "okList",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "lineRange": [78, 85],
+      "summary": "委托给 ListResult.of() 的列表响应快捷工厂,Swagger 借此展开 array schema。",
+      "tags": ["factory", "api-response"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "function",
+      "name": "error",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "lineRange": [87, 97],
+      "summary": "错误响应的三重工厂重载,接受 ResultCode/纯 int+msg/ResultCode+msg 三种入参,data 始终为 null。",
+      "tags": ["factory", "api-response", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:isSuccess",
+      "type": "function",
+      "name": "isSuccess",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "lineRange": [99, 102],
+      "summary": "判断当前 Result 是否成功,基于 code == ResultCode.SUCCESS.getCode(),并标注 @JsonIgnore 不参与序列化。",
+      "tags": ["utility", "predicate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "file",
+      "name": "ResultCode.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "summary": "业务码枚举(Q13 决策后移除 3xxx 限流段),分段规则:0 成功、1xxx 通用、2xxx 鉴权(2001 未登录/2002 凭证错误/2003 token 过期/2004 无权限)、4xxx 业务。",
+      "tags": ["enum", "api-response", "business-code"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "type": "file",
+      "name": "GlobalExceptionHandler.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "summary": "Spring @RestControllerAdvice 全局异常处理器,统一将 BizException/AuthException/Sa-Token/参数校验/请求体解析/兜底异常转为 Result 响应体并选择对应 HTTP 状态码;traceId 通过 MDC 写入日志而非 body。",
+      "tags": ["middleware", "exception-handler", "api-handler", "sa-token", "spring"],
+      "complexity": "complex",
+      "languageNotes": "使用 @RestControllerAdvice + @ExceptionHandler 注解实现 Spring MVC 统一异常拦截;Sa-Token 框架的 NotLogin/NotRole 异常在此被归一化为业务码。"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:GlobalExceptionHandler",
+      "type": "class",
+      "name": "GlobalExceptionHandler",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "lineRange": [32, 133],
+      "summary": "@RestControllerAdvice 标注的全局异常处理类,提供 8 个 @ExceptionHandler 方法,涵盖业务/鉴权/Sa-Token/参数校验/请求体解析/兜底异常到 Result 的转换。",
+      "tags": ["exception-handler", "api-handler", "sa-token", "spring"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleBiz",
+      "type": "function",
+      "name": "handleBiz",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "lineRange": [37, 47],
+      "summary": "处理 BizException,业务码 >= 4000 返回 HTTP 400,其余按调用方指定返回 HTTP 200,响应体为 Result.error(code, msg)。",
+      "tags": ["exception-handler", "api-handler"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleAuth",
+      "type": "function",
+      "name": "handleAuth",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "lineRange": [49, 60],
+      "summary": "处理 AuthException,AUTH_FORBIDDEN(2004) 返回 HTTP 403,其余鉴权异常返回 HTTP 401。",
+      "tags": ["exception-handler", "api-handler", "auth"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleNotLogin",
+      "type": "function",
+      "name": "handleNotLogin",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "lineRange": [62, 71],
+      "summary": "处理 Sa-Token 的 NotLoginException,统一返回 HTTP 401 + 业务码 2001(请登录)。",
+      "tags": ["exception-handler", "api-handler", "sa-token", "auth"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleNotRole",
+      "type": "function",
+      "name": "handleNotRole",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "lineRange": [73, 83],
+      "summary": "处理 Sa-Token 的 NotRoleException,返回 HTTP 403 + 业务码 2004(无权限),msg 拼接缺失的角色名。",
+      "tags": ["exception-handler", "api-handler", "sa-token", "auth"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleSaToken",
+      "type": "function",
+      "name": "handleSaToken",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "lineRange": [85, 95],
+      "summary": "兜底处理其他 SaTokenException,返回 HTTP 401 + 业务码 2001,msg 使用 Sa-Token 原文。",
+      "tags": ["exception-handler", "api-handler", "sa-token", "auth"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleValidation",
+      "type": "function",
+      "name": "handleValidation",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "lineRange": [97, 109],
+      "summary": "处理 @Valid 触发的 MethodArgumentNotValidException,把字段级错误拼成 msg,返回 HTTP 400 + 业务码 1001。",
+      "tags": ["exception-handler", "api-handler", "validation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleNotReadable",
+      "type": "function",
+      "name": "handleNotReadable",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "lineRange": [111, 120],
+      "summary": "处理 JSON 格式错误或类型不匹配的 HttpMessageNotReadableException,返回 HTTP 400 + 业务码 1001,msg 写死为“请求体格式错误”。",
+      "tags": ["exception-handler", "api-handler", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleAny",
+      "type": "function",
+      "name": "handleAny",
+      "filePath": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "lineRange": [122, 132],
+      "summary": "兜底处理所有 Exception,返回 HTTP 500 + 业务码 1003,msg 不暴露内部细节(写死为“内部错误”),完整堆栈通过 log.error 记录。",
+      "tags": ["exception-handler", "api-handler", "fallback"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "type": "file",
+      "name": "GlobalExceptionHandlerTest.java",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "summary": "GlobalExceptionHandler 的 JUnit 5 单元测试,覆盖业务异常状态码选择、AuthException 401/403 分支、兜底 handler 隐藏真实异常信息等关键场景(Q13 决策验证)。",
+      "tags": ["test", "junit", "exception-handler", "assertj"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java:GlobalExceptionHandlerTest",
+      "type": "class",
+      "name": "GlobalExceptionHandlerTest",
+      "filePath": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "lineRange": [20, 64],
+      "summary": "持有 GlobalExceptionHandler 实例的测试类,通过 4 个 @Test 验证各 handler 的状态码、Result.code 和 msg 行为,并断言内部错误不泄露真实异常信息。",
+      "tags": ["test", "junit", "assertj"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java:ListResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java:ListResult",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java:ObjectResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java:ObjectResult",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:Result",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:Result",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:ok",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:ok",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:okObj",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:okObj",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:okList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:okList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:isSuccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:isSuccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:GlobalExceptionHandler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:GlobalExceptionHandler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleBiz",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleAuth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleNotLogin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleNotRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleSaToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleValidation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleNotReadable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleAny",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java:GlobalExceptionHandlerTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleBiz",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleAuth",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleNotLogin",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleNotRole",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleSaToken",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleValidation",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleNotReadable",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:handleAny",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:okObj",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java:of",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:okList",
+      "target": "function:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java:of",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java:ListResult",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:Result",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java:ObjectResult",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java:Result",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+      "target": "file:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java:GlobalExceptionHandlerTest",
+      "target": "class:backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java:GlobalExceptionHandler",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

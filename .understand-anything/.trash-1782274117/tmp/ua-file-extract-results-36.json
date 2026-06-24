@@ -1,0 +1,739 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".commitlintrc.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".gitmodules",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 3,
+      "metrics": {}
+    },
+    {
+      "path": "apps/backend-mock-template/api/auth/codes.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 12,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/auth/login.post.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 34,
+      "nonEmptyLines": 28,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/auth/logout.post.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 11,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/auth/refresh.post.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 27,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/demo/bigint.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 31,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/menu/all.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 12,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/status.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 7,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/dept/.post.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 15,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/dept/[id].delete.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 11,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/dept/[id].put.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 11,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/dept/list.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 57,
+      "nonEmptyLines": 49,
+      "functions": [
+        {
+          "name": "generateMockDataList",
+          "startLine": 16,
+          "endLine": 44,
+          "params": [
+            "count"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.string.uuid",
+          "lineNumber": 21
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.commerce.department",
+          "lineNumber": 23
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.helpers.arrayElement",
+          "lineNumber": 24
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "formatterCN.format",
+          "lineNumber": 25
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.date.between",
+          "lineNumber": 25
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.lorem.sentence",
+          "lineNumber": 26
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.datatype.boolean",
+          "lineNumber": 28
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "Array.from",
+          "lineNumber": 29
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.number.int",
+          "lineNumber": 29
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.string.uuid",
+          "lineNumber": 30
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.commerce.department",
+          "lineNumber": 32
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.helpers.arrayElement",
+          "lineNumber": 33
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "formatterCN.format",
+          "lineNumber": 34
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.date.between",
+          "lineNumber": 35
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.lorem.sentence",
+          "lineNumber": 37
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "dataList.push",
+          "lineNumber": 40
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/menu/list.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 11,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/menu/name-exists.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 24,
+      "functions": [
+        {
+          "name": "getNames",
+          "startLine": 8,
+          "endLine": 15,
+          "params": [
+            "menus"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getNames",
+          "callee": "menus.forEach",
+          "lineNumber": 9
+        },
+        {
+          "caller": "getNames",
+          "callee": "String",
+          "lineNumber": 10
+        },
+        {
+          "caller": "getNames",
+          "callee": "getNames",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/menu/path-exists.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 24,
+      "functions": [
+        {
+          "name": "getPaths",
+          "startLine": 8,
+          "endLine": 15,
+          "params": [
+            "menus"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getPaths",
+          "callee": "menus.forEach",
+          "lineNumber": 9
+        },
+        {
+          "caller": "getPaths",
+          "callee": "String",
+          "lineNumber": 10
+        },
+        {
+          "caller": "getPaths",
+          "callee": "getPaths",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/role/list.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 62,
+      "functions": [
+        {
+          "name": "generateMockDataList",
+          "startLine": 19,
+          "endLine": 36,
+          "params": [
+            "count"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.string.uuid",
+          "lineNumber": 24
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.commerce.product",
+          "lineNumber": 25
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.helpers.arrayElement",
+          "lineNumber": 26
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "formatterCN.format",
+          "lineNumber": 27
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.date.between",
+          "lineNumber": 27
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.helpers.arrayElements",
+          "lineNumber": 28
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.lorem.sentence",
+          "lineNumber": 29
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "dataList.push",
+          "lineNumber": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/user/[id].delete.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 18,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/user/[id].put.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 20,
+      "nonEmptyLines": 19,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/user/create.post.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 41,
+      "nonEmptyLines": 37,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/system/user/list.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 95,
+      "nonEmptyLines": 88,
+      "functions": [
+        {
+          "name": "generateUserListData",
+          "startLine": 29,
+          "endLine": 63,
+          "params": [
+            "count"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "generateUserListData",
+          "callee": "list.push",
+          "lineNumber": 33
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "String",
+          "lineNumber": 34
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.internet.email({ firstName: u.username }).toLowerCase",
+          "lineNumber": 37
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.internet.email",
+          "lineNumber": 37
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.phone.number",
+          "lineNumber": 38
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "formatterCN.format",
+          "lineNumber": 42
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.person.fullName",
+          "lineNumber": 47
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.string.alphanumeric",
+          "lineNumber": 49
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "list.push",
+          "lineNumber": 50
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.string.uuid",
+          "lineNumber": 51
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.internet.email().toLowerCase",
+          "lineNumber": 54
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.internet.email",
+          "lineNumber": 54
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.phone.number",
+          "lineNumber": 55
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.helpers.arrayElement",
+          "lineNumber": 56
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.helpers.arrayElements",
+          "lineNumber": 57
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.lorem.sentence",
+          "lineNumber": 58
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "formatterCN.format",
+          "lineNumber": 59
+        },
+        {
+          "caller": "generateUserListData",
+          "callee": "faker.date.between",
+          "lineNumber": 59
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/table/list.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 106,
+      "nonEmptyLines": 93,
+      "functions": [
+        {
+          "name": "generateMockDataList",
+          "startLine": 6,
+          "endLine": 35,
+          "params": [
+            "count"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.string.uuid",
+          "lineNumber": 11
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.image.avatar",
+          "lineNumber": 12
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.image.avatar",
+          "lineNumber": 13
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.datatype.boolean",
+          "lineNumber": 14
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.helpers.arrayElement",
+          "lineNumber": 15
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.commerce.productName",
+          "lineNumber": 16
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.commerce.price",
+          "lineNumber": 17
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.finance.currencyCode",
+          "lineNumber": 18
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.number.int",
+          "lineNumber": 19
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.datatype.boolean",
+          "lineNumber": 20
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.commerce.department",
+          "lineNumber": 21
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.date.past",
+          "lineNumber": 22
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.number.float",
+          "lineNumber": 23
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.commerce.productDescription",
+          "lineNumber": 24
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.number.float",
+          "lineNumber": 25
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.color.human",
+          "lineNumber": 26
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.datatype.boolean",
+          "lineNumber": 27
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "Array.from",
+          "lineNumber": 28
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "faker.commerce.productAdjective",
+          "lineNumber": 28
+        },
+        {
+          "caller": "generateMockDataList",
+          "callee": "dataList.push",
+          "lineNumber": 31
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/test.get.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 2,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/test.post.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 2,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/backend-mock-template/api/timezone/getTimezone.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 11,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

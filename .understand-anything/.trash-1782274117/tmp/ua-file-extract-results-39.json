@@ -1,0 +1,2273 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/components/bussiness/AuthLayout/icons/SloganIcon.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 4574,
+      "nonEmptyLines": 4462,
+      "functions": [
+        {
+          "name": "SloganIcon",
+          "startLine": 3,
+          "endLine": 4572,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/bussiness/AuthLayout/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 149,
+      "nonEmptyLines": 131,
+      "functions": [
+        {
+          "name": "AuthLayout",
+          "startLine": 35,
+          "endLine": 147,
+          "params": [
+            "{ title, description, children, footerLink }"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "AuthLayout",
+          "callee": "useTranslation",
+          "lineNumber": 36
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "usePreferences",
+          "lineNumber": 37
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "useLocale",
+          "lineNumber": 38
+        },
+        {
+          "caller": "handleToggleTheme",
+          "callee": "toggleTheme",
+          "lineNumber": 42
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "React.useMemo",
+          "lineNumber": 46
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "window.matchMedia",
+          "lineNumber": 48
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "React.useEffect",
+          "lineNumber": 54
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "window.matchMedia",
+          "lineNumber": 55
+        },
+        {
+          "caller": "handleChange",
+          "callee": "setThemeMode",
+          "lineNumber": 59
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "mediaQuery.addEventListener",
+          "lineNumber": 62
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "mediaQuery.removeEventListener",
+          "lineNumber": 63
+        },
+        {
+          "caller": "handleToggleLanguage",
+          "callee": "toggleLocale",
+          "lineNumber": 68
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "t",
+          "lineNumber": 75
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "t",
+          "lineNumber": 82
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "t",
+          "lineNumber": 82
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "t",
+          "lineNumber": 86
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "t",
+          "lineNumber": 86
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "t",
+          "lineNumber": 111
+        },
+        {
+          "caller": "AuthLayout",
+          "callee": "t",
+          "lineNumber": 112
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 385,
+      "nonEmptyLines": 317,
+      "sections": [
+        {
+          "heading": "编辑器组件使用说明",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "概述",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "文件结构",
+          "level": 2,
+          "line": 13
+        },
+        {
+          "heading": "使用方法",
+          "level": 2,
+          "line": 30
+        },
+        {
+          "heading": "1. 基本使用",
+          "level": 3,
+          "line": 32
+        },
+        {
+          "heading": "2. 配合 antd Form.Item 使用",
+          "level": 3,
+          "line": 53
+        },
+        {
+          "heading": "3. 使用图片上传功能",
+          "level": 3,
+          "line": 78
+        },
+        {
+          "heading": "4. 编辑器类型",
+          "level": 3,
+          "line": 120
+        },
+        {
+          "heading": "5. 动态切换编辑器",
+          "level": 3,
+          "line": 135
+        },
+        {
+          "heading": "6. 单独使用特定编辑器",
+          "level": 3,
+          "line": 171
+        },
+        {
+          "heading": "Props 说明",
+          "level": 2,
+          "line": 204
+        },
+        {
+          "heading": "Editor 组件",
+          "level": 3,
+          "line": 206
+        },
+        {
+          "heading": "Tiptap Editor 额外配置",
+          "level": 3,
+          "line": 222
+        },
+        {
+          "heading": "Markdown 编辑器配置",
+          "level": 3,
+          "line": 263
+        },
+        {
+          "heading": "JSON 编辑器配置",
+          "level": 3,
+          "line": 284
+        },
+        {
+          "heading": "Code 编辑器配置",
+          "level": 3,
+          "line": 294
+        },
+        {
+          "heading": "在内部消息中的使用示例",
+          "level": 2,
+          "line": 315
+        },
+        {
+          "heading": "扩展开发",
+          "level": 2,
+          "line": 335
+        },
+        {
+          "heading": "添加新的编辑器",
+          "level": 3,
+          "line": 337
+        },
+        {
+          "heading": "注意事项",
+          "level": 2,
+          "line": 345
+        },
+        {
+          "heading": "图片上传相关",
+          "level": 3,
+          "line": 347
+        },
+        {
+          "heading": "文件验证示例",
+          "level": 3,
+          "line": 354
+        },
+        {
+          "heading": "受控组件说明",
+          "level": 3,
+          "line": 374
+        },
+        {
+          "heading": "性能优化",
+          "level": 3,
+          "line": 381
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 24
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/Editor.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 77,
+      "nonEmptyLines": 70,
+      "functions": [
+        {
+          "name": "Editor",
+          "startLine": 12,
+          "endLine": 75,
+          "params": [
+            "{\n  value,\n  editorType = EditorType.MARKDOWN,\n  height = '100%',\n  disabled = false,\n  placeholder,\n  uploadImage,\n  markdownOptions,\n  jsonOptions,\n  codeOptions,\n  onChange,\n  onReady,\n}"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Editor",
+          "callee": "useMemo",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Editor",
+          "callee": "useMemo",
+          "lineNumber": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 50,
+      "nonEmptyLines": 43,
+      "functions": [
+        {
+          "name": "PlainTextEditor",
+          "startLine": 12,
+          "endLine": 48,
+          "params": [
+            "{\n  value,\n  height = '100%',\n  disabled = false,\n  placeholder,\n  onChange,\n  onReady,\n}"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PlainTextEditor",
+          "callee": "useRef",
+          "lineNumber": 20
+        },
+        {
+          "caller": "PlainTextEditor",
+          "callee": "useCallback",
+          "lineNumber": 24
+        },
+        {
+          "caller": "PlainTextEditor",
+          "callee": "onChange",
+          "lineNumber": 26
+        },
+        {
+          "caller": "PlainTextEditor",
+          "callee": "useEffect",
+          "lineNumber": 31
+        },
+        {
+          "caller": "PlainTextEditor",
+          "callee": "onReady",
+          "lineNumber": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/tiptap-editor.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 836,
+      "nonEmptyLines": 712,
+      "metrics": {}
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 288,
+      "nonEmptyLines": 265,
+      "functions": [
+        {
+          "name": "TiptapEditor",
+          "startLine": 54,
+          "endLine": 286,
+          "params": [
+            "{\n  value,\n  height = 500,\n  disabled = false,\n  placeholder,\n  showToolbar = true,\n  showStatusBar = true,\n  uploadImage,\n  onChange,\n  onReady,\n}"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "TiptapEditor",
+          "callee": "useTiptapEditor",
+          "lineNumber": 109
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "useEditor",
+          "lineNumber": 111
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "StarterKit.configure",
+          "lineNumber": 114
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "TaskItem.configure",
+          "lineNumber": 124
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "Highlight.configure",
+          "lineNumber": 126
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "CustomCodeBlockLowlight.configure",
+          "lineNumber": 129
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "Table.configure",
+          "lineNumber": 130
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "Placeholder.configure",
+          "lineNumber": 134
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "Link.configure",
+          "lineNumber": 135
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "Image.configure",
+          "lineNumber": 136
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "TextAlign.configure",
+          "lineNumber": 139
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "useEffect",
+          "lineNumber": 144
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "syncValue",
+          "lineNumber": 146
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "useEffect",
+          "lineNumber": 151
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "editor?.setEditable",
+          "lineNumber": 152
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "useEffect",
+          "lineNumber": 156
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "setupDarkModeTracking",
+          "lineNumber": 157
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "useEffect",
+          "lineNumber": 161
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "document.body.classList.add",
+          "lineNumber": 163
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "document.body.classList.remove",
+          "lineNumber": 165
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "document.body.classList.remove",
+          "lineNumber": 168
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 173
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "editor?.isActive",
+          "lineNumber": 175
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "useMemo",
+          "lineNumber": 180
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "createToolbarActions",
+          "lineNumber": 181
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "useMemo",
+          "lineNumber": 186
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "getStatusInfo",
+          "lineNumber": 186
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "handleImageUpload",
+          "lineNumber": 223
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "handleMarkdownImport",
+          "lineNumber": 230
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "handleLinkOk",
+          "lineNumber": 237
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "setLinkModalVisible",
+          "lineNumber": 239
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "setLinkUrl",
+          "lineNumber": 240
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "editor?.chain().focus().run",
+          "lineNumber": 241
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 241
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 241
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "handleCodeBlockOk",
+          "lineNumber": 250
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "setCodeBlockModalVisible",
+          "lineNumber": 252
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "setCodeBlockContent",
+          "lineNumber": 253
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "handleVideoOk",
+          "lineNumber": 263
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "setVideoModalVisible",
+          "lineNumber": 264
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "handleIframeOk",
+          "lineNumber": 276
+        },
+        {
+          "caller": "TiptapEditor",
+          "callee": "setIframeModalVisible",
+          "lineNumber": 277
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/constants.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 21,
+      "exports": [
+        {
+          "name": "languages",
+          "line": 1,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/extensions.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 108,
+      "nonEmptyLines": 99,
+      "exports": [
+        {
+          "name": "CustomCodeBlockLowlight",
+          "line": 4,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addAttributes",
+          "callee": "this.parent",
+          "lineNumber": 7
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "document.createElement",
+          "lineNumber": 20
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "document.createElement",
+          "lineNumber": 21
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "document.createElement",
+          "lineNumber": 27
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "document.createElement",
+          "lineNumber": 31
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "languageOptions.forEach",
+          "lineNumber": 60
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "document.createElement",
+          "lineNumber": 61
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "select.append",
+          "lineNumber": 67
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "select.addEventListener",
+          "lineNumber": 70
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "getPos",
+          "lineNumber": 73
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "editorInstance.view.dispatch",
+          "lineNumber": 75
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "editorInstance.view.state.tr.setNodeMarkup",
+          "lineNumber": 76
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "selectorWrapper.append",
+          "lineNumber": 87
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "dom.append",
+          "lineNumber": 88
+        },
+        {
+          "caller": "addNodeView",
+          "callee": "dom.append",
+          "lineNumber": 89
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 34,
+      "nonEmptyLines": 31,
+      "functions": [
+        {
+          "name": "LinkModal",
+          "startLine": 12,
+          "endLine": 34,
+          "params": [
+            "{ open, url, onOk, onCancel, onUrlChange }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "LinkModal",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "LinkModal",
+          "callee": "useTranslation",
+          "lineNumber": 13
+        },
+        {
+          "caller": "LinkModal",
+          "callee": "t",
+          "lineNumber": 18
+        },
+        {
+          "caller": "LinkModal",
+          "callee": "t",
+          "lineNumber": 21
+        },
+        {
+          "caller": "LinkModal",
+          "callee": "t",
+          "lineNumber": 22
+        },
+        {
+          "caller": "LinkModal",
+          "callee": "onUrlChange",
+          "lineNumber": 27
+        },
+        {
+          "caller": "LinkModal",
+          "callee": "t",
+          "lineNumber": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 236,
+      "nonEmptyLines": 227,
+      "functions": [
+        {
+          "name": "CodeBlockModal",
+          "startLine": 16,
+          "endLine": 63,
+          "params": [
+            "{\n  open,\n  language,\n  content,\n  onOk,\n  onCancel,\n  onLanguageChange,\n  onContentChange,\n}"
+          ]
+        },
+        {
+          "name": "VideoModal",
+          "startLine": 76,
+          "endLine": 127,
+          "params": [
+            "{\n  open,\n  url,\n  width,\n  onOk,\n  onCancel,\n  onUrlChange,\n  onWidthChange,\n}"
+          ]
+        },
+        {
+          "name": "IframeModal",
+          "startLine": 146,
+          "endLine": 236,
+          "params": [
+            "{\n  open,\n  url,\n  width,\n  height,\n  title,\n  allowFullscreen,\n  onOk,\n  onCancel,\n  onUrlChange,\n  onWidthChange,\n  onHeightChange,\n  onTitleChange,\n  onAllowFullscreenChange,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "CodeBlockModal",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "VideoModal",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "IframeModal",
+          "line": 146,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "CodeBlockModal",
+          "callee": "useTranslation",
+          "lineNumber": 25
+        },
+        {
+          "caller": "CodeBlockModal",
+          "callee": "t",
+          "lineNumber": 30
+        },
+        {
+          "caller": "CodeBlockModal",
+          "callee": "t",
+          "lineNumber": 33
+        },
+        {
+          "caller": "CodeBlockModal",
+          "callee": "t",
+          "lineNumber": 34
+        },
+        {
+          "caller": "CodeBlockModal",
+          "callee": "t",
+          "lineNumber": 40
+        },
+        {
+          "caller": "CodeBlockModal",
+          "callee": "t",
+          "lineNumber": 47
+        },
+        {
+          "caller": "CodeBlockModal",
+          "callee": "t",
+          "lineNumber": 51
+        },
+        {
+          "caller": "CodeBlockModal",
+          "callee": "onContentChange",
+          "lineNumber": 54
+        },
+        {
+          "caller": "CodeBlockModal",
+          "callee": "t",
+          "lineNumber": 57
+        },
+        {
+          "caller": "VideoModal",
+          "callee": "useTranslation",
+          "lineNumber": 85
+        },
+        {
+          "caller": "VideoModal",
+          "callee": "t",
+          "lineNumber": 90
+        },
+        {
+          "caller": "VideoModal",
+          "callee": "t",
+          "lineNumber": 93
+        },
+        {
+          "caller": "VideoModal",
+          "callee": "t",
+          "lineNumber": 94
+        },
+        {
+          "caller": "VideoModal",
+          "callee": "t",
+          "lineNumber": 100
+        },
+        {
+          "caller": "VideoModal",
+          "callee": "onUrlChange",
+          "lineNumber": 103
+        },
+        {
+          "caller": "VideoModal",
+          "callee": "t",
+          "lineNumber": 104
+        },
+        {
+          "caller": "VideoModal",
+          "callee": "t",
+          "lineNumber": 110
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "useTranslation",
+          "lineNumber": 161
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 166
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 169
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 170
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 176
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "onUrlChange",
+          "lineNumber": 179
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 180
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 186
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 201
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 214
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "onTitleChange",
+          "lineNumber": 217
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 218
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 223
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 228
+        },
+        {
+          "caller": "IframeModal",
+          "callee": "t",
+          "lineNumber": 229
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/nodes.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 94,
+      "nonEmptyLines": 92,
+      "exports": [
+        {
+          "name": "CustomVideo",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "CustomIframe",
+          "line": 45,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addAttributes",
+          "callee": "el.getAttribute",
+          "lineNumber": 11
+        },
+        {
+          "caller": "renderHTML",
+          "callee": "mergeAttributes",
+          "lineNumber": 28
+        },
+        {
+          "caller": "addCommands",
+          "callee": "commands.insertContent",
+          "lineNumber": 39
+        },
+        {
+          "caller": "addAttributes",
+          "callee": "el.getAttribute",
+          "lineNumber": 52
+        },
+        {
+          "caller": "addAttributes",
+          "callee": "el.getAttribute",
+          "lineNumber": 61
+        },
+        {
+          "caller": "addAttributes",
+          "callee": "el.hasAttribute",
+          "lineNumber": 64
+        },
+        {
+          "caller": "renderHTML",
+          "callee": "mergeAttributes",
+          "lineNumber": 74
+        },
+        {
+          "caller": "addCommands",
+          "callee": "commands.insertContent",
+          "lineNumber": 91
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 32,
+      "functions": [
+        {
+          "name": "StatusBar",
+          "startLine": 10,
+          "endLine": 35,
+          "params": [
+            "{ words, chars, cursor, isDark }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "StatusBar",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "StatusBar",
+          "callee": "useTranslation",
+          "lineNumber": 11
+        },
+        {
+          "caller": "StatusBar",
+          "callee": "t",
+          "lineNumber": 17
+        },
+        {
+          "caller": "StatusBar",
+          "callee": "t",
+          "lineNumber": 21
+        },
+        {
+          "caller": "StatusBar",
+          "callee": "t",
+          "lineNumber": 29
+        },
+        {
+          "caller": "StatusBar",
+          "callee": "t",
+          "lineNumber": 30
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 482,
+      "nonEmptyLines": 464,
+      "functions": [
+        {
+          "name": "Toolbar",
+          "startLine": 10,
+          "endLine": 482,
+          "params": [
+            "{ editor, isActive, actions, isFullscreen }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Toolbar",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Toolbar",
+          "callee": "useTranslation",
+          "lineNumber": 11
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 19
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.toggleHeading",
+          "lineNumber": 20
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 27
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.toggleHeading",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 35
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.toggleHeading",
+          "lineNumber": 36
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 43
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 57
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 59
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 65
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 67
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 73
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 75
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 81
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 83
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 89
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 91
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 103
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 105
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 111
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 113
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 119
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.setFontSize",
+          "lineNumber": 120
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 135
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.setTextColor",
+          "lineNumber": 136
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 141
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.setHighlight",
+          "lineNumber": 142
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 152
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 154
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 160
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 162
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 168
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 170
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 176
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 178
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 184
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 186
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 194
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 198
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 204
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 213
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 227
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 235
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 247
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.setAlign",
+          "lineNumber": 248
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 249
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 255
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.setAlign",
+          "lineNumber": 256
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 257
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 263
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.setAlign",
+          "lineNumber": 264
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 265
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 271
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.setAlign",
+          "lineNumber": 272
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 273
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 280
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 288
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 296
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 304
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 312
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 320
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 328
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 336
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 344
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 352
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 360
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 368
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "editor?.can().undo",
+          "lineNumber": 384
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "editor?.can",
+          "lineNumber": 384
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 385
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "editor?.can().redo",
+          "lineNumber": 393
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "editor?.can",
+          "lineNumber": 393
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 394
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 402
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 411
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 423
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 425
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "editor?.chain().focus().unsetLink().run",
+          "lineNumber": 426
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "editor?.chain().focus().unsetLink",
+          "lineNumber": 426
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 426
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "editor?.chain",
+          "lineNumber": 426
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "actions.setLinkModalVisible",
+          "lineNumber": 427
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "isActive",
+          "lineNumber": 430
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 430
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 430
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 439
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 447
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 455
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 463
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 473
+        },
+        {
+          "caller": "Toolbar",
+          "callee": "t",
+          "lineNumber": 474
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/types.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 40,
+      "nonEmptyLines": 38,
+      "exports": [
+        {
+          "name": "EditorType",
+          "line": 1,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Loading/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 162,
+      "nonEmptyLines": 147,
+      "functions": [
+        {
+          "name": "ThemeLoading",
+          "startLine": 30,
+          "endLine": 160,
+          "params": [
+            "{\n                                 text = '加载中',\n                                 subText,\n                                 fullScreen = false,\n                                 className = '',\n                                 style,\n                                 progress,\n                                 status = 'loading',\n                                 autoHide = true,\n                                 themeOverride,\n                             }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ThemeLoading",
+          "line": 30,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ThemeLoading",
+          "callee": "usePreferencesStore",
+          "lineNumber": 41
+        },
+        {
+          "caller": "ThemeLoading",
+          "callee": "useThemeConfig",
+          "lineNumber": 42
+        },
+        {
+          "caller": "ThemeLoading",
+          "callee": "useMemo",
+          "lineNumber": 45
+        },
+        {
+          "caller": "ThemeLoading",
+          "callee": "useMemo",
+          "lineNumber": 61
+        },
+        {
+          "caller": "ThemeLoading",
+          "callee": "Math.round",
+          "lineNumber": 126
+        },
+        {
+          "caller": "ThemeLoading",
+          "callee": "`\n    flex items-center justify-center\n    ${fullScreen\n        ? 'fixed inset-0 z-[1000] bg-[var(--ant-color-bg-container)]/95 backdrop-blur-md'\n        : 'py-6'\n    }\n    ${className}\n  `.trim",
+          "lineNumber": 134
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/PageContainer/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 18,
+      "functions": [
+        {
+          "name": "Index",
+          "startLine": 10,
+          "endLine": 19,
+          "params": [
+            "{title, children, extra}"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/config/constants.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 84,
+      "nonEmptyLines": 76,
+      "exports": [
+        {
+          "name": "ROUTES",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "TABLE",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "LAYOUT_HEIGHTS",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "METHOD_LIST",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "BUSINESS",
+          "line": 77,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/access/access-control.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 66,
+      "nonEmptyLines": 61,
+      "functions": [
+        {
+          "name": "AccessControl",
+          "startLine": 42,
+          "endLine": 66,
+          "params": [
+            "{\n  children,\n  codes,\n  type = 'code',\n  fallback = null,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "AccessControl",
+          "line": 42,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "AccessControl",
+          "callee": "useAccess",
+          "lineNumber": 48
+        },
+        {
+          "caller": "AccessControl",
+          "callee": "hasAccessByRoles",
+          "lineNumber": 54
+        },
+        {
+          "caller": "AccessControl",
+          "callee": "hasAccessByAuthority",
+          "lineNumber": 57
+        },
+        {
+          "caller": "AccessControl",
+          "callee": "hasAccessByCodes",
+          "lineNumber": 61
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/access/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 7,
+      "exports": [
+        {
+          "name": "useAccess",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "getAccessStatic",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "checkAccessByRoles",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "checkAccessByCodes",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "checkAccessByAuthority",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "AccessControl",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "AccessControlProps",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 7,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/access/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 302,
+      "nonEmptyLines": 224,
+      "sections": [
+        {
+          "heading": "权限管理模块 (Access Control) - React",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "概述",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "核心特性",
+          "level": 3,
+          "line": 7
+        },
+        {
+          "heading": "模块结构",
+          "level": 2,
+          "line": 17
+        },
+        {
+          "heading": "权限数据来源",
+          "level": 2,
+          "line": 30
+        },
+        {
+          "heading": "使用方法",
+          "level": 2,
+          "line": 42
+        },
+        {
+          "heading": "1. 路由级别权限控制",
+          "level": 3,
+          "line": 44
+        },
+        {
+          "heading": "2. 按钮级别权限控制",
+          "level": 3,
+          "line": 75
+        },
+        {
+          "heading": "方式一：Hook + 条件渲染（推荐）",
+          "level": 4,
+          "line": 77
+        },
+        {
+          "heading": "方式二：AccessControl 组件",
+          "level": 4,
+          "line": 101
+        },
+        {
+          "heading": "方式三：非组件场景（路由生成、工具函数）",
+          "level": 4,
+          "line": 129
+        },
+        {
+          "heading": "API 参考",
+          "level": 2,
+          "line": 145
+        },
+        {
+          "heading": "`useAccess()` Hook",
+          "level": 3,
+          "line": 147
+        },
+        {
+          "heading": "`<AccessControl>` 组件",
+          "level": 3,
+          "line": 171
+        },
+        {
+          "heading": "`getAccessStatic()` 静态方法",
+          "level": 3,
+          "line": 180
+        },
+        {
+          "heading": "`ROLE_ROOT` 常量",
+          "level": 3,
+          "line": 184
+        },
+        {
+          "heading": "权限流程",
+          "level": 2,
+          "line": 193
+        },
+        {
+          "heading": "存储结构",
+          "level": 2,
+          "line": 213
+        },
+        {
+          "heading": "常见问题",
+          "level": 2,
+          "line": 226
+        },
+        {
+          "heading": "Q1: 如何调试权限？",
+          "level": 3,
+          "line": 228
+        },
+        {
+          "heading": "Q2: 权限变更后如何刷新？",
+          "level": 3,
+          "line": 239
+        },
+        {
+          "heading": "Q3: 如何实现\"与\"逻辑（需同时拥有多个权限）？",
+          "level": 3,
+          "line": 249
+        },
+        {
+          "heading": "Q4: 如何在非组件环境中检查权限？",
+          "level": 3,
+          "line": 260
+        },
+        {
+          "heading": "权限前缀规范",
+          "level": 2,
+          "line": 273
+        },
+        {
+          "heading": "注意事项",
+          "level": 2,
+          "line": 287
+        },
+        {
+          "heading": "相关文件",
+          "level": 2,
+          "line": 296
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 26
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/access/use-access.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 144,
+      "nonEmptyLines": 128,
+      "functions": [
+        {
+          "name": "checkAccessByRoles",
+          "startLine": 16,
+          "endLine": 20,
+          "params": [
+            "userRoles",
+            "requiredRoles"
+          ]
+        },
+        {
+          "name": "checkAccessByCodes",
+          "startLine": 22,
+          "endLine": 26,
+          "params": [
+            "accessCodes",
+            "requiredCodes"
+          ]
+        },
+        {
+          "name": "checkAccessByAuthority",
+          "startLine": 28,
+          "endLine": 36,
+          "params": [
+            "userRoles",
+            "accessCodes",
+            "authority"
+          ]
+        },
+        {
+          "name": "useAccess",
+          "startLine": 50,
+          "endLine": 101,
+          "params": []
+        },
+        {
+          "name": "getAccessStatic",
+          "startLine": 112,
+          "endLine": 142,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "getAccessStatic",
+          "line": 112,
+          "isDefault": false
+        },
+        {
+          "name": "useAccess",
+          "line": 144,
+          "isDefault": false
+        },
+        {
+          "name": "checkAccessByRoles",
+          "line": 144,
+          "isDefault": false
+        },
+        {
+          "name": "checkAccessByCodes",
+          "line": 144,
+          "isDefault": false
+        },
+        {
+          "name": "checkAccessByAuthority",
+          "line": 144,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "checkAccessByRoles",
+          "callee": "requiredRoles.some",
+          "lineNumber": 19
+        },
+        {
+          "caller": "checkAccessByRoles",
+          "callee": "userRoleSet.has",
+          "lineNumber": 19
+        },
+        {
+          "caller": "checkAccessByCodes",
+          "callee": "requiredCodes.some",
+          "lineNumber": 25
+        },
+        {
+          "caller": "checkAccessByCodes",
+          "callee": "userCodesSet.has",
+          "lineNumber": 25
+        },
+        {
+          "caller": "checkAccessByAuthority",
+          "callee": "authority.some",
+          "lineNumber": 35
+        },
+        {
+          "caller": "checkAccessByAuthority",
+          "callee": "allSet.has",
+          "lineNumber": 35
+        },
+        {
+          "caller": "useAccess",
+          "callee": "useUserStore",
+          "lineNumber": 51
+        },
+        {
+          "caller": "useAccess",
+          "callee": "useUserStore",
+          "lineNumber": 52
+        },
+        {
+          "caller": "useAccess",
+          "callee": "useCallback",
+          "lineNumber": 57
+        },
+        {
+          "caller": "useAccess",
+          "callee": "checkAccessByRoles",
+          "lineNumber": 58
+        },
+        {
+          "caller": "useAccess",
+          "callee": "useCallback",
+          "lineNumber": 65
+        },
+        {
+          "caller": "useAccess",
+          "callee": "checkAccessByCodes",
+          "lineNumber": 66
+        },
+        {
+          "caller": "useAccess",
+          "callee": "useCallback",
+          "lineNumber": 73
+        },
+        {
+          "caller": "useAccess",
+          "callee": "checkAccessByAuthority",
+          "lineNumber": 75
+        },
+        {
+          "caller": "useAccess",
+          "callee": "useCallback",
+          "lineNumber": 82
+        },
+        {
+          "caller": "getAccessStatic",
+          "callee": "useUserStore.getState",
+          "lineNumber": 113
+        },
+        {
+          "caller": "hasAccessByRoles",
+          "callee": "checkAccessByRoles",
+          "lineNumber": 116
+        },
+        {
+          "caller": "hasAccessByCodes",
+          "callee": "checkAccessByCodes",
+          "lineNumber": 120
+        },
+        {
+          "caller": "hasAccessByAuthority",
+          "callee": "checkAccessByAuthority",
+          "lineNumber": 124
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/constants.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/components/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 25,
+      "nonEmptyLines": 22,
+      "functions": [
+        {
+          "name": "LocaleSwitcher",
+          "startLine": 11,
+          "endLine": 25,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "LocaleSwitcher",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "LocaleSwitcher",
+          "callee": "useLocaleSync",
+          "lineNumber": 12
+        },
+        {
+          "caller": "LocaleSwitcher",
+          "callee": "usePreferencesStore",
+          "lineNumber": 17
+        },
+        {
+          "caller": "LocaleSwitcher",
+          "callee": "supportedLocales.map",
+          "lineNumber": 18
+        },
+        {
+          "caller": "LocaleSwitcher",
+          "callee": "changeLocale",
+          "lineNumber": 22
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

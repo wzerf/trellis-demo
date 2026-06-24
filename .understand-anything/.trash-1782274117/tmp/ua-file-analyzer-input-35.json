@@ -1,0 +1,13 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "packages/utils-template/README.md", "language": "markdown", "sizeLines": 23, "fileCategory": "docs"},
+    {"path": "packages/utils-template/package.json", "language": "json", "sizeLines": 31, "fileCategory": "config"},
+    {"path": "packages/utils-template/tsconfig.json", "language": "json", "sizeLines": 20, "fileCategory": "config"}
+  ],
+  "batchImportData": {
+    "packages/utils-template/README.md": [],
+    "packages/utils-template/package.json": [],
+    "packages/utils-template/tsconfig.json": []
+  }
+}

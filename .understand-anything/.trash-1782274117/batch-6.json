@@ -1,0 +1,448 @@
+{
+  "nodes": [
+    {
+      "id": "file:apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "type": "file",
+      "name": "downloader.ts",
+      "filePath": "apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "summary": "文件下载模块，封装通过请求客户端下载文件并触发浏览器另存为的行为。",
+      "tags": ["utility", "http", "file-download", "axios"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:apps/react-admin/src/core/transport/rest/modules/downloader.ts:FileDownloader",
+      "type": "class",
+      "name": "FileDownloader",
+      "filePath": "apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "lineRange": [6, 21],
+      "summary": "下载器类，包装请求客户端以流式下载文件并触发浏览器保存。",
+      "tags": ["file-download", "http", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/transport/rest/modules/interceptor.ts",
+      "type": "file",
+      "name": "interceptor.ts",
+      "filePath": "apps/react-admin/src/core/transport/rest/modules/interceptor.ts",
+      "summary": "axios 拦截器管理模块，集中注册请求与响应拦截器。",
+      "tags": ["interceptor", "http", "axios", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:apps/react-admin/src/core/transport/rest/modules/interceptor.ts:InterceptorManager",
+      "type": "class",
+      "name": "InterceptorManager",
+      "filePath": "apps/react-admin/src/core/transport/rest/modules/interceptor.ts",
+      "lineRange": [15, 35],
+      "summary": "拦截器管理器，对外暴露添加请求与响应拦截器的能力，内部委托给 axios 实例。",
+      "tags": ["interceptor", "http", "axios"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/transport/rest/modules/uploader.ts",
+      "type": "file",
+      "name": "uploader.ts",
+      "filePath": "apps/react-admin/src/core/transport/rest/modules/uploader.ts",
+      "summary": "文件上传模块，将对象字段构造为 FormData 并通过请求客户端提交。",
+      "tags": ["utility", "http", "file-upload", "form-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:apps/react-admin/src/core/transport/rest/modules/uploader.ts:FileUploader",
+      "type": "class",
+      "name": "FileUploader",
+      "filePath": "apps/react-admin/src/core/transport/rest/modules/uploader.ts",
+      "lineRange": [5, 38],
+      "summary": "上传器类，把记录字段打包为 multipart/form-data 并由请求客户端发送。",
+      "tags": ["file-upload", "form-data", "http"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "type": "file",
+      "name": "preset-interceptors.ts",
+      "filePath": "apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "summary": "预设的认证与错误消息响应拦截器，处理 401 刷新令牌与统一错误信息生成。",
+      "tags": ["interceptor", "auth", "error-handling", "http"],
+      "complexity": "complex",
+      "languageNotes": "使用 Promise 队列串行化并发请求以避免 401 风暴，刷新令牌时合并所有回调。"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/transport/rest/preset-interceptors.ts:authenticateResponseInterceptor",
+      "type": "function",
+      "name": "authenticateResponseInterceptor",
+      "filePath": "apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "lineRange": [16, 112],
+      "summary": "认证响应拦截器，识别 401/403 并按策略触发重新认证或刷新令牌，刷新成功后回放排队请求。",
+      "tags": ["auth", "interceptor", "refresh-token", "401-handling"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/transport/rest/preset-interceptors.ts:errorMessageResponseInterceptor",
+      "type": "function",
+      "name": "errorMessageResponseInterceptor",
+      "filePath": "apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "lineRange": [120, 143],
+      "summary": "错误消息响应拦截器，统一格式化错误并经回调抛出，跳过取消的请求。",
+      "tags": ["error-handling", "interceptor", "http"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/transport/rest/request-api.ts",
+      "type": "file",
+      "name": "request-api.ts",
+      "filePath": "apps/react-admin/src/core/transport/rest/request-api.ts",
+      "summary": "对外暴露的轻量级请求函数，使用请求客户端单例发起 path/method/body 调用。",
+      "tags": ["api-handler", "http", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/transport/rest/request-api.ts:requestApi",
+      "type": "function",
+      "name": "requestApi",
+      "filePath": "apps/react-admin/src/core/transport/rest/request-api.ts",
+      "lineRange": [3, 16],
+      "summary": "通过 RequestClient 单例发起通用 HTTP 请求的便捷封装函数。",
+      "tags": ["api-handler", "http", "singleton"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "type": "file",
+      "name": "request-client.ts",
+      "filePath": "apps/react-admin/src/core/transport/rest/request-client.ts",
+      "summary": "请求客户端核心：基于 axios 单例并串联多种预设拦截器（令牌、请求ID、地区、认证、错误）。",
+      "tags": ["singleton", "axios", "interceptor", "http", "api-handler"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:apps/react-admin/src/core/transport/rest/request-client.ts:RequestClient",
+      "type": "class",
+      "name": "RequestClient",
+      "filePath": "apps/react-admin/src/core/transport/rest/request-client.ts",
+      "lineRange": [17, 277],
+      "summary": "请求客户端类，封装 axios 实例、拦截器配置、上传/下载能力，并提供 get/post/put/delete 便捷方法与单例。",
+      "tags": ["singleton", "axios", "interceptor", "http", "api-handler"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/transport/rest/types.ts",
+      "type": "file",
+      "name": "types.ts",
+      "filePath": "apps/react-admin/src/core/transport/rest/types.ts",
+      "summary": "REST 传输层共享 TypeScript 类型定义：回调、HTTP 响应、错误生成、客户端选项与拦截器配置。",
+      "tags": ["type-definition", "http", "interface"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "type": "file",
+      "name": "utils.ts",
+      "filePath": "apps/react-admin/src/core/transport/rest/utils.ts",
+      "summary": "REST 传输层工具函数：生成更新掩码、生成请求ID、解析默认错误消息、自动绑定类方法。",
+      "tags": ["utility", "http", "error-handling", "id-generation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/transport/rest/utils.ts:makeUpdateMask",
+      "type": "function",
+      "name": "makeUpdateMask",
+      "filePath": "apps/react-admin/src/core/transport/rest/utils.ts",
+      "lineRange": [8, 10],
+      "summary": "拼接更新掩码字段字符串，常用于 REST PATCH 的 update_mask 查询参数。",
+      "tags": ["utility", "rest", "query-param"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/transport/rest/utils.ts:defaultIdGenerator",
+      "type": "function",
+      "name": "defaultIdGenerator",
+      "filePath": "apps/react-admin/src/core/transport/rest/utils.ts",
+      "lineRange": [15, 27],
+      "summary": "生成唯一请求 ID：优先使用 crypto.randomUUID，回退到基于时间戳与 Math.random 的实现。",
+      "tags": ["utility", "id-generation", "uuid"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/transport/rest/utils.ts:getDefaultErrorMsg",
+      "type": "function",
+      "name": "getDefaultErrorMsg",
+      "filePath": "apps/react-admin/src/core/transport/rest/utils.ts",
+      "lineRange": [34, 85],
+      "summary": "从 axios 错误对象中解析用户可读的错误信息，区分网络错误、HTTP 状态码和业务码。",
+      "tags": ["utility", "error-handling", "axios"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:apps/react-admin/src/core/transport/rest/utils.ts:bindMethods",
+      "type": "function",
+      "name": "bindMethods",
+      "filePath": "apps/react-admin/src/core/transport/rest/utils.ts",
+      "lineRange": [87, 105],
+      "summary": "遍历实例原型上的方法并将 this 自动绑定到实例，便于作为回调函数传递。",
+      "tags": ["utility", "bind", "class-helper"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "target": "class:apps/react-admin/src/core/transport/rest/modules/downloader.ts:FileDownloader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "target": "class:apps/react-admin/src/core/transport/rest/modules/downloader.ts:FileDownloader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/modules/interceptor.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/modules/interceptor.ts",
+      "target": "class:apps/react-admin/src/core/transport/rest/modules/interceptor.ts:InterceptorManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/modules/interceptor.ts",
+      "target": "class:apps/react-admin/src/core/transport/rest/modules/interceptor.ts:InterceptorManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/modules/uploader.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/modules/uploader.ts",
+      "target": "class:apps/react-admin/src/core/transport/rest/modules/uploader.ts:FileUploader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/modules/uploader.ts",
+      "target": "class:apps/react-admin/src/core/transport/rest/modules/uploader.ts:FileUploader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/preset-interceptors.ts:authenticateResponseInterceptor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/preset-interceptors.ts:errorMessageResponseInterceptor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/preset-interceptors.ts:authenticateResponseInterceptor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/preset-interceptors.ts:errorMessageResponseInterceptor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-api.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-api.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/request-api.ts:requestApi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-api.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/request-api.ts:requestApi",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/modules/interceptor.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/modules/uploader.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "target": "class:apps/react-admin/src/core/transport/rest/request-client.ts:RequestClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/request-client.ts",
+      "target": "class:apps/react-admin/src/core/transport/rest/request-client.ts:RequestClient",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "target": "file:apps/react-admin/src/core/transport/rest/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/utils.ts:makeUpdateMask",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/utils.ts:defaultIdGenerator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/utils.ts:getDefaultErrorMsg",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/utils.ts:bindMethods",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/utils.ts:makeUpdateMask",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/utils.ts:defaultIdGenerator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/utils.ts:getDefaultErrorMsg",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:apps/react-admin/src/core/transport/rest/utils.ts",
+      "target": "function:apps/react-admin/src/core/transport/rest/utils.ts:bindMethods",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

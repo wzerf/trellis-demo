@@ -1,0 +1,13 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java", "language": "java", "sizeLines": 20, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java", "language": "java", "sizeLines": 73, "fileCategory": "code"},
+    {"path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java", "language": "java", "sizeLines": 29, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java": [],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java": ["backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java", "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java"],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java": []
+  }
+}

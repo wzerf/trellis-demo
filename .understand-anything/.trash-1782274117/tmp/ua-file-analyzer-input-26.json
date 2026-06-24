@@ -1,0 +1,21 @@
+{
+  "projectRoot": "/Users/wshake/code/trellis-demo",
+  "batchFiles": [
+    {"path": "apps/react-admin/src/locales/en-US/_modules/preferences.json", "language": "json", "sizeLines": 159, "fileCategory": "config"},
+    {"path": "apps/react-admin/src/locales/en-US/_modules/profile.json", "language": "json", "sizeLines": 55, "fileCategory": "config"},
+    {"path": "apps/react-admin/src/locales/en-US/_modules/role.json", "language": "json", "sizeLines": 37, "fileCategory": "config"},
+    {"path": "apps/react-admin/src/locales/en-US/_modules/task.json", "language": "json", "sizeLines": 69, "fileCategory": "config"},
+    {"path": "apps/react-admin/src/locales/en-US/_modules/tenant.json", "language": "json", "sizeLines": 79, "fileCategory": "config"},
+    {"path": "apps/react-admin/src/locales/en-US/_modules/user-detail.json", "language": "json", "sizeLines": 43, "fileCategory": "config"},
+    {"path": "apps/react-admin/src/locales/en-US/_modules/user.json", "language": "json", "sizeLines": 66, "fileCategory": "config"}
+  ],
+  "batchImportData": {
+    "apps/react-admin/src/locales/en-US/_modules/preferences.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/profile.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/role.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/task.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/tenant.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/user-detail.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/user.json": []
+  }
+}

@@ -1,0 +1,765 @@
+{
+  "scriptCompleted": true,
+  "stats": {
+    "filesScanned": 474,
+    "filesWithImports": 93,
+    "totalEdges": 188
+  },
+  "importMap": {
+    ".commitlintrc.js": [],
+    ".gitmodules": [],
+    ".mcp.json": [],
+    "AGENTS.md": [],
+    "apps/backend-mock-template/api/auth/codes.ts": [],
+    "apps/backend-mock-template/api/auth/login.post.ts": [],
+    "apps/backend-mock-template/api/auth/logout.post.ts": [],
+    "apps/backend-mock-template/api/auth/refresh.post.ts": [],
+    "apps/backend-mock-template/api/demo/bigint.ts": [],
+    "apps/backend-mock-template/api/menu/all.ts": [],
+    "apps/backend-mock-template/api/status.ts": [],
+    "apps/backend-mock-template/api/system/dept/.post.ts": [],
+    "apps/backend-mock-template/api/system/dept/[id].delete.ts": [],
+    "apps/backend-mock-template/api/system/dept/[id].put.ts": [],
+    "apps/backend-mock-template/api/system/dept/list.ts": [],
+    "apps/backend-mock-template/api/system/menu/list.ts": [],
+    "apps/backend-mock-template/api/system/menu/name-exists.ts": [],
+    "apps/backend-mock-template/api/system/menu/path-exists.ts": [],
+    "apps/backend-mock-template/api/system/role/list.ts": [],
+    "apps/backend-mock-template/api/system/user/[id].delete.ts": [],
+    "apps/backend-mock-template/api/system/user/[id].put.ts": [],
+    "apps/backend-mock-template/api/system/user/create.post.ts": [],
+    "apps/backend-mock-template/api/system/user/list.ts": [],
+    "apps/backend-mock-template/api/table/list.ts": [],
+    "apps/backend-mock-template/api/test.get.ts": [],
+    "apps/backend-mock-template/api/test.post.ts": [],
+    "apps/backend-mock-template/api/timezone/getTimezone.ts": [],
+    "apps/backend-mock-template/api/timezone/getTimezoneOptions.ts": [],
+    "apps/backend-mock-template/api/timezone/setTimezone.ts": [],
+    "apps/backend-mock-template/api/upload.ts": [],
+    "apps/backend-mock-template/api/user/info.ts": [],
+    "apps/backend-mock-template/error.ts": [],
+    "apps/backend-mock-template/middleware/1.api.ts": [],
+    "apps/backend-mock-template/nitro.config.ts": [
+      "apps/backend-mock-template/error.ts"
+    ],
+    "apps/backend-mock-template/package.json": [],
+    "apps/backend-mock-template/README.md": [],
+    "apps/backend-mock-template/routes/[...].ts": [],
+    "apps/backend-mock-template/tsconfig.build.json": [],
+    "apps/backend-mock-template/tsconfig.json": [],
+    "apps/backend-mock-template/utils/cookie-utils.ts": [],
+    "apps/backend-mock-template/utils/jwt-utils.ts": [
+      "apps/backend-mock-template/utils/mock-data.ts"
+    ],
+    "apps/backend-mock-template/utils/mock-data.ts": [],
+    "apps/backend-mock-template/utils/response.ts": [],
+    "apps/backend-mock-template/utils/timezone-utils.ts": [],
+    "apps/react-admin/.env.development": [],
+    "apps/react-admin/.env.production": [],
+    "apps/react-admin/.prettierignore": [],
+    "apps/react-admin/eslint.config.js": [],
+    "apps/react-admin/index.html": [],
+    "apps/react-admin/package.json": [],
+    "apps/react-admin/pnpm-workspace.yaml": [],
+    "apps/react-admin/README.md": [],
+    "apps/react-admin/src/api/client.ts": [],
+    "apps/react-admin/src/api/hooks/admin-portal.ts": [],
+    "apps/react-admin/src/api/hooks/api-audit-log.ts": [],
+    "apps/react-admin/src/api/hooks/api.ts": [],
+    "apps/react-admin/src/api/hooks/auth.ts": [],
+    "apps/react-admin/src/api/hooks/data-access-audit-log.ts": [],
+    "apps/react-admin/src/api/hooks/dict.ts": [],
+    "apps/react-admin/src/api/hooks/file-transfer.ts": [],
+    "apps/react-admin/src/api/hooks/file.ts": [],
+    "apps/react-admin/src/api/hooks/index.ts": [],
+    "apps/react-admin/src/api/hooks/internal-message.ts": [],
+    "apps/react-admin/src/api/hooks/language.ts": [],
+    "apps/react-admin/src/api/hooks/login-audit-log.ts": [],
+    "apps/react-admin/src/api/hooks/login-policy.ts": [],
+    "apps/react-admin/src/api/hooks/menu.ts": [],
+    "apps/react-admin/src/api/hooks/operation-audit-log.ts": [],
+    "apps/react-admin/src/api/hooks/org-unit.ts": [],
+    "apps/react-admin/src/api/hooks/permission-audit-log.ts": [],
+    "apps/react-admin/src/api/hooks/permission-group.ts": [],
+    "apps/react-admin/src/api/hooks/permission.ts": [],
+    "apps/react-admin/src/api/hooks/policy-evaluation-log.ts": [],
+    "apps/react-admin/src/api/hooks/position.ts": [],
+    "apps/react-admin/src/api/hooks/role.ts": [],
+    "apps/react-admin/src/api/hooks/task.ts": [],
+    "apps/react-admin/src/api/hooks/tenant.ts": [],
+    "apps/react-admin/src/api/hooks/user-profile.ts": [],
+    "apps/react-admin/src/api/hooks/user.ts": [],
+    "apps/react-admin/src/api/index.ts": [],
+    "apps/react-admin/src/api/README.md": [],
+    "apps/react-admin/src/api/rest/auth.ts": [
+      "apps/react-admin/src/api/rest/request.ts",
+      "apps/react-admin/src/api/rest/types.ts"
+    ],
+    "apps/react-admin/src/api/rest/index.ts": [],
+    "apps/react-admin/src/api/rest/menu.ts": [
+      "apps/react-admin/src/api/rest/request.ts",
+      "apps/react-admin/src/api/rest/types.ts"
+    ],
+    "apps/react-admin/src/api/rest/request.ts": [],
+    "apps/react-admin/src/api/rest/types.ts": [],
+    "apps/react-admin/src/api/rest/user.ts": [
+      "apps/react-admin/src/api/rest/request.ts",
+      "apps/react-admin/src/api/rest/types.ts"
+    ],
+    "apps/react-admin/src/App.css": [],
+    "apps/react-admin/src/app.tsx": [],
+    "apps/react-admin/src/auto-imports.d.ts": [],
+    "apps/react-admin/src/bootstrap.ts": [],
+    "apps/react-admin/src/components/bussiness/AuthLayout/AuthLayout.style.less": [],
+    "apps/react-admin/src/components/bussiness/AuthLayout/icons/SloganIcon.tsx": [],
+    "apps/react-admin/src/components/bussiness/AuthLayout/index.tsx": [
+      "apps/react-admin/src/components/bussiness/AuthLayout/AuthLayout.style.less",
+      "apps/react-admin/src/components/bussiness/AuthLayout/icons/SloganIcon.tsx"
+    ],
+    "apps/react-admin/src/components/common/Editor/README.md": [],
+    "apps/react-admin/src/components/common/Editor/src/CodeEditor.tsx": [
+      "apps/react-admin/src/components/common/Editor/src/monaco-loader.ts",
+      "apps/react-admin/src/components/common/Editor/src/utils.ts"
+    ],
+    "apps/react-admin/src/components/common/Editor/src/Editor.tsx": [
+      "apps/react-admin/src/components/common/Editor/types.ts"
+    ],
+    "apps/react-admin/src/components/common/Editor/src/JsonEditor.tsx": [
+      "apps/react-admin/src/components/common/Editor/src/utils.ts"
+    ],
+    "apps/react-admin/src/components/common/Editor/src/MarkdownEditor.tsx": [
+      "apps/react-admin/src/components/common/Editor/src/utils.ts"
+    ],
+    "apps/react-admin/src/components/common/Editor/src/monaco-loader.ts": [],
+    "apps/react-admin/src/components/common/Editor/src/PlainTextEditor.tsx": [],
+    "apps/react-admin/src/components/common/Editor/src/tiptap-editor.css": [],
+    "apps/react-admin/src/components/common/Editor/src/TiptapEditor.tsx": [
+      "apps/react-admin/src/components/common/Editor/src/tiptap-editor.css"
+    ],
+    "apps/react-admin/src/components/common/Editor/src/TiptapEditor/constants.ts": [],
+    "apps/react-admin/src/components/common/Editor/src/TiptapEditor/extensions.ts": [],
+    "apps/react-admin/src/components/common/Editor/src/TiptapEditor/LinkModal.tsx": [],
+    "apps/react-admin/src/components/common/Editor/src/TiptapEditor/modals.tsx": [
+      "apps/react-admin/src/components/common/Editor/src/TiptapEditor/constants.ts"
+    ],
+    "apps/react-admin/src/components/common/Editor/src/TiptapEditor/nodes.ts": [],
+    "apps/react-admin/src/components/common/Editor/src/TiptapEditor/StatusBar.tsx": [],
+    "apps/react-admin/src/components/common/Editor/src/TiptapEditor/Toolbar.tsx": [],
+    "apps/react-admin/src/components/common/Editor/src/TiptapEditor/useTiptapEditor.tsx": [
+      "apps/react-admin/src/components/common/Editor/src/utils.ts"
+    ],
+    "apps/react-admin/src/components/common/Editor/src/utils.ts": [],
+    "apps/react-admin/src/components/common/Editor/types.ts": [],
+    "apps/react-admin/src/components/common/Loading/index.tsx": [],
+    "apps/react-admin/src/components/common/PageContainer/index.tsx": [],
+    "apps/react-admin/src/config/constants.ts": [],
+    "apps/react-admin/src/core/access/access-control.tsx": [
+      "apps/react-admin/src/core/access/use-access.ts"
+    ],
+    "apps/react-admin/src/core/access/index.ts": [],
+    "apps/react-admin/src/core/access/README.md": [],
+    "apps/react-admin/src/core/access/use-access.ts": [],
+    "apps/react-admin/src/core/constants.ts": [],
+    "apps/react-admin/src/core/i18n/components/index.ts": [],
+    "apps/react-admin/src/core/i18n/components/LocaleSwitcher/index.tsx": [],
+    "apps/react-admin/src/core/i18n/config/i18n.ts": [],
+    "apps/react-admin/src/core/i18n/hooks/index.ts": [],
+    "apps/react-admin/src/core/i18n/hooks/useI18n.ts": [],
+    "apps/react-admin/src/core/i18n/hooks/useLocaleSync.ts": [
+      "apps/react-admin/src/core/i18n/hooks/useI18n.ts"
+    ],
+    "apps/react-admin/src/core/i18n/index.ts": [],
+    "apps/react-admin/src/core/i18n/README.md": [],
+    "apps/react-admin/src/core/i18n/utils/detector.ts": [],
+    "apps/react-admin/src/core/i18n/utils/formatter.ts": [],
+    "apps/react-admin/src/core/i18n/utils/index.ts": [],
+    "apps/react-admin/src/core/i18n/utils/sync.ts": [
+      "apps/react-admin/src/core/i18n/utils/detector.ts"
+    ],
+    "apps/react-admin/src/core/index.ts": [],
+    "apps/react-admin/src/core/preferences/components/index.ts": [],
+    "apps/react-admin/src/core/preferences/components/PreferencesPanel/AppearancePanel.style.less": [],
+    "apps/react-admin/src/core/preferences/components/PreferencesPanel/AppearancePanel.tsx": [
+      "apps/react-admin/src/core/preferences/components/PreferencesPanel/AppearancePanel.style.less",
+      "apps/react-admin/src/core/preferences/store/index.ts",
+      "apps/react-admin/src/core/preferences/types/index.ts"
+    ],
+    "apps/react-admin/src/core/preferences/components/PreferencesPanel/GeneralPanel.style.less": [],
+    "apps/react-admin/src/core/preferences/components/PreferencesPanel/GeneralPanel.tsx": [
+      "apps/react-admin/src/core/preferences/components/PreferencesPanel/GeneralPanel.style.less",
+      "apps/react-admin/src/core/preferences/store/index.ts",
+      "apps/react-admin/src/core/preferences/types/index.ts"
+    ],
+    "apps/react-admin/src/core/preferences/components/PreferencesPanel/index.tsx": [
+      "apps/react-admin/src/core/preferences/components/PreferencesPanel/AppearancePanel.tsx",
+      "apps/react-admin/src/core/preferences/components/PreferencesPanel/GeneralPanel.tsx",
+      "apps/react-admin/src/core/preferences/components/PreferencesPanel/LayoutPanel.tsx",
+      "apps/react-admin/src/core/preferences/components/PreferencesPanel/PreferencesPanel.style.less",
+      "apps/react-admin/src/core/preferences/components/PreferencesPanel/ShortcutKeyPanel.tsx",
+      "apps/react-admin/src/core/preferences/store/index.ts"
+    ],
+    "apps/react-admin/src/core/preferences/components/PreferencesPanel/LayoutPanel.style.less": [],
+    "apps/react-admin/src/core/preferences/components/PreferencesPanel/LayoutPanel.tsx": [
+      "apps/react-admin/src/core/preferences/components/PreferencesPanel/LayoutPanel.style.less",
+      "apps/react-admin/src/core/preferences/store/index.ts",
+      "apps/react-admin/src/core/preferences/types/index.ts"
+    ],
+    "apps/react-admin/src/core/preferences/components/PreferencesPanel/PreferencesPanel.style.less": [],
+    "apps/react-admin/src/core/preferences/components/PreferencesPanel/ShortcutKeyPanel.style.less": [],
+    "apps/react-admin/src/core/preferences/components/PreferencesPanel/ShortcutKeyPanel.tsx": [
+      "apps/react-admin/src/core/preferences/components/PreferencesPanel/ShortcutKeyPanel.style.less",
+      "apps/react-admin/src/core/preferences/store/index.ts"
+    ],
+    "apps/react-admin/src/core/preferences/components/ThemeProvider/index.tsx": [
+      "apps/react-admin/src/core/preferences/store/index.ts",
+      "apps/react-admin/src/core/preferences/types/index.ts"
+    ],
+    "apps/react-admin/src/core/preferences/config/constants.ts": [
+      "apps/react-admin/src/core/preferences/types/index.ts"
+    ],
+    "apps/react-admin/src/core/preferences/config/default.ts": [
+      "apps/react-admin/src/core/preferences/types/index.ts"
+    ],
+    "apps/react-admin/src/core/preferences/config/index.ts": [],
+    "apps/react-admin/src/core/preferences/hooks/index.ts": [],
+    "apps/react-admin/src/core/preferences/hooks/useLocale.ts": [
+      "apps/react-admin/src/core/preferences/hooks/usePreferences.ts",
+      "apps/react-admin/src/core/preferences/types/layout.ts"
+    ],
+    "apps/react-admin/src/core/preferences/hooks/usePreferences.ts": [
+      "apps/react-admin/src/core/preferences/store/index.ts",
+      "apps/react-admin/src/core/preferences/types/index.ts"
+    ],
+    "apps/react-admin/src/core/preferences/hooks/useThemeConfig.ts": [
+      "apps/react-admin/src/core/preferences/store/index.ts"
+    ],
+    "apps/react-admin/src/core/preferences/index.ts": [],
+    "apps/react-admin/src/core/preferences/README.md": [],
+    "apps/react-admin/src/core/preferences/store/index.ts": [
+      "apps/react-admin/src/core/preferences/config/default.ts",
+      "apps/react-admin/src/core/preferences/types/index.ts",
+      "apps/react-admin/src/core/preferences/utils/merge.ts"
+    ],
+    "apps/react-admin/src/core/preferences/types/app.ts": [
+      "apps/react-admin/src/core/preferences/types/layout.ts",
+      "apps/react-admin/src/core/preferences/types/theme.ts"
+    ],
+    "apps/react-admin/src/core/preferences/types/index.ts": [],
+    "apps/react-admin/src/core/preferences/types/layout.ts": [],
+    "apps/react-admin/src/core/preferences/types/preferences-root.ts": [
+      "apps/react-admin/src/core/preferences/types/app.ts"
+    ],
+    "apps/react-admin/src/core/preferences/types/theme.ts": [],
+    "apps/react-admin/src/core/preferences/utils/merge.ts": [
+      "apps/react-admin/src/core/preferences/types/index.ts"
+    ],
+    "apps/react-admin/src/core/query-client.ts": [],
+    "apps/react-admin/src/core/router/factory.ts": [
+      "apps/react-admin/src/core/router/types/index.ts",
+      "apps/react-admin/src/core/router/utils/inject-redirect.ts",
+      "apps/react-admin/src/core/router/utils/sort-routes.ts",
+      "apps/react-admin/src/core/router/utils/transform-meta-to-handle.ts"
+    ],
+    "apps/react-admin/src/core/router/generators/generate-menus.ts": [],
+    "apps/react-admin/src/core/router/generators/generate-routes-backend.ts": [],
+    "apps/react-admin/src/core/router/generators/generate-routes-frontend.ts": [],
+    "apps/react-admin/src/core/router/generators/index.ts": [],
+    "apps/react-admin/src/core/router/index.ts": [],
+    "apps/react-admin/src/core/router/README.md": [],
+    "apps/react-admin/src/core/router/types/index.ts": [],
+    "apps/react-admin/src/core/router/utils/index.ts": [],
+    "apps/react-admin/src/core/router/utils/inject-redirect.ts": [],
+    "apps/react-admin/src/core/router/utils/lazy.tsx": [],
+    "apps/react-admin/src/core/router/utils/loader.ts": [
+      "apps/react-admin/src/core/router/types/index.ts"
+    ],
+    "apps/react-admin/src/core/router/utils/menu.ts": [],
+    "apps/react-admin/src/core/router/utils/merge-route-modules.ts": [],
+    "apps/react-admin/src/core/router/utils/reset-routes.ts": [],
+    "apps/react-admin/src/core/router/utils/sort-routes.ts": [],
+    "apps/react-admin/src/core/router/utils/transform-meta-to-handle.ts": [
+      "apps/react-admin/src/core/router/types/index.ts"
+    ],
+    "apps/react-admin/src/core/storage/index.ts": [],
+    "apps/react-admin/src/core/storage/README.md": [],
+    "apps/react-admin/src/core/storage/storage.class.ts": [
+      "apps/react-admin/src/core/storage/storage.types.ts"
+    ],
+    "apps/react-admin/src/core/storage/storage.types.ts": [],
+    "apps/react-admin/src/core/transport/rest/index.ts": [],
+    "apps/react-admin/src/core/transport/rest/modules/downloader.ts": [
+      "apps/react-admin/src/core/transport/rest/request-client.ts",
+      "apps/react-admin/src/core/transport/rest/types.ts"
+    ],
+    "apps/react-admin/src/core/transport/rest/modules/interceptor.ts": [
+      "apps/react-admin/src/core/transport/rest/types.ts"
+    ],
+    "apps/react-admin/src/core/transport/rest/modules/uploader.ts": [
+      "apps/react-admin/src/core/transport/rest/request-client.ts"
+    ],
+    "apps/react-admin/src/core/transport/rest/pagination.ts": [],
+    "apps/react-admin/src/core/transport/rest/preset-interceptors.ts": [
+      "apps/react-admin/src/core/transport/rest/request-client.ts",
+      "apps/react-admin/src/core/transport/rest/types.ts",
+      "apps/react-admin/src/core/transport/rest/utils.ts"
+    ],
+    "apps/react-admin/src/core/transport/rest/request-api.ts": [
+      "apps/react-admin/src/core/transport/rest/request-client.ts"
+    ],
+    "apps/react-admin/src/core/transport/rest/request-client.ts": [
+      "apps/react-admin/src/core/transport/rest/modules/downloader.ts",
+      "apps/react-admin/src/core/transport/rest/modules/interceptor.ts",
+      "apps/react-admin/src/core/transport/rest/modules/uploader.ts",
+      "apps/react-admin/src/core/transport/rest/preset-interceptors.ts",
+      "apps/react-admin/src/core/transport/rest/types.ts",
+      "apps/react-admin/src/core/transport/rest/utils.ts"
+    ],
+    "apps/react-admin/src/core/transport/rest/types.ts": [],
+    "apps/react-admin/src/core/transport/rest/utils.ts": [
+      "apps/react-admin/src/core/transport/rest/types.ts"
+    ],
+    "apps/react-admin/src/core/transport/sse/index.ts": [
+      "apps/react-admin/src/core/transport/sse/sse_client.ts"
+    ],
+    "apps/react-admin/src/core/transport/sse/sse_client.ts": [
+      "apps/react-admin/src/core/transport/sse/types.ts"
+    ],
+    "apps/react-admin/src/core/transport/sse/types.ts": [],
+    "apps/react-admin/src/hooks/useAuth.ts": [],
+    "apps/react-admin/src/hooks/useClipboard.ts": [],
+    "apps/react-admin/src/hooks/useDictCache.ts": [],
+    "apps/react-admin/src/hooks/useEcharts.ts": [],
+    "apps/react-admin/src/hooks/useKeyStroke.ts": [],
+    "apps/react-admin/src/hooks/useProTableScrollY.ts": [],
+    "apps/react-admin/src/hooks/useTableScrollHeight.ts": [],
+    "apps/react-admin/src/hooks/useTime.ts": [],
+    "apps/react-admin/src/hooks/useTitle.ts": [],
+    "apps/react-admin/src/hooks/useTokenRefresh.ts": [],
+    "apps/react-admin/src/hooks/useWatermark.ts": [],
+    "apps/react-admin/src/index.css": [],
+    "apps/react-admin/src/layouts/BlankLayout/index.tsx": [],
+    "apps/react-admin/src/layouts/components/ErrorFallback/index.tsx": [],
+    "apps/react-admin/src/layouts/components/ErrorFallback/RouteErrorFallback.tsx": [
+      "apps/react-admin/src/layouts/components/ErrorFallback/index.tsx"
+    ],
+    "apps/react-admin/src/layouts/components/ErrorFallback/utils/report.ts": [],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/hooks/useSkeletonAnimation.ts": [
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts"
+    ],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/index.tsx": [],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/CardSkeleton.tsx": [
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/index.tsx",
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts"
+    ],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/FormSkeleton.tsx": [
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/index.tsx",
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts"
+    ],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/index.ts": [],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/ListSkeleton.tsx": [
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/index.tsx",
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts"
+    ],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/PageSkeleton.tsx": [
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/index.tsx",
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts"
+    ],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/presets/TableSkeleton.tsx": [
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/index.tsx",
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts"
+    ],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/index.tsx": [
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/hooks/useSkeletonAnimation.ts",
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/styles.css",
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts"
+    ],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/styles.css": [],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts": [],
+    "apps/react-admin/src/layouts/components/LoadingSkeleton/utils/generateBlocks.ts": [
+      "apps/react-admin/src/layouts/components/LoadingSkeleton/Skeleton/types.ts"
+    ],
+    "apps/react-admin/src/layouts/components/PageContainer/ContentContainer.style.css": [],
+    "apps/react-admin/src/layouts/components/PageContainer/ContentContainer.tsx": [
+      "apps/react-admin/src/layouts/components/PageContainer/ContentContainer.style.css"
+    ],
+    "apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts": [
+      "apps/react-admin/src/layouts/components/PageContainer/types.ts"
+    ],
+    "apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts": [],
+    "apps/react-admin/src/layouts/components/PageContainer/index.tsx": [
+      "apps/react-admin/src/layouts/components/PageContainer/hooks/useBreadcrumb.ts",
+      "apps/react-admin/src/layouts/components/PageContainer/hooks/usePageTitle.ts",
+      "apps/react-admin/src/layouts/components/PageContainer/PageContainer.style.css",
+      "apps/react-admin/src/layouts/components/PageContainer/types.ts",
+      "apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts"
+    ],
+    "apps/react-admin/src/layouts/components/PageContainer/PageContainer.style.css": [],
+    "apps/react-admin/src/layouts/components/PageContainer/README.md": [],
+    "apps/react-admin/src/layouts/components/PageContainer/types.ts": [],
+    "apps/react-admin/src/layouts/components/PageContainer/USAGE.md": [],
+    "apps/react-admin/src/layouts/components/PageContainer/utils/breadcrumb-render.tsx": [
+      "apps/react-admin/src/layouts/components/PageContainer/types.ts"
+    ],
+    "apps/react-admin/src/layouts/components/PageContainer/utils/permission.ts": [
+      "apps/react-admin/src/layouts/components/PageContainer/types.ts"
+    ],
+    "apps/react-admin/src/layouts/IFrameLayout/iframe-layout.less": [],
+    "apps/react-admin/src/layouts/IFrameLayout/index.tsx": [
+      "apps/react-admin/src/layouts/IFrameLayout/iframe-layout.less"
+    ],
+    "apps/react-admin/src/layouts/MainLayout/components/Footer.tsx": [],
+    "apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx": [],
+    "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx": [],
+    "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx": [
+      "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/ControlPanel.tsx",
+      "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/SiderMenu.style.less",
+      "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx"
+    ],
+    "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/SiderMenu.style.less": [],
+    "apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx": [
+      "apps/react-admin/src/layouts/MainLayout/components/TabsBar/tabsbar.css",
+      "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx"
+    ],
+    "apps/react-admin/src/layouts/MainLayout/components/TabsBar/tabsbar.css": [],
+    "apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts": [],
+    "apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts": [],
+    "apps/react-admin/src/layouts/MainLayout/index.tsx": [
+      "apps/react-admin/src/layouts/MainLayout/components/Footer.tsx",
+      "apps/react-admin/src/layouts/MainLayout/components/HeaderContent.tsx",
+      "apps/react-admin/src/layouts/MainLayout/components/SiderMenu/index.tsx",
+      "apps/react-admin/src/layouts/MainLayout/components/TabsBar/index.tsx",
+      "apps/react-admin/src/layouts/MainLayout/hooks/useLayoutState.ts",
+      "apps/react-admin/src/layouts/MainLayout/hooks/useMenuData.ts"
+    ],
+    "apps/react-admin/src/layouts/MainLayout/types.ts": [],
+    "apps/react-admin/src/layouts/MainLayout/utils/iconResolver.tsx": [],
+    "apps/react-admin/src/layouts/UserLayout/components/background.less": [],
+    "apps/react-admin/src/layouts/UserLayout/components/Background.tsx": [
+      "apps/react-admin/src/layouts/UserLayout/components/background.less"
+    ],
+    "apps/react-admin/src/layouts/UserLayout/index.tsx": [
+      "apps/react-admin/src/layouts/UserLayout/UserLayout.style.less"
+    ],
+    "apps/react-admin/src/layouts/UserLayout/UserLayout.style.less": [],
+    "apps/react-admin/src/locales/en-US/_core/auth.json": [],
+    "apps/react-admin/src/locales/en-US/_core/common.json": [],
+    "apps/react-admin/src/locales/en-US/_core/editor.json": [],
+    "apps/react-admin/src/locales/en-US/_core/routes.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/api-audit-log.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/api.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/dashboard.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/data-access-audit-log.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/dict-entry.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/dict-type.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/file.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/inbox.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/internal-message.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/language.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/login-audit-log.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/login-policy.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/menu.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/message-category.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/operation-audit-log.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/org-unit.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/permission-audit-log.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/permission-group.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/permission.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/position.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/preferences.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/profile.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/role.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/task.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/tenant.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/user-detail.json": [],
+    "apps/react-admin/src/locales/en-US/_modules/user.json": [],
+    "apps/react-admin/src/locales/en-US/index.ts": [],
+    "apps/react-admin/src/locales/index.ts": [
+      "apps/react-admin/src/locales/en-US/index.ts",
+      "apps/react-admin/src/locales/zh-CN/index.ts"
+    ],
+    "apps/react-admin/src/locales/zh-CN/_core/auth.json": [],
+    "apps/react-admin/src/locales/zh-CN/_core/common.json": [],
+    "apps/react-admin/src/locales/zh-CN/_core/editor.json": [],
+    "apps/react-admin/src/locales/zh-CN/_core/routes.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/api-audit-log.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/api.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/dashboard.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/data-access-audit-log.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/dict-entry.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/dict-type.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/file.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/inbox.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/internal-message.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/language.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/login-audit-log.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/login-policy.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/menu.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/message-category.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/operation-audit-log.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/org-unit.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/permission-audit-log.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/permission-group.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/permission.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/position.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/preferences.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/profile.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/role.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/task.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/tenant.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/user-detail.json": [],
+    "apps/react-admin/src/locales/zh-CN/_modules/user.json": [],
+    "apps/react-admin/src/locales/zh-CN/index.ts": [],
+    "apps/react-admin/src/main.tsx": [
+      "apps/react-admin/src/core/index.ts",
+      "apps/react-admin/src/index.css",
+      "apps/react-admin/src/styles/global.css",
+      "apps/react-admin/src/styles/pro-components-dark.css",
+      "apps/react-admin/src/styles/pro-layout-overrides.css",
+      "apps/react-admin/src/styles/skeleton-force-dark.css"
+    ],
+    "apps/react-admin/src/pages/app/dashboard/components/BarChart.tsx": [],
+    "apps/react-admin/src/pages/app/dashboard/components/index.ts": [],
+    "apps/react-admin/src/pages/app/dashboard/components/LineChart.tsx": [],
+    "apps/react-admin/src/pages/app/dashboard/components/SourceDonutChart.tsx": [],
+    "apps/react-admin/src/pages/app/dashboard/components/SourcePieChart.tsx": [],
+    "apps/react-admin/src/pages/app/dashboard/components/StatsCard.tsx": [],
+    "apps/react-admin/src/pages/app/dashboard/components/TrendChart.tsx": [
+      "apps/react-admin/src/pages/app/dashboard/components/BarChart.tsx",
+      "apps/react-admin/src/pages/app/dashboard/components/LineChart.tsx"
+    ],
+    "apps/react-admin/src/pages/app/dashboard/components/VisitRadarChart.tsx": [],
+    "apps/react-admin/src/pages/app/dashboard/index.tsx": [
+      "apps/react-admin/src/pages/app/dashboard/components/index.ts"
+    ],
+    "apps/react-admin/src/pages/app/system/user/index.tsx": [],
+    "apps/react-admin/src/pages/core/auth/auth-form.style.less": [],
+    "apps/react-admin/src/pages/core/auth/login/index.tsx": [
+      "apps/react-admin/src/pages/core/auth/auth-form.style.less"
+    ],
+    "apps/react-admin/src/pages/core/auth/login/login.style.less": [],
+    "apps/react-admin/src/pages/core/error/401.tsx": [
+      "apps/react-admin/src/pages/core/error/Fallback.tsx"
+    ],
+    "apps/react-admin/src/pages/core/error/403.tsx": [
+      "apps/react-admin/src/pages/core/error/Fallback.tsx"
+    ],
+    "apps/react-admin/src/pages/core/error/404.tsx": [
+      "apps/react-admin/src/pages/core/error/Fallback.tsx"
+    ],
+    "apps/react-admin/src/pages/core/error/500.tsx": [
+      "apps/react-admin/src/pages/core/error/Fallback.tsx"
+    ],
+    "apps/react-admin/src/pages/core/error/ComingSoon.tsx": [
+      "apps/react-admin/src/pages/core/error/Fallback.tsx"
+    ],
+    "apps/react-admin/src/pages/core/error/Fallback.css": [],
+    "apps/react-admin/src/pages/core/error/fallback.ts": [],
+    "apps/react-admin/src/pages/core/error/Fallback.tsx": [
+      "apps/react-admin/src/pages/core/error/Fallback.css",
+      "apps/react-admin/src/pages/core/error/fallback.ts",
+      "apps/react-admin/src/pages/core/error/icons/Icon401.tsx",
+      "apps/react-admin/src/pages/core/error/icons/Icon403.tsx",
+      "apps/react-admin/src/pages/core/error/icons/Icon404.tsx",
+      "apps/react-admin/src/pages/core/error/icons/Icon500.tsx",
+      "apps/react-admin/src/pages/core/error/icons/IconComingSoon.tsx",
+      "apps/react-admin/src/pages/core/error/icons/IconOffline.tsx"
+    ],
+    "apps/react-admin/src/pages/core/error/icons/Icon401.tsx": [],
+    "apps/react-admin/src/pages/core/error/icons/Icon403.tsx": [],
+    "apps/react-admin/src/pages/core/error/icons/Icon404.tsx": [],
+    "apps/react-admin/src/pages/core/error/icons/Icon500.tsx": [],
+    "apps/react-admin/src/pages/core/error/icons/IconComingSoon.tsx": [],
+    "apps/react-admin/src/pages/core/error/icons/IconOffline.tsx": [],
+    "apps/react-admin/src/pages/core/error/index.ts": [],
+    "apps/react-admin/src/pages/core/error/Offline.tsx": [
+      "apps/react-admin/src/pages/core/error/Fallback.tsx"
+    ],
+    "apps/react-admin/src/pages/core/error/README.md": [],
+    "apps/react-admin/src/router/config/auth.tsx": [],
+    "apps/react-admin/src/router/config/error-routes.tsx": [],
+    "apps/react-admin/src/router/config/static.tsx": [],
+    "apps/react-admin/src/router/guards/AuthGuard.tsx": [],
+    "apps/react-admin/src/router/guards/GuestGuard.tsx": [],
+    "apps/react-admin/src/router/guards/index.ts": [],
+    "apps/react-admin/src/router/index.tsx": [
+      "apps/react-admin/src/router/config/auth.tsx",
+      "apps/react-admin/src/router/config/error-routes.tsx",
+      "apps/react-admin/src/router/config/static.tsx"
+    ],
+    "apps/react-admin/src/router/modules/dashboard.tsx": [],
+    "apps/react-admin/src/router/modules/internal-message.tsx": [],
+    "apps/react-admin/src/router/modules/log.tsx": [],
+    "apps/react-admin/src/router/modules/opm.tsx": [],
+    "apps/react-admin/src/router/modules/permissions.tsx": [],
+    "apps/react-admin/src/router/modules/system.tsx": [],
+    "apps/react-admin/src/router/modules/tenant.tsx": [],
+    "apps/react-admin/src/stores/auth.ts": [],
+    "apps/react-admin/src/stores/index.ts": [],
+    "apps/react-admin/src/stores/pageRefresh.ts": [],
+    "apps/react-admin/src/stores/tabs.ts": [],
+    "apps/react-admin/src/stores/user.ts": [],
+    "apps/react-admin/src/styles/global.css": [],
+    "apps/react-admin/src/styles/page-container.css": [],
+    "apps/react-admin/src/styles/pro-components-dark.css": [],
+    "apps/react-admin/src/styles/pro-layout-overrides.css": [],
+    "apps/react-admin/src/styles/skeleton-force-dark.css": [],
+    "apps/react-admin/src/types/env.d.ts": [],
+    "apps/react-admin/src/types/global.d.ts": [],
+    "apps/react-admin/src/utils/color.ts": [],
+    "apps/react-admin/src/utils/crypto.ts": [],
+    "apps/react-admin/src/utils/date.ts": [],
+    "apps/react-admin/src/utils/diff.ts": [],
+    "apps/react-admin/src/utils/index.ts": [],
+    "apps/react-admin/src/utils/inference.ts": [],
+    "apps/react-admin/src/utils/merge.ts": [],
+    "apps/react-admin/src/utils/nprogress.ts": [],
+    "apps/react-admin/src/utils/theme.ts": [
+      "apps/react-admin/src/utils/color.ts"
+    ],
+    "apps/react-admin/src/utils/tree.ts": [],
+    "apps/react-admin/src/utils/url.ts": [],
+    "apps/react-admin/src/utils/utils.ts": [],
+    "apps/react-admin/stylelint.config.mjs": [],
+    "apps/react-admin/tsconfig.app.json": [],
+    "apps/react-admin/tsconfig.json": [],
+    "apps/react-admin/tsconfig.node.json": [],
+    "apps/react-admin/vite.config.ts": [],
+    "apps/website-template/index.html": [],
+    "apps/website-template/package.json": [],
+    "apps/website-template/src/counter.ts": [],
+    "apps/website-template/src/main.ts": [
+      "apps/website-template/src/counter.ts",
+      "apps/website-template/src/style.css"
+    ],
+    "apps/website-template/src/style.css": [],
+    "apps/website-template/tsconfig.json": [],
+    "backend/db/docs/db-conventions.md": [],
+    "backend/db/docs/er.md": [],
+    "backend/db/docs/tables.md": [],
+    "backend/db/schema.sql": [],
+    "backend/java-admin/.mvn/jvm.config": [],
+    "backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml": [],
+    "backend/java-admin/build-tools/checkstyle/checkstyle.xml": [],
+    "backend/java-admin/build-tools/checkstyle/custom-suppressions.xml": [],
+    "backend/java-admin/deploy/.env.example": [],
+    "backend/java-admin/deploy/docker-compose.yml": [],
+    "backend/java-admin/java-admin-api/pom.xml": [],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java": [],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java": [],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java": [
+      "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+      "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+      "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+      "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+      "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java"
+    ],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java": [],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java": [],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java": [],
+    "backend/java-admin/java-admin-api/src/main/resources/application-dev.yml": [],
+    "backend/java-admin/java-admin-api/src/main/resources/application-prod.yml": [],
+    "backend/java-admin/java-admin-api/src/main/resources/application.yml": [],
+    "backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql": [],
+    "backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql": [],
+    "backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql": [],
+    "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java": [],
+    "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java": [
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java"
+    ],
+    "backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java": [],
+    "backend/java-admin/java-admin-common/pom.xml": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java": [
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java"
+    ],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java": [
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java"
+    ],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java": [],
+    "backend/java-admin/java-admin-infra/pom.xml": [],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java": [],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java": [],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java": [],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java": [],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java": [],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java": [
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java": [
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+      "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java": [
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java": [],
+    "backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml": [],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java": [],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java": [],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java": [],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java": [
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java"
+    ],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java": [
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java"
+    ],
+    "backend/java-admin/java-admin-service/pom.xml": [],
+    "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java": [],
+    "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java": [
+      "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java"
+    ],
+    "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java": [
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java"
+    ],
+    "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java": [
+      "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java"
+    ],
+    "backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java": [
+      "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+      "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+      "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java"
+    ],
+    "backend/java-admin/pom.xml": [],
+    "CLAUDE.md": [],
+    "lefthook.yml": [],
+    "Makefile": [],
+    "opencode.jsonc": [],
+    "package.json": [],
+    "packages/utils-template/package.json": [],
+    "packages/utils-template/README.md": [],
+    "packages/utils-template/src/index.ts": [],
+    "packages/utils-template/tests/index.test.ts": [
+      "packages/utils-template/src/index.ts"
+    ],
+    "packages/utils-template/tsconfig.json": [],
+    "packages/utils-template/vite.config.ts": [],
+    "pnpm-workspace.yaml": [],
+    "README.md": [],
+    "skills-lock.json": [],
+    "tsconfig.json": [],
+    "vite.config.ts": []
+  }
+}

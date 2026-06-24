@@ -1,0 +1,373 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/api/rest/auth.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 22,
+      "functions": [
+        {
+          "name": "loginApi",
+          "startLine": 5,
+          "endLine": 7,
+          "params": [
+            "body"
+          ]
+        },
+        {
+          "name": "logoutApi",
+          "startLine": 10,
+          "endLine": 12,
+          "params": []
+        },
+        {
+          "name": "refreshTokenApi",
+          "startLine": 15,
+          "endLine": 17,
+          "params": []
+        },
+        {
+          "name": "getAccessCodesApi",
+          "startLine": 20,
+          "endLine": 22,
+          "params": []
+        },
+        {
+          "name": "getUserInfoApi",
+          "startLine": 25,
+          "endLine": 27,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "loginApi",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "logoutApi",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "refreshTokenApi",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "getAccessCodesApi",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "getUserInfoApi",
+          "line": 25,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loginApi",
+          "callee": "post",
+          "lineNumber": 6
+        },
+        {
+          "caller": "logoutApi",
+          "callee": "post",
+          "lineNumber": 11
+        },
+        {
+          "caller": "refreshTokenApi",
+          "callee": "post",
+          "lineNumber": 16
+        },
+        {
+          "caller": "getAccessCodesApi",
+          "callee": "get",
+          "lineNumber": 21
+        },
+        {
+          "caller": "getUserInfoApi",
+          "callee": "get",
+          "lineNumber": 26
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/api/rest/menu.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 6,
+      "functions": [
+        {
+          "name": "getAllMenusApi",
+          "startLine": 5,
+          "endLine": 7,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "getAllMenusApi",
+          "line": 5,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getAllMenusApi",
+          "callee": "get",
+          "lineNumber": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/api/rest/request.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 27,
+      "functions": [
+        {
+          "name": "client",
+          "startLine": 15,
+          "endLine": 17,
+          "params": []
+        },
+        {
+          "name": "get",
+          "startLine": 19,
+          "endLine": 21,
+          "params": [
+            "path",
+            "params"
+          ]
+        },
+        {
+          "name": "post",
+          "startLine": 23,
+          "endLine": 25,
+          "params": [
+            "path",
+            "body"
+          ]
+        },
+        {
+          "name": "put",
+          "startLine": 27,
+          "endLine": 29,
+          "params": [
+            "path",
+            "body"
+          ]
+        },
+        {
+          "name": "del",
+          "startLine": 31,
+          "endLine": 33,
+          "params": [
+            "path",
+            "body"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "post",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "put",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "del",
+          "line": 31,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "client",
+          "callee": "RequestClient.getInstance",
+          "lineNumber": 16
+        },
+        {
+          "caller": "get",
+          "callee": "client().get",
+          "lineNumber": 20
+        },
+        {
+          "caller": "get",
+          "callee": "client",
+          "lineNumber": 20
+        },
+        {
+          "caller": "post",
+          "callee": "client().post",
+          "lineNumber": 24
+        },
+        {
+          "caller": "post",
+          "callee": "client",
+          "lineNumber": 24
+        },
+        {
+          "caller": "put",
+          "callee": "client().put",
+          "lineNumber": 28
+        },
+        {
+          "caller": "put",
+          "callee": "client",
+          "lineNumber": 28
+        },
+        {
+          "caller": "del",
+          "callee": "client().delete",
+          "lineNumber": 32
+        },
+        {
+          "caller": "del",
+          "callee": "client",
+          "lineNumber": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/api/rest/types.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 101,
+      "nonEmptyLines": 89,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/api/rest/user.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 24,
+      "functions": [
+        {
+          "name": "listUsersApi",
+          "startLine": 11,
+          "endLine": 13,
+          "params": [
+            "query"
+          ]
+        },
+        {
+          "name": "createUserApi",
+          "startLine": 16,
+          "endLine": 18,
+          "params": [
+            "body"
+          ]
+        },
+        {
+          "name": "updateUserApi",
+          "startLine": 21,
+          "endLine": 23,
+          "params": [
+            "{ id, data }"
+          ]
+        },
+        {
+          "name": "deleteUserApi",
+          "startLine": 26,
+          "endLine": 28,
+          "params": [
+            "id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "listUsersApi",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "createUserApi",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "updateUserApi",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "deleteUserApi",
+          "line": 26,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "listUsersApi",
+          "callee": "get",
+          "lineNumber": 12
+        },
+        {
+          "caller": "createUserApi",
+          "callee": "post",
+          "lineNumber": 17
+        },
+        {
+          "caller": "updateUserApi",
+          "callee": "put",
+          "lineNumber": 22
+        },
+        {
+          "caller": "deleteUserApi",
+          "callee": "del",
+          "lineNumber": 27
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    }
+  ]
+}

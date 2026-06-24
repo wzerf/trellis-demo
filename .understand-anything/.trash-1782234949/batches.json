@@ -1,0 +1,1474 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 124,
+  "totalBatches": 16,
+  "exportsByPath": {
+    ".commitlintrc.js": [],
+    ".gitmodules": [],
+    "apps/backend-mock-template/api/auth/codes.ts": [],
+    "apps/backend-mock-template/api/auth/login.post.ts": [],
+    "apps/backend-mock-template/api/auth/logout.post.ts": [],
+    "apps/backend-mock-template/api/auth/refresh.post.ts": [],
+    "apps/backend-mock-template/api/demo/bigint.ts": [],
+    "apps/backend-mock-template/api/menu/all.ts": [],
+    "apps/backend-mock-template/api/status.ts": [],
+    "apps/backend-mock-template/api/system/dept/.post.ts": [],
+    "apps/backend-mock-template/api/system/dept/[id].delete.ts": [],
+    "apps/backend-mock-template/api/system/dept/[id].put.ts": [],
+    "apps/backend-mock-template/api/system/dept/list.ts": [],
+    "apps/backend-mock-template/api/system/menu/list.ts": [],
+    "apps/backend-mock-template/api/system/menu/name-exists.ts": [],
+    "apps/backend-mock-template/api/system/menu/path-exists.ts": [],
+    "apps/backend-mock-template/api/system/role/list.ts": [],
+    "apps/backend-mock-template/api/system/user/[id].delete.ts": [],
+    "apps/backend-mock-template/api/system/user/[id].put.ts": [],
+    "apps/backend-mock-template/api/system/user/create.post.ts": [],
+    "apps/backend-mock-template/api/system/user/list.ts": [],
+    "apps/backend-mock-template/api/table/list.ts": [],
+    "apps/backend-mock-template/api/test.get.ts": [],
+    "apps/backend-mock-template/api/test.post.ts": [],
+    "apps/backend-mock-template/api/timezone/getTimezone.ts": [],
+    "apps/backend-mock-template/api/timezone/getTimezoneOptions.ts": [],
+    "apps/backend-mock-template/api/timezone/setTimezone.ts": [],
+    "apps/backend-mock-template/api/upload.ts": [],
+    "apps/backend-mock-template/api/user/info.ts": [],
+    "apps/backend-mock-template/error.ts": [],
+    "apps/backend-mock-template/middleware/1.api.ts": [],
+    "apps/backend-mock-template/nitro.config.ts": [],
+    "apps/backend-mock-template/routes/[...].ts": [],
+    "apps/backend-mock-template/utils/cookie-utils.ts": [
+      "clearRefreshTokenCookie",
+      "setRefreshTokenCookie",
+      "getRefreshTokenFromCookie"
+    ],
+    "apps/backend-mock-template/utils/jwt-utils.ts": [
+      "generateAccessToken",
+      "generateRefreshToken",
+      "verifyAccessToken",
+      "verifyRefreshToken"
+    ],
+    "apps/backend-mock-template/utils/mock-data.ts": [
+      "MOCK_USERS",
+      "MOCK_CODES",
+      "MOCK_MENUS",
+      "MOCK_MENU_LIST",
+      "getMenuIds",
+      "getMockUserList",
+      "TIME_ZONE_OPTIONS"
+    ],
+    "apps/backend-mock-template/utils/response.ts": [
+      "useResponseSuccess",
+      "usePageResponseSuccess",
+      "useResponseError",
+      "forbiddenResponse",
+      "unAuthorizedResponse",
+      "sleep",
+      "pagination"
+    ],
+    "apps/backend-mock-template/utils/timezone-utils.ts": [
+      "setTimezone",
+      "getTimezone"
+    ],
+    "apps/website-template/src/counter.ts": [
+      "setupCounter"
+    ],
+    "apps/website-template/src/main.ts": [],
+    "backend/java-admin/.mvn/jvm.config": [],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java": [
+      "main",
+      "Application"
+    ],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java": [
+      "customOpenAPI",
+      "OpenApiConfig"
+    ],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java": [
+      "login",
+      "logout",
+      "info",
+      "AuthController"
+    ],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java": [
+      "LoginRequest"
+    ],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java": [
+      "LoginResponse"
+    ],
+    "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java": [
+      "UserInfoVO"
+    ],
+    "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java": [],
+    "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java": [],
+    "backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java": [
+      "SA_TOKEN_PREFIX",
+      "MDC_TRACE_ID",
+      "RedisKeys"
+    ],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java": [
+      "TOKEN_NAME",
+      "ROLE_ADMIN",
+      "MDC_USER_ID",
+      "SecurityConstants"
+    ],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java": [
+      "AuthException",
+      "AuthException",
+      "AuthException",
+      "notLogin",
+      "invalidCredentials",
+      "tokenExpired",
+      "forbidden",
+      "AuthException"
+    ],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java": [
+      "BizException",
+      "BizException",
+      "BizException",
+      "of",
+      "of",
+      "BizException"
+    ],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java": [
+      "ListResult",
+      "of",
+      "of",
+      "ListResult"
+    ],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java": [
+      "ObjectResult",
+      "of",
+      "of",
+      "ObjectResult"
+    ],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java": [
+      "Result",
+      "Result",
+      "ok",
+      "ok",
+      "ok",
+      "okObj",
+      "okObj",
+      "okList",
+      "okList",
+      "error",
+      "error",
+      "error",
+      "isSuccess",
+      "Result"
+    ],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java": [],
+    "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java": [
+      "HEADER",
+      "generate",
+      "resolveOrGenerate",
+      "TraceIdUtil"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java": [
+      "run",
+      "FlywayMigrator"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java": [
+      "NacosConfig"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java": [
+      "NacosConfigToggleProperties"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java": [
+      "currentUserIdOrNull",
+      "SaTokenConfig"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java": [
+      "addInterceptors",
+      "addCorsMappings",
+      "WebConfig"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java": [
+      "handleBiz",
+      "handleAuth",
+      "handleNotLogin",
+      "handleNotRole",
+      "handleSaToken",
+      "handleValidation",
+      "handleNotReadable",
+      "handleAny",
+      "GlobalExceptionHandler"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java": [
+      "controllerPointcut",
+      "around",
+      "RequestLogAspect"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java": [
+      "TraceIdFilter"
+    ],
+    "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java": [
+      "currentUserIdOrNull",
+      "SaTokenConfigure"
+    ],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java": [],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java": [],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java": [],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java": [],
+    "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java": [],
+    "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java": [
+      "SysUser"
+    ],
+    "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java": [
+      "findByUsername",
+      "findById",
+      "SysUserRepository"
+    ],
+    "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java": [
+      "login",
+      "AuthService"
+    ],
+    "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java": [
+      "findById",
+      "findByUsername",
+      "SysUserService"
+    ],
+    "backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java": [],
+    "packages/utils-template/src/index.ts": [
+      "fn"
+    ],
+    "packages/utils-template/tests/index.test.ts": [],
+    "packages/utils-template/vite.config.ts": [],
+    "vite.config.ts": []
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+          "language": "java",
+          "sizeLines": 118,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+          "language": "java",
+          "sizeLines": 36,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+          "language": "java",
+          "sizeLines": 31,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+          "language": "java",
+          "sizeLines": 35,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+          "language": "java",
+          "sizeLines": 50,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java",
+          "language": "java",
+          "sizeLines": 46,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+          "language": "java",
+          "sizeLines": 57,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java",
+          "language": "java",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+          "language": "java",
+          "sizeLines": 125,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java": [
+          "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java",
+          "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java",
+          "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+          "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+          "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+          "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java"
+        ],
+        "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/dto/LoginRequest.java": [],
+        "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/LoginResponse.java": [],
+        "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/vo/UserInfoVO.java": [],
+        "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java": [],
+        "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java": [
+          "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java"
+        ],
+        "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java": [
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+          "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+          "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java"
+        ],
+        "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/SysUserService.java": [
+          "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+          "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java"
+        ],
+        "backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java": [
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+          "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/entity/SysUser.java",
+          "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/repository/SysUserRepository.java"
+        ]
+      },
+      "neighborMap": {
+        "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java": [
+          {
+            "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+            "batchIndex": 2,
+            "symbols": [
+              "AuthException",
+              "AuthException",
+              "AuthException",
+              "notLogin",
+              "invalidCredentials",
+              "tokenExpired",
+              "forbidden",
+              "AuthException"
+            ]
+          },
+          {
+            "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+            "batchIndex": 2,
+            "symbols": [
+              "BizException",
+              "BizException",
+              "BizException",
+              "of",
+              "of",
+              "BizException"
+            ]
+          },
+          {
+            "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+            "batchIndex": 2,
+            "symbols": [
+              "Result",
+              "Result",
+              "ok",
+              "ok",
+              "ok",
+              "okObj",
+              "okObj",
+              "okList",
+              "okList",
+              "error",
+              "error",
+              "error",
+              "isSuccess",
+              "Result"
+            ]
+          },
+          {
+            "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+            "batchIndex": 2,
+            "symbols": []
+          }
+        ],
+        "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java": [
+          {
+            "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+            "batchIndex": 2,
+            "symbols": [
+              "AuthException",
+              "AuthException",
+              "AuthException",
+              "notLogin",
+              "invalidCredentials",
+              "tokenExpired",
+              "forbidden",
+              "AuthException"
+            ]
+          }
+        ],
+        "backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java": [
+          {
+            "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+            "batchIndex": 2,
+            "symbols": [
+              "AuthException",
+              "AuthException",
+              "AuthException",
+              "notLogin",
+              "invalidCredentials",
+              "tokenExpired",
+              "forbidden",
+              "AuthException"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+          "language": "java",
+          "sizeLines": 49,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+          "language": "java",
+          "sizeLines": 42,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+          "language": "java",
+          "sizeLines": 103,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java",
+          "language": "java",
+          "sizeLines": 38,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java",
+          "language": "java",
+          "sizeLines": 133,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java",
+          "language": "java",
+          "sizeLines": 64,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java": [
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java"
+        ],
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java": [
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java"
+        ],
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java": [],
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java": [],
+        "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/exception/GlobalExceptionHandler.java": [
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java"
+        ],
+        "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/exception/GlobalExceptionHandlerTest.java": [
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java"
+        ]
+      },
+      "neighborMap": {
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/AuthException.java": [
+          {
+            "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+            "batchIndex": 1,
+            "symbols": [
+              "login",
+              "logout",
+              "info",
+              "AuthController"
+            ]
+          },
+          {
+            "path": "backend/java-admin/java-admin-service/src/main/java/com/wshake/service/user/AuthService.java",
+            "batchIndex": 1,
+            "symbols": [
+              "login",
+              "AuthService"
+            ]
+          },
+          {
+            "path": "backend/java-admin/java-admin-service/src/test/java/com/wshake/service/user/AuthServiceTest.java",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/exception/BizException.java": [
+          {
+            "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+            "batchIndex": 1,
+            "symbols": [
+              "login",
+              "logout",
+              "info",
+              "AuthController"
+            ]
+          }
+        ],
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java": [
+          {
+            "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+            "batchIndex": 1,
+            "symbols": [
+              "login",
+              "logout",
+              "info",
+              "AuthController"
+            ]
+          },
+          {
+            "path": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ResultCode.java": [
+          {
+            "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/controller/AuthController.java",
+            "batchIndex": 1,
+            "symbols": [
+              "login",
+              "logout",
+              "info",
+              "AuthController"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+          "language": "java",
+          "sizeLines": 17,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java",
+          "language": "java",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java",
+          "language": "java",
+          "sizeLines": 45,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java",
+          "language": "java",
+          "sizeLines": 59,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java": [],
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java": [],
+        "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/TraceIdFilter.java": [
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java"
+        ],
+        "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/log/TraceIdFilterTest.java": [
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/RedisKeys.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/util/TraceIdUtil.java"
+        ]
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+          "language": "java",
+          "sizeLines": 179,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+          "language": "java",
+          "sizeLines": 32,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+          "language": "java",
+          "sizeLines": 35,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java": [
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java"
+        ],
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java": [],
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java": []
+      },
+      "neighborMap": {
+        "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java": [
+          {
+            "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+            "batchIndex": 2,
+            "symbols": [
+              "Result",
+              "Result",
+              "ok",
+              "ok",
+              "ok",
+              "okObj",
+              "okObj",
+              "okList",
+              "okList",
+              "error",
+              "error",
+              "error",
+              "isSuccess",
+              "Result"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 5,
+      "files": [
+        {
+          "path": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+          "language": "java",
+          "sizeLines": 20,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java",
+          "language": "java",
+          "sizeLines": 73,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java",
+          "language": "java",
+          "sizeLines": 29,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java": [],
+        "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/log/RequestLogAspect.java": [
+          "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/constant/SecurityConstants.java",
+          "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java"
+        ],
+        "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/security/SaTokenConfigure.java": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 6,
+      "files": [
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql",
+          "language": "sql",
+          "sizeLines": 16,
+          "fileCategory": "data"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql",
+          "language": "sql",
+          "sizeLines": 5,
+          "fileCategory": "data"
+        }
+      ],
+      "batchImportData": {
+        "backend/java-admin/java-admin-api/src/main/resources/db/migration/V1__init_sys_user.sql": [],
+        "backend/java-admin/java-admin-api/src/main/resources/db/migration/V2__seed_admin_user.sql": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 7,
+      "files": [
+        {
+          "path": ".mcp.json",
+          "language": "json",
+          "sizeLines": 22,
+          "fileCategory": "config"
+        },
+        {
+          "path": "AGENTS.md",
+          "language": "markdown",
+          "sizeLines": 74,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "CLAUDE.md",
+          "language": "markdown",
+          "sizeLines": 1,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "Makefile",
+          "language": "makefile",
+          "sizeLines": 48,
+          "fileCategory": "infra"
+        },
+        {
+          "path": "README.md",
+          "language": "markdown",
+          "sizeLines": 29,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "lefthook.yml",
+          "language": "yaml",
+          "sizeLines": 70,
+          "fileCategory": "config"
+        },
+        {
+          "path": "opencode.jsonc",
+          "language": "jsonc",
+          "sizeLines": 20,
+          "fileCategory": "config"
+        },
+        {
+          "path": "package.json",
+          "language": "json",
+          "sizeLines": 21,
+          "fileCategory": "config"
+        },
+        {
+          "path": "pnpm-workspace.yaml",
+          "language": "yaml",
+          "sizeLines": 48,
+          "fileCategory": "config"
+        },
+        {
+          "path": "tsconfig.json",
+          "language": "json",
+          "sizeLines": 9,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        ".mcp.json": [],
+        "AGENTS.md": [],
+        "CLAUDE.md": [],
+        "Makefile": [],
+        "README.md": [],
+        "lefthook.yml": [],
+        "opencode.jsonc": [],
+        "package.json": [],
+        "pnpm-workspace.yaml": [],
+        "tsconfig.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 8,
+      "files": [
+        {
+          "path": "apps/backend-mock-template/README.md",
+          "language": "markdown",
+          "sizeLines": 15,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "apps/backend-mock-template/package.json",
+          "language": "json",
+          "sizeLines": 21,
+          "fileCategory": "config"
+        },
+        {
+          "path": "apps/backend-mock-template/tsconfig.build.json",
+          "language": "json",
+          "sizeLines": 4,
+          "fileCategory": "config"
+        },
+        {
+          "path": "apps/backend-mock-template/tsconfig.json",
+          "language": "json",
+          "sizeLines": 3,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "apps/backend-mock-template/README.md": [],
+        "apps/backend-mock-template/package.json": [],
+        "apps/backend-mock-template/tsconfig.build.json": [],
+        "apps/backend-mock-template/tsconfig.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 9,
+      "files": [
+        {
+          "path": "apps/website-template/index.html",
+          "language": "html",
+          "sizeLines": 13,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "apps/website-template/package.json",
+          "language": "json",
+          "sizeLines": 16,
+          "fileCategory": "config"
+        },
+        {
+          "path": "apps/website-template/tsconfig.json",
+          "language": "json",
+          "sizeLines": 23,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "apps/website-template/index.html": [],
+        "apps/website-template/package.json": [],
+        "apps/website-template/tsconfig.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 10,
+      "files": [
+        {
+          "path": "backend/db/docs/db-conventions.md",
+          "language": "markdown",
+          "sizeLines": 468,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "backend/db/docs/er.md",
+          "language": "markdown",
+          "sizeLines": 307,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "backend/db/docs/tables.md",
+          "language": "markdown",
+          "sizeLines": 496,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        "backend/db/docs/db-conventions.md": [],
+        "backend/db/docs/er.md": [],
+        "backend/db/docs/tables.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 11,
+      "files": [
+        {
+          "path": "backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml",
+          "language": "xml",
+          "sizeLines": 33,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/java-admin/build-tools/checkstyle/checkstyle.xml",
+          "language": "xml",
+          "sizeLines": 426,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/java-admin/build-tools/checkstyle/custom-suppressions.xml",
+          "language": "xml",
+          "sizeLines": 14,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "backend/java-admin/build-tools/checkstyle/checkstyle-suppressions.xml": [],
+        "backend/java-admin/build-tools/checkstyle/checkstyle.xml": [],
+        "backend/java-admin/build-tools/checkstyle/custom-suppressions.xml": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 12,
+      "files": [
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/resources/application-dev.yml",
+          "language": "yaml",
+          "sizeLines": 42,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/resources/application-prod.yml",
+          "language": "yaml",
+          "sizeLines": 36,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/resources/application.yml",
+          "language": "yaml",
+          "sizeLines": 77,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "backend/java-admin/java-admin-api/src/main/resources/application-dev.yml": [],
+        "backend/java-admin/java-admin-api/src/main/resources/application-prod.yml": [],
+        "backend/java-admin/java-admin-api/src/main/resources/application.yml": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 13,
+      "files": [
+        {
+          "path": "packages/utils-template/README.md",
+          "language": "markdown",
+          "sizeLines": 23,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "packages/utils-template/package.json",
+          "language": "json",
+          "sizeLines": 31,
+          "fileCategory": "config"
+        },
+        {
+          "path": "packages/utils-template/tsconfig.json",
+          "language": "json",
+          "sizeLines": 20,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "packages/utils-template/README.md": [],
+        "packages/utils-template/package.json": [],
+        "packages/utils-template/tsconfig.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 14,
+      "files": [
+        {
+          "path": ".commitlintrc.js",
+          "language": "javascript",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".gitmodules",
+          "language": "unknown",
+          "sizeLines": 3,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/auth/codes.ts",
+          "language": "typescript",
+          "sizeLines": 15,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/auth/login.post.ts",
+          "language": "typescript",
+          "sizeLines": 34,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/auth/logout.post.ts",
+          "language": "typescript",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/auth/refresh.post.ts",
+          "language": "typescript",
+          "sizeLines": 33,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/demo/bigint.ts",
+          "language": "typescript",
+          "sizeLines": 32,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/menu/all.ts",
+          "language": "typescript",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/status.ts",
+          "language": "typescript",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/dept/.post.ts",
+          "language": "typescript",
+          "sizeLines": 16,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/dept/[id].delete.ts",
+          "language": "typescript",
+          "sizeLines": 12,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/dept/[id].put.ts",
+          "language": "typescript",
+          "sizeLines": 12,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/dept/list.ts",
+          "language": "typescript",
+          "sizeLines": 57,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/menu/list.ts",
+          "language": "typescript",
+          "sizeLines": 13,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/menu/name-exists.ts",
+          "language": "typescript",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/menu/path-exists.ts",
+          "language": "typescript",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/role/list.ts",
+          "language": "typescript",
+          "sizeLines": 71,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/user/[id].delete.ts",
+          "language": "typescript",
+          "sizeLines": 19,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/user/[id].put.ts",
+          "language": "typescript",
+          "sizeLines": 20,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/user/create.post.ts",
+          "language": "typescript",
+          "sizeLines": 41,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/system/user/list.ts",
+          "language": "typescript",
+          "sizeLines": 95,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/table/list.ts",
+          "language": "typescript",
+          "sizeLines": 106,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/test.get.ts",
+          "language": "typescript",
+          "sizeLines": 3,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/test.post.ts",
+          "language": "typescript",
+          "sizeLines": 3,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/timezone/getTimezone.ts",
+          "language": "typescript",
+          "sizeLines": 12,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        ".commitlintrc.js": [],
+        ".gitmodules": [],
+        "apps/backend-mock-template/api/auth/codes.ts": [],
+        "apps/backend-mock-template/api/auth/login.post.ts": [],
+        "apps/backend-mock-template/api/auth/logout.post.ts": [],
+        "apps/backend-mock-template/api/auth/refresh.post.ts": [],
+        "apps/backend-mock-template/api/demo/bigint.ts": [],
+        "apps/backend-mock-template/api/menu/all.ts": [],
+        "apps/backend-mock-template/api/status.ts": [],
+        "apps/backend-mock-template/api/system/dept/.post.ts": [],
+        "apps/backend-mock-template/api/system/dept/[id].delete.ts": [],
+        "apps/backend-mock-template/api/system/dept/[id].put.ts": [],
+        "apps/backend-mock-template/api/system/dept/list.ts": [],
+        "apps/backend-mock-template/api/system/menu/list.ts": [],
+        "apps/backend-mock-template/api/system/menu/name-exists.ts": [],
+        "apps/backend-mock-template/api/system/menu/path-exists.ts": [],
+        "apps/backend-mock-template/api/system/role/list.ts": [],
+        "apps/backend-mock-template/api/system/user/[id].delete.ts": [],
+        "apps/backend-mock-template/api/system/user/[id].put.ts": [],
+        "apps/backend-mock-template/api/system/user/create.post.ts": [],
+        "apps/backend-mock-template/api/system/user/list.ts": [],
+        "apps/backend-mock-template/api/table/list.ts": [],
+        "apps/backend-mock-template/api/test.get.ts": [],
+        "apps/backend-mock-template/api/test.post.ts": [],
+        "apps/backend-mock-template/api/timezone/getTimezone.ts": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 15,
+      "files": [
+        {
+          "path": "apps/backend-mock-template/api/timezone/getTimezoneOptions.ts",
+          "language": "typescript",
+          "sizeLines": 11,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/timezone/setTimezone.ts",
+          "language": "typescript",
+          "sizeLines": 21,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/upload.ts",
+          "language": "typescript",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/api/user/info.ts",
+          "language": "typescript",
+          "sizeLines": 11,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/error.ts",
+          "language": "typescript",
+          "sizeLines": 7,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/middleware/1.api.ts",
+          "language": "typescript",
+          "sizeLines": 18,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/nitro.config.ts",
+          "language": "typescript",
+          "sizeLines": 23,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/routes/[...].ts",
+          "language": "typescript",
+          "sizeLines": 15,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/utils/cookie-utils.ts",
+          "language": "typescript",
+          "sizeLines": 30,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/utils/jwt-utils.ts",
+          "language": "typescript",
+          "sizeLines": 70,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/utils/mock-data.ts",
+          "language": "typescript",
+          "sizeLines": 430,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/utils/response.ts",
+          "language": "typescript",
+          "sizeLines": 62,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/backend-mock-template/utils/timezone-utils.ts",
+          "language": "typescript",
+          "sizeLines": 9,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/website-template/src/counter.ts",
+          "language": "typescript",
+          "sizeLines": 9,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/website-template/src/main.ts",
+          "language": "typescript",
+          "sizeLines": 60,
+          "fileCategory": "code"
+        },
+        {
+          "path": "apps/website-template/src/style.css",
+          "language": "css",
+          "sizeLines": 292,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "backend/db/schema.sql",
+          "language": "sql",
+          "sizeLines": 741,
+          "fileCategory": "data"
+        },
+        {
+          "path": "backend/java-admin/.mvn/jvm.config",
+          "language": "config",
+          "sizeLines": 10,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/deploy/.env.example",
+          "language": "config",
+          "sizeLines": 20,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/java-admin/deploy/docker-compose.yml",
+          "language": "yaml",
+          "sizeLines": 113,
+          "fileCategory": "infra"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/pom.xml",
+          "language": "xml",
+          "sizeLines": 70,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java",
+          "language": "java",
+          "sizeLines": 21,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java",
+          "language": "java",
+          "sizeLines": 47,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql",
+          "language": "sql",
+          "sizeLines": 15,
+          "fileCategory": "data"
+        },
+        {
+          "path": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java",
+          "language": "java",
+          "sizeLines": 132,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "apps/backend-mock-template/api/timezone/getTimezoneOptions.ts": [],
+        "apps/backend-mock-template/api/timezone/setTimezone.ts": [],
+        "apps/backend-mock-template/api/upload.ts": [],
+        "apps/backend-mock-template/api/user/info.ts": [],
+        "apps/backend-mock-template/error.ts": [],
+        "apps/backend-mock-template/middleware/1.api.ts": [],
+        "apps/backend-mock-template/nitro.config.ts": [
+          "apps/backend-mock-template/error.ts"
+        ],
+        "apps/backend-mock-template/routes/[...].ts": [],
+        "apps/backend-mock-template/utils/cookie-utils.ts": [],
+        "apps/backend-mock-template/utils/jwt-utils.ts": [
+          "apps/backend-mock-template/utils/mock-data.ts"
+        ],
+        "apps/backend-mock-template/utils/mock-data.ts": [],
+        "apps/backend-mock-template/utils/response.ts": [],
+        "apps/backend-mock-template/utils/timezone-utils.ts": [],
+        "apps/website-template/src/counter.ts": [],
+        "apps/website-template/src/main.ts": [
+          "apps/website-template/src/counter.ts",
+          "apps/website-template/src/style.css"
+        ],
+        "apps/website-template/src/style.css": [],
+        "backend/db/schema.sql": [],
+        "backend/java-admin/.mvn/jvm.config": [],
+        "backend/java-admin/deploy/.env.example": [],
+        "backend/java-admin/deploy/docker-compose.yml": [],
+        "backend/java-admin/java-admin-api/pom.xml": [],
+        "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/Application.java": [],
+        "backend/java-admin/java-admin-api/src/main/java/com/wshake/api/config/OpenApiConfig.java": [],
+        "backend/java-admin/java-admin-api/src/main/resources/db/migration-prod/V1__init_sys_user.sql": [],
+        "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/NacosConfigFormatTest.java": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 16,
+      "files": [
+        {
+          "path": "backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java",
+          "language": "java",
+          "sizeLines": 90,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-common/pom.xml",
+          "language": "xml",
+          "sizeLines": 43,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/pom.xml",
+          "language": "xml",
+          "sizeLines": 94,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java",
+          "language": "java",
+          "sizeLines": 71,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java",
+          "language": "java",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java",
+          "language": "java",
+          "sizeLines": 27,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java",
+          "language": "java",
+          "sizeLines": 31,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java",
+          "language": "java",
+          "sizeLines": 42,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml",
+          "language": "xml",
+          "sizeLines": 77,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java",
+          "language": "java",
+          "sizeLines": 44,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java",
+          "language": "java",
+          "sizeLines": 77,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java",
+          "language": "java",
+          "sizeLines": 145,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/java-admin/java-admin-service/pom.xml",
+          "language": "xml",
+          "sizeLines": 64,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/java-admin/pom.xml",
+          "language": "xml",
+          "sizeLines": 398,
+          "fileCategory": "config"
+        },
+        {
+          "path": "packages/utils-template/src/index.ts",
+          "language": "typescript",
+          "sizeLines": 3,
+          "fileCategory": "code"
+        },
+        {
+          "path": "packages/utils-template/tests/index.test.ts",
+          "language": "typescript",
+          "sizeLines": 6,
+          "fileCategory": "code"
+        },
+        {
+          "path": "packages/utils-template/vite.config.ts",
+          "language": "typescript",
+          "sizeLines": 17,
+          "fileCategory": "code"
+        },
+        {
+          "path": "vite.config.ts",
+          "language": "typescript",
+          "sizeLines": 55,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "backend/java-admin/java-admin-api/src/test/java/com/wshake/infra/config/SpringConfigImportCheckTest.java": [],
+        "backend/java-admin/java-admin-common/pom.xml": [],
+        "backend/java-admin/java-admin-infra/pom.xml": [],
+        "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/FlywayMigrator.java": [],
+        "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfig.java": [],
+        "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/NacosConfigToggleProperties.java": [],
+        "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/SaTokenConfig.java": [],
+        "backend/java-admin/java-admin-infra/src/main/java/com/wshake/infra/config/WebConfig.java": [],
+        "backend/java-admin/java-admin-infra/src/main/resources/logback-spring.xml": [],
+        "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTest.java": [],
+        "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/NacosConfigTogglePropertiesTest.java": [],
+        "backend/java-admin/java-admin-infra/src/test/java/com/wshake/infra/config/RedissonAutoconfigCheckTest.java": [],
+        "backend/java-admin/java-admin-service/pom.xml": [],
+        "backend/java-admin/pom.xml": [],
+        "packages/utils-template/src/index.ts": [],
+        "packages/utils-template/tests/index.test.ts": [
+          "packages/utils-template/src/index.ts"
+        ],
+        "packages/utils-template/vite.config.ts": [],
+        "vite.config.ts": []
+      },
+      "neighborMap": {}
+    }
+  ]
+}

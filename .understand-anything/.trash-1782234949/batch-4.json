@@ -1,0 +1,135 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "type": "file",
+      "name": "ResultFormatTest.java",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "summary": "Result / ObjectResult / ListResult 响应体序列化测试类，使用 Jackson ObjectMapper 验证 JSON 严格包含 3 字段（code、msg、data）且不含 traceId，同时覆盖子类的 null 回退语义（{} 与 []）。",
+      "tags": ["test", "junit", "serialization", "result-format", "json"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java:ResultFormatTest",
+      "type": "class",
+      "name": "ResultFormatTest",
+      "filePath": "backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "lineRange": [22, 179],
+      "summary": "JUnit 5 测试套件，验证统一响应包装类 Result 及其两个具体子类 ObjectResult / ListResult 在 Jackson 序列化下的字段结构、isSuccess 行为与 null 回退约定。",
+      "tags": ["test", "junit", "serialization", "result-format"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "type": "file",
+      "name": "ListResult.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "summary": "Result 的列表型子类，data 为 null 时回退为空 List（序列化为 []），便于 Swagger / OpenAPI 直接展开 array schema 而非嵌套泛型。",
+      "tags": ["response-wrapper", "generic", "api-handler", "data-model", "json"],
+      "complexity": "simple",
+      "languageNotes": "使用泛型 ListResult<T> 继承 Result<List<T>>，让 OpenAPI schema 生成可识别为顶层数组而非嵌套对象。"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java:ListResult",
+      "type": "class",
+      "name": "ListResult",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "lineRange": [15, 32],
+      "summary": "继承 Result<List<T>>，提供 of() / of(List<T>) 两个静态工厂方法，data 为 null 时自动回退为 Collections.emptyList()。",
+      "tags": ["response-wrapper", "generic", "factory", "data-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "type": "file",
+      "name": "ObjectResult.java",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "summary": "Result 的对象型子类，data 为 null 时回退为空 Map（序列化为 {}），让 Swagger / OpenAPI 通过具体子类泛型展开 data schema；约定 T 应为 JSON 对象类型而非标量。",
+      "tags": ["response-wrapper", "generic", "api-handler", "data-model", "json"],
+      "complexity": "simple",
+      "languageNotes": "对 T 作 @SuppressWarnings 强制转型，将 null 回退为 Collections.emptyMap()，保证 Swagger 渲染的 data schema 始终是 object。"
+    },
+    {
+      "id": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java:ObjectResult",
+      "type": "class",
+      "name": "ObjectResult",
+      "filePath": "backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "lineRange": [17, 35],
+      "summary": "继承 Result<T>，提供 of() / of(T) 两个静态工厂方法，data 为 null 时回退为 Collections.emptyMap()，并显式约束 T 应为 Map 或 POJO。",
+      "tags": ["response-wrapper", "generic", "factory", "data-model"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "class:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java:ResultFormatTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java:ListResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java:ListResult",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "target": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java:ObjectResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "class:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java:ObjectResult",
+      "target": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/Result.java",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ListResult.java",
+      "target": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:backend/java-admin/java-admin-common/src/main/java/com/wshake/common/result/ObjectResult.java",
+      "target": "file:backend/java-admin/java-admin-api/src/test/java/com/wshake/api/common/ResultFormatTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "nodes": [
+    {
+      "id": "config:apps/react-admin/.env.development",
+      "type": "config",
+      "name": ".env.development",
+      "filePath": "apps/react-admin/.env.development",
+      "summary": "开发环境变量配置，定义 VITE_ENV、VITE_SERVER_PORT（7000）、VITE_PROXY（将 /api 代理到本地 mock 3000 端口）、VITE_API_URL、VITE_SSE_URL，供 Vite 开发服务器在 development 模式下加载。",
+      "tags": ["configuration", "environment", "vite", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/.env.production",
+      "type": "config",
+      "name": ".env.production",
+      "filePath": "apps/react-admin/.env.production",
+      "summary": "生产环境变量配置，定义 VITE_ENV=pro、VITE_API_URL（同源 /api，由 Nginx/网关转发）、VITE_SSE_URL，供 Vite 生产构建注入到静态资源。",
+      "tags": ["configuration", "environment", "vite", "production"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:apps/react-admin/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "apps/react-admin/README.md",
+      "summary": "GoWind React Admin 的项目文档，覆盖技术栈、快速开始（含 mock 启动顺序与默认账号）、环境变量、项目结构、核心模块、开发规范、关键架构（启动/认证/权限/API/路由/状态）、已实现功能及 FAQ。",
+      "tags": ["documentation", "entry-point", "overview", "guide"],
+      "complexity": "complex",
+      "languageNotes": "文档使用 Markdown 多级标题组织 29 个段落，包含表格、代码块与 ASCII 项目结构图。"
+    },
+    {
+      "id": "file:apps/react-admin/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "apps/react-admin/index.html",
+      "summary": "Vite 应用入口 HTML 模板，注入 VITE_APP_TITLE 作为 <title>、声明中文 lang、引入 favicon 与 /src/main.tsx 入口脚本，挂载点为 #root。",
+      "tags": ["markup", "entry-point", "html-template", "vite"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "apps/react-admin/package.json",
+      "summary": "Ant Design Pro 包描述与脚本入口，声明 dev/build/typecheck/lint/preview 脚本、依赖（React 19、AntD 6、Tiptap 3、ECharts 6、Zustand 5、react-query 5 等）与 devDependencies（Vite 8、UnoCSS、ESLint 10、TypeScript 6），强制使用 pnpm 11。",
+      "tags": ["configuration", "package-manager", "build-system", "dependencies"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:apps/react-admin/pnpm-workspace.yaml",
+      "type": "config",
+      "name": "pnpm-workspace.yaml",
+      "filePath": "apps/react-admin/pnpm-workspace.yaml",
+      "summary": "pnpm 的 allowBuilds 配置，禁止对 @swc/core、core-js、esbuild 执行安装脚本，允许 json-editor-vue 与 vue-demi 执行构建脚本。",
+      "tags": ["configuration", "package-manager", "pnpm", "security"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/tsconfig.app.json",
+      "type": "config",
+      "name": "tsconfig.app.json",
+      "filePath": "apps/react-admin/tsconfig.app.json",
+      "summary": "应用代码的 TypeScript 编译配置，启用 ES2023/DOM/React JSX、bundler 模块解析、严格未使用检查，定义 @/* 与 #/* 路径别名，覆盖 src 下所有 .ts/.tsx/.d.ts。",
+      "tags": ["configuration", "typescript", "build-system", "path-alias"],
+      "complexity": "moderate",
+      "languageNotes": "使用 verbatimModuleSyntax 与 erasableSyntaxOnly 等 TS 6 现代选项。"
+    },
+    {
+      "id": "config:apps/react-admin/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "apps/react-admin/tsconfig.json",
+      "summary": "根 tsconfig 解决方案文件，通过 references 组合 tsconfig.app.json（应用代码）与 tsconfig.node.json（Vite/Node 工具链）。",
+      "tags": ["configuration", "typescript", "build-system", "project-references"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:apps/react-admin/tsconfig.node.json",
+      "type": "config",
+      "name": "tsconfig.node.json",
+      "filePath": "apps/react-admin/tsconfig.node.json",
+      "summary": "Node/Vite 工具链的 TypeScript 配置，target ES2023、lib ES2023、types=node，bundler 解析与严格 lint 选项，仅包含 vite.config.ts。",
+      "tags": ["configuration", "typescript", "build-system", "vite-config"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:apps/react-admin/tsconfig.json",
+      "target": "config:apps/react-admin/tsconfig.app.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:apps/react-admin/tsconfig.json",
+      "target": "config:apps/react-admin/tsconfig.node.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:apps/react-admin/tsconfig.app.json",
+      "target": "file:apps/react-admin/index.html",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:apps/react-admin/.env.development",
+      "target": "config:apps/react-admin/package.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:apps/react-admin/.env.production",
+      "target": "config:apps/react-admin/package.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:apps/react-admin/package.json",
+      "target": "file:apps/react-admin/index.html",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:apps/react-admin/pnpm-workspace.yaml",
+      "target": "config:apps/react-admin/package.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:apps/react-admin/README.md",
+      "target": "file:apps/react-admin/index.html",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:apps/react-admin/README.md",
+      "target": "config:apps/react-admin/.env.development",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:apps/react-admin/README.md",
+      "target": "config:apps/react-admin/.env.production",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:apps/react-admin/README.md",
+      "target": "config:apps/react-admin/package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

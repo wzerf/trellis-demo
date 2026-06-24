@@ -1,0 +1,2225 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/CodeEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 214,
+      "nonEmptyLines": 187,
+      "functions": [
+        {
+          "name": "CodeEditor",
+          "startLine": 61,
+          "endLine": 212,
+          "params": [
+            "{\n  value,\n  height = '100%',\n  disabled = false,\n  autoDetectLanguage = true,\n  options = {},\n  onChange,\n  onReady,\n}"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "CodeEditor",
+          "callee": "useRef",
+          "lineNumber": 70
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "useRef",
+          "lineNumber": 71
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "useRef",
+          "lineNumber": 72
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "useRef",
+          "lineNumber": 73
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "useRef",
+          "lineNumber": 74
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "Math.max",
+          "lineNumber": 87
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "height?.toString",
+          "lineNumber": 87
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "useCallback",
+          "lineNumber": 89
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "isDarkMode",
+          "lineNumber": 91
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "useCallback",
+          "lineNumber": 94
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "content.trim",
+          "lineNumber": 97
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "content.trim().startsWith",
+          "lineNumber": 100
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "content.trim",
+          "lineNumber": 100
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "content.trim().startsWith",
+          "lineNumber": 100
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "content.trim",
+          "lineNumber": 100
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "JSON.parse",
+          "lineNumber": 102
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "hljs.highlightAuto",
+          "lineNumber": 108
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "detected.toLowerCase",
+          "lineNumber": 110
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "useEffect",
+          "lineNumber": 120
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "detectLanguage",
+          "lineNumber": 123
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "monaco.editor.createModel",
+          "lineNumber": 125
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "monaco.editor.create",
+          "lineNumber": 127
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "getThemeName",
+          "lineNumber": 129
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "editorRef.current.onDidChangeModelContent",
+          "lineNumber": 150
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "clearTimeout",
+          "lineNumber": 152
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "setTimeout",
+          "lineNumber": 153
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "editorRef.current!.getValue",
+          "lineNumber": 154
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "onChange",
+          "lineNumber": 156
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "onReady",
+          "lineNumber": 160
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "clearTimeout",
+          "lineNumber": 163
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "editorRef.current?.dispose",
+          "lineNumber": 164
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "modelRef.current?.dispose",
+          "lineNumber": 166
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "useEffect",
+          "lineNumber": 173
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "editorRef.current.getValue",
+          "lineNumber": 175
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "editorRef.current.getPosition",
+          "lineNumber": 179
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "editorRef.current.setValue",
+          "lineNumber": 180
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "value?.trim",
+          "lineNumber": 182
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "detectLanguage",
+          "lineNumber": 183
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "monaco.editor.setModelLanguage",
+          "lineNumber": 184
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "editorRef.current.setPosition",
+          "lineNumber": 188
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "useEffect",
+          "lineNumber": 196
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "getThemeName",
+          "lineNumber": 197
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "monaco.editor.setTheme",
+          "lineNumber": 198
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "editorRef.current?.layout",
+          "lineNumber": 199
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "useEffect",
+          "lineNumber": 203
+        },
+        {
+          "caller": "CodeEditor",
+          "callee": "editorRef.current?.updateOptions",
+          "lineNumber": 204
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/JsonEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 239,
+      "nonEmptyLines": 220,
+      "functions": [
+        {
+          "name": "JsonEditor",
+          "startLine": 29,
+          "endLine": 176,
+          "params": [
+            "{\n  value,\n  height = 500,\n  disabled = false,\n  placeholder = '{}',\n  options: propOptions,\n  onChange,\n  onReady,\n  onError,\n}"
+          ]
+        },
+        {
+          "name": "JsonJsonEditorFallback",
+          "startLine": 183,
+          "endLine": 237,
+          "params": [
+            "{ jsonData, disabled, onChange, isDark }"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "JsonEditor",
+          "callee": "useState",
+          "lineNumber": 41
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "isDarkMode",
+          "lineNumber": 41
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useState",
+          "lineNumber": 42
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useState",
+          "lineNumber": 43
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useRef",
+          "lineNumber": 44
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useRef",
+          "lineNumber": 45
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useMemo",
+          "lineNumber": 48
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "Number",
+          "lineNumber": 53
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "Number.isNaN",
+          "lineNumber": 54
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "height.endsWith",
+          "lineNumber": 56
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "Number",
+          "lineNumber": 57
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "height.replace",
+          "lineNumber": 57
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "Number.isNaN",
+          "lineNumber": 58
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "Math.max",
+          "lineNumber": 63
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useCallback",
+          "lineNumber": 67
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "val?.trim",
+          "lineNumber": 70
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "setParseError",
+          "lineNumber": 71
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "JSON.parse",
+          "lineNumber": 74
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "String",
+          "lineNumber": 74
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "JSON.stringify",
+          "lineNumber": 75
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "setParseError",
+          "lineNumber": 76
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "setParseError",
+          "lineNumber": 80
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "i18next.t",
+          "lineNumber": 80
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "i18next.t",
+          "lineNumber": 80
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "onError",
+          "lineNumber": 81
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useEffect",
+          "lineNumber": 89
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "validateAndFormat",
+          "lineNumber": 90
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "setJsonData",
+          "lineNumber": 93
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "setJsonData",
+          "lineNumber": 95
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "setJsonData",
+          "lineNumber": 97
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useEffect",
+          "lineNumber": 102
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "validateAndFormat",
+          "lineNumber": 104
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "setJsonData",
+          "lineNumber": 107
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "JSON.parse",
+          "lineNumber": 107
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "setJsonData",
+          "lineNumber": 109
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useCallback",
+          "lineNumber": 115
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "onChange",
+          "lineNumber": 119
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "validateAndFormat",
+          "lineNumber": 120
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "setJsonData",
+          "lineNumber": 122
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "Array.isArray",
+          "lineNumber": 126
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "JSON.stringify",
+          "lineNumber": 127
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "onChange",
+          "lineNumber": 130
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "setJsonData",
+          "lineNumber": 132
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useEffect",
+          "lineNumber": 139
+        },
+        {
+          "caller": "checkDark",
+          "callee": "setIsDark",
+          "lineNumber": 140
+        },
+        {
+          "caller": "checkDark",
+          "callee": "isDarkMode",
+          "lineNumber": 140
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "checkDark",
+          "lineNumber": 141
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "observer.observe",
+          "lineNumber": 144
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "observer.disconnect",
+          "lineNumber": 148
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "useEffect",
+          "lineNumber": 152
+        },
+        {
+          "caller": "JsonEditor",
+          "callee": "onReady",
+          "lineNumber": 153
+        },
+        {
+          "caller": "JsonJsonEditorFallback",
+          "callee": "useState",
+          "lineNumber": 191
+        },
+        {
+          "caller": "JsonJsonEditorFallback",
+          "callee": "JSON.stringify",
+          "lineNumber": 193
+        },
+        {
+          "caller": "JsonJsonEditorFallback",
+          "callee": "useEffect",
+          "lineNumber": 199
+        },
+        {
+          "caller": "JsonJsonEditorFallback",
+          "callee": "JSON.stringify",
+          "lineNumber": 201
+        },
+        {
+          "caller": "JsonJsonEditorFallback",
+          "callee": "setText",
+          "lineNumber": 203
+        },
+        {
+          "caller": "handleChange",
+          "callee": "setText",
+          "lineNumber": 212
+        },
+        {
+          "caller": "handleChange",
+          "callee": "onChange",
+          "lineNumber": 213
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/MarkdownEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 202,
+      "nonEmptyLines": 185,
+      "functions": [
+        {
+          "name": "MarkdownEditor",
+          "startLine": 20,
+          "endLine": 200,
+          "params": [
+            "{\n  value,\n  height = '100%',\n  disabled = false,\n  placeholder,\n  options = {},\n  enableExport = false,\n  uploadImage,\n  onChange,\n  onReady,\n}"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useState",
+          "lineNumber": 31
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useState",
+          "lineNumber": 32
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "isDarkMode",
+          "lineNumber": 32
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useRef",
+          "lineNumber": 33
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useRef",
+          "lineNumber": 34
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useMemo",
+          "lineNumber": 36
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useMemo",
+          "lineNumber": 38
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "base.indexOf",
+          "lineNumber": 85
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "base.splice",
+          "lineNumber": 87
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useMemo",
+          "lineNumber": 93
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useCallback",
+          "lineNumber": 105
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "setLocalValue",
+          "lineNumber": 107
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "onChange",
+          "lineNumber": 108
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useCallback",
+          "lineNumber": 113
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "callback",
+          "lineNumber": 116
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "Promise.all",
+          "lineNumber": 119
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "files.map",
+          "lineNumber": 119
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "uploadImage",
+          "lineNumber": 119
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "callback",
+          "lineNumber": 120
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useCallback",
+          "lineNumber": 125
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "new Date().toISOString().slice(0, 19).replaceAll",
+          "lineNumber": 127
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "new Date().toISOString().slice",
+          "lineNumber": 127
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "new Date().toISOString",
+          "lineNumber": 127
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "URL.createObjectURL",
+          "lineNumber": 129
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "document.createElement",
+          "lineNumber": 130
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "document.body.append",
+          "lineNumber": 133
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "link.click",
+          "lineNumber": 134
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "link.remove",
+          "lineNumber": 135
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "URL.revokeObjectURL",
+          "lineNumber": 136
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useEffect",
+          "lineNumber": 140
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "setLocalValue",
+          "lineNumber": 142
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useEffect",
+          "lineNumber": 147
+        },
+        {
+          "caller": "checkDark",
+          "callee": "setIsDark",
+          "lineNumber": 148
+        },
+        {
+          "caller": "checkDark",
+          "callee": "isDarkMode",
+          "lineNumber": 148
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "checkDark",
+          "lineNumber": 149
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "observer.observe",
+          "lineNumber": 152
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "observer.disconnect",
+          "lineNumber": 156
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useEffect",
+          "lineNumber": 160
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "onReady",
+          "lineNumber": 161
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "resizeObserverRef.current.observe",
+          "lineNumber": 166
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "resizeObserverRef.current?.disconnect",
+          "lineNumber": 169
+        },
+        {
+          "caller": "MarkdownEditor",
+          "callee": "useMemo",
+          "lineNumber": 174
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/TiptapEditor/useTiptapEditor.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 372,
+      "nonEmptyLines": 357,
+      "functions": [
+        {
+          "name": "useTiptapEditor",
+          "startLine": 18,
+          "endLine": 372,
+          "params": [
+            "{\n  value,\n  disabled = false,\n  uploadImage,\n  onChange,\n  onReady,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "useTiptapEditor",
+          "line": 18,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useTranslation",
+          "lineNumber": 25
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 26
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "isDarkMode",
+          "lineNumber": 26
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useRef",
+          "lineNumber": 27
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useRef",
+          "lineNumber": 28
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useRef",
+          "lineNumber": 29
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useRef",
+          "lineNumber": 30
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 33
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 34
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 35
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 36
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 37
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 38
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 39
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 40
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 41
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 42
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 43
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 44
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 45
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 46
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 47
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 48
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 49
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 50
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useState",
+          "lineNumber": 51
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 54
+        },
+        {
+          "caller": "checkDark",
+          "callee": "setIsDark",
+          "lineNumber": 55
+        },
+        {
+          "caller": "checkDark",
+          "callee": "isDarkMode",
+          "lineNumber": 55
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "checkDark",
+          "lineNumber": 56
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "observer.observe",
+          "lineNumber": 58
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "observer.disconnect",
+          "lineNumber": 62
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useMemo",
+          "lineNumber": 66
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "onReady",
+          "lineNumber": 75
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "e.getHTML",
+          "lineNumber": 82
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "onChange",
+          "lineNumber": 84
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 91
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.commands.setContent",
+          "lineNumber": 94
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 100
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleBold().run",
+          "lineNumber": 102
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleBold",
+          "lineNumber": 102
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 102
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 102
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleItalic().run",
+          "lineNumber": 103
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleItalic",
+          "lineNumber": 103
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 103
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 103
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleStrike().run",
+          "lineNumber": 104
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleStrike",
+          "lineNumber": 104
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 104
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 104
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleUnderline().run",
+          "lineNumber": 105
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleUnderline",
+          "lineNumber": 105
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 105
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 105
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleCode().run",
+          "lineNumber": 106
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleCode",
+          "lineNumber": 106
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 106
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 106
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleHeading({ level }).run",
+          "lineNumber": 107
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleHeading",
+          "lineNumber": 107
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 107
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 107
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleBulletList().run",
+          "lineNumber": 108
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleBulletList",
+          "lineNumber": 108
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 108
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 108
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleOrderedList().run",
+          "lineNumber": 109
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleOrderedList",
+          "lineNumber": 109
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 109
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 109
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleTaskList().run",
+          "lineNumber": 110
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleTaskList",
+          "lineNumber": 110
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 110
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 110
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setCodeBlockLanguage",
+          "lineNumber": 112
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setCodeBlockContent",
+          "lineNumber": 113
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setCodeBlockModalVisible",
+          "lineNumber": 114
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleBlockquote().run",
+          "lineNumber": 116
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleBlockquote",
+          "lineNumber": 116
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 116
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 116
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleSubscript().run",
+          "lineNumber": 117
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleSubscript",
+          "lineNumber": 117
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 117
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 117
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleSuperscript().run",
+          "lineNumber": 118
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleSuperscript",
+          "lineNumber": 118
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 118
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 118
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setParagraph().run",
+          "lineNumber": 119
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setParagraph",
+          "lineNumber": 119
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 119
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 119
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().unsetAllMarks().clearNodes().run",
+          "lineNumber": 120
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().unsetAllMarks().clearNodes",
+          "lineNumber": 120
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().unsetAllMarks",
+          "lineNumber": 120
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 120
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 120
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setHorizontalRule().run",
+          "lineNumber": 121
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setHorizontalRule",
+          "lineNumber": 121
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 121
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 121
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run",
+          "lineNumber": 123
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().insertTable",
+          "lineNumber": 123
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 123
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 123
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().deleteTable().run",
+          "lineNumber": 124
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().deleteTable",
+          "lineNumber": 124
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 124
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 124
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().addRowBefore().run",
+          "lineNumber": 125
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().addRowBefore",
+          "lineNumber": 125
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 125
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 125
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().addRowAfter().run",
+          "lineNumber": 126
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().addRowAfter",
+          "lineNumber": 126
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 126
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 126
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().deleteRow().run",
+          "lineNumber": 127
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().deleteRow",
+          "lineNumber": 127
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 127
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 127
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().addColumnBefore().run",
+          "lineNumber": 128
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().addColumnBefore",
+          "lineNumber": 128
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 128
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 128
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().addColumnAfter().run",
+          "lineNumber": 129
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().addColumnAfter",
+          "lineNumber": 129
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 129
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 129
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().deleteColumn().run",
+          "lineNumber": 130
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().deleteColumn",
+          "lineNumber": 130
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 130
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 130
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().mergeCells().run",
+          "lineNumber": 131
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().mergeCells",
+          "lineNumber": 131
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 131
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 131
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().splitCell().run",
+          "lineNumber": 132
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().splitCell",
+          "lineNumber": 132
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 132
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 132
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleHeaderRow().run",
+          "lineNumber": 133
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleHeaderRow",
+          "lineNumber": 133
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 133
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 133
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleHeaderColumn().run",
+          "lineNumber": 134
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleHeaderColumn",
+          "lineNumber": 134
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 134
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 134
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleHeaderCell().run",
+          "lineNumber": 135
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleHeaderCell",
+          "lineNumber": 135
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 135
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 135
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setTextAlign(align).run",
+          "lineNumber": 137
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setTextAlign",
+          "lineNumber": 137
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 137
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 137
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setColor(color).run",
+          "lineNumber": 138
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setColor",
+          "lineNumber": 138
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 138
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 138
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleHighlight({ color }).run",
+          "lineNumber": 139
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().toggleHighlight",
+          "lineNumber": 139
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 139
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 139
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setMark('textStyle', { fontSize: size }).run",
+          "lineNumber": 141
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setMark",
+          "lineNumber": 141
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 141
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 141
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setFontSize",
+          "lineNumber": 142
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setLineHeight(height).run",
+          "lineNumber": 145
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().setLineHeight",
+          "lineNumber": 145
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 145
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 145
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setLineHeight",
+          "lineNumber": 146
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().sinkListItem('listItem').run",
+          "lineNumber": 148
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().sinkListItem",
+          "lineNumber": 148
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 148
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 148
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().liftListItem('listItem').run",
+          "lineNumber": 149
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().liftListItem",
+          "lineNumber": 149
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 149
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 149
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setIsFullscreen",
+          "lineNumber": 150
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "fileInputRef.current?.click",
+          "lineNumber": 151
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setVideoUrl",
+          "lineNumber": 153
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setVideoWidth",
+          "lineNumber": 154
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setVideoModalVisible",
+          "lineNumber": 155
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setIframeUrl",
+          "lineNumber": 158
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setIframeWidth",
+          "lineNumber": 159
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setIframeHeight",
+          "lineNumber": 160
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setIframeTitle",
+          "lineNumber": 161
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setIframeAllowFullscreen",
+          "lineNumber": 162
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setIframeModalVisible",
+          "lineNumber": 163
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "markdownInputRef.current?.click",
+          "lineNumber": 165
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().undo().run",
+          "lineNumber": 167
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().undo",
+          "lineNumber": 167
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 167
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 167
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().redo().run",
+          "lineNumber": 168
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus().redo",
+          "lineNumber": 168
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain().focus",
+          "lineNumber": 168
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor?.chain",
+          "lineNumber": 168
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "Modal.confirm",
+          "lineNumber": 170
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "t",
+          "lineNumber": 171
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "t",
+          "lineNumber": 173
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "t",
+          "lineNumber": 174
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "t",
+          "lineNumber": 175
+        },
+        {
+          "caller": "onOk",
+          "callee": "editor?.commands.setContent",
+          "lineNumber": 177
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 186
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "uploadImage",
+          "lineNumber": 191
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain().focus().setImage({ src: url }).run",
+          "lineNumber": 193
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain().focus().setImage",
+          "lineNumber": 193
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain().focus",
+          "lineNumber": 193
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain",
+          "lineNumber": 193
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "console.error",
+          "lineNumber": 196
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 205
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "file.text",
+          "lineNumber": 210
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "marked.parse",
+          "lineNumber": 211
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.commands.setContent",
+          "lineNumber": 213
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "String",
+          "lineNumber": 213
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "console.error",
+          "lineNumber": 216
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 225
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "linkUrl.trim",
+          "lineNumber": 227
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run",
+          "lineNumber": 229
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain().focus().extendMarkRange('link').setLink",
+          "lineNumber": 229
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain().focus().extendMarkRange",
+          "lineNumber": 229
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain().focus",
+          "lineNumber": 229
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain",
+          "lineNumber": 229
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setLinkModalVisible",
+          "lineNumber": 231
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setLinkUrl",
+          "lineNumber": 232
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 237
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "codeBlockContent.trim",
+          "lineNumber": 239
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor\n          .chain()\n          .focus()\n          .insertContent({\n            type: 'codeBlock',\n            attrs: { language: codeBlockLanguage },\n            content: [{ type: 'text', text: code }],\n          })\n          .run",
+          "lineNumber": 241
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor\n          .chain()\n          .focus()\n          .insertContent",
+          "lineNumber": 241
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor\n          .chain()\n          .focus",
+          "lineNumber": 241
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor\n          .chain",
+          "lineNumber": 241
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setCodeBlockModalVisible",
+          "lineNumber": 251
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setCodeBlockContent",
+          "lineNumber": 252
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 257
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "videoUrl.trim",
+          "lineNumber": 259
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "(editor.chain().focus() as any).setVideo({ src: url, width: videoWidth }).run",
+          "lineNumber": 261
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "(editor.chain().focus() as any).setVideo",
+          "lineNumber": 261
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain().focus",
+          "lineNumber": 261
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain",
+          "lineNumber": 261
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setVideoModalVisible",
+          "lineNumber": 263
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 268
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "iframeUrl.trim",
+          "lineNumber": 270
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "(editor.chain().focus() as any)\n          .setIframe({\n            src: url,\n            width: iframeWidth,\n            height: iframeHeight,\n            title: iframeTitle || undefined,\n            allowfullscreen: iframeAllowFullscreen,\n          })\n          .run",
+          "lineNumber": 272
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "(editor.chain().focus() as any)\n          .setIframe",
+          "lineNumber": 272
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain().focus",
+          "lineNumber": 272
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.chain",
+          "lineNumber": 272
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "setIframeModalVisible",
+          "lineNumber": 282
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "useCallback",
+          "lineNumber": 288
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "editor.getText",
+          "lineNumber": 290
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "text.trim",
+          "lineNumber": 292
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "text.trim().split",
+          "lineNumber": 292
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "text.trim",
+          "lineNumber": 292
+        },
+        {
+          "caller": "useTiptapEditor",
+          "callee": "doc.descendants",
+          "lineNumber": 298
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/monaco-loader.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 34,
+      "nonEmptyLines": 32,
+      "functions": [
+        {
+          "name": "initMonacoWorkers",
+          "startLine": 9,
+          "endLine": 32,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "initMonacoWorkers",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "apps/react-admin/src/components/common/Editor/src/utils.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 11,
+      "functions": [
+        {
+          "name": "isDarkMode",
+          "startLine": 6,
+          "endLine": 12,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "isDarkMode",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "isDarkMode",
+          "callee": "usePreferencesStore.getState",
+          "lineNumber": 7
+        },
+        {
+          "caller": "isDarkMode",
+          "callee": "window.matchMedia",
+          "lineNumber": 11
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}
