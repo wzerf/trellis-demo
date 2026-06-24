@@ -7,10 +7,9 @@
 ## Current Status
 
 <!-- @@@auto:current-status -->
-
 - **Active File**: `journal-1.md`
-- **Total Sessions**: 3
-- **Last Active**: 2026-06-15
+- **Total Sessions**: 4
+- **Last Active**: 2026-06-25
 <!-- @@@/auto:current-status -->
 
 ---
@@ -18,11 +17,9 @@
 ## Active Documents
 
 <!-- @@@auto:active-documents -->
-
-| File           | Lines | Status |
-| -------------- | ----- | ------ |
-| `journal-1.md` | ~104  | Active |
-
+| File | Lines | Status |
+|------|-------|--------|
+| `journal-1.md` | ~263 | Active |
 <!-- @@@/auto:active-documents -->
 
 ---
@@ -31,8 +28,9 @@
 
 <!-- @@@auto:session-history -->
 
-| #   | Date       | Title                                                     | Commits              | Branch                           |
-| --- | ---------- | --------------------------------------------------------- | -------------------- | -------------------------------- |
+| # | Date | Title | Commits | Branch |
+|---|------|-------|---------|--------|
+| 4 | 2026-06-25 | 字典管理跨端实现（Vue vben-admin / React admin / Backend-mock） | `33e2853d`, `15e29f01`, `0a3c9166`, `5cf2912f` | `master` |
 | 3   | 2026-06-15 | 集成 Spotless + palantir-java-format + Checkstyle         | `fdca6fc`, `a640ba1` | `chore/spotless-palantir-format` |
 | 2   | 2026-06-14 | java-admin-backend: Spring Boot 4 基础架构 + Phase 3 收尾 | `d442a88`            | `master`                         |
 | 1   | 2026-06-14 | schema v5: 字段精简与日志表扩充(对齐 PG 风格)             | `1387021`            | `feat/admin-db-design`           |
