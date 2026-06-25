@@ -9,7 +9,7 @@ declare global {
         title?: string;
         icon?: string;
         authority?: string[];
-        [key: string]: any;
+        [key: string]: unknown;
     }
 
     interface BasicOption {
@@ -22,7 +22,7 @@ declare global {
     type TabOption = BasicOption;
 
     interface BasicUserInfo {
-        [key: string]: any;
+        [key: string]: unknown;
 
         /**
          * 头像

@@ -52,11 +52,6 @@ export const ThemeLoading = ({
         };
     }, [defaultTheme, themeOverride]);
 
-    // 自动隐藏逻辑
-    if (autoHide && progress === 100 && status === 'loading') {
-        return null;
-    }
-
     // 状态对应的图标/颜色
     const statusConfig = useMemo(() => {
         switch (status) {
@@ -85,6 +80,11 @@ export const ThemeLoading = ({
                 };
         }
     }, [status, themeConfig.token, text]);
+
+    // 自动隐藏逻辑
+    if (autoHide && progress === 100 && status === 'loading') {
+        return null;
+    }
 
     const content = (
         <ConfigProvider theme={themeConfig}>

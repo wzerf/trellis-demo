@@ -59,8 +59,8 @@ type DiffResult<T> = Partial<{
   [K in keyof T]: T[K] extends object ? DiffResult<T[K]> : T[K];
 }>;
 
-function diff<T extends Record<string, any>>(obj1: T, obj2: T): DiffResult<T> {
-  function findDifferences(o1: any, o2: any): any {
+function diff<T extends Record<string, unknown>>(obj1: T, obj2: T): DiffResult<T> {
+  function findDifferences(o1: unknown, o2: unknown): unknown {
     if (Array.isArray(o1) && Array.isArray(o2)) {
       if (!arraysEqual(o1, o2)) {
         return o2;
@@ -69,11 +69,17 @@ function diff<T extends Record<string, any>>(obj1: T, obj2: T): DiffResult<T> {
     }
 
     if (typeof o1 === "object" && typeof o2 === "object" && o1 !== null && o2 !== null) {
-      const diffResult: any = {};
+      const diffResult: Record<string, unknown> = {};
 
-      const keys = new Set([...Object.keys(o1), ...Object.keys(o2)]);
+      const keys = new Set([
+        ...Object.keys(o1 as Record<string, unknown>),
+        ...Object.keys(o2 as Record<string, unknown>),
+      ]);
       keys.forEach((key) => {
-        const valueDiff = findDifferences(o1[key], o2[key]);
+        const valueDiff = findDifferences(
+          (o1 as Record<string, unknown>)[key],
+          (o2 as Record<string, unknown>)[key],
+        );
         if (valueDiff !== undefined) {
           diffResult[key] = valueDiff;
         }

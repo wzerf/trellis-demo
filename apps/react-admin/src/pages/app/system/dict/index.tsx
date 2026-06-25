@@ -149,6 +149,9 @@ const DictPage = () => {
   }, []);
 
   // 渲染「操作」列
+  // ProColumns<DictType>['render'] 签名固定为 (text, record, index, action) 4 个参数，
+  // 是 antd ProTable 的 API 约束。这里用 eslint-disable 允许超出 max-params=3 限制。
+  // eslint-disable-next-line max-params
   function renderTypeActions(
     _: unknown,
     record: DictType,
@@ -197,6 +200,7 @@ const DictPage = () => {
     ];
   }
 
+  // eslint-disable-next-line max-params
   function renderEntryActions(
     _: unknown,
     record: DictData,

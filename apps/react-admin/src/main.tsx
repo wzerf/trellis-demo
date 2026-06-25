@@ -27,7 +27,11 @@ import App from './App.tsx';
 
 // 执行全局初始化
 bootstrap().then(() => {
-  const root = ReactDOM.createRoot(document.getElementById('root')!);
+  const rootEl = document.getElementById('root');
+  if (!rootEl) {
+    throw new Error('Root element #root not found');
+  }
+  const root = ReactDOM.createRoot(rootEl);
 
   root.render(
     <React.StrictMode>

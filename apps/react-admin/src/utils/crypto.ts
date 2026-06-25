@@ -177,4 +177,3 @@ export function encryptData(data: string, key: string, iv: string): string {
     return encrypted.toString();
 }
 
-

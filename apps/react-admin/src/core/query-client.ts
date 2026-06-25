@@ -1,4 +1,4 @@
-import {QueryClient, defaultShouldDehydrateQuery} from '@tanstack/react-query'
+import {QueryClient, defaultShouldDehydrateQuery} from '@tanstack/react-query';
 
 // 单独导出，方便测试 & 维护
 export const queryClient = new QueryClient({
@@ -37,4 +37,4 @@ export const queryClient = new QueryClient({
                 query.state.status === 'pending',
         },
     },
-})
+});

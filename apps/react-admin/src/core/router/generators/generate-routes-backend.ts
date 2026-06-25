@@ -64,14 +64,13 @@ function convertRoutes(
         };
 
         if (componentPath) {
-            let Component: ComponentType<any> | undefined;
+            let Component: ComponentType<unknown> | undefined;
 
             // 1. 优先匹配布局组件
             if (layoutMap[componentPath]) {
                 Component = layoutMap[componentPath];
-            }
-            // 2. 匹配页面组件（标准化路径后查找）
-            else {
+            } else {
+                // 2. 匹配页面组件（标准化路径后查找）
                 const normalizedPath = normalizeViewPath(componentPath);
                 // 尝试多种后缀组合
                 const candidates = [
@@ -115,7 +114,7 @@ function convertRoutes(
                     index: true,
                     element: createElement(Navigate, {to: rest.redirect, replace: true}),
                 };
-                route.children = [indexRoute, ...(rest.children as any[])];
+                route.children = [indexRoute, ...(rest.children as AppRouteObject[])];
             } else if (!componentPath) {
                 // 纯重定向路由（无组件、无子路由）
                 route.element = createElement(Navigate, {to: rest.redirect, replace: true});
@@ -140,6 +139,6 @@ export function normalizeViewPath(path: string): string {
     // 3. 去除目录前缀（适配 React 项目结构）
     // 支持多种常见目录：/views, /pages, /src/pages 等
     return withSlash
-        .replace(/^\/(src\/)?(views|pages)\//i, '/')  // 去除 /views/ 或 /pages/
-        .replace(/\/+$/, '');                          // 去除末尾斜杠
+        .replace(/^\/(src\/)?(views|pages)\//i, '/') // 去除 /views/ 或 /pages/
+        .replace(/\/+$/, ''); // 去除末尾斜杠
 }

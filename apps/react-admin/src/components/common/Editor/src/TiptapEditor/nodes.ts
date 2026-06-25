@@ -22,7 +22,7 @@ export const CustomVideo = Node.create({
   parseHTML() {
     return [{ tag: 'video' }];
   },
-  renderHTML({ HTMLAttributes }: { HTMLAttributes: Record<string, any> }) {
+  renderHTML({ HTMLAttributes }: { HTMLAttributes: Record<string, unknown> }) {
     return [
       'video',
       mergeAttributes(HTMLAttributes, {
@@ -35,9 +35,9 @@ export const CustomVideo = Node.create({
     return {
       setVideo:
         (options: { height?: string; src: string; width?: string }) =>
-        ({ commands }: { commands: any }) =>
+        ({ commands }: { commands: { insertContent: (content: { type: string; attrs: { src: string; width?: string; height?: string } }) => boolean } }) =>
           commands.insertContent({ type: this.name, attrs: options }),
-    } as any;
+    };
   },
 });
 
@@ -68,7 +68,7 @@ export const CustomIframe = Node.create({
   parseHTML() {
     return [{ tag: 'iframe' }];
   },
-  renderHTML({ HTMLAttributes }: { HTMLAttributes: Record<string, any> }) {
+  renderHTML({ HTMLAttributes }: { HTMLAttributes: Record<string, unknown> }) {
     return [
       'iframe',
       mergeAttributes(HTMLAttributes, {
@@ -87,8 +87,8 @@ export const CustomIframe = Node.create({
           title?: string;
           width?: string;
         }) =>
-        ({ commands }: { commands: any }) =>
+        ({ commands }: { commands: { insertContent: (content: { type: string; attrs: { src: string; width?: string; height?: string; title?: string; allowfullscreen?: boolean } }) => boolean } }) =>
           commands.insertContent({ type: this.name, attrs: options }),
-    } as any;
+    };
   },
 });

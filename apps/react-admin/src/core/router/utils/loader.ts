@@ -4,14 +4,16 @@ import type { AppRouteObject } from '../types';
  * 展平模块导出（兼容 default / 具名导出）
  * 纯函数，无副作用，可单元测试
  */
-export const extractRoutes = (module: any): AppRouteObject[] => {
-  if (Array.isArray(module?.default)) return module.default;
+export const extractRoutes = (module: unknown): AppRouteObject[] => {
+  if (Array.isArray((module as { default?: unknown })?.default)) {
+    return (module as { default: AppRouteObject[] }).default;
+  }
 
-  const namedExport = Object.values(module).find(
-    (val: any) => Array.isArray(val) && val.length > 0,
+  const namedExport = Object.values(module as Record<string, unknown>).find(
+    (val) => Array.isArray(val) && val.length > 0,
   );
 
-  return Array.isArray(namedExport) ? namedExport : [];
+  return Array.isArray(namedExport) ? (namedExport as AppRouteObject[]) : [];
 };
 
 /**

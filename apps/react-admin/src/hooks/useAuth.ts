@@ -3,26 +3,28 @@
  * 统一封装登录/登出/用户信息/权限码等功能
  * 对齐 Vue 版 useAuth composable
  */
+import { useCallback, useMemo } from 'react';
 import { useAuthStore } from '@/stores/auth';
 import { useUserStore } from '@/stores/user';
 import { fetchUserInfo, fetchAccessCodes } from '@/api/hooks/auth';
 import type { UserInfo } from '@/api/rest/types';
 
 export function useAuth() {
-  async function getUserInfo(): Promise<UserInfo | null> {
+  // 用 useCallback 稳定方法引用，避免下游 useEffect 把整个对象作为依赖时反复触发
+  const getUserInfo = useCallback(async (): Promise<UserInfo | null> => {
     try {
       return await fetchUserInfo();
     } catch (error) {
       console.error('getUserInfo failed:', error);
       return null;
     }
-  }
+  }, []);
 
-  async function getAccessCodes(): Promise<string[]> {
-    return await fetchAccessCodes();
-  }
+  const getAccessCodes = useCallback(async (): Promise<string[]> => {
+    return fetchAccessCodes();
+  }, []);
 
-  async function getUserPermissionCodes(): Promise<{ roles: string[]; codes: string[] } | false> {
+  const getUserPermissionCodes = useCallback(async (): Promise<{ roles: string[]; codes: string[] } | false> => {
     const userStore = useUserStore.getState();
     const { userRoles, accessCodes } = userStore;
 
@@ -48,17 +50,20 @@ export function useAuth() {
     }
 
     return { roles: userRoles, codes: accessCodes };
-  }
+  }, [getUserInfo, getAccessCodes]);
 
-  return {
-    get loginLoading() {
-      return useAuthStore.getState().loginLoading;
-    },
-    login: useAuthStore.getState().login,
-    logout: useAuthStore.getState().logout,
-    forceLogout: useAuthStore.getState().forceLogout,
-    fetchUserInfo: getUserInfo,
-    fetchAccessCodes: getAccessCodes,
-    getUserPermissionCodes,
-  };
+  return useMemo(
+    () => ({
+      get loginLoading() {
+        return useAuthStore.getState().loginLoading;
+      },
+      login: useAuthStore.getState().login,
+      logout: useAuthStore.getState().logout,
+      forceLogout: useAuthStore.getState().forceLogout,
+      fetchUserInfo: getUserInfo,
+      fetchAccessCodes: getAccessCodes,
+      getUserPermissionCodes,
+    }),
+    [getUserInfo, getAccessCodes, getUserPermissionCodes],
+  );
 }

@@ -1,4 +1,5 @@
 import Color from '@tiptap/extension-color';
+import type { Editor } from '@tiptap/core';
 import Highlight from '@tiptap/extension-highlight';
 import HorizontalRule from '@tiptap/extension-horizontal-rule';
 import Image from '@tiptap/extension-image';
@@ -40,13 +41,13 @@ export interface TiptapEditorProps {
   height?: number | string;
   disabled?: boolean;
   placeholder?: string;
-  config?: Record<string, any>;
+  config?: Record<string, unknown>;
   showToolbar?: boolean;
   showStatusBar?: boolean;
   uploadImage?: (file: File) => Promise<string>;
   fullHeight?: boolean;
   onChange?: (value: string) => void;
-  onReady?: (editor: any) => void;
+  onReady?: (editor: Editor) => void;
 }
 
 const lowlight = createLowlight(all);
@@ -171,7 +172,7 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({
 
   // Toolbar actions
   const isActive = useCallback(
-    (name: string, options?: any) => {
+    (name: string, options?: Record<string, unknown>) => {
       return editor?.isActive(name, options) || false;
     },
     [editor],

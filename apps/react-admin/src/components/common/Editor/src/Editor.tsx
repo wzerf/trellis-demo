@@ -1,6 +1,6 @@
 import { lazy, Suspense, useMemo } from 'react';
 
-import { EditorType } from '../types';
+import { EditorTypes } from '../types';
 import type { EditorProps } from '../types';
 
 const LazyTiptapEditor = lazy(() => import('./TiptapEditor'));
@@ -11,7 +11,7 @@ const LazyCodeEditor = lazy(() => import('./CodeEditor'));
 
 const Editor: React.FC<EditorProps> = ({
   value,
-  editorType = EditorType.MARKDOWN,
+  editorType = EditorTypes.MARKDOWN,
   height = '100%',
   disabled = false,
   placeholder,
@@ -24,16 +24,16 @@ const Editor: React.FC<EditorProps> = ({
 }) => {
   const currentEditorComponent = useMemo(() => {
     switch (editorType) {
-      case EditorType.CODE:
-      case EditorType.VISUAL_BUILDER:
+      case EditorTypes.CODE:
+      case EditorTypes.VISUAL_BUILDER:
         return LazyCodeEditor;
-      case EditorType.JSON:
+      case EditorTypes.JSON:
         return LazyJsonEditor;
-      case EditorType.MARKDOWN:
+      case EditorTypes.MARKDOWN:
         return LazyMarkdownEditor;
-      case EditorType.PLAIN_TEXT:
+      case EditorTypes.PLAIN_TEXT:
         return LazyPlainTextEditor;
-      case EditorType.RICH_TEXT:
+      case EditorTypes.RICH_TEXT:
         return LazyTiptapEditor;
       default:
         return LazyMarkdownEditor;
@@ -42,11 +42,11 @@ const Editor: React.FC<EditorProps> = ({
 
   const currentOptions = useMemo(() => {
     switch (editorType) {
-      case EditorType.CODE:
+      case EditorTypes.CODE:
         return codeOptions;
-      case EditorType.JSON:
+      case EditorTypes.JSON:
         return jsonOptions;
-      case EditorType.MARKDOWN:
+      case EditorTypes.MARKDOWN:
         return markdownOptions;
       default:
         return undefined;

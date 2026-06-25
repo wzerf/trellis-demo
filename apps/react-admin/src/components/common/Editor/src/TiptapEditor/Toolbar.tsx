@@ -1,9 +1,59 @@
 import { useTranslation } from 'react-i18next';
+import type { Editor } from '@tiptap/core';
+import type { Level } from '@tiptap/extension-heading';
+
+export interface ToolbarActions {
+  toggleBold: () => void;
+  toggleItalic: () => void;
+  toggleStrike: () => void;
+  toggleUnderline: () => void;
+  toggleCode: () => void;
+  toggleHeading: (level: Level) => void;
+  toggleBulletList: () => void;
+  toggleOrderedList: () => void;
+  toggleTaskList: () => void;
+  insertCodeBlock: () => void;
+  toggleBlockquote: () => void;
+  toggleSubscript: () => void;
+  toggleSuperscript: () => void;
+  setParagraph: () => void;
+  clearFormatting: () => void;
+  insertHorizontalRule: () => void;
+  insertTable: () => void;
+  deleteTable: () => void;
+  addRowBefore: () => void;
+  addRowAfter: () => void;
+  deleteRow: () => void;
+  addColumnBefore: () => void;
+  addColumnAfter: () => void;
+  deleteColumn: () => void;
+  mergeCells: () => void;
+  splitCell: () => void;
+  toggleHeaderRow: () => void;
+  toggleHeaderColumn: () => void;
+  toggleHeaderCell: () => void;
+  setAlign: (align: 'center' | 'justify' | 'left' | 'right') => void;
+  setTextColor: (color: string) => void;
+  setHighlight: (color: string) => void;
+  setFontSize: (size: string) => void;
+  setLineHeight: (height: string) => void;
+  indent: () => void;
+  outdent: () => void;
+  toggleFullscreen: () => void;
+  uploadImage: () => void;
+  insertVideo: () => void;
+  insertIframe: () => void;
+  importMarkdown: () => void;
+  setLinkModalVisible: (visible: boolean) => void;
+  undo: () => void;
+  redo: () => void;
+  clearContent: () => void;
+}
 
 interface ToolbarProps {
-  editor: any;
-  isActive: (name: string, options?: any) => boolean;
-  actions: any;
+  editor: Editor | null;
+  isActive: (name: string, options?: Record<string, unknown>) => boolean;
+  actions: ToolbarActions;
   isFullscreen?: boolean;
 }
 
@@ -423,7 +473,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({ editor, isActive, actions, isF
           className={`toolbar-btn${isActive('link') ? ' active' : ''}`}
           onClick={() =>
             isActive('link')
-              ? editor?.chain().focus().unsetLink().run()
+              ? editor?.chain().focus().unsetLink()
+.run()
               : actions.setLinkModalVisible?.(true)
           }
           title={

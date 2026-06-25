@@ -12,7 +12,7 @@ export function transformMetaToHandle(meta?: RouteMeta): RouteHandle | undefined
     icon: typeof meta.icon === 'string' ? meta.icon : undefined,
     authority: meta.authority,
     // 展开其他自定义字段（排除已明确指定的字段）
-    ...((({ title, icon, authority, ...rest }) => rest)(meta)),
+    ...(({ title: _t, icon: _i, authority: _a, ...rest }) => rest)(meta),
   };
 }
 

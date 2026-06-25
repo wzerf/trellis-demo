@@ -23,7 +23,7 @@ export type CoreKey<N extends CoreNamespace> = keyof CoreResources[N];
 export type CoreTFunction = <N extends CoreNamespace>(
     namespace: N,
     key: CoreKey<N>,
-    params?: Record<string, any>
+    params?: Record<string, unknown>
 ) => string;
 
 // 导出命名空间列表供 i18n 初始化使用

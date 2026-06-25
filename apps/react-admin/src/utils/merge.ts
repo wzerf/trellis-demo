@@ -4,11 +4,14 @@
  * @param source - 源对象
  * @returns 合并后的新对象
  */
-export function merge<T extends Record<string, any>, U extends Record<string, any>>(
+export function merge<
+    T extends Record<string, unknown>,
+    U extends Record<string, unknown>,
+>(
     target: T,
     source: U
 ): T & U {
-    const result: any = {...target};
+    const result = { ...target } as Record<string, unknown>;
 
     for (const key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
@@ -16,23 +19,16 @@ export function merge<T extends Record<string, any>, U extends Record<string, an
             const targetValue = target[key as keyof T];
 
             // 如果两个值都是普通对象，则递归合并
-            if (
-                isPlainObject(targetValue) &&
-                isPlainObject(sourceValue)
-            ) {
-                result[key] = merge(
-                    targetValue as Record<string, any>,
-                    sourceValue as Record<string, any>
-                );
-            }
-            // 否则直接使用源值覆盖
-            else {
+            if (isPlainObject(targetValue) && isPlainObject(sourceValue)) {
+                result[key] = merge(targetValue, sourceValue);
+            } else {
+                // 否则直接使用源值覆盖
                 result[key] = sourceValue;
             }
         }
     }
 
-    return result;
+    return result as T & U;
 }
 
 /**
@@ -42,16 +38,19 @@ export function merge<T extends Record<string, any>, U extends Record<string, an
  */
 export function createMerge(
     customizer?: (
-        obj: Record<string, any>,
+        obj: Record<string, unknown>,
         key: string,
-        value: any
+        value: unknown
     ) => boolean | void
 ) {
-    return function <T extends Record<string, any>, U extends Record<string, any>>(
+    return function <
+        T extends Record<string, unknown>,
+        U extends Record<string, unknown>,
+    >(
         target: T,
         source: U
     ): T & U {
-        const result: any = {...target};
+        const result = { ...target } as Record<string, unknown>;
 
         for (const key in source) {
             if (Object.prototype.hasOwnProperty.call(source, key)) {
@@ -67,43 +66,39 @@ export function createMerge(
                 }
 
                 // 如果两个值都是普通对象，则递归合并
-                if (
-                    isPlainObject(targetValue) &&
-                    isPlainObject(sourceValue)
-                ) {
-                    result[key] = createMerge(customizer)(
-                        targetValue as Record<string, any>,
-                        sourceValue as Record<string, any>
-                    );
-                }
-                // 否则直接使用源值覆盖
-                else {
+                if (isPlainObject(targetValue) && isPlainObject(sourceValue)) {
+                    result[key] = createMerge(customizer)(targetValue, sourceValue);
+                } else {
+                    // 否则直接使用源值覆盖
                     result[key] = sourceValue;
                 }
             }
         }
 
-        return result;
+        return result as T & U;
     };
 }
 
 /**
  * 带数组覆盖功能的合并函数
  */
-export const mergeWithArrayOverride = createMerge((obj, key, value) => {
-    if (Array.isArray(obj[key]) && Array.isArray(value)) {
-        obj[key] = value;
-        return true; // 表示已处理，跳过默认逻辑
-    }
-    return false; // 表示未处理，继续默认逻辑
-});
+export const mergeWithArrayOverride = createMerge(
+    (obj, key, value) => {
+        const current = obj[key];
+        if (Array.isArray(current) && Array.isArray(value)) {
+            obj[key] = value;
+            return true; // 表示已处理，跳过默认逻辑
+        }
+        return false; // 表示未处理，继续默认逻辑
+    },
+);
 
 /**
  * 判断是否为普通对象
  * @param value - 要判断的值
  * @returns 是否为普通对象
  */
-function isPlainObject(value: any): value is Record<string, any> {
+function isPlainObject(value: unknown): value is Record<string, unknown> {
     return (
         value !== null &&
         typeof value === 'object' &&

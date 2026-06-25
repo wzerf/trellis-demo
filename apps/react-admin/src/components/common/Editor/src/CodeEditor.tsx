@@ -109,7 +109,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         const detected = detectedLanguage.language;
         const detectedKey = typeof detected === 'string' ? detected.toLowerCase() : '';
         return languageMap[detectedKey] || 'plaintext';
-      } catch (error) {
+      } catch {
         return language || 'plaintext';
       }
     },
@@ -151,7 +151,8 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
       if (isUpdatingRef.current || !editorRef.current) return;
       if (changeTimeout) clearTimeout(changeTimeout);
       changeTimeout = setTimeout(() => {
-        const newValue = editorRef.current!.getValue() || '';
+        if (!editorRef.current) return;
+        const newValue = editorRef.current.getValue() || '';
         valueRef.current = newValue;
         onChange?.(newValue);
       }, 100);

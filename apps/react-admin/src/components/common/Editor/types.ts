@@ -1,4 +1,4 @@
-export const EditorType = {
+export const EditorTypes = {
   CODE: 'EDITOR_TYPE_CODE',
   JSON: 'EDITOR_TYPE_JSON_BLOCK',
   MARKDOWN: 'EDITOR_TYPE_MARKDOWN',
@@ -7,7 +7,7 @@ export const EditorType = {
   VISUAL_BUILDER: 'EDITOR_TYPE_VISUAL_BUILDER',
 } as const;
 
-export type EditorType = (typeof EditorType)[keyof typeof EditorType];
+export type EditorType = (typeof EditorTypes)[keyof typeof EditorTypes];
 
 export interface EditorProps {
   value?: string;

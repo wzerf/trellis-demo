@@ -73,7 +73,9 @@ class StorageManager implements IStorageCache {
     this.defaultTTL = defaultTTL;
 
     if (enableSync) this.initSync();
-    this.updateQuotaUsage().catch(() => {});
+    this.updateQuotaUsage().catch(() => {
+      // 配额探测失败不影响主流程
+    });
   }
 
   /**
@@ -677,7 +679,10 @@ class StorageManager implements IStorageCache {
       if (currentItems <= maxItems && currentUsage <= maxUsageMB * 1024 * 1024) break;
       keysToEvict.push(key);
       currentItems--;
-      currentUsage -= allMeta.get(key)!.s;
+      const meta = allMeta.get(key);
+      if (meta) {
+        currentUsage -= meta.s;
+      }
       evicted++;
     }
 
@@ -697,8 +702,9 @@ class StorageManager implements IStorageCache {
     const keys = Array.from(metas.keys());
 
     return keys.sort((a, b) => {
-      const ma = metas.get(a)!;
-      const mb = metas.get(b)!;
+      const ma = metas.get(a);
+      const mb = metas.get(b);
+      if (!ma || !mb) return 0;
 
       // 1. 已过期的优先淘汰
       if (ma.e !== null && ma.e < now) return -1;
@@ -763,7 +769,8 @@ class StorageManager implements IStorageCache {
   // ================= 监控埋点 =================
 
   private trackMetric(key: keyof StorageMetrics): void {
-    (this.metrics as any)[key]++;
+    if (key === 'hitRate' || key === 'lastUpdated' || key === 'quotaUsageBytes' || key === 'onMetrics') return;
+    this.metrics[key]++;
     this.updateHitRate();
     this.debounceReportMetrics();
   }

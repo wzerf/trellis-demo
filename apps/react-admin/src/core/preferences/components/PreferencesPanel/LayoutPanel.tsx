@@ -3,7 +3,15 @@ import { Button, Input, InputNumber, Segmented, Select, Space, Switch } from 'an
 import { MinusOutlined, PlusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { usePreferencesStore } from '../../store';
-import type { ContentCompactType, LayoutType } from '../../types';
+import type {
+  BreadcrumbStyleType,
+  ContentCompactType,
+  LayoutHeaderModeType,
+  LayoutType,
+  NavigationStyleType,
+  PreferencesButtonPositionType,
+  TabsStyleType,
+} from '../../types';
 import './LayoutPanel.style.less';
 
 /** 布局选项 */
@@ -263,7 +271,7 @@ export const LayoutPanel: React.FC = () => {
               { label: t('layout.headerModes.static'), value: 'static' },
             ]}
             value={preferences.header.mode}
-            onChange={(value) => setPreferences({ header: { mode: value as any } })}
+            onChange={(value) => setPreferences({ header: { mode: value as LayoutHeaderModeType } })}
           />
         </div>
       </section>
@@ -279,7 +287,7 @@ export const LayoutPanel: React.FC = () => {
               { label: t('layout.menuStyles.plain'), value: 'plain' },
             ]}
             value={preferences.navigation.styleType}
-            onChange={(value) => setPreferences({ navigation: { styleType: value as any } })}
+            onChange={(value) => setPreferences({ navigation: { styleType: value as NavigationStyleType } })}
           />
         </div>
         <div className="preference-item">
@@ -337,7 +345,7 @@ export const LayoutPanel: React.FC = () => {
               { label: t('layout.breadcrumbStyles.background'), value: 'background' },
             ]}
             value={preferences.breadcrumb.styleType}
-            onChange={(value) => setPreferences({ breadcrumb: { styleType: value as any } })}
+            onChange={(value) => setPreferences({ breadcrumb: { styleType: value as BreadcrumbStyleType } })}
           />
         </div>
       </section>
@@ -398,7 +406,7 @@ export const LayoutPanel: React.FC = () => {
               { label: t('layout.tabbarStyles.plain'), value: 'plain' },
             ]}
             value={preferences.tabbar.styleType}
-            onChange={(value) => setPreferences({ tabbar: { styleType: value as any } })}
+            onChange={(value) => setPreferences({ tabbar: { styleType: value as TabsStyleType } })}
           />
         </div>
       </section>
@@ -473,7 +481,7 @@ export const LayoutPanel: React.FC = () => {
             ]}
             value={preferences.app.preferencesButtonPosition}
             onChange={(value) =>
-              setPreferences({ app: { preferencesButtonPosition: value as any } })
+              setPreferences({ app: { preferencesButtonPosition: value as PreferencesButtonPositionType } })
             }
           />
         </div>

@@ -13,8 +13,8 @@ import React from 'react';
  * - staticRoutes: 不受 AuthGuard 保护的静态路由（auth/login/error 等）
  */
 function separateRoutes(routes: AppRouteObject[]) {
-  const layoutRoutes: AppRouteObject[] = [];  // path='/' 的布局路由
-  const otherRoutes: AppRouteObject[] = [];    // 其他静态路由（auth/error等）
+  const layoutRoutes: AppRouteObject[] = []; // path='/' 的布局路由
+  const otherRoutes: AppRouteObject[] = []; // 其他静态路由（auth/error等）
 
   for (const route of routes) {
     if (route.path === '/' && route.children) {
@@ -99,14 +99,12 @@ export async function generateRoutes(
     permissions: string[];
     roles: string[];
     forbiddenElement?: React.ReactNode;
-    fetchMenuListAsync?: () => Promise<any[]>;
-    layoutMap?: Record<string, React.ComponentType<any>>;
-    pageMap?: Record<string, React.ComponentType<any>>;
+    fetchMenuListAsync?: () => Promise<unknown[]>;
+    layoutMap?: Record<string, React.ComponentType<unknown>>;
+    pageMap?: Record<string, React.ComponentType<unknown>>;
   },
 ): Promise<AppRouteObject[]> {
   const { routes, permissions, forbiddenElement, fetchMenuListAsync, layoutMap, pageMap } = options;
-
-  let resultRoutes: AppRouteObject[] = routes;
 
   switch (mode) {
     case 'backend': {
@@ -114,21 +112,21 @@ export async function generateRoutes(
       if (!fetchMenuListAsync) {
         throw new Error('Backend mode requires fetchMenuListAsync');
       }
-      resultRoutes = await generateRoutesByBackend({
+      return generateRoutesByBackend({
         staticRoutes: routes,
         mode,
         fetchMenuListAsync,
         layoutMap,
         pageMap,
       });
-      break;
     }
     case 'frontend': {
       // 前端模式：基于静态路由 + 权限过滤
-      resultRoutes = await generateRoutesByFrontend(routes, permissions, forbiddenElement);
-      break;
+      return generateRoutesByFrontend(routes, permissions, forbiddenElement);
+    }
+    default: {
+      // 未知模式视为前端模式（fallback）
+      return generateRoutesByFrontend(routes, permissions, forbiddenElement);
     }
   }
-
-  return resultRoutes;
 }

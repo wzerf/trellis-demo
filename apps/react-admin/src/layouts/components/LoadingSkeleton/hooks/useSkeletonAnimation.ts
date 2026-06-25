@@ -21,26 +21,24 @@ export const useSkeletonAnimation = ({
   animation = 'wave',
   delay = 0,
 }: UseSkeletonAnimationOptions) => {
-  const [visible, setVisible] = useState(false);
+  // delay <= 0 时立即可见，否则初始为 false，等待 setTimeout 触发
+  const [visible, setVisible] = useState(delay <= 0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // 延迟显示（避免快速加载时的闪烁）
   useEffect(() => {
-    if (delay > 0) {
-      timerRef.current = setTimeout(() => {
-        setVisible(true);
-      }, delay);
-    } else {
-      setVisible(true);
+    if (delay <= 0) {
+      // 立即可见：已经通过 useState 初始化处理了
+      return;
     }
-
+    const timer = setTimeout(() => {
+      setVisible(true);
+    }, delay);
+    timerRef.current = timer;
     return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
+      clearTimeout(timer);
     };
   }, [delay]);
-
-  // 生成动画类名
-  const animationClass = active && visible ? `animate-${animation}` : '';
 
   // 清理
   useEffect(() => {
@@ -50,6 +48,9 @@ export const useSkeletonAnimation = ({
       }
     };
   }, []);
+
+  // 生成动画类名
+  const animationClass = active && visible ? `animate-${animation}` : '';
 
   return {
     visible: active && visible,

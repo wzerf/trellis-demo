@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import {
   Button,
   Form,
@@ -39,7 +39,6 @@ const UserPage = () => {
   const [createOpen, setCreateOpen] = useState(false);
   const [editing, setEditing] = useState<UserListItem | null>(null);
   const [form] = Form.useForm<CreateUserRequest>();
-  const searchFormRef = useRef<{ submit: () => void; reset: () => void } | null>(null);
 
   const fullQuery: UserListQuery = {
     page: query.page ?? 1,
@@ -148,7 +147,9 @@ const UserPage = () => {
           createMutation.mutate(values);
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        // 校验失败由 Form 自身提示
+      });
   }
 
   function handleTableChange(pagination: TablePaginationConfig) {

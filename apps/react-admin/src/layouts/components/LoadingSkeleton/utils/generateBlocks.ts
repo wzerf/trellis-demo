@@ -6,7 +6,7 @@ import type { SkeletonBlockProps } from '../Skeleton/types.ts';
  * @param options - 生成选项
  */
 export const generateSkeletonBlocks = (
-  dataSample: any,
+  dataSample: unknown,
   options: {
     maxDepth?: number;
     includeArrays?: boolean;
@@ -16,7 +16,7 @@ export const generateSkeletonBlocks = (
   const { maxDepth = 2, includeArrays = true, arrayLength = 3 } = options;
   const blocks: SkeletonBlockProps[] = [];
 
-  const traverse = (value: any, depth: number) => {
+  const traverse = (value: unknown, depth: number) => {
     if (depth > maxDepth) return;
 
     if (value === null || value === undefined) {

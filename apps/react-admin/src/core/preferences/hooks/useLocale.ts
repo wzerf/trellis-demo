@@ -8,7 +8,6 @@ import {useTranslation} from 'react-i18next';
 import {usePreferences} from './usePreferences';
 import type {SupportedLanguagesType} from '../types/layout';
 
-
 /**
  * Ant Design 语言包映射
  */

@@ -1,10 +1,12 @@
 import type { Level } from '@tiptap/extension-heading';
+import type { Editor } from '@tiptap/core';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { marked } from 'marked';
 import { isDarkMode } from '../utils';
+import type { ToolbarActions } from './Toolbar';
 
 interface UseTiptapEditorProps {
   value: string;
@@ -12,7 +14,7 @@ interface UseTiptapEditorProps {
   placeholder?: string;
   uploadImage?: (file: File) => Promise<string>;
   onChange?: (value: string) => void;
-  onReady?: (editor: any) => void;
+  onReady?: (editor: Editor) => void;
 }
 
 export const useTiptapEditor = ({
@@ -71,10 +73,10 @@ export const useTiptapEditor = ({
       editorProps: {
         attributes: { class: 'prose dark:prose-invert focus:outline-none min-h-full' },
       },
-      onCreate: ({ editor: e }: { editor: any }) => {
+      onCreate: ({ editor: e }: { editor: Editor }) => {
         onReady?.(e);
       },
-      onUpdate: ({ editor: e }: { editor: any }) => {
+      onUpdate: ({ editor: e }: { editor: Editor }) => {
         if (isInternalUpdate.current) {
           isInternalUpdate.current = false;
           return;
@@ -88,7 +90,7 @@ export const useTiptapEditor = ({
   );
 
   // Sync external value
-  const syncValue = useCallback((editor: any, newValue: string) => {
+  const syncValue = useCallback((editor: Editor | null, newValue: string) => {
     if (editor && newValue !== contentRef.current) {
       isInternalUpdate.current = true;
       editor.commands.setContent(newValue);
@@ -98,55 +100,91 @@ export const useTiptapEditor = ({
 
   // Toolbar actions
   const createToolbarActions = useCallback(
-    (editor: any) => ({
-      toggleBold: () => editor?.chain().focus().toggleBold().run(),
-      toggleItalic: () => editor?.chain().focus().toggleItalic().run(),
-      toggleStrike: () => editor?.chain().focus().toggleStrike().run(),
-      toggleUnderline: () => editor?.chain().focus().toggleUnderline().run(),
-      toggleCode: () => editor?.chain().focus().toggleCode().run(),
-      toggleHeading: (level: Level) => editor?.chain().focus().toggleHeading({ level }).run(),
-      toggleBulletList: () => editor?.chain().focus().toggleBulletList().run(),
-      toggleOrderedList: () => editor?.chain().focus().toggleOrderedList().run(),
-      toggleTaskList: () => editor?.chain().focus().toggleTaskList().run(),
+    (editor: Editor | null): ToolbarActions => ({
+      toggleBold: () => editor?.chain().focus().toggleBold()
+.run(),
+      toggleItalic: () => editor?.chain().focus().toggleItalic()
+.run(),
+      toggleStrike: () => editor?.chain().focus().toggleStrike()
+.run(),
+      toggleUnderline: () => editor?.chain().focus().toggleUnderline()
+.run(),
+      toggleCode: () => editor?.chain().focus().toggleCode()
+.run(),
+      toggleHeading: (level: Level) => editor?.chain().focus().toggleHeading({ level })
+.run(),
+      toggleBulletList: () => editor?.chain().focus().toggleBulletList()
+.run(),
+      toggleOrderedList: () => editor?.chain().focus().toggleOrderedList()
+.run(),
+      toggleTaskList: () => editor?.chain().focus().toggleTaskList()
+.run(),
       insertCodeBlock: () => {
         setCodeBlockLanguage('javascript');
         setCodeBlockContent('');
         setCodeBlockModalVisible(true);
       },
-      toggleBlockquote: () => editor?.chain().focus().toggleBlockquote().run(),
-      toggleSubscript: () => editor?.chain().focus().toggleSubscript().run(),
-      toggleSuperscript: () => editor?.chain().focus().toggleSuperscript().run(),
-      setParagraph: () => editor?.chain().focus().setParagraph().run(),
-      clearFormatting: () => editor?.chain().focus().unsetAllMarks().clearNodes().run(),
-      insertHorizontalRule: () => editor?.chain().focus().setHorizontalRule().run(),
+      toggleBlockquote: () => editor?.chain().focus().toggleBlockquote()
+.run(),
+      toggleSubscript: () => editor?.chain().focus().toggleSubscript()
+.run(),
+      toggleSuperscript: () => editor?.chain().focus().toggleSuperscript()
+.run(),
+      setParagraph: () => editor?.chain().focus().setParagraph()
+.run(),
+      clearFormatting: () => editor?.chain().focus().unsetAllMarks()
+.clearNodes()
+.run(),
+      insertHorizontalRule: () => editor?.chain().focus().setHorizontalRule()
+.run(),
       insertTable: () =>
-        editor?.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run(),
-      deleteTable: () => editor?.chain().focus().deleteTable().run(),
-      addRowBefore: () => editor?.chain().focus().addRowBefore().run(),
-      addRowAfter: () => editor?.chain().focus().addRowAfter().run(),
-      deleteRow: () => editor?.chain().focus().deleteRow().run(),
-      addColumnBefore: () => editor?.chain().focus().addColumnBefore().run(),
-      addColumnAfter: () => editor?.chain().focus().addColumnAfter().run(),
-      deleteColumn: () => editor?.chain().focus().deleteColumn().run(),
-      mergeCells: () => editor?.chain().focus().mergeCells().run(),
-      splitCell: () => editor?.chain().focus().splitCell().run(),
-      toggleHeaderRow: () => editor?.chain().focus().toggleHeaderRow().run(),
-      toggleHeaderColumn: () => editor?.chain().focus().toggleHeaderColumn().run(),
-      toggleHeaderCell: () => editor?.chain().focus().toggleHeaderCell().run(),
+        editor?.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+.run(),
+      deleteTable: () => editor?.chain().focus().deleteTable()
+.run(),
+      addRowBefore: () => editor?.chain().focus().addRowBefore()
+.run(),
+      addRowAfter: () => editor?.chain().focus().addRowAfter()
+.run(),
+      deleteRow: () => editor?.chain().focus().deleteRow()
+.run(),
+      addColumnBefore: () => editor?.chain().focus().addColumnBefore()
+.run(),
+      addColumnAfter: () => editor?.chain().focus().addColumnAfter()
+.run(),
+      deleteColumn: () => editor?.chain().focus().deleteColumn()
+.run(),
+      mergeCells: () => editor?.chain().focus().mergeCells()
+.run(),
+      splitCell: () => editor?.chain().focus().splitCell()
+.run(),
+      toggleHeaderRow: () => editor?.chain().focus().toggleHeaderRow()
+.run(),
+      toggleHeaderColumn: () => editor?.chain().focus().toggleHeaderColumn()
+.run(),
+      toggleHeaderCell: () => editor?.chain().focus().toggleHeaderCell()
+.run(),
       setAlign: (align: 'center' | 'justify' | 'left' | 'right') =>
-        editor?.chain().focus().setTextAlign(align).run(),
-      setTextColor: (color: string) => editor?.chain().focus().setColor(color).run(),
-      setHighlight: (color: string) => editor?.chain().focus().toggleHighlight({ color }).run(),
+        editor?.chain().focus().setTextAlign(align)
+.run(),
+      setTextColor: (color: string) => editor?.chain().focus().setColor(color)
+.run(),
+      setHighlight: (color: string) => editor?.chain().focus().toggleHighlight({ color })
+.run(),
       setFontSize: (size: string) => {
-        editor?.chain().focus().setMark('textStyle', { fontSize: size }).run();
+        editor?.chain().focus().setMark('textStyle', { fontSize: size })
+.run();
         setFontSize(size);
       },
       setLineHeight: (height: string) => {
-        editor?.chain().focus().setLineHeight(height).run();
+        editor?.chain().focus().setLineHeight(height)
+.run();
         setLineHeight(height);
       },
-      indent: () => editor?.chain().focus().sinkListItem('listItem').run(),
-      outdent: () => editor?.chain().focus().liftListItem('listItem').run(),
+      indent: () => editor?.chain().focus().sinkListItem('listItem')
+.run(),
+      outdent: () => editor?.chain().focus().liftListItem('listItem')
+.run(),
       toggleFullscreen: () => setIsFullscreen((prev) => !prev),
       uploadImage: () => fileInputRef.current?.click(),
       insertVideo: () => {
@@ -164,8 +202,10 @@ export const useTiptapEditor = ({
       },
       importMarkdown: () => markdownInputRef.current?.click(),
       setLinkModalVisible,
-      undo: () => editor?.chain().focus().undo().run(),
-      redo: () => editor?.chain().focus().redo().run(),
+      undo: () => editor?.chain().focus().undo()
+.run(),
+      redo: () => editor?.chain().focus().redo()
+.run(),
       clearContent: () => {
         Modal.confirm({
           title: t('common.confirm', '确认'),
@@ -184,13 +224,14 @@ export const useTiptapEditor = ({
 
   // Image upload handler
   const handleImageUpload = useCallback(
-    async (event: React.ChangeEvent<HTMLInputElement>, editor: any) => {
+    async (event: React.ChangeEvent<HTMLInputElement>, editor: Editor | null) => {
       const file = event.target.files?.[0];
       if (!file || !uploadImage) return;
       try {
         const url = await uploadImage(file);
         if (url && editor) {
-          editor.chain().focus().setImage({ src: url }).run();
+          editor.chain().focus().setImage({ src: url })
+.run();
         }
       } catch (error) {
         console.error('Image upload failed:', error);
@@ -203,7 +244,7 @@ export const useTiptapEditor = ({
 
   // Markdown import handler
   const handleMarkdownImport = useCallback(
-    async (event: React.ChangeEvent<HTMLInputElement>, editor: any) => {
+    async (event: React.ChangeEvent<HTMLInputElement>, editor: Editor | null) => {
       const file = event.target.files?.[0];
       if (!file) return;
       try {
@@ -223,10 +264,12 @@ export const useTiptapEditor = ({
 
   // Modal handlers
   const handleLinkOk = useCallback(
-    (editor: any) => {
+    (editor: Editor | null) => {
       const url = linkUrl.trim();
       if (url && editor) {
-        editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+        editor.chain().focus().extendMarkRange('link')
+.setLink({ href: url })
+.run();
       }
       setLinkModalVisible(false);
       setLinkUrl('');
@@ -235,7 +278,7 @@ export const useTiptapEditor = ({
   );
 
   const handleCodeBlockOk = useCallback(
-    (editor: any) => {
+    (editor: Editor | null) => {
       const code = codeBlockContent.trim();
       if (code && editor) {
         editor
@@ -255,10 +298,13 @@ export const useTiptapEditor = ({
   );
 
   const handleVideoOk = useCallback(
-    (editor: any) => {
+    (editor: Editor | null) => {
       const url = videoUrl.trim();
       if (url && editor) {
-        (editor.chain().focus() as any).setVideo({ src: url, width: videoWidth }).run();
+        // tiptap 内置 video 扩展未启用，运行时透传到命令链
+        (editor.chain().focus() as unknown as { setVideo: (attrs: { src: string; width: string }) => { run: () => void } })
+          .setVideo({ src: url, width: videoWidth })
+          .run();
       }
       setVideoModalVisible(false);
     },
@@ -266,10 +312,18 @@ export const useTiptapEditor = ({
   );
 
   const handleIframeOk = useCallback(
-    (editor: any) => {
+    (editor: Editor | null) => {
       const url = iframeUrl.trim();
       if (url && editor) {
-        (editor.chain().focus() as any)
+        (editor.chain().focus() as unknown as {
+          setIframe: (attrs: {
+            src: string;
+            width: string;
+            height: string;
+            title?: string;
+            allowfullscreen?: boolean;
+          }) => { run: () => void };
+        })
           .setIframe({
             src: url,
             width: iframeWidth,
@@ -285,7 +339,7 @@ export const useTiptapEditor = ({
   );
 
   // Status info
-  const getStatusInfo = useCallback((editor: any) => {
+  const getStatusInfo = useCallback((editor: Editor | null) => {
     if (!editor) return { chars: 0, words: 0, cursor: '0:0' };
     const text = editor.getText();
     const chars = text.length;
@@ -295,7 +349,7 @@ export const useTiptapEditor = ({
     let col = 1;
     let line = 1;
     let pos = 1;
-    doc.descendants((node: any) => {
+    doc.descendants((node) => {
       if (node.isText) {
         const t = node.text || '';
         for (const ch of t) {

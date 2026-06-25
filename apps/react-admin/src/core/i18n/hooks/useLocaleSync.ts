@@ -13,10 +13,17 @@ export const useLocaleSync = () => {
   // 标记是否已初始化
   const initialized = useRef(false);
 
+  // 稳定引用 i18n，避免 i18n 实例引用变化导致 effect 重复跑
+  const i18nRef = useRef(i18n);
+  useEffect(() => {
+    i18nRef.current = i18n;
+  }, [i18n]);
+
   // preferences 变更 → 切换 i18n 语言
   useEffect(() => {
-    if (locale && i18n.language !== locale) {
-      i18n.changeLanguage(locale).catch((error) => {
+    const i18nInstance = i18nRef.current;
+    if (locale && i18nInstance.language !== locale) {
+      i18nInstance.changeLanguage(locale).catch((error) => {
         console.error('Failed to switch language:', error);
       });
     }
@@ -29,7 +36,7 @@ export const useLocaleSync = () => {
       const detected = i18n.language as SupportedLocale;
       setPreferences({ app: { locale: detected } });
     }
-  }, [i18n.isInitialized, locale, setPreferences]);
+  }, [i18n.isInitialized, i18n.language, locale, setPreferences]);
 
   // 便捷切换方法
   const changeLocale = useCallback(

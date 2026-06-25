@@ -2,11 +2,12 @@ import type { ProLayoutProps } from '@ant-design/pro-components';
 import type { AppRouteObject } from '@/core/router/types';
 
 type MenuRoute = AppRouteObject;
+type MenuNode = NonNullable<ProLayoutProps['route']>['routes'] extends (infer U)[] ? U : never;
 
 /**
  * 递归排序菜单树（按 order 字段）
  */
-const sortMenuTree = (menuList: any[]): any[] => {
+const sortMenuTree = <T extends { order?: number; children?: T[] }>(menuList: T[]): T[] => {
   return menuList
     .map((menu) => ({
       ...menu,
@@ -26,7 +27,7 @@ export const transformRoutesToMenu = (
   permissions: string[],
   parentPath: string = '',
 ): NonNullable<ProLayoutProps['route']>['routes'] => {
-  const menus = routes
+  const menus: MenuNode[] = routes
     .filter((route) => {
       // 过滤掉隐藏菜单或没有权限的路由
       if (route.meta?.hideInMenu) return false;
@@ -41,7 +42,7 @@ export const transformRoutesToMenu = (
         ? route.path
         : `${parentPath}/${route.path}`.replace(/\/+/g, '/');
 
-      const menuItem: any = {
+      const menuItem: MenuNode = {
         path: fullPath, // 使用完整路径作为 key
         name: route.label || route.meta?.title,
         icon: route.meta?.icon,
@@ -49,7 +50,7 @@ export const transformRoutesToMenu = (
       };
 
       if (route.children) {
-        menuItem.children = transformRoutesToMenu(route.children, permissions, fullPath);
+        menuItem.children = transformRoutesToMenu(route.children, permissions, fullPath) as MenuNode[] | undefined;
       }
 
       return menuItem;
@@ -57,5 +58,5 @@ export const transformRoutesToMenu = (
     .filter(Boolean);
 
   // 排序菜单树
-  return sortMenuTree(menus);
+  return sortMenuTree(menus) as NonNullable<ProLayoutProps['route']>['routes'];
 };

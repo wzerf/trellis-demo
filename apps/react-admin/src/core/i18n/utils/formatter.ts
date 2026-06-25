@@ -51,9 +51,9 @@ export const formatNumber = (
 export const formatCurrency = (
   amount: number,
   locale: SupportedLocale,
-  currency: string = 'CNY',
-  options?: Intl.NumberFormatOptions,
+  options: { currency?: string; numberFormat?: Intl.NumberFormatOptions } = {},
 ): string => {
+  const { currency = 'CNY', numberFormat } = options;
   const defaultOptions: Intl.NumberFormatOptions = {
     style: 'currency',
     currency,
@@ -61,7 +61,7 @@ export const formatCurrency = (
     maximumFractionDigits: 2,
   };
 
-  return new Intl.NumberFormat(locale, { ...defaultOptions, ...options }).format(amount);
+  return new Intl.NumberFormat(locale, { ...defaultOptions, ...numberFormat }).format(amount);
 };
 
 /**

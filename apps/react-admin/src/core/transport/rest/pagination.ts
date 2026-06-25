@@ -24,7 +24,7 @@ export class PaginationQuery {
    */
   private static removeNullUndefined<T extends Record<string, unknown>>(obj: T): Partial<T> {
     return Object.fromEntries(
-      Object.entries(obj).filter(([_, v]) => v !== null && v !== undefined && v !== ''),
+      Object.entries(obj).filter(([, v]) => v !== null && v !== undefined && v !== ''),
     ) as Partial<T>;
   }
 
@@ -59,7 +59,7 @@ export class PaginationQuery {
 
     if (needCleanTenant) {
       // 删除租户相关字段 tenant_id 和 tenantId
-      const { tenant_id, tenantId, ...rest } = cleaned as Record<string, unknown>;
+      const { tenant_id: _tenantIdSnake, tenantId: _tenantIdCamel, ...rest } = cleaned as Record<string, unknown>;
 
       // 过滤掉空对象
       if (Object.keys(rest).length === 0) {

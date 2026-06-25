@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { ConfigProvider, Watermark, theme as antdTheme, type ThemeConfig } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import enUS from 'antd/locale/en_US';
+import type { Locale } from 'antd/es/locale';
 // import jaJP from 'antd/locale/ja_JP';
 
 import { usePreferencesStore } from '../../store';
@@ -12,7 +13,7 @@ export interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
-const localeMap: Record<SupportedLanguagesType, any> = {
+const localeMap: Record<SupportedLanguagesType, Locale> = {
   'zh-CN': zhCN,
   'en-US': enUS,
 };
@@ -27,12 +28,14 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const appPrefs = usePreferencesStore((state) => state.preferences.app);
 
   // 2. 系统主题监听（仅当 mode === 'auto' 时生效）
-  const [systemIsDark, setSystemIsDark] = useState(false);
+  const [systemIsDark, setSystemIsDark] = useState(() => {
+    if (typeof window === 'undefined' || themePrefs.mode !== 'auto') return false;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
   useEffect(() => {
     if (themePrefs.mode !== 'auto') return;
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    setSystemIsDark(mediaQuery.matches);
 
     const handleChange = (e: MediaQueryListEvent) => setSystemIsDark(e.matches);
     mediaQuery.addEventListener('change', handleChange);

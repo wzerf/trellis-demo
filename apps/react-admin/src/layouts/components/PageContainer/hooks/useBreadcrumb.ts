@@ -4,6 +4,7 @@ import { useMatches, useNavigate } from 'react-router-dom';
 import { getIconFromName } from '@/layouts/MainLayout/utils/iconResolver';
 
 import { useI18n } from '@/core/i18n';
+import type { AppRoute } from '@/core/router/types';
 import type { BreadcrumbItem } from '../types';
 
 interface UseBreadcrumbOptions {
@@ -11,7 +12,7 @@ interface UseBreadcrumbOptions {
   manual?: BreadcrumbItem[] | false;
 
   /** 当前路由对象（用于获取 meta 信息） */
-  route?: any;
+  route?: Partial<AppRoute> | null;
 
   /** 是否显示首页图标 */
   showHomeIcon?: boolean;
@@ -30,35 +31,32 @@ export const useBreadcrumb = ({
   const matches = useMatches();
   const { t } = useI18n('common');
 
-  // 手动传入优先
-  if (manual === false) return false;
-  if (manual?.length) return manual;
-
-  // 自动计算：基于 react-router-dom useMatches
-
-  return useMemo(() => {
-    // 类型定义：为 handle 扩展类型
-    type MatchWithHandle = {
-      pathname: string;
-      params: { [key: string]: string | undefined };
-      pathnameBase: string;
-      handle?: {
-        title?: string;
-        icon?: string;
-        [key: string]: any;
-      };
-      [key: string]: any;
+  // 类型定义：为 handle 扩展类型
+  type MatchWithHandle = {
+    pathname: string;
+    params: { [key: string]: string | undefined };
+    pathnameBase: string;
+    handle?: {
+      title?: string;
+      icon?: string;
+      [key: string]: unknown;
     };
+    [key: string]: unknown;
+  };
+
+  const items = useMemo<BreadcrumbItem[]>(() => {
+    // 手动传入优先（false 已在 hook 外处理）
+    if (manual && manual.length > 0) return manual;
 
     const typedMatches = matches as MatchWithHandle[];
 
     // 过滤出有标题的匹配项
-    const items = typedMatches
+    return typedMatches
       .filter((match: MatchWithHandle) => match.handle?.title || match.pathname === '/')
       .map((match: MatchWithHandle, index: number, arr: MatchWithHandle[]) => {
         const isLast = index === arr.length - 1;
         const title = match.handle?.title || route?.meta?.title || t('pageContainer.defaultTitle');
-        
+
         // 将图标字符串转换为 React 组件（支持 Iconify 和 Ant Design）
         let icon: React.ReactNode = undefined;
         if (showIcon && match.handle?.icon) {
@@ -73,17 +71,20 @@ export const useBreadcrumb = ({
           onClick: !isLast && match.pathname ? () => navigate(match.pathname) : undefined,
         };
       });
+  }, [matches, route?.meta?.title, navigate, showIcon, manual, t]);
 
-    // 始终在开头添加首页（如果 showHomeIcon 为 true）
-    if (showHomeIcon) {
-      items.unshift({
-        path: '/',
-        breadcrumbName: t('home'),
-        icon: showIcon ? getIconFromName('lucide:home') : undefined, // 首页图标
-        onClick: () => navigate('/'),
-      });
-    }
+  // 手动传入 false 表示强制不显示
+  if (manual === false) return false;
 
-    return items;
-  }, [matches, route?.meta?.title, navigate, showHomeIcon, showIcon]);
+  // 始终在开头添加首页（如果 showHomeIcon 为 true）
+  if (showHomeIcon) {
+    items.unshift({
+      path: '/',
+      breadcrumbName: t('home'),
+      icon: showIcon ? getIconFromName('lucide:home') : undefined,
+      onClick: () => navigate('/'),
+    });
+  }
+
+  return items;
 };

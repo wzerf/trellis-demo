@@ -30,7 +30,7 @@ const Login: React.FC = () => {
       setTimeout(() => {
         navigate(redirect);
       }, 300);
-    } catch (error) {
+    } catch {
       // 错误已在 store 中处理
     }
   };

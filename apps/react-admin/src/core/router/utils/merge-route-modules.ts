@@ -1,6 +1,5 @@
 import type {AppRouteObject, RouteMeta, RouteModuleRecord, RouteModuleType} from "@/core/router";
 
-
 /**
  * 合并动态路由模块的默认导出
  *
@@ -51,7 +50,7 @@ export function mergeRouteModules(
                     if (!route.meta) {
                         route.meta = {} as RouteMeta;
                     }
-                    (route.meta as any).__modulePath = modulePath;
+                    (route.meta as Record<string, unknown>).__modulePath = modulePath;
                 });
             }
 

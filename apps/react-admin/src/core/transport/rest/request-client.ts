@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, CreateAxiosDefaults } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios';
 
 import axios from 'axios';
 
@@ -130,8 +130,8 @@ class RequestClient {
   private useRequestIdInterceptor() {
     this.addRequestInterceptor({
       fulfilled: (config) => {
-        const requestId = config.headers['X-Request-ID'] || defaultIdGenerator();
-        (config as any)._requestId = requestId;
+        const requestId = config.headers['X-Request-ID'] ?? defaultIdGenerator();
+        (config as InternalAxiosRequestConfig & { _requestId?: string })._requestId = requestId;
         config.headers['X-Request-ID'] = requestId;
         config.headers['X-Requested-With'] = 'XMLHttpRequest';
         return config as never;
@@ -210,7 +210,7 @@ class RequestClient {
         },
         doRefreshToken: async () => {
           if (callbacks.refreshToken) {
-            return await callbacks.refreshToken();
+            return callbacks.refreshToken();
           }
           return '';
         },

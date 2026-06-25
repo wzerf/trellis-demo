@@ -109,9 +109,9 @@ function convertRouteToMenu(
 
     return {
         // 必填字段
-        name: route.name || resolvedPath,  // 唯一标识
-        path: menuPath,                    // 跳转路径
-        label: name,                       // 显示名称
+        name: route.name || resolvedPath, // 唯一标识
+        path: menuPath, // 跳转路径
+        label: name, // 显示名称
 
         // 可选字段
         icon,

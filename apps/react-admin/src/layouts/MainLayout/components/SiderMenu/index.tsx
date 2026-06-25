@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { usePreferencesStore } from '@/core/preferences/store';
+import type { AppMenu } from '@/core/router/types';
 import { getIconFromName } from '../../utils/iconResolver';
 import ControlPanel from './ControlPanel';
 import './SiderMenu.style.less';
 
 interface SiderMenuProps {
-  menuData: any[];
+  menuData: AppMenu[];
   isMobile: boolean;
   isDark: boolean;
   openKeys: string[];
@@ -26,7 +27,7 @@ export const Index = ({
   onOpenChange,
 }: SiderMenuProps) => {
   const navigate = useNavigate();
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   const { t: tRoutes } = useTranslation('routes');
 
   const preferences = usePreferencesStore((state) => state.preferences);
@@ -61,16 +62,16 @@ export const Index = ({
       return t(label, label);
     };
 
-    const transformItem = (items: any[]): any[] => {
+    const transformItem = (items: AppMenu[]) => {
       return items.map((item) => ({
-        key: item.path || item.key,
+        key: item.path || item.name,
         icon: getIconFromName(item.icon),
         label: translateLabel(item.name || item.label), // 翻译标题
         children: item.children ? transformItem(item.children) : undefined,
       }));
     };
     return transformItem(menuData);
-  }, [menuData, t, i18n.language]); // 添加 i18n.language 依赖，语言切换时重新翻译
+  }, [menuData, t, tRoutes]); // 添加 tRoutes 依赖，保证语言切换时重新翻译
 
   // 菜单点击
   const handleMenuClick = useCallback(

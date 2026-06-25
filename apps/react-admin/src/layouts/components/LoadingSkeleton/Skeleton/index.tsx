@@ -143,9 +143,9 @@ export const Skeleton = ({
 };
 
 // 兼容 Ant Design Skeleton API（可选）
-export const SkeletonCompat = (props: any) => {
+export const SkeletonCompat = (props: Record<string, unknown>) => {
   if (props.avatar || props.title || props.paragraph) {
-    return <AntdSkeleton {...props} />;
+    return <AntdSkeleton {...(props as React.ComponentProps<typeof AntdSkeleton>)} />;
   }
   return <Skeleton {...props} />;
 };

@@ -5,7 +5,6 @@ import {defaultPreferences} from '../config/default';
 import type {DeepPartial, Preferences} from '../types';
 import {mergeDeep} from "../utils/merge";
 
-
 export interface PreferencesState {
     preferences: Preferences;
     setPreferences: (overrides: DeepPartial<Preferences>) => void;

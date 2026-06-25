@@ -14,8 +14,5 @@ export { ListSkeleton, type ListSkeletonProps } from './presets/ListSkeleton';
 export { FormSkeleton, type FormSkeletonProps } from './presets/FormSkeleton';
 export { CardSkeleton, type CardSkeletonProps } from './presets/CardSkeleton';
 
-// Hooks
-export { useSkeletonAnimation } from './hooks/useSkeletonAnimation';
-
 // 默认导出（基础 Skeleton）
 export { Skeleton as default } from './Skeleton';

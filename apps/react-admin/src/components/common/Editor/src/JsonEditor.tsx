@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import i18next from 'i18next';
 
 import { isDarkMode } from './utils';
 
@@ -34,15 +33,47 @@ const JsonEditor: React.FC<JsonEditorProps> = ({
   options: propOptions,
   onChange,
   onReady,
-  onError,
 }) => {
   const { mode = 'text', search = true } = propOptions || {};
 
   const [isDark, setIsDark] = useState(isDarkMode());
   const [parseError, setParseError] = useState('');
-  const [jsonData, setJsonData] = useState<any>(null);
-  const localValueRef = useRef(value);
+  const [jsonData, setJsonData] = useState<unknown>(() => {
+    try {
+      const parsed = JSON.parse(String(value));
+      if (parsed !== null && typeof parsed === 'object') return parsed;
+      if (parsed === null) return {};
+      return { value: parsed };
+    } catch {
+      try {
+        return JSON.parse(placeholder);
+      } catch {
+        return {};
+      }
+    }
+  });
+  const [lastExternalValue, setLastExternalValue] = useState(value);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // 当外部 value 变化时，同步到内部 jsonData（通过设置 lastExternalValue 触发）
+  if (value !== lastExternalValue) {
+    setLastExternalValue(value);
+    const newData = (() => {
+      try {
+        const parsed = JSON.parse(String(value));
+        if (parsed !== null && typeof parsed === 'object') return parsed;
+        if (parsed === null) return {};
+        return { value: parsed };
+      } catch {
+        try {
+          return JSON.parse(placeholder);
+        } catch {
+          return {};
+        }
+      }
+    })();
+    setJsonData(newData);
+  }
 
   // Calculate editor height
   const editorHeight = useMemo(() => {
@@ -63,76 +94,42 @@ const JsonEditor: React.FC<JsonEditorProps> = ({
     return `${Math.max(baseHeight - 40, 200)}px`;
   }, [height]);
 
-  // Validate and format JSON
-  const validateAndFormat = useCallback(
-    (val: string) => {
-      try {
-        if (!val?.trim()) {
-          setParseError('');
-          return { parsed: null, formatted: '' };
-        }
-        const parsed = JSON.parse(String(val));
-        const formatted = JSON.stringify(parsed, null, 2);
-        setParseError('');
-        return { parsed, formatted };
-      } catch (error) {
-        const err = error as Error;
-        setParseError(i18next.t('editor:jsonParseError', { error: err.message || i18next.t('editor:unknownError') }));
-        onError?.(err);
-        return { parsed: null, formatted: val };
-      }
-    },
-    [onError],
-  );
-
-  // Initialize data
-  useEffect(() => {
-    const { parsed } = validateAndFormat(value);
-    localValueRef.current = value;
-    if (parsed !== null && typeof parsed === 'object') {
-      setJsonData(parsed);
-    } else if (parsed === null) {
-      setJsonData({});
-    } else {
-      setJsonData({ value: parsed });
-    }
-  }, []);
-
-  // Watch for external value changes
-  useEffect(() => {
-    if (value !== localValueRef.current) {
-      const { parsed } = validateAndFormat(value);
-      localValueRef.current = value;
-      try {
-        setJsonData(parsed || JSON.parse(placeholder));
-      } catch {
-        setJsonData({});
-      }
-    }
-  }, [value, placeholder, validateAndFormat]);
-
   // Handle editor content change
   const handleEditorChange = useCallback(
-    (newValue: any) => {
+    (newValue: unknown) => {
+      let serialized: string;
+      let nextData: unknown;
       if (typeof newValue === 'string') {
-        localValueRef.current = newValue;
-        onChange?.(newValue);
-        const { parsed } = validateAndFormat(newValue);
-        if (parsed !== null && typeof parsed === 'object') {
-          setJsonData(parsed);
+        serialized = newValue;
+        try {
+          const parsed = JSON.parse(serialized);
+          if (parsed !== null && typeof parsed === 'object') {
+            nextData = parsed;
+          } else if (parsed === null) {
+            nextData = {};
+          } else {
+            nextData = { value: parsed };
+          }
+          setParseError('');
+        } catch (error) {
+          const err = error as Error;
+          setParseError(err.message || 'Invalid JSON');
+          nextData = jsonData;
         }
+      } else if (Array.isArray(newValue) || (newValue !== null && typeof newValue === 'object')) {
+        serialized = JSON.stringify(newValue, null, 2);
+        nextData = newValue;
+        setParseError('');
+      } else {
         return;
       }
-      if (Array.isArray(newValue) || (newValue !== null && typeof newValue === 'object')) {
-        const serialized = JSON.stringify(newValue, null, 2);
-        if (serialized !== localValueRef.current) {
-          localValueRef.current = serialized;
-          onChange?.(serialized);
-        }
-        setJsonData(newValue);
+      setLastExternalValue(serialized);
+      setJsonData(nextData);
+      if (serialized !== value) {
+        onChange?.(serialized);
       }
     },
-    [onChange, validateAndFormat],
+    [onChange, jsonData, value],
   );
 
   // Dark mode tracking
@@ -149,8 +146,12 @@ const JsonEditor: React.FC<JsonEditorProps> = ({
   }, []);
 
   // Ready event
+  const onReadyRef = useRef(onReady);
   useEffect(() => {
-    onReady?.();
+    onReadyRef.current = onReady;
+  });
+  useEffect(() => {
+    onReadyRef.current?.();
   }, []);
 
   return (
@@ -181,41 +182,28 @@ const JsonEditor: React.FC<JsonEditorProps> = ({
  * consider using @monaco-editor/react or a dedicated React JSON editor.
  */
 const JsonJsonEditorFallback: React.FC<{
-  jsonData: any;
+  jsonData: unknown;
   mode: string;
   disabled: boolean;
   search: boolean;
-  onChange: (value: any) => void;
+  onChange: (value: unknown) => void;
   isDark: boolean;
 }> = ({ jsonData, disabled, onChange, isDark }) => {
-  const [text, setText] = useState(() => {
+  const textFromData = useMemo(() => {
     try {
       return jsonData ? JSON.stringify(jsonData, null, 2) : '';
     } catch {
       return '';
     }
-  });
-
-  useEffect(() => {
-    try {
-      const newText = jsonData ? JSON.stringify(jsonData, null, 2) : '';
-      if (newText !== text) {
-        setText(newText);
-      }
-    } catch {
-      /* ignore */
-    }
   }, [jsonData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const val = e.target.value;
-    setText(val);
-    onChange(val);
+    onChange(e.target.value);
   };
 
   return (
     <textarea
-      value={text}
+      value={textFromData}
       disabled={disabled}
       onChange={handleChange}
       style={{

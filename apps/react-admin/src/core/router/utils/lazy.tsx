@@ -8,7 +8,7 @@ import { Spin } from 'antd';
  * @param loader Vite 动态导入函数，如 () => import('@/pages/dashboard')
  * @returns 可直接赋值给 route.element 的 ReactNode
  */
-export const createLazyRoute = (loader: () => Promise<{ default: ComponentType<any> }>) => {
+export const createLazyRoute = (loader: () => Promise<{ default: ComponentType<unknown> }>) => {
   const LazyComponent = lazy(loader);
 
   return (

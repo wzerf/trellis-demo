@@ -16,7 +16,7 @@ class FileDownloader {
       responseType: 'blob',
     };
 
-    return await this.client.get<RequestResponse<Blob>>(url, finalConfig);
+    return this.client.get<RequestResponse<Blob>>(url, finalConfig);
   }
 }
 

@@ -91,7 +91,7 @@ export const CustomCodeBlockLowlight = CodeBlockLowlight.extend({
       return {
         dom,
         contentDOM,
-        update: (updatedNode: any) => {
+        update: (updatedNode: { type: { name: string }; attrs: { language: string } }) => {
           if (updatedNode.type !== node.type) {
             return false;
           }

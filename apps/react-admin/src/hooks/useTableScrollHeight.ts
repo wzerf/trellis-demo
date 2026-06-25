@@ -48,12 +48,12 @@ export function useTableScrollHeight(options: {
   // 注意：MainLayout 已移除 padding，PageContainer 也设置了 contentPadding={false}
   // 并且 API 管理页面没有面包屑，所以只扣除 HEADER 和 TABS
   const calculatedExcludeHeight = excludeHeight ?? (
-    LAYOUT_HEIGHTS.HEADER +  // 顶栏
-    LAYOUT_HEIGHTS.TABS       // 标签栏
+    LAYOUT_HEIGHTS.HEADER + // 顶栏
+    LAYOUT_HEIGHTS.TABS // 标签栏
     // 不再扣除 BREADCRUMB 和 CONTENT_PADDING
   );
 
-  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  const [viewportHeight, setViewportHeight] = useState(() => window.innerHeight);
 
   // 更新视口高度
   const updateViewportHeight = useCallback(() => {
@@ -62,7 +62,6 @@ export function useTableScrollHeight(options: {
 
   // 监听窗口大小变化
   useEffect(() => {
-    updateViewportHeight();
     window.addEventListener('resize', updateViewportHeight);
     return () => {
       window.removeEventListener('resize', updateViewportHeight);

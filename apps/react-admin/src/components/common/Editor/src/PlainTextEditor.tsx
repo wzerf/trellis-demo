@@ -28,8 +28,13 @@ const PlainTextEditor: React.FC<PlainTextEditorProps> = ({
     [onChange],
   );
 
+  // Ready event: 使用 ref 跟踪最新 onReady，避免 prop 变化导致 effect 重跑
+  const onReadyRef = useRef(onReady);
   useEffect(() => {
-    onReady?.();
+    onReadyRef.current = onReady;
+  });
+  useEffect(() => {
+    onReadyRef.current?.();
   }, []);
 
   return (

@@ -5,9 +5,9 @@
  * @returns {string} The processed part of the color
  */
 export function addLight(color: string, amount: number): string {
-    const cc = parseInt(color, 16) + amount
-    const c = cc > 255 ? 255 : cc
-    return c.toString(16).length > 1 ? c.toString(16) : `0${c.toString(16)}`
+    const cc = parseInt(color, 16) + amount;
+    const c = cc > 255 ? 255 : cc;
+    return c.toString(16).length > 1 ? c.toString(16) : `0${c.toString(16)}`;
 }
 
 /**
@@ -17,12 +17,12 @@ export function addLight(color: string, amount: number): string {
  * @returns {string} The processed color represented as HEX
  */
 export function lighten(color: string, amount: number): string {
-    color = color.indexOf('#') >= 0 ? color.substring(1, color.length) : color
-    amount = Math.trunc((255 * amount) / 100)
+    color = color.indexOf('#') >= 0 ? color.substring(1, color.length) : color;
+    amount = Math.trunc((255 * amount) / 100);
     return `#${addLight(color.substring(0, 2), amount)}${addLight(
         color.substring(2, 4),
         amount
-    )}${addLight(color.substring(4, 6), amount)}`
+    )}${addLight(color.substring(4, 6), amount)}`;
 }
 
 /**
@@ -53,14 +53,14 @@ export function bindMethods<T extends object>(instance: T): void {
  * 滚动到顶部
  */
 export function scrollToTop() {
-    window.scrollTo({top: 0, behavior: 'smooth'})
+    window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 /**
  * 滚动到底部
  */
 export function scrollToBottom() {
-    window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})
+    window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
 }
 
 /**
@@ -68,7 +68,7 @@ export function scrollToBottom() {
  * @param element 目标元素
  */
 export function scrollTo(element: HTMLElement) {
-    element.scrollIntoView({behavior: 'smooth'})
+    element.scrollIntoView({behavior: 'smooth'});
 }
 
 /**

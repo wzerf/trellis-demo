@@ -40,38 +40,32 @@ export const Index = () => {
   const tabbarConfig = preferences.tabbar;
   const widgetConfig = preferences.widget;
 
+  // 跟踪系统偏好（auto 模式时使用）
+  const [systemPrefersDark, setSystemPrefersDark] = useState(() =>
+    window.matchMedia('(prefers-color-scheme: dark)').matches,
+  );
+
+  // 监听系统主题变化（仅在 auto 模式下影响 isDark）
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = (e: MediaQueryListEvent) => {
+      setSystemPrefersDark(e.matches);
+    };
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
   // 计算实际的暗色模式（支持 auto 模式）
-  const [isDark, setIsDark] = useState(() => {
+  const isDark = useMemo(() => {
     const { theme } = preferences;
     if (theme.mode === 'dark') return true;
     if (theme.mode === 'light') return false;
     // auto 模式：跟随系统
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
-
-  // 监听系统主题变化
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handler = () => {
-      const { theme } = preferences;
-      if (theme.mode === 'auto') {
-        setIsDark(mediaQuery.matches);
-      }
-    };
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
-  }, [preferences.theme.mode]);
-
-  // 监听偏好设置变化
-  useEffect(() => {
-    const { theme } = preferences;
-    if (theme.mode === 'dark') setIsDark(true);
-    else if (theme.mode === 'light') setIsDark(false);
-    else setIsDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
-  }, [preferences.theme.mode]);
+    return systemPrefersDark;
+  }, [preferences, systemPrefersDark]);
 
   const { t } = useI18n('common');
-  const { t: tRoutes, i18n } = useTranslation('routes');
+  const { t: tRoutes } = useTranslation('routes');
 
   // 翻译标题的工具函数
   const translateTitle = useCallback(
@@ -89,10 +83,10 @@ export const Index = () => {
       } else if (title.startsWith('routes.')) {
         const keyName = title.substring(7);
         return tRoutes(keyName, { defaultValue: title });
-      } else {
+      } 
         // 否则直接翻译
         return tRoutes(title, { defaultValue: title });
-      }
+      
     },
     [tRoutes],
   );
@@ -166,7 +160,7 @@ export const Index = () => {
 
   // 当前标签
   const currentTab = useMemo(() => {
-    const lastMatch = matches.at(-1) as any;
+    const lastMatch = matches.at(-1) as { handle?: { title?: string; icon?: string; hideInTab?: boolean }; data?: { title?: string; icon?: string; hideInTab?: boolean } } | undefined;
     const rawTitle = lastMatch?.handle?.title || lastMatch?.data?.title || '未知页面';
 
     // 翻译标题
@@ -177,8 +171,6 @@ export const Index = () => {
 
     // 获取 hideInTab 配置
     const hideInTab = lastMatch?.handle?.hideInTab || lastMatch?.data?.hideInTab || false;
-
-    console.log('TabsBar - currentTab:', { rawTitle, title, icon, hideInTab, handle: lastMatch?.handle });
 
     return {
       key: location.pathname,
@@ -195,7 +187,6 @@ export const Index = () => {
   useEffect(() => {
     // 如果路由配置了 hideInTab，则不添加到标签页
     if (currentTab.hideInTab) {
-      console.log('TabsBar - skip tab (hideInTab):', currentTab.key);
       return;
     }
     addTab(currentTab);
@@ -205,7 +196,7 @@ export const Index = () => {
   useEffect(() => {
     const { updateAllTitles } = useTabsStore.getState();
     updateAllTitles(translateTitle);
-  }, [i18n.language, translateTitle]);
+  }, [translateTitle]);
 
   // 根据 persist 配置决定是否清除持久化数据
   useEffect(() => {
@@ -236,7 +227,7 @@ export const Index = () => {
       ),
       closable: tab.closable,
     }));
-  }, [tabs, tabbarConfig.showIcon, i18n.language, translateTitle]);
+  }, [tabs, tabbarConfig.showIcon]);
 
   // 处理标签切换
   const handleTabChange = useCallback(
@@ -501,11 +492,12 @@ export const Index = () => {
 
   // 自定义渲染 TabBar，添加右键菜单和拖拽功能
   const renderTabBar: TabsProps['renderTabBar'] = useCallback(
-    (props: any, DefaultTabBar: React.ComponentType<any>) => {
+    (props, DefaultTabBar) => {
+      const TabsBar = DefaultTabBar as unknown as React.ComponentType<Record<string, unknown>>;
       // 如果启用了拖拽，添加拖拽相关的事件处理
       if (tabbarConfig.draggable) {
         return (
-          <DefaultTabBar
+          <TabsBar
             {...props}
             onDragStart={(e: React.DragEvent) => {
               const target = e.target as HTMLElement;
@@ -565,7 +557,7 @@ export const Index = () => {
         );
       }
 
-      return <DefaultTabBar {...props} />;
+      return <TabsBar {...(props as Record<string, unknown>)} />;
     },
     [tabbarConfig.draggable, reorderTabs],
   );

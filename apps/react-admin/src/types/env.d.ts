@@ -29,6 +29,5 @@ declare module 'react-router' {
 
 // 兼容 process.env
 declare namespace NodeJS {
-    interface ProcessEnv extends ImportMetaEnv {
-    }
+    type ProcessEnv = ImportMetaEnv;
 }

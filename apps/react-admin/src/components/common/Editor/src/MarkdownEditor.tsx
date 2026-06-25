@@ -10,7 +10,7 @@ export interface MarkdownEditorProps {
   height?: number | string;
   disabled?: boolean;
   placeholder?: string;
-  options?: Record<string, any>;
+  options?: Record<string, unknown>;
   enableExport?: boolean;
   uploadImage?: (file: File) => Promise<string>;
   onChange?: (value: string) => void;
@@ -32,6 +32,13 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   const [isDark, setIsDark] = useState(isDarkMode());
   const wrapperRef = useRef<HTMLDivElement>(null);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
+
+  // 当外部 value 变化时同步到 localValue
+  const [prevValue, setPrevValue] = useState(value);
+  if (prevValue !== value) {
+    setPrevValue(value);
+    setLocalValue(value);
+  }
 
   const theme = useMemo(() => (isDark ? 'dark' : 'light'), [isDark]);
 
@@ -87,7 +94,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
         base.splice(saveIndex + 1, 0, 'exportPdf', 'exportHtml', '-');
       }
     }
-    return base as any[];
+    return base;
   }, [enableExport]);
 
   const editorProps = useMemo(
@@ -124,7 +131,8 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
 
   const handleSave = useCallback((val: string) => {
     const blob = new Blob([val], { type: 'text/markdown;charset=utf-8' });
-    const timestamp = new Date().toISOString().slice(0, 19).replaceAll(':', '-');
+    const timestamp = new Date().toISOString().slice(0, 19)
+.replaceAll(':', '-');
     const filename = `document-${timestamp}.md`;
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -135,13 +143,6 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
     link.remove();
     URL.revokeObjectURL(url);
   }, []);
-
-  // Sync external value
-  useEffect(() => {
-    if (value !== localValue) {
-      setLocalValue(value);
-    }
-  }, [value]);
 
   // Dark mode tracking
   useEffect(() => {
@@ -157,8 +158,12 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   }, []);
 
   // Resize observer
+  const onReadyRef = useRef(onReady);
   useEffect(() => {
-    onReady?.();
+    onReadyRef.current = onReady;
+  });
+  useEffect(() => {
+    onReadyRef.current?.();
     if (wrapperRef.current) {
       resizeObserverRef.current = new ResizeObserver(() => {
         // Editor will auto-resize due to automaticLayout

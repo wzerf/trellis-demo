@@ -61,7 +61,7 @@ export const HeaderContent = ({
   widgetConfig,
 }: HeaderContentProps) => {
   const { t } = useI18n('common');
-  const { t: tRoutes, i18n } = useTranslation(); // 用于路由翻译
+  const { t: tRoutes } = useTranslation(); // 用于路由翻译
   const navigate = useNavigate();
   const matches = useMatches();
 
@@ -135,7 +135,6 @@ export const HeaderContent = ({
     navigate,
     t,
     tRoutes,
-    i18n.language,
     breadcrumbPreferences?.showIcon,
     breadcrumbPreferences?.showHome,
   ]);

@@ -33,7 +33,7 @@ src/components/common/Editor/
 
 ```tsx
 import { useState } from 'react';
-import { Editor, EditorType } from '@/components/common/Editor';
+import { Editor, EditorTypes, type EditorType } from '@/components/common/Editor';
 
 const MyComponent = () => {
   const [content, setContent] = useState('');
@@ -42,7 +42,7 @@ const MyComponent = () => {
     <Editor
       value={content}
       onChange={setContent}
-      editorType={EditorType.RICH_TEXT}
+      editorType={EditorTypes.RICH_TEXT}
       height={600}
       placeholder="请输入内容..."
     />
@@ -54,7 +54,7 @@ const MyComponent = () => {
 
 ```tsx
 import { Form } from 'antd';
-import { Editor, EditorType } from '@/components/common/Editor';
+import { Editor, EditorTypes, type EditorType } from '@/components/common/Editor';
 
 const MyForm = () => {
   return (
@@ -64,7 +64,7 @@ const MyForm = () => {
       rules={[{ required: true, message: '请输入内容' }]}
     >
       <Editor
-        editorType={EditorType.RICH_TEXT}
+        editorType={EditorTypes.RICH_TEXT}
         height={400}
         placeholder="请输入内容..."
       />
@@ -80,7 +80,7 @@ const MyForm = () => {
 ```tsx
 import { useState } from 'react';
 import { App } from 'antd';
-import { Editor, EditorType } from '@/components/common/Editor';
+import { Editor, EditorTypes, type EditorType } from '@/components/common/Editor';
 
 const MyComponent = () => {
   const [content, setContent] = useState('');
@@ -109,7 +109,7 @@ const MyComponent = () => {
     <Editor
       value={content}
       onChange={setContent}
-      editorType={EditorType.RICH_TEXT}
+      editorType={EditorTypes.RICH_TEXT}
       uploadImage={handleUploadImage}
       height={600}
     />
@@ -120,7 +120,7 @@ const MyComponent = () => {
 ### 4. 编辑器类型
 
 ```typescript
-export const EditorType = {
+export const EditorTypes = {
   CODE: 'EDITOR_TYPE_CODE',
   JSON: 'EDITOR_TYPE_JSON_BLOCK',
   MARKDOWN: 'EDITOR_TYPE_MARKDOWN',
@@ -129,7 +129,7 @@ export const EditorType = {
   VISUAL_BUILDER: 'EDITOR_TYPE_VISUAL_BUILDER',
 } as const;
 
-export type EditorType = (typeof EditorType)[keyof typeof EditorType];
+export type EditorType = (typeof EditorTypes)[keyof typeof EditorTypes];
 ```
 
 ### 5. 动态切换编辑器
@@ -137,11 +137,11 @@ export type EditorType = (typeof EditorType)[keyof typeof EditorType];
 ```tsx
 import { useState } from 'react';
 import { Select } from 'antd';
-import { Editor, EditorType } from '@/components/common/Editor';
+import { Editor, EditorTypes, type EditorType } from '@/components/common/Editor';
 
 const MyComponent = () => {
   const [content, setContent] = useState('');
-  const [editorType, setEditorType] = useState<EditorType>(EditorType.RICH_TEXT);
+  const [editorType, setEditorType] = useState<EditorType>(EditorTypes.RICH_TEXT);
 
   return (
     <>
@@ -150,11 +150,11 @@ const MyComponent = () => {
         onChange={setEditorType}
         style={{ width: 200, marginBottom: 16 }}
         options={[
-          { value: EditorType.RICH_TEXT, label: 'Tiptap Editor（推荐）' },
-          { value: EditorType.MARKDOWN, label: 'Markdown Editor' },
-          { value: EditorType.CODE, label: 'Code Editor' },
-          { value: EditorType.JSON, label: 'JSON Editor' },
-          { value: EditorType.PLAIN_TEXT, label: 'Plain Text Editor' },
+          { value: EditorTypes.RICH_TEXT, label: 'Tiptap Editor（推荐）' },
+          { value: EditorTypes.MARKDOWN, label: 'Markdown Editor' },
+          { value: EditorTypes.CODE, label: 'Code Editor' },
+          { value: EditorTypes.JSON, label: 'JSON Editor' },
+          { value: EditorTypes.PLAIN_TEXT, label: 'Plain Text Editor' },
         ]}
       />
       <Editor
@@ -208,7 +208,7 @@ const handleUploadImage = async (file: File): Promise<string> => {
 | Prop | 类型 | 默认值 | 说明 |
 |------|------|--------|------|
 | value | string | - | 编辑器内容（受控） |
-| editorType | EditorType \| string | MARKDOWN | 编辑器类型 |
+| editorType | EditorTypes \| string | MARKDOWN | 编辑器类型 |
 | height | string \| number | '100%' | 编辑器高度 |
 | disabled | boolean | false | 是否禁用 |
 | placeholder | string | - | 占位符文本 |
@@ -316,7 +316,7 @@ codeOptions?: {
 
 ```tsx
 import { Form } from 'antd';
-import { Editor, EditorType } from '@/components/common/Editor';
+import { Editor, EditorTypes, type EditorType } from '@/components/common/Editor';
 
 // 配合 DrawerForm / Form 使用
 <Form.Item
@@ -325,7 +325,7 @@ import { Editor, EditorType } from '@/components/common/Editor';
   rules={[{ required: true, message: '请输入消息内容' }]}
 >
   <Editor
-    editorType={EditorType.RICH_TEXT}
+    editorType={EditorTypes.RICH_TEXT}
     height={400}
     placeholder="请输入消息内容"
   />

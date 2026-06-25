@@ -193,10 +193,12 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
     }
   },
 
-  logout: async (_redirect = true) => {
+  logout: async () => {
     stopRefreshTimer();
     try {
-      await logoutApi().catch(() => {});
+      await logoutApi().catch(() => {
+        // 登出 API 失败不影响本地清理
+      });
     } finally {
       clearPersisted();
       if (typeof window !== 'undefined') {

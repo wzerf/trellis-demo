@@ -1,6 +1,7 @@
 import { useMemo, useState, useEffect, useCallback } from 'react';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
+import type { AppMenu } from '@/core/router/types';
 
 // 内部组件
 import HeaderContent from './components/HeaderContent';
@@ -20,8 +21,8 @@ import { usePreferencesStore } from '@/core/preferences/store';
 import { useThemeConfig } from '@/core/preferences/hooks/useThemeConfig';
 import { PreferencesPanel } from '@/core/preferences/components';
 
-import { allRoutes } from '@/router';
 import type { AppRouteObject } from '@/core/router/types';
+import { useLayoutChildren } from './context/LayoutChildrenContext';
 
 interface LayoutRouteHandle {
   title?: string;
@@ -55,33 +56,28 @@ export const MainLayout = ({ routes: dynamicRoutes }: MainLayoutProps) => {
 
   // Theme
   const themeConfig = useThemeConfig();
-  const [isDark, setIsDark] = useState(() => {
-    const { theme } = preferences;
-    if (theme.mode === 'dark') return true;
-    if (theme.mode === 'light') return false;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
+  // 跟踪系统偏好（auto 模式时使用）
+  const [systemPrefersDark, setSystemPrefersDark] = useState(() =>
+    window.matchMedia('(prefers-color-scheme: dark)').matches,
+  );
 
-  // 监听系统主题变化
+  // 监听系统主题变化（仅在 auto 模式下影响 isDark）
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handler = () => {
-      const { theme } = preferences;
-      if (theme.mode === 'auto') {
-        setIsDark(mediaQuery.matches);
-      }
+    const handler = (e: MediaQueryListEvent) => {
+      setSystemPrefersDark(e.matches);
     };
     mediaQuery.addEventListener('change', handler);
     return () => mediaQuery.removeEventListener('change', handler);
-  }, [preferences.theme.mode]);
+  }, []);
 
-  // 监听偏好设置变化
-  useEffect(() => {
+  // 计算实际的暗色模式（支持 auto 模式）
+  const isDark = useMemo(() => {
     const { theme } = preferences;
-    if (theme.mode === 'dark') setIsDark(true);
-    else if (theme.mode === 'light') setIsDark(false);
-    else setIsDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
-  }, [preferences.theme.mode]);
+    if (theme.mode === 'dark') return true;
+    if (theme.mode === 'light') return false;
+    return systemPrefersDark;
+  }, [preferences, systemPrefersDark]);
 
   // 布局状态
   const {
@@ -104,8 +100,9 @@ export const MainLayout = ({ routes: dynamicRoutes }: MainLayoutProps) => {
 
   // 菜单数据
   const permissions = useMemo(() => getAllPermissions(), [getAllPermissions]);
+  const layoutChildren = useLayoutChildren();
   const menuData = useMenuData({
-    staticRoutes: allRoutes,
+    layoutChildren,
     dynamicRoutes,
     permissions,
   });
@@ -142,18 +139,24 @@ export const MainLayout = ({ routes: dynamicRoutes }: MainLayoutProps) => {
 
   // 根据当前路径和菜单数据计算应该展开的菜单项
   useEffect(() => {
-    const calculateOpenKeys = (
-      menuItems: any[],
-      targetPath: string,
-      parentKeys: string[] = [],
-      parentPath: string = '',
-    ): string[] => {
+    type OpenKeysContext = {
+      menuItems: AppMenu[];
+      targetPath: string;
+      parentKeys?: string[];
+      parentPath?: string;
+    };
+    const calculateOpenKeys = ({
+      menuItems,
+      targetPath,
+      parentKeys = [],
+      parentPath = '',
+    }: OpenKeysContext): string[] => {
       for (const item of menuItems) {
         // 处理相对路径：拼接父路径
         const itemPath = item.path?.startsWith('/')
           ? item.path
           : `${parentPath}/${item.path}`.replace(/\/+/g, '/');
-        const itemKey = item.key || itemPath;
+        const itemKey = item.path || itemPath;
 
         // 如果当前项就是目标路径，返回所有父级 key
         if (itemPath === targetPath || itemKey === targetPath) {
@@ -161,22 +164,22 @@ export const MainLayout = ({ routes: dynamicRoutes }: MainLayoutProps) => {
         }
         // 如果有子菜单，递归查找
         if (item.children && item.children.length > 0) {
-          const found = calculateOpenKeys(
-            item.children,
+          const found = calculateOpenKeys({
+            menuItems: item.children,
             targetPath,
-            [...parentKeys, itemPath],
-            itemPath,
-          );
+            parentKeys: [...parentKeys, itemPath],
+            parentPath: itemPath,
+          });
           if (found.length > 0) {
             return found;
           }
           // 如果子项中直接匹配到目标路径，也要展开当前项
           if (
-            item.children.some((child: any) => {
+            item.children.some((child: AppMenu) => {
               const childPath = child.path?.startsWith('/')
                 ? child.path
                 : `${itemPath}/${child.path}`.replace(/\/+/g, '/');
-              return childPath === targetPath || child.key === targetPath;
+              return childPath === targetPath || child.path === targetPath;
             })
           ) {
             return [...parentKeys, itemPath];
@@ -186,7 +189,7 @@ export const MainLayout = ({ routes: dynamicRoutes }: MainLayoutProps) => {
       return [];
     };
 
-    const openKeys = calculateOpenKeys(menuData, location.pathname);
+    const openKeys = calculateOpenKeys({ menuItems: menuData, targetPath: location.pathname });
     setOpenKeys(openKeys);
   }, [location.pathname, menuData, setOpenKeys]);
 
@@ -231,7 +234,7 @@ export const MainLayout = ({ routes: dynamicRoutes }: MainLayoutProps) => {
         }}
       />
     );
-  }, [userInfo, sidebarHidden, isFullscreen, logout, isDark, setPreferences, triggerPageRefresh, preferences.widget]);
+  }, [userInfo, sidebarHidden, isFullscreen, logout, isDark, setPreferences, triggerPageRefresh, preferences, setSidebarHidden]);
 
   // 主题切换
   useCallback(() => {

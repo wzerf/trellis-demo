@@ -7,25 +7,30 @@ import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
 
 // 初始化 Monaco Editor Workers
 export function initMonacoWorkers() {
-  (window as any).MonacoEnvironment = {
+  const w = window as unknown as {
+    MonacoEnvironment?: {
+      getWorker: (moduleId: string, label: string) => Worker;
+    };
+  };
+  w.MonacoEnvironment = {
     getWorker(_moduleId: string, label: string) {
       if (label === 'json') {
-        // eslint-disable-next-line new-cap
+
         return new jsonWorker();
       }
       if (label === 'css' || label === 'scss' || label === 'less') {
-        // eslint-disable-next-line new-cap
+
         return new cssWorker();
       }
       if (label === 'html' || label === 'handlebars' || label === 'razor') {
-        // eslint-disable-next-line new-cap
+
         return new htmlWorker();
       }
       if (label === 'typescript' || label === 'javascript') {
-        // eslint-disable-next-line new-cap
+
         return new tsWorker();
       }
-      // eslint-disable-next-line new-cap
+
       return new editorWorker();
     },
   };

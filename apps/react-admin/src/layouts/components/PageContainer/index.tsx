@@ -1,6 +1,6 @@
 import { useMemo, useState, useCallback, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { PageContainer as ProPageContainer } from '@ant-design/pro-components';
+import { PageContainer as ProPageContainer, type PageContainerProps as ProPageContainerProps } from '@ant-design/pro-components';
 import { Skeleton, Alert, Button, Space } from 'antd';
 import { ReloadOutlined, FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons';
 
@@ -13,7 +13,7 @@ import { usePreferencesStore } from '@/core/preferences/store';
 import { useBreadcrumb } from './hooks/useBreadcrumb';
 import { usePageTitle } from './hooks/usePageTitle';
 import { checkPagePermission } from './utils/permission';
-import type { PageContainerProps } from './types';
+import type { BreadcrumbItem, PageContainerProps } from './types';
 import './PageContainer.style.css'; // 引入样式文件
 
 /**
@@ -37,9 +37,9 @@ export const PageContainer = ({
   loading,
   loadingContent,
   content,
-  contentPadding = true,
-  contentClassName,
-  keepAlive,
+  contentPadding: _contentPadding = true,
+  contentClassName: _contentClassName,
+  keepAlive: _keepAlive,
   pageKey: customPageKey,
   showRefresh,
   onRefresh,
@@ -125,8 +125,11 @@ export const PageContainer = ({
   const effectiveBreadcrumb = isFullscreen ? false : breadcrumb;
   const effectiveHeader = isFullscreen ? false : header;
 
+  const proPageHeaderProps: ProPageContainerProps['header'] | undefined =
+    effectiveHeader === false ? undefined : (effectiveHeader as ProPageContainerProps['header']);
+
   // 渲染面包屑项
-  const renderBreadcrumbItems = useCallback((items: any[], styleType: string) => {
+  const renderBreadcrumbItems = useCallback((items: BreadcrumbItem[], styleType: string) => {
     return items.map((item) => ({
       title: (
         <span
@@ -216,7 +219,7 @@ export const PageContainer = ({
         className="mt-4"
       />
     );
-  }, [forbiddenFallback]);
+  }, [forbiddenFallback, t]);
 
   // 渲染加载状态
   const renderLoading = useMemo(() => {
@@ -244,7 +247,7 @@ export const PageContainer = ({
     return (
       <ProPageContainer
         ghost={ghost}
-        header={effectiveHeader === false ? undefined : (effectiveHeader as any)}
+        header={proPageHeaderProps}
         title={effectiveHeader === false ? undefined : pageTitle}
         breadcrumb={breadcrumbConfig}
         extra={actionButtons ? <Space>{actionButtons}</Space> : extra}
@@ -261,7 +264,7 @@ export const PageContainer = ({
     return (
       <ProPageContainer
         ghost={ghost}
-        header={effectiveHeader === false ? undefined : (effectiveHeader as any)}
+        header={proPageHeaderProps}
         title={effectiveHeader === false ? undefined : pageTitle}
         breadcrumb={breadcrumbConfig}
         extra={actionButtons ? <Space>{actionButtons}</Space> : extra}
@@ -278,7 +281,7 @@ export const PageContainer = ({
     <ProPageContainer
       className="page-container-root"
       ghost={ghost}
-      header={effectiveHeader === false ? undefined : (effectiveHeader as any)}
+      header={proPageHeaderProps}
       title={effectiveHeader === false ? undefined : pageTitle}
       breadcrumb={breadcrumbConfig}
       extra={actionButtons ? <Space>{actionButtons}</Space> : extra}

@@ -44,10 +44,10 @@ export const usePageTitle = ({
       } else if (title.startsWith('routes.')) {
         const keyName = title.substring(7);
         return tMenu(keyName, { defaultValue: title });
-      } else {
+      } 
         // 否则直接翻译
         return tMenu(title, { defaultValue: title });
-      }
+      
     },
     [tMenu],
   );

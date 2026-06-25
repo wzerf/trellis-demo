@@ -1,14 +1,14 @@
 export function formatDate(dateString: string | undefined) {
-    if (!dateString) return ''
-    return new Date(dateString).toLocaleString()
+    if (!dateString) return '';
+    return new Date(dateString).toLocaleString();
 }
 
 // 格式化日期时间
-export const formatDateTime = (timestamp?: any) => {
+export const formatDateTime = (timestamp?: number | string | { seconds: number } | null) => {
     if (!timestamp) return '-';
     try {
         let date: Date;
-        if (timestamp.seconds) {
+        if (typeof timestamp === 'object' && 'seconds' in timestamp) {
             date = new Date(timestamp.seconds * 1000);
         } else if (typeof timestamp === 'string') {
             date = new Date(timestamp);
@@ -22,7 +22,7 @@ export const formatDateTime = (timestamp?: any) => {
             hour: '2-digit',
             minute: '2-digit',
         });
-    } catch (error) {
+    } catch {
         return '-';
     }
 };
