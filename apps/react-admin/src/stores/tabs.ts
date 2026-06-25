@@ -4,8 +4,8 @@ import { persist } from 'zustand/middleware';
 export interface TabItem {
   key: string;
   path: string;
-  title: string;          // 翻译后的标题（用于显示）
-  titleKey?: string;      // 原始的 i18n key（用于切换语言时重新翻译）
+  title: string; // 翻译后的标题（用于显示）
+  titleKey?: string; // 原始的 i18n key（用于切换语言时重新翻译）
   icon?: string;
   closable: boolean;
   pinned?: boolean;

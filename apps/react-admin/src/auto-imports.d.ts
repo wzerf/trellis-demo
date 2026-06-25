@@ -14,7 +14,7 @@ declare global {
   const CustomIframe: typeof import('./components/common/Editor/src/TiptapEditor/nodes').CustomIframe
   const CustomVideo: typeof import('./components/common/Editor/src/TiptapEditor/nodes').CustomVideo
   const Editor: typeof import('./components/common/Editor/src/Editor').default
-  const EditorType: typeof import('./components/common/Editor/types').EditorType
+  const EditorTypes: typeof import('./components/common/Editor/types').EditorTypes
   const Fragment: typeof import('react').Fragment
   const IframeModal: typeof import('./components/common/Editor/src/TiptapEditor/modals').IframeModal
   const JsonEditor: typeof import('./components/common/Editor/src/JsonEditor').default
@@ -132,10 +132,13 @@ declare global {
   export type { TiptapEditorProps } from './components/common/Editor/src/TiptapEditor'
   import('./components/common/Editor/src/TiptapEditor')
   // @ts-ignore
+  export type { ToolbarActions } from './components/common/Editor/src/TiptapEditor/Toolbar'
+  import('./components/common/Editor/src/TiptapEditor/Toolbar')
+  // @ts-ignore
   export type { CodeBlockModalProps, VideoModalProps, IframeModalProps } from './components/common/Editor/src/TiptapEditor/modals'
   import('./components/common/Editor/src/TiptapEditor/modals')
   // @ts-ignore
-  export type { EditorProps } from './components/common/Editor/types'
+  export type { EditorType, EditorProps } from './components/common/Editor/types'
   import('./components/common/Editor/types')
   // @ts-ignore
   export type { ThemeLoadingProps } from './components/common/Loading/index'
