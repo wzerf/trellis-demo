@@ -1,9 +1,11 @@
 # lefthook configuration
 # 取代 Vite+ 的 `vp config` 安装时注入 hook 的方式,改为单一版本受控配置。
+# vue-vben-admin 子模块自带 lefthook.yml,根 hook 不再覆盖其代码。
 #
 # Escape hatches:
-#   - `LEFTHOOK=0 git commit ...`
-#   - `git commit --no-verify ...`
+#   - LEFTHOOK=0 git commit ...
+#   - git commit --no-verify ...
+#   - git push --no-verify ...
 #
 # Docs: https://lefthook.dev/configuration/
 
@@ -11,60 +13,72 @@ pre-commit:
   # 对暂存文件跑 fmt + lint + type-check。
   parallel: true
   commands:
-    staged:
-      # Vite+ lint-staged 流水线(排除 vue-vben-admin 子模块,它有独立 hook:
-      # apps/vue-vben-admin/lefthook.yml)。
+    # vite-plus staged 流水线(覆盖根 workspace 内的 website-template、packages、tools)。
+    # react-admin 已从根 workspace 排除,另见 lint:react-admin / typecheck:react-admin。
+    format:staged:
       run: pnpm exec vp staged
-    java-spotless:
-      # 用 palantir-java-format 格式化暂存的 *.java,并重新 stage。
+    # react-admin 不在根 workspace,需单独跑 ESLint。
+    # 只对暂存的 ts/tsx 触发,避免 commit 时扫整个项目。
+    lint:react-admin:
+      glob: "apps/react-admin/**/*.{ts,tsx}"
+      run: pnpm -C apps/react-admin exec eslint {staged_files}
+    # react-admin 的 tsc(只在有 react-admin 暂存改动时触发)。
+    typecheck:react-admin:
+      glob: "apps/react-admin/**/*.{ts,tsx}"
+      run: pnpm -C apps/react-admin typecheck
+    # 暂存文件密钥扫描。未安装 gitleaks 时自动跳过(brew install gitleaks / scoop install gitleaks)。
+    # 用 exec 短路确保 gitleaks 找到密钥时返回非零退出码(让 hook 失败),而不是被 || 误判为"skip"。
+    secret-scan:
+      run: sh -c 'command -v gitleaks >/dev/null 2>&1 && exec gitleaks protect --staged --redact --no-banner; echo skip:gitleaks-not-installed'
+    # palantir-java-format 格式化暂存 *.java 并重新 stage。
+    format:java:
       glob: "backend/java-admin/**/src/{main,test}/java/**/*.java"
       run: mvn -B -q -f backend/java-admin/pom.xml spotless:apply && git add backend/java-admin
       stage_fixed: true
-    codegraph-sync:
-      # 同步 codegraph 索引到最新工作树。
-      run: codegraph sync
-      stage_fixed: false
 
 post-checkout:
+  # 分支切换后刷新 codegraph 索引(daemon 的文件 watcher 在常规写操作时已能跟上,
+  # 但 branch 切换 / detached HEAD 可能让 watcher 状态错位,显式 sync 一次最稳)。
   commands:
-    codegraph-sync:
+    index:codegraph:
       run: codegraph sync
+      skip_output: true
 
 post-merge:
+  parallel: true
   commands:
-    codegraph-sync:
+    index:codegraph:
       run: codegraph sync
-
-post-rewrite:
-  commands:
-    codegraph-sync:
-      run: codegraph sync
-
-post-commit:
-  commands:
-    codegraph-sync:
-      run: codegraph sync
+      skip_output: true
+    # lockfile 变更时同步依赖;frozen=false 允许更新 catalog 间接依赖。
+    deps:install:
+      glob: "pnpm-lock.yaml"
+      run: pnpm install --frozen-lockfile=false
+      skip_output: true
 
 pre-push:
   # 全工作区 fmt + lint + type-check,兜底 --no-verify 或未暂存改动。
+  # 改用只读 check(--fix 会改 working tree,留给 pre-commit 的 stage_fixed 模式)。
   parallel: true
   commands:
-    full-check:
-      # Caveat: --fix 会改写 working tree。push 用的是已生成的 commit,
-      # 改完后需自行 review 并用 fixup commit 跟进。
-      run: pnpm exec vp check --fix
-    java-checkstyle:
-      # 命名 / 复杂度 / 风格门禁,`mvn verify` 也会再跑一次。
+    check:full:
+      run: pnpm exec vp check
+    # react-admin 不在根 workspace,需单独跑 ESLint。
+    lint:react-admin:
+      run: pnpm -C apps/react-admin lint
+    # 命名 / 复杂度 / 风格门禁,`mvn verify` 也会再跑一次。
+    check:java-style:
       glob: "backend/java-admin/**/src/{main,test}/java/**/*.java"
       run: mvn -B -f backend/java-admin/pom.xml checkstyle:check
-    java-errorprone:
-      # 跑 `mvn compile`(含 Error Prone 2.50.0 javac 插件);WARN 不阻断 push,ERROR 阻断。
+    # 跑 `mvn compile`(含 Error Prone 2.50.0 javac 插件);WARN 不阻断 push,ERROR 阻断。
+    check:java-types:
       glob: "backend/java-admin/**/src/{main,test}/java/**/*.java"
       run: mvn -B -q -f backend/java-admin/pom.xml -DskipTests compile
 
 commit-msg:
-  # Conventional Commits 门禁;无根配置时 commitlint 回退到
-  # @commitlint/config-conventional。跳过方式同上方 Escape hatches。
+  # Conventional Commits 门禁;vue-vben-admin 在子目录 commit 时用自己的
+  # .commitlintrc.js(@vben/commitlint-config),根 commit 用 @commitlint/config-conventional。
+  # $1 是 commit-msg 钩子的入参约定(commit message 临时文件路径)。
   commands:
     commitlint:
       run: pnpm exec commitlint --edit "$1"
