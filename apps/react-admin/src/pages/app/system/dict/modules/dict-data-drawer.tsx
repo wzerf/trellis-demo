@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import {
   Button,
   Drawer,
@@ -12,6 +12,7 @@ import {
 } from 'antd';
 import {
   useCreateDictData,
+  useListAllDictType,
   useUpdateDictData,
 } from '@/api/hooks/dict';
 import type {
@@ -49,6 +50,20 @@ const DictDataDrawer = ({
   onSaved,
 }: Props) => {
   const [form] = Form.useForm<FormValues>();
+  // 兜底加载：父组件 typeOptions 还没就绪就打开抽屉时，自己拉一次确保
+  // Select 拿得到匹配项，否则 setFieldsValue 设的 typeId 会显示不出来
+  const allTypesQuery = useListAllDictType(
+    { status: 1 },
+    { enabled: open && typeOptions.length === 0 },
+  );
+  const effectiveTypeOptions = useMemo(() => {
+    if (typeOptions.length > 0) return typeOptions;
+    return (allTypesQuery.data ?? []).map((t) => ({
+      label: `${t.name}（${t.code}）`,
+      value: t.id,
+    }));
+  }, [typeOptions, allTypesQuery.data]);
+
   const createMut = useCreateDictData({
     onSuccess: (created) => {
       message.success('创建成功');
@@ -72,30 +87,48 @@ const DictDataDrawer = ({
   const isEdit = !!row;
   const submitting = createMut.isPending || updateMut.isPending;
 
+  // 根据当前模式（编辑/新建）构造 form values。
+  // - 编辑：用 row 各字段回显，注意 is_default/is_enabled 是 0/1，转成 boolean 给 Switch
+  // - 新建：用 defaultTypeId 回显所属类型，其他字段给个合理的初始值
+  const buildFormValues = (
+    source: DictData | null,
+    initialTypeId?: number,
+  ): FormValues => {
+    if (source) {
+      return {
+        typeId: source.type_id,
+        value: source.value,
+        label: source.label,
+        sort: source.sort,
+        isDefault: source.is_default === 1,
+        is_enabled: source.is_enabled === 1,
+        remark: source.remark,
+      };
+    }
+    return {
+      typeId: initialTypeId as FormValues['typeId'],
+      value: '',
+      label: '',
+      sort: 0,
+      isDefault: false,
+      is_enabled: true,
+      remark: '',
+    };
+  };
+
   useEffect(() => {
     if (!open) return;
-    if (row) {
-      form.setFieldsValue({
-        typeId: row.type_id,
-        value: row.value,
-        label: row.label,
-        sort: row.sort,
-        isDefault: row.is_default === 1,
-        is_enabled: row.is_enabled === 1,
-        remark: row.remark,
-      });
-    } else {
-      form.setFieldsValue({
-        typeId: defaultTypeId,
-        value: '',
-        label: '',
-        sort: 0,
-        isDefault: false,
-        is_enabled: true,
-        remark: '',
-      });
-    }
-  }, [open, row, defaultTypeId, form]);
+    // 新建模式必须等 typeOptions 就绪再回显，否则 Select 拿不到匹配项
+    if (!row && effectiveTypeOptions.length === 0) return;
+    // 抽屉首次打开时 destroyOnClose 会卸载 Form，下次重新挂载时
+    // Select 等子项还没完成注册，立即 setFieldsValue 会丢。
+    // 延后到下一帧再回显，避免 typeId 字段首次不显示。
+    const apply = () =>
+      form.setFieldsValue(buildFormValues(row, defaultTypeId));
+    apply();
+    const timer = setTimeout(apply, 0);
+    return () => clearTimeout(timer);
+  }, [open, row, defaultTypeId, effectiveTypeOptions, form]);
 
   const handleOk = async () => {
     const values = await form.validateFields();
@@ -149,8 +182,7 @@ const DictDataDrawer = ({
         >
           <Select
             placeholder="请选择类型"
-            disabled={isEdit || !!defaultTypeId}
-            options={typeOptions}
+            options={effectiveTypeOptions}
             showSearch
             optionFilterProp="label"
           />
@@ -160,7 +192,7 @@ const DictDataDrawer = ({
           name="value"
           rules={[{ required: true, message: '请输入字典值' }, { max: 64 }]}
         >
-          <Input disabled={isEdit} placeholder="例如 Y / N / 0 / 1" />
+          <Input placeholder="例如 Y / N / 0 / 1" />
         </Form.Item>
         <Form.Item
           label="字典标签"

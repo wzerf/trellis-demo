@@ -2,7 +2,7 @@ import { defineEventHandler, getRouterParam, readBody, setResponseStatus } from 
 import { ensureDictSeeds, getMockDictTypeList, isoNow } from "~/utils/mock-data";
 import { useResponseError, useResponseSuccess } from "~/utils/response";
 
-const ALLOWED_KEYS = ["name", "remark", "is_enabled"] as const;
+const ALLOWED_KEYS = ["code", "name", "remark", "is_enabled"] as const;
 
 export default defineEventHandler(async (event) => {
   ensureDictSeeds();

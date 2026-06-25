@@ -164,6 +164,7 @@ export interface CreateDictTypeRequest {
 
 export interface UpdateDictTypeRequest {
   id: number;
+  code?: string;
   name?: string;
   remark?: string;
   is_enabled?: 0 | 1;

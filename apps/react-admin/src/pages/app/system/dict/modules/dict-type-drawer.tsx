@@ -75,6 +75,7 @@ const DictTypeDrawer = ({ open, row, onClose, onSaved }: Props) => {
     if (isEdit) {
       updateMut.mutate({
         id: row.id,
+        code: values.code,
         name: values.name,
         remark: values.remark ?? '',
         is_enabled: isEnabled,
@@ -120,14 +121,14 @@ const DictTypeDrawer = ({ open, row, onClose, onSaved }: Props) => {
             },
           ]}
         >
-          <Input disabled={isEdit} placeholder="例如 sys_user_sex" />
+          <Input placeholder="例如 sys_user_sex" />
         </Form.Item>
         <Form.Item
           label="类型名称"
           name="name"
           rules={[{ required: true, message: '请输入类型名称' }, { max: 64 }]}
         >
-          <Input disabled={isEdit} />
+          <Input />
         </Form.Item>
         <Form.Item label="备注" name="remark">
           <Input.TextArea rows={3} placeholder="选填" />

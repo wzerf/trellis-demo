@@ -41,10 +41,11 @@ function statusOrUndefined(v: number | '' | undefined): 0 | 1 | undefined {
 }
 
 /* ---------- 字典类型下拉选项（用于左右两个搜索框的「类型编码」下拉） ---------- */
+// 表格/搜索下拉的 label 只展示编码，不拼接名称，避免列被撑宽
 async function fetchDictTypeCodeEnum() {
   const list = await listAllDictTypeApi({ status: 1 });
   return list.map((t) => ({
-    label: `${t.name}（${t.code}）`,
+    label: t.code,
     value: t.code,
   }));
 }
@@ -457,12 +458,7 @@ const DictPage = () => {
       key="create"
       type="primary"
       icon={<PlusOutlined />}
-      disabled={!selectedTypeId}
       onClick={() => {
-        if (!selectedTypeId) {
-          message.warning('请先在左侧选择一个字典类型');
-          return;
-        }
         setEditingEntry(null);
         setEntryDrawerOpen(true);
       }}
