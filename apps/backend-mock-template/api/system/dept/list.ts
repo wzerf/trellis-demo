@@ -14,10 +14,10 @@ const formatterCN = new Intl.DateTimeFormat("zh-CN", {
 });
 
 function generateMockDataList(count: number) {
-  const dataList = [];
+  const dataList: Record<string, unknown>[] = [];
 
   for (let i = 0; i < count; i++) {
-    const dataItem: Record<string, any> = {
+    const dataItem: Record<string, unknown> = {
       id: faker.string.uuid(),
       pid: 0,
       name: faker.commerce.department(),

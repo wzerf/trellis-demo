@@ -383,12 +383,18 @@ export const MOCK_MENU_LIST = [
   },
 ];
 
-export function getMenuIds(menus: any[]) {
+export function getMenuIds(
+  menus: { id: number; children?: { id: number; children?: unknown[] }[] }[],
+): number[] {
   const ids: number[] = [];
   menus.forEach((item) => {
     ids.push(item.id);
     if (item.children && item.children.length > 0) {
-      ids.push(...getMenuIds(item.children));
+      ids.push(
+        ...getMenuIds(
+          item.children as { id: number; children?: { id: number; children?: unknown[] }[] }[],
+        ),
+      );
     }
   });
   return ids;

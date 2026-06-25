@@ -4,10 +4,10 @@ import { verifyAccessToken } from "~/utils/jwt-utils";
 import { sleep, unAuthorizedResponse, usePageResponseSuccess } from "~/utils/response";
 
 function generateMockDataList(count: number) {
-  const dataList = [];
+  const dataList: Record<string, unknown>[] = [];
 
   for (let i = 0; i < count; i++) {
-    const dataItem = {
+    const dataItem: Record<string, unknown> = {
       id: faker.string.uuid(),
       imageUrl: faker.image.avatar(),
       imageUrl2: faker.image.avatar(),
@@ -85,8 +85,10 @@ export default eventHandler(async (event) => {
           result = aValue ? 1 : -1;
         }
       } else {
-        const aStr = String(aValue);
-        const bStr = String(bValue);
+        const aStr =
+          typeof aValue === "string" ? aValue : typeof aValue === "number" ? String(aValue) : "";
+        const bStr =
+          typeof bValue === "string" ? bValue : typeof bValue === "number" ? String(bValue) : "";
         const aNum = Number(aStr);
         const bNum = Number(bStr);
         result =

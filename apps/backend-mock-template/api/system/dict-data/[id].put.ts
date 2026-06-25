@@ -28,7 +28,13 @@ export default defineEventHandler(async (event) => {
   }
 
   if ("value" in patch) {
-    const v = String(patch.value ?? "").trim();
+    const rawValue = patch.value;
+    const v =
+      typeof rawValue === "string"
+        ? rawValue.trim()
+        : typeof rawValue === "number"
+          ? String(rawValue).trim()
+          : "";
     if (!v) {
       setResponseStatus(event, 400);
       return useResponseError("BadRequest", "value cannot be empty");
@@ -50,7 +56,13 @@ export default defineEventHandler(async (event) => {
     patch.value = v;
   }
   if ("label" in patch) {
-    const l = String(patch.label ?? "").trim();
+    const rawLabel = patch.label;
+    const l =
+      typeof rawLabel === "string"
+        ? rawLabel.trim()
+        : typeof rawLabel === "number"
+          ? String(rawLabel).trim()
+          : "";
     if (!l) {
       setResponseStatus(event, 400);
       return useResponseError("BadRequest", "label cannot be empty");

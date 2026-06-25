@@ -28,7 +28,13 @@ export default defineEventHandler(async (event) => {
   }
   // name 校验
   if ("name" in patch) {
-    const name = String(patch.name ?? "").trim();
+    const rawName = patch.name;
+    const name =
+      typeof rawName === "string"
+        ? rawName.trim()
+        : typeof rawName === "number"
+          ? String(rawName).trim()
+          : "";
     if (!name) {
       setResponseStatus(event, 400);
       return useResponseError("BadRequest", "name cannot be empty");

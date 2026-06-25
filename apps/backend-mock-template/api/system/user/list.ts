@@ -80,12 +80,12 @@ export default eventHandler(async (event) => {
   let listData = shared.slice();
   if (username) {
     listData = listData.filter((item) =>
-      item.username.toLowerCase().includes(String(username).toLowerCase()),
+      item.username.toLowerCase().includes(String(username as string).toLowerCase()),
     );
   }
   if (realName) {
     listData = listData.filter((item) =>
-      item.realName.toLowerCase().includes(String(realName).toLowerCase()),
+      item.realName.toLowerCase().includes(String(realName as string).toLowerCase()),
     );
   }
   if (["0", "1"].includes(status as string)) {

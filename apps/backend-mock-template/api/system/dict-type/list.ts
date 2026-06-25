@@ -10,11 +10,11 @@ export default defineEventHandler(async (event) => {
 
   let filtered: DictType[] = shared.filter((x) => x.deleted_at === 0);
   if (code) {
-    const q = String(code).toLowerCase();
+    const q = String(code as string).toLowerCase();
     filtered = filtered.filter((x) => x.code.toLowerCase().includes(q));
   }
   if (name) {
-    const q = String(name);
+    const q = String(name as string);
     filtered = filtered.filter((x) => x.name.includes(q));
   }
   if (["0", "1"].includes(status as string)) {

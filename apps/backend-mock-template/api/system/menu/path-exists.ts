@@ -22,7 +22,7 @@ export default eventHandler(async (event) => {
   }
   const { id, path } = getQuery(event);
 
-  return (path as string) in pathMap && (!id || pathMap[path as string] !== String(id))
+  return (path as string) in pathMap && (!id || pathMap[path as string] !== String(id as string))
     ? useResponseSuccess(true)
     : useResponseSuccess(false);
 });

@@ -16,11 +16,20 @@ const formatterCN = new Intl.DateTimeFormat("zh-CN", {
 
 const menuIds = getMenuIds(MOCK_MENU_LIST);
 
-function generateMockDataList(count: number) {
-  const dataList = [];
+interface RoleItem {
+  id: string;
+  name: string;
+  status: number;
+  createTime: string;
+  permissions: number[];
+  remark?: string;
+}
+
+function generateMockDataList(count: number): RoleItem[] {
+  const dataList: RoleItem[] = [];
 
   for (let i = 0; i < count; i++) {
-    const dataItem: Record<string, any> = {
+    const dataItem: RoleItem = {
       id: faker.string.uuid(),
       name: faker.commerce.product(),
       status: faker.helpers.arrayElement([0, 1]),
@@ -44,18 +53,20 @@ export default eventHandler(async (event) => {
   }
 
   const { page = 1, pageSize = 20, name, id, remark, startTime, endTime, status } = getQuery(event);
-  let listData = structuredClone(mockData);
+  let listData: RoleItem[] = structuredClone(mockData);
   if (name) {
     listData = listData.filter((item) =>
-      item.name.toLowerCase().includes(String(name).toLowerCase()),
+      item.name.toLowerCase().includes(String(name as string).toLowerCase()),
     );
   }
   if (id) {
-    listData = listData.filter((item) => item.id.toLowerCase().includes(String(id).toLowerCase()));
+    listData = listData.filter((item) =>
+      item.id.toLowerCase().includes(String(id as string).toLowerCase()),
+    );
   }
   if (remark) {
     listData = listData.filter((item) =>
-      item.remark?.toLowerCase()?.includes(String(remark).toLowerCase()),
+      item.remark?.toLowerCase()?.includes(String(remark as string).toLowerCase()),
     );
   }
   if (startTime) {

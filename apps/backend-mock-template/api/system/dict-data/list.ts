@@ -15,11 +15,11 @@ export default defineEventHandler(async (event) => {
     }
   }
   if (label) {
-    const q = String(label);
+    const q = String(label as string);
     filtered = filtered.filter((x) => x.label.includes(q));
   }
   if (value) {
-    const q = String(value);
+    const q = String(value as string);
     filtered = filtered.filter((x) => x.value.includes(q));
   }
   if (["0", "1"].includes(status as string)) {
