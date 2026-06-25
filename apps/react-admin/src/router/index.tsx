@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { RouterProvider } from 'react-router-dom';
 
 import { createAccessibleRouter } from '@/core/router/factory';
@@ -8,46 +8,18 @@ import { getAccessStatic } from '@/core/access';
 import { fetchAllDictEntries } from '@/hooks/useDictCache';
 import { usePreferencesStore } from '@/core/preferences/store';
 import { getAllMenusApi } from '@/api/rest/menu';
-import type { MenuItem } from '@/api/rest/types';
 
 import { Forbidden } from '@/pages/core/error';
-import type { AppRouteObject, ComponentRecordType } from '@/core/router';
+import type { ComponentRecordType } from '@/core/router';
 import MainLayout from '@/layouts/MainLayout';
+import { LayoutChildrenProvider } from '@/layouts/MainLayout/context/LayoutChildrenContext';
 import { AuthGuard } from '@/router/guards';
 
-import { errorRoutes } from './config/error-routes';
-import { authRoutes } from './config/auth';
-import { staticRoutes } from './config/static';
-
-/**
- * 过滤掉在 pageMap 中无对应组件的菜单项（mock 返回的 Demos 路径在 react-admin 中不存在）
- */
-function filterMenusByPageMap(items: MenuItem[]): MenuItem[] {
-  return items
-    .map((m) => {
-      const children = m.children ? filterMenusByPageMap(m.children) : undefined;
-      const component = typeof m.component === 'string' ? m.component : '';
-      const key = normalizePageMapKey(component);
-      const hasOwnComponent = !component || (key !== null && key in pageMapRef);
-      // 父菜单若没有 component，但有 children，则保留 children
-      if (children && children.length > 0) {
-        return { ...m, children };
-      }
-      if (hasOwnComponent) return m;
-      return null;
-    })
-    .filter((m): m is MenuItem => m !== null);
-}
-
-const pageMapRef: ComponentRecordType = {};
-function normalizePageMapKey(component: string): string | null {
-  // mock 的 component 形如 "/dashboard/analytics/index" → 标准化为 "/dashboard/analytics"
-  if (!component) return null;
-  let normalized = component.replace(/^\/+/, '/');
-  normalized = normalized.replace(/\/index\.(tsx?|jsx?)?$/, '');
-  normalized = normalized.replace(/\.(tsx?|jsx?)$/, '');
-  return normalized;
-}
+import {
+  allRoutes,
+  filterMenusByPageMap,
+  pageMap,
+} from './routes-config';
 
 // 布局组件映射（后端 component 字段 → React 组件）
 // 后端模式：BasicLayout 需要包裹 AuthGuard（前端模式已在 staticRoutes 中包裹）
@@ -61,93 +33,27 @@ const layoutMap: ComponentRecordType = {
   BasicLayout: AuthenticatedLayout,
 };
 
-// 页面组件映射：使用 Vite glob 导入所有业务页面（后端模式用）
-// 后端返回的 component 路径如 "dashboard/index"，会被标准化后匹配
-// 排除已裁剪的目录（保留目录 + 路由不注册），避免被打包进主 bundle
-const rawPageModules = import.meta.glob(
-  [
-    '../pages/app/dashboard/**/*.tsx',
-    '../pages/app/system/user/**/*.tsx',
-  ],
-  { eager: true },
-);
-
-// 将 glob 返回的模块对象转换为 ComponentType 映射
-// glob eager 返回 { '../pages/app/dashboard/index.tsx': { default: Component } }
-//
-// 关键：pageMap 的键必须与 generate-routes-backend.ts 中 normalizeViewPath 处理后端
-// component 后的结果一致。后端 component 如 "dashboard/index" → "/dashboard/index"
-// 所以 pageMap 键也应该是 "/dashboard" 格式（去掉 /pages/app 前缀）
-const pageMap: ComponentRecordType = {};
-for (const [globPath, module] of Object.entries(rawPageModules)) {
-  const mod = module as any;
-  const Component = mod?.default || mod;
-  if (typeof Component === 'function') {
-    // globPath: "../pages/app/dashboard/index.tsx"
-    // 提取 app/ 之后的路径部分
-    const appMatch = globPath.match(/(?:pages|views)\/app\/(.+)/);
-    if (!appMatch) continue;
-
-    const relativePath = appMatch[1] // "dashboard/index.tsx"
-      .replace(/\.tsx$/, '') // "dashboard/index"
-      .replace(/\/index$/, ''); // "dashboard"
-
-    // 生成与 normalizeViewPath 一致的键
-    const normalizedKey = `/${relativePath}`; // "/dashboard"
-    pageMap[normalizedKey] = Component;
-    pageMap[`${normalizedKey}/index`] = Component; // "/dashboard/index"
-    pageMap[`${normalizedKey}.tsx`] = Component; // "/dashboard.tsx"
-    pageMap[`${normalizedKey}/index.tsx`] = Component; // "/dashboard/index.tsx"
-    // 同步写入 pageMapRef（供 filterMenusByPageMap 命中判断）
-    pageMapRef[normalizedKey] = Component;
-    pageMapRef[`${normalizedKey}/index`] = Component;
-  }
-}
-
-// 自动导入 modules 下的所有路由模块（仅包含业务功能路由）
-// 精简后只加载 dashboard + system；其它模块的 .tsx 文件保留但不被加载
-const modulesRoutes = import.meta.glob<AppRouteObject[][]>(
-  [
-    './modules/dashboard.tsx',
-    './modules/system.tsx',
-  ],
-  { eager: true },
-);
-
-// 提取并展平所有模块路由（这些都是相对路径的业务路由）
-const businessRoutes: AppRouteObject[] = Object.values(modulesRoutes).flatMap((module) => {
-  // 模块可能导出 default 或具名导出 (如 dashboardRoutes)
-  const routes = (module as any).default || Object.values(module)[0];
-  return Array.isArray(routes) ? routes : [];
-});
-
-// 合并路由：将业务模块路由合并到主布局容器的 children 中
-export const allRoutes: AppRouteObject[] = [
-  ...staticRoutes.map((route) => {
-    // 找到主布局容器路由（path 为 '/' 且包含 children）
-    if (route.path === '/' && route.children) {
-      return {
-        ...route,
-        children: [...route.children, ...businessRoutes],
-      };
-    }
-    return route;
-  }),
-  ...authRoutes, // 认证路由（独立，不受 AuthGuard 保护）
-  ...errorRoutes, // 错误路由放在最后
-];
+// 提取主布局容器 (path: '/') 的 children，避免 MainLayout 自身依赖 routes-config 形成循环
+const layoutChildren = allRoutes.find((route) => route.path === '/' && route.children)?.children ?? [];
 
 export const AppRouter = () => {
-  const [router, setRouter] = useState<any>(null);
+  const [router, setRouter] = useState<Awaited<ReturnType<typeof createAccessibleRouter>> | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const { accessToken } = useAuthStore();
+  const accessToken = useAuthStore((s) => s.accessToken);
   const accessMode = usePreferencesStore((s) => s.preferences.app.accessMode);
+  // getUserPermissionCodes 内部用 useCallback 稳定，但 effect 不应依赖它
+  // （auth 流程触发会调它，已在 useAuthStore 中反映）
+  const { getUserPermissionCodes } = useAuth();
+  const getUserPermissionCodesRef = useRef(getUserPermissionCodes);
+  useEffect(() => {
+    getUserPermissionCodesRef.current = getUserPermissionCodes;
+  }, [getUserPermissionCodes]);
 
   const isAuthenticated = !!accessToken;
 
   useEffect(() => {
-    let stale = false;
+    let cancelled = false;
 
     const initRouter = async () => {
       setLoading(true);
@@ -157,10 +63,8 @@ export const AppRouter = () => {
         // 对齐 Vue 版 setupAccessGuard：权限码获取 + 字典预加载
         if (isAuthenticated) {
           try {
-            const auth = useAuth();
-
             // 1. 获取用户权限码（角色 + 权限码，首次会调 API）
-            await auth.getUserPermissionCodes();
+            await getUserPermissionCodesRef.current();
 
             // 2. 预加载字典数据（部分页面依赖字典，未预加载会导致闪烁）
             await fetchAllDictEntries();
@@ -172,7 +76,7 @@ export const AppRouter = () => {
             const { useUserStore } = await import('@/stores');
             useUserStore.getState().$reset();
 
-            if (stale) return; // 已过期，不继续创建路由
+            if (cancelled) return; // 已过期，不继续创建路由
           }
         }
 
@@ -194,13 +98,13 @@ export const AppRouter = () => {
           autoSort: true,
         });
 
-        if (!stale) {
+        if (!cancelled) {
           setRouter(appRouter);
         }
       } catch (err) {
         console.error('Router init failed:', err);
       } finally {
-        if (!stale) {
+        if (!cancelled) {
           setLoading(false);
         }
       }
@@ -210,12 +114,17 @@ export const AppRouter = () => {
 
     // cleanup：当 effect 重新触发时（isAuthenticated 变化），取消上一次 initRouter
     return () => {
-      stale = true;
+      cancelled = true;
     };
+    // 只依赖真正会触发初始化的字段。getUserPermissionCodes 走 ref，避免对象引用变化导致 effect 反复跑
   }, [isAuthenticated, accessMode]);
 
   if (loading || !router)
     return <Loading fullScreen text="初始化中" subText="正在加载路由配置..." />;
 
-  return <RouterProvider router={router} />;
+  return (
+    <LayoutChildrenProvider value={layoutChildren}>
+      <RouterProvider router={router} />
+    </LayoutChildrenProvider>
+  );
 };
