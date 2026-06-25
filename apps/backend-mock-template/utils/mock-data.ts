@@ -467,6 +467,10 @@ export interface DictData {
   updated_at: string;
   created_by: number;
   updated_by: number;
+  /**
+   * 关联的字典类型编码，仅在 list 接口里 join 后返回；其他接口不返回该字段。
+   */
+  typeCode?: string;
 }
 
 /**
