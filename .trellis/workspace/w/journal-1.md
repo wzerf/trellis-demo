@@ -71,3 +71,39 @@
 - 作用：pre-commit 只动 staged 文件（`vp staged`），pre-push 做全 workspace 兜底——捕获走 `--no-verify`、未 stage 的修改。
 - `apps/vue-vben-admin/**` 已被 `vite.config.ts` 的 `ignorePatterns` 排除，子模块由自己的 hook 接管。
 - 注意：`--fix` 在 push 时改的是工作树，已 commit 的内容不变；用户应在 hook 退出后看 diff 决定是否补一个 fixup commit。如要 hard-fail-only，去掉 `--fix` 即可。
+
+
+## Session 1: 修复 react-admin 全部 eslint 错误并优化 backend-mock-template
+
+**Date**: 2026-06-25
+**Task**: 修复 react-admin 全部 eslint 错误并优化 backend-mock-template
+**Branch**: `master`
+
+### Summary
+
+清除 react-admin 185 个 ESLint 错误 + 9 个 warning;解耦 MainLayout 循环依赖修复 Cannot access before initialization;修复 useAuth 稳定化阻止 init loading 闪烁;backend-mock-template vp check 0 errors 0 warnings
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `b46bacb` | (see git log) |
+| `b6fd6b9` | (see git log) |
+| `41fba3c` | (see git log) |
+| `9cf34a4` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
