@@ -42,6 +42,12 @@
       "sourceType": "github",
       "skillPath": "skills/engineering/to-prd/SKILL.md",
       "computedHash": "8259cae8f8c3e97b44fcb21c0039c63459fcf6b7a4050b51682aa6e706703ef4"
+    },
+    "vue-vben-crud": {
+      "source": "SusieCmy/vben-skills",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "08d612d38089c4ae0870a63341b00565fbd91858a27d79f684e164b0511f74d7"
     }
   }
 }
