@@ -132,12 +132,15 @@ export interface DictData {
   updated_at: string;
   created_by: number;
   updated_by: number;
+  /** 关联的字典类型编码（仅 list 接口返回） */
+  typeCode?: string;
 }
 
 export interface DictTypeQuery {
   page?: number;
   pageSize?: number;
-  code?: string;
+  /** 字典类型编码；前端多选下拉时传数组（精确匹配任一） */
+  code?: string | string[];
   name?: string;
   status?: 0 | 1;
 }
@@ -146,6 +149,7 @@ export interface DictDataQuery {
   page?: number;
   pageSize?: number;
   typeId?: number;
+  typeCode?: string;
   label?: string;
   value?: string;
   status?: 0 | 1;

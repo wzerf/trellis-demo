@@ -1,16 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button, Col, message, Modal, Row } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import {
+  Button,
+  Col,
+  message,
+  Modal,
+  Popconfirm,
+  Row,
+  Space,
+  Typography,
+} from 'antd';
+import type { FormInstance } from 'antd';
+import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   ProTable,
   TableDropdown,
 } from '@ant-design/pro-components';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import {
+  batchDictDataApi,
   deleteDictDataApi,
   listDictDataApi,
 } from '@/api/rest/dict-data';
 import {
+  batchDictTypeApi,
   deleteDictTypeApi,
   listAllDictTypeApi,
   listDictTypeApi,
@@ -20,16 +32,40 @@ import ContentContainer from '@/layouts/components/PageContainer/ContentContaine
 import DictTypeDrawer from './modules/dict-type-drawer';
 import DictDataDrawer from './modules/dict-data-drawer';
 
+type BulkAction = 'enable' | 'disable' | 'delete';
+
 /* ---------- 状态字段辅助 ---------- */
 function statusOrUndefined(v: number | '' | undefined): 0 | 1 | undefined {
   if (v === '' || v === undefined) return undefined;
   return Number(v) as 0 | 1;
 }
 
+/* ---------- 字典类型下拉选项（用于左右两个搜索框的「类型编码」下拉） ---------- */
+async function fetchDictTypeCodeEnum() {
+  const list = await listAllDictTypeApi({ status: 1 });
+  return list.map((t) => ({
+    label: `${t.name}（${t.code}）`,
+    value: t.code,
+  }));
+}
+
 /* ---------- 列：字典类型 ---------- */
 const typeColumns: ProColumns<DictType>[] = [
   { title: 'ID', dataIndex: 'id', width: 80, search: false },
-  { title: '类型编码', dataIndex: 'code', width: 140, ellipsis: true },
+  {
+    title: '类型编码',
+    dataIndex: 'code',
+    width: 140,
+    ellipsis: true,
+    valueType: 'select',
+    fieldProps: {
+      mode: 'multiple',
+      showSearch: true,
+      allowClear: true,
+      placeholder: '请选择类型编码',
+    },
+    request: fetchDictTypeCodeEnum,
+  },
   { title: '类型名称', dataIndex: 'name', width: 140, ellipsis: true },
   {
     title: '备注',
@@ -47,6 +83,7 @@ const typeColumns: ProColumns<DictType>[] = [
     title: '状态',
     dataIndex: 'is_enabled',
     width: 90,
+    search: false,
     valueType: 'select',
     valueEnum: {
       1: { text: '启用' },
@@ -72,8 +109,21 @@ const typeColumns: ProColumns<DictType>[] = [
 /* ---------- 列：字典项 ---------- */
 const dataColumns: ProColumns<DictData>[] = [
   { title: 'ID', dataIndex: 'id', width: 80, search: false },
+  {
+    title: '类型编码',
+    dataIndex: 'typeCode',
+    width: 140,
+    ellipsis: true,
+    valueType: 'select',
+    fieldProps: {
+      showSearch: true,
+      allowClear: true,
+      placeholder: '请选择类型编码',
+    },
+    request: fetchDictTypeCodeEnum,
+  },
   { title: '字典值', dataIndex: 'value', width: 120 },
-  { title: '字典标签', dataIndex: 'label', width: 140, ellipsis: true },
+  { title: '字典标签', dataIndex: 'label', width: 140, ellipsis: true, search: false },
   { title: '排序', dataIndex: 'sort', width: 80, search: false },
   {
     title: '默认',
@@ -91,10 +141,11 @@ const dataColumns: ProColumns<DictData>[] = [
     title: '状态',
     dataIndex: 'is_enabled',
     width: 90,
+    search: false,
     valueType: 'select',
     valueEnum: {
-      1: { text: '启用', status: 'Success' },
-      0: { text: '禁用', status: 'Default' },
+      1: { text: '启用' },
+      0: { text: '禁用' },
     },
   },
   {
@@ -121,9 +172,20 @@ const dataColumns: ProColumns<DictData>[] = [
 const DictPage = () => {
   const typeActionRef = useRef<ActionType | undefined>(undefined);
   const entryActionRef = useRef<ActionType | undefined>(undefined);
+  const entryFormRef = useRef<FormInstance | undefined>(undefined);
 
   const [selectedTypeId, setSelectedTypeId] = useState<number | null>(null);
   const [selectedType, setSelectedType] = useState<DictType | null>(null);
+
+  // 多选状态（左右两表各自独立）
+  const [typeSelectedRowKeys, setTypeSelectedRowKeys] = useState<
+    React.Key[]
+  >([]);
+  const [entrySelectedRowKeys, setEntrySelectedRowKeys] = useState<
+    React.Key[]
+  >([]);
+  const [typeBulkLoading, setTypeBulkLoading] = useState(false);
+  const [entryBulkLoading, setEntryBulkLoading] = useState(false);
 
   // 抽屉
   const [typeDrawerOpen, setTypeDrawerOpen] = useState(false);
@@ -186,7 +248,10 @@ const DictPage = () => {
                   if (selectedTypeId === record.id) {
                     setSelectedTypeId(null);
                     setSelectedType(null);
-                    entryActionRef.current?.reload?.();
+                    // 清除右表搜索框的「类型编码」，避免引用已删除类型；
+                    // 同点击左侧行：必须 submit() 让 ProTable 把新表单值写入 formSearch。
+                    entryFormRef.current?.setFieldsValue({ typeCode: undefined });
+                    entryFormRef.current?.submit?.();
                   }
                 } catch (err) {
                   message.error(`删除失败：${(err as Error).message ?? '未知错误'}`);
@@ -256,7 +321,7 @@ const DictPage = () => {
     params: Record<string, unknown> & {
       current?: number;
       pageSize?: number;
-      code?: string;
+      code?: string | string[];
       name?: string;
       is_enabled?: number | '';
     },
@@ -282,29 +347,23 @@ const DictPage = () => {
     params: Record<string, unknown> & {
       current?: number;
       pageSize?: number;
-      typeId?: number;
+      typeCode?: string;
       value?: string;
-      label?: string;
       is_enabled?: number | '';
     },
   ) {
     const {
       current = 1,
       pageSize = 20,
-      typeId,
+      typeCode,
       value,
-      label,
       is_enabled,
     } = params;
-    if (!typeId) {
-      return { data: [], total: 0, success: true };
-    }
     const res = await listDictDataApi({
       page: current,
       pageSize,
-      typeId,
+      typeCode: typeCode || undefined,
       value: value || undefined,
-      label: label || undefined,
       status: statusOrUndefined(is_enabled),
     });
     return { data: res.items, total: res.total, success: true };
@@ -321,6 +380,61 @@ const DictPage = () => {
   function onEntrySaved() {
     message.success(editingEntry ? '保存成功' : '创建成功');
     entryActionRef.current?.reload?.();
+  }
+
+  /* ---------- 批量操作 ---------- */
+  async function runBulkType(action: BulkAction) {
+    if (typeSelectedRowKeys.length === 0) {
+      message.warning('请先勾选要操作的字典类型');
+      return;
+    }
+    setTypeBulkLoading(true);
+    try {
+      await batchDictTypeApi({
+        action,
+        ids: typeSelectedRowKeys.map((k) => Number(k)),
+      });
+      message.success(
+        action === 'delete'
+          ? '批量删除成功'
+          : action === 'enable'
+            ? '批量启用成功'
+            : '批量禁用成功',
+      );
+      setTypeSelectedRowKeys([]);
+      typeActionRef.current?.reload?.();
+    } catch (err) {
+      message.error(`批量操作失败：${(err as Error).message ?? '未知错误'}`);
+    } finally {
+      setTypeBulkLoading(false);
+    }
+  }
+
+  async function runBulkEntry(action: BulkAction) {
+    if (entrySelectedRowKeys.length === 0) {
+      message.warning('请先勾选要操作的字典项');
+      return;
+    }
+    setEntryBulkLoading(true);
+    try {
+      await batchDictDataApi({
+        action,
+        ids: entrySelectedRowKeys.map((k) => Number(k)),
+      });
+      message.success(
+        action === 'delete'
+          ? '批量删除成功'
+          : action === 'enable'
+            ? '批量启用成功'
+            : '批量禁用成功',
+      );
+      setEntrySelectedRowKeys([]);
+      entryActionRef.current?.reload?.();
+    } catch (err) {
+      message.error(`批量操作失败：${(err as Error).message ?? '未知错误'}`);
+    } finally {
+      setEntryBulkLoading(false);
+    }
   }
 
   /* ---------- 工具栏按钮 ---------- */
@@ -357,6 +471,129 @@ const DictPage = () => {
     </Button>,
   ];
 
+  /* ---------- 表格多选配置 + 批量操作工具栏 ---------- */
+  const typeRowSelection = {
+    selectedRowKeys: typeSelectedRowKeys,
+    onChange: (keys: React.Key[]) => setTypeSelectedRowKeys(keys),
+    preserveSelectedRowKeys: true,
+  };
+  const entryRowSelection = {
+    selectedRowKeys: entrySelectedRowKeys,
+    onChange: (keys: React.Key[]) => setEntrySelectedRowKeys(keys),
+    preserveSelectedRowKeys: true,
+  };
+
+  const renderTypeAlert = ({
+    selectedRowKeys,
+    onCleanSelected,
+  }: {
+    selectedRowKeys: React.Key[];
+    onCleanSelected: () => void;
+  }) => {
+    const count = selectedRowKeys.length;
+    return (
+      <Space size={8}>
+        <Typography.Text>
+          已选 <strong>{count}</strong> 条
+        </Typography.Text>
+        <Button
+          size="small"
+          loading={typeBulkLoading}
+          disabled={count === 0}
+          onClick={() => runBulkType('enable')}
+        >
+          批量启用
+        </Button>
+        <Button
+          size="small"
+          loading={typeBulkLoading}
+          disabled={count === 0}
+          onClick={() => runBulkType('disable')}
+        >
+          批量禁用
+        </Button>
+        <Popconfirm
+          title="确认删除选中的字典类型？"
+          description="若仍有字典项将无法删除。"
+          okText="删除"
+          okButtonProps={{ danger: true }}
+          cancelText="取消"
+          disabled={count === 0}
+          onConfirm={() => runBulkType('delete')}
+        >
+          <Button
+            size="small"
+            danger
+            ghost
+            icon={<DeleteOutlined />}
+            loading={typeBulkLoading}
+            disabled={count === 0}
+          >
+            批量删除
+          </Button>
+        </Popconfirm>
+        <Button size="small" type="text" onClick={onCleanSelected}>
+          取消选择
+        </Button>
+      </Space>
+    );
+  };
+
+  const renderEntryAlert = ({
+    selectedRowKeys,
+    onCleanSelected,
+  }: {
+    selectedRowKeys: React.Key[];
+    onCleanSelected: () => void;
+  }) => {
+    const count = selectedRowKeys.length;
+    return (
+      <Space size={8}>
+        <Typography.Text>
+          已选 <strong>{count}</strong> 条
+        </Typography.Text>
+        <Button
+          size="small"
+          loading={entryBulkLoading}
+          disabled={count === 0}
+          onClick={() => runBulkEntry('enable')}
+        >
+          批量启用
+        </Button>
+        <Button
+          size="small"
+          loading={entryBulkLoading}
+          disabled={count === 0}
+          onClick={() => runBulkEntry('disable')}
+        >
+          批量禁用
+        </Button>
+        <Popconfirm
+          title="确认删除选中的字典项？"
+          okText="删除"
+          okButtonProps={{ danger: true }}
+          cancelText="取消"
+          disabled={count === 0}
+          onConfirm={() => runBulkEntry('delete')}
+        >
+          <Button
+            size="small"
+            danger
+            ghost
+            icon={<DeleteOutlined />}
+            loading={entryBulkLoading}
+            disabled={count === 0}
+          >
+            批量删除
+          </Button>
+        </Popconfirm>
+        <Button size="small" type="text" onClick={onCleanSelected}>
+          取消选择
+        </Button>
+      </Space>
+    );
+  };
+
   return (
     <ContentContainer heightMode="auto" scrollable padding="16px">
       <Row gutter={16}>
@@ -370,7 +607,9 @@ const DictPage = () => {
             search={{ labelWidth: 'auto' }}
             request={fetchTypeRows}
             pagination={{
-              pageSize: 10,
+              // 用 defaultPageSize 代替 pageSize：ProTable 会把 pageSize 透传给 antd Table，
+              // 而 antd Table 在受控模式下会一直用这个值，导致改变分页大小后显示不更新。
+              defaultPageSize: 10,
               showSizeChanger: true,
               showTotal: (total) => `共 ${total} 条`,
             }}
@@ -384,7 +623,12 @@ const DictPage = () => {
               onClick: () => {
                 setSelectedTypeId(record.id);
                 setSelectedType(record);
-                entryActionRef.current?.reload?.();
+                // 选中左表行后，把右表搜索框的「类型编码」同步为该类型编码并刷新。
+                // ProTable 内部用 formSearch 缓存最近一次表单提交值，
+                // 仅 setFieldsValue 不会触发它更新；必须再调用 submit() 让
+                // ProTable 把新的表单值写入 formSearch 并重新发起请求。
+                entryFormRef.current?.setFieldsValue({ typeCode: record.code });
+                entryFormRef.current?.submit?.();
               },
               style: {
                 cursor: 'pointer',
@@ -394,8 +638,9 @@ const DictPage = () => {
                     : undefined,
               },
             })}
-            tableAlertRender={false}
-            rowSelection={false}
+            rowSelection={typeRowSelection}
+            tableAlertRender={renderTypeAlert}
+            tableAlertOptionRender={false}
           />
         </Col>
 
@@ -404,17 +649,18 @@ const DictPage = () => {
             headerTitle={
               selectedType
                 ? `字典数据：${selectedType.name}（${selectedType.code}）`
-                : '字典数据（请先选择左侧类型）'
+                : '字典数据'
             }
             cardBordered
             rowKey="id"
             actionRef={entryActionRef}
+            formRef={entryFormRef}
             columns={entryCols}
             search={{ labelWidth: 'auto' }}
-            params={{ typeId: selectedTypeId ?? undefined }}
             request={fetchEntryRows}
             pagination={{
-              pageSize: 20,
+              // 同左表：用 defaultPageSize 让 antd Table 用自身受控状态显示当前分页大小
+              defaultPageSize: 20,
               showSizeChanger: true,
               showTotal: (total) => `共 ${total} 条`,
             }}
@@ -425,8 +671,11 @@ const DictPage = () => {
             }}
             dateFormatter="string"
             locale={{
-              emptyText: selectedTypeId ? '暂无数据' : '请先在左侧选择字典类型',
+              emptyText: '暂无数据',
             }}
+            rowSelection={entryRowSelection}
+            tableAlertRender={renderEntryAlert}
+            tableAlertOptionRender={false}
           />
         </Col>
       </Row>

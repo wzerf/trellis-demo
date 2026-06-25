@@ -39,3 +39,14 @@ export function updateDictTypeApi({ id, ...patch }: UpdateDictTypeRequest) {
 export function deleteDictTypeApi(id: number) {
   return del<unknown>(`/system/dict-type/${id}`);
 }
+
+/** 批量操作字典类型 */
+export function batchDictTypeApi(body: {
+  action: 'enable' | 'disable' | 'delete';
+  ids: number[];
+}) {
+  return post<{ action: string; affected: number; ids: number[] }>(
+    '/system/dict-type/batch',
+    body,
+  );
+}

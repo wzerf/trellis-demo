@@ -34,3 +34,14 @@ export function updateDictDataApi({ id, ...patch }: UpdateDictDataRequest) {
 export function deleteDictDataApi(id: number) {
   return del<unknown>(`/system/dict-data/${id}`);
 }
+
+/** 批量操作字典项 */
+export function batchDictDataApi(body: {
+  action: 'enable' | 'disable' | 'delete';
+  ids: number[];
+}) {
+  return post<{ action: string; affected: number; ids: number[] }>(
+    '/system/dict-data/batch',
+    body,
+  );
+}
