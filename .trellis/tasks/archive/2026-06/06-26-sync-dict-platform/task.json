@@ -1,0 +1,31 @@
+{
+  "id": "sync-dict-platform",
+  "name": "sync-dict-platform",
+  "title": "同步字典平台标识",
+  "description": "",
+  "status": "completed",
+  "dev_type": null,
+  "scope": null,
+  "package": null,
+  "priority": "P2",
+  "creator": "w",
+  "assignee": "w",
+  "createdAt": "2026-06-26",
+  "completedAt": "2026-06-26",
+  "branch": null,
+  "base_branch": "master",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [
+    "06-26-dict-type-platform-schema",
+    "06-26-dict-type-platform-mock",
+    "06-26-dict-type-platform-vue-vben-admin",
+    "06-26-dict-type-platform-react-admin"
+  ],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {}
+}
