@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   // axios 1.x 默认把数组序列化为 ?code[]=foo&code[]=bar，h3 的 getQuery 会保留 [] 后缀
   // 兼容两种格式：?code=foo&code=bar 与 ?code[]=foo&code[]=bar
   const code = (query.code ?? query["code[]"]) as string | string[] | undefined;
-  const { page = 1, pageSize = 20, name, status } = query;
+  const { page = 1, pageSize = 20, name, status, platform } = query;
   const shared = getMockDictTypeList();
 
   let filtered: DictType[] = shared.filter((x) => x.deleted_at === 0);
@@ -29,6 +29,11 @@ export default defineEventHandler(async (event) => {
   }
   if (["0", "1"].includes(status as string)) {
     filtered = filtered.filter((x) => x.is_enabled === Number(status));
+  }
+  // platform 精确筛选；传入非空值时返回该平台 + 通用（platform=''）的并集
+  if (typeof platform === "string" && platform.length > 0) {
+    const p = platform;
+    filtered = filtered.filter((x) => x.platform === p || x.platform === "");
   }
   // 按 id 升序，便于观察
   filtered.sort((a, b) => a.id - b.id);

@@ -443,6 +443,11 @@ export const TIME_ZONE_OPTIONS: TimezoneOption[] = [
 export interface DictType {
   id: number;
   code: string;
+  /**
+   * 平台归属。`''` = 通用；`vue-admin` / `react-admin` 为前端管理端平台标识。
+   * 不同平台下可以有相同 code 的字典类型。
+   */
+  platform: string;
   name: string;
   remark: string;
   is_enabled: 0 | 1;
@@ -504,10 +509,13 @@ function isoNow(): string {
 
 /**
  * 惰性种子：首次 list 调用时填充。每个 typeId 显式固定，方便 dict-data 关联。
+ * 平台归属：`''` = 通用、`vue-admin` / `react-admin` 为各前端管理端。
+ * 同一 code 在不同 platform 下视为不同字典类型；故三份共享同一组 id 序列。
  */
 function buildDictTypeSeeds(): DictType[] {
   const now = "2025-01-01T00:00:00.000Z";
-  return [
+  const PLATFORMS = ["", "vue-admin", "react-admin"] as const;
+  const baseTypes: Array<Omit<DictType, "platform">> = [
     {
       id: 1,
       code: "sys_user_sex",
@@ -569,6 +577,13 @@ function buildDictTypeSeeds(): DictType[] {
       updated_by: 0,
     },
   ];
+  const seeds: DictType[] = [];
+  PLATFORMS.forEach((platform, idx) => {
+    baseTypes.forEach((t) => {
+      seeds.push({ ...t, id: t.id + idx * 100, platform });
+    });
+  });
+  return seeds;
 }
 
 function buildDictDataSeeds(): DictData[] {
@@ -595,26 +610,35 @@ function buildDictDataSeeds(): DictData[] {
     created_by: 0,
     updated_by: 0,
   });
-  return [
-    // sys_user_sex (type_id=1)
-    seed(101, 1, "0", "男", 0, 1),
-    seed(102, 1, "1", "女", 1),
-    seed(103, 1, "2", "未知", 2),
-    // sys_yes_no (type_id=2)
-    seed(201, 2, "Y", "是", 0, 1),
-    seed(202, 2, "N", "否", 1),
-    // sys_menu_type (type_id=3)
-    seed(301, 3, "DIR", "目录", 0),
-    seed(302, 3, "MENU", "菜单", 1),
-    seed(303, 3, "BUTTON", "按钮", 2),
-    // sys_notice_type (type_id=4)
-    seed(401, 4, "1", "通知", 0),
-    seed(402, 4, "2", "公告", 1),
-    seed(403, 4, "3", "提醒", 2),
-    // sys_common_status (type_id=5)
-    seed(501, 5, "0", "正常", 0, 1),
-    seed(502, 5, "1", "停用", 1),
-  ];
+  // 字典类型按平台三份，type_id 偏移：通用=1..5、vue-admin=101..105、react-admin=201..205
+  const GENERAL_OFFSET = 0;
+  const VUE_OFFSET = 100;
+  const REACT_OFFSET = 200;
+  const offsets = [GENERAL_OFFSET, VUE_OFFSET, REACT_OFFSET];
+  const entries: DictData[] = [];
+  offsets.forEach((offset) => {
+    const baseId = 1000 + offset;
+    const baseTypeId = 1 + offset;
+    // sys_user_sex
+    entries.push(seed(baseId + 1, baseTypeId, "0", "男", 0, 1));
+    entries.push(seed(baseId + 2, baseTypeId, "1", "女", 1));
+    entries.push(seed(baseId + 3, baseTypeId, "2", "未知", 2));
+    // sys_yes_no
+    entries.push(seed(baseId + 11, baseTypeId + 1, "Y", "是", 0, 1));
+    entries.push(seed(baseId + 12, baseTypeId + 1, "N", "否", 1));
+    // sys_menu_type
+    entries.push(seed(baseId + 21, baseTypeId + 2, "DIR", "目录", 0));
+    entries.push(seed(baseId + 22, baseTypeId + 2, "MENU", "菜单", 1));
+    entries.push(seed(baseId + 23, baseTypeId + 2, "BUTTON", "按钮", 2));
+    // sys_notice_type
+    entries.push(seed(baseId + 31, baseTypeId + 3, "1", "通知", 0));
+    entries.push(seed(baseId + 32, baseTypeId + 3, "2", "公告", 1));
+    entries.push(seed(baseId + 33, baseTypeId + 3, "3", "提醒", 2));
+    // sys_common_status
+    entries.push(seed(baseId + 41, baseTypeId + 4, "0", "正常", 0, 1));
+    entries.push(seed(baseId + 42, baseTypeId + 4, "1", "停用", 1));
+  });
+  return entries;
 }
 
 /**
