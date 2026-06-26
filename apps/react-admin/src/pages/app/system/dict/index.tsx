@@ -30,6 +30,7 @@ import type { DictData, DictType } from '@/api/rest/types';
 import ContentContainer from '@/layouts/components/PageContainer/ContentContainer';
 import DictTypeDrawer from './modules/dict-type-drawer';
 import DictDataDrawer from './modules/dict-data-drawer';
+import { DEFAULT_PLATFORM, PLATFORM_OPTIONS } from './modules/shared';
 
 type BulkAction = 'enable' | 'disable' | 'delete';
 
@@ -65,6 +66,20 @@ const typeColumns: ProColumns<DictType>[] = [
       placeholder: '请选择类型编码',
     },
     request: fetchDictTypeCodeEnum,
+  },
+  {
+    title: '平台标识',
+    dataIndex: 'platform',
+    width: 130,
+    valueType: 'select',
+    fieldProps: {
+      showSearch: true,
+      allowClear: true,
+      placeholder: '请选择平台',
+      options: PLATFORM_OPTIONS,
+    },
+    initialValue: DEFAULT_PLATFORM,
+    render: (_, r) => r.platform || <span style={{ color: '#999' }}>通用</span>,
   },
   { title: '类型名称', dataIndex: 'name', width: 140, ellipsis: true },
   {
@@ -121,6 +136,21 @@ const dataColumns: ProColumns<DictData>[] = [
       placeholder: '请选择类型编码',
     },
     request: fetchDictTypeCodeEnum,
+  },
+  {
+    title: '平台标识',
+    dataIndex: 'platform',
+    width: 130,
+    valueType: 'select',
+    hideInTable: true,
+    fieldProps: {
+      showSearch: true,
+      allowClear: true,
+      placeholder: '请选择平台',
+      options: PLATFORM_OPTIONS,
+    },
+    initialValue: DEFAULT_PLATFORM,
+    request: async () => PLATFORM_OPTIONS,
   },
   { title: '字典值', dataIndex: 'value', width: 120 },
   { title: '字典标签', dataIndex: 'label', width: 140, ellipsis: true, search: false },
@@ -333,6 +363,7 @@ const DictPage = () => {
       code?: string | string[];
       name?: string;
       is_enabled?: number | '';
+      platform?: string;
     },
   ) {
     const {
@@ -341,6 +372,7 @@ const DictPage = () => {
       code,
       name,
       is_enabled,
+      platform,
     } = params;
     const res = await listDictTypeApi({
       page: current,
@@ -348,6 +380,7 @@ const DictPage = () => {
       code: code || undefined,
       name: name || undefined,
       status: statusOrUndefined(is_enabled),
+      platform: platform || undefined,
     });
     return { data: res.items, total: res.total, success: true };
   }
@@ -359,6 +392,7 @@ const DictPage = () => {
       typeCode?: string;
       value?: string;
       is_enabled?: number | '';
+      platform?: string;
     },
   ) {
     const {
@@ -367,6 +401,7 @@ const DictPage = () => {
       typeCode,
       value,
       is_enabled,
+      platform,
     } = params;
     const res = await listDictDataApi({
       page: current,
@@ -374,6 +409,7 @@ const DictPage = () => {
       typeCode: typeCode || undefined,
       value: value || undefined,
       status: statusOrUndefined(is_enabled),
+      platform: platform || undefined,
     });
     return { data: res.items, total: res.total, success: true };
   }
