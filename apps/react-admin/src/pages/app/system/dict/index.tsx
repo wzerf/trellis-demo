@@ -13,7 +13,6 @@ import type { FormInstance } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   ProTable,
-  TableDropdown,
 } from '@ant-design/pro-components';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import {
@@ -221,6 +220,31 @@ const DictPage = () => {
     __: unknown,
     action?: ActionType,
   ) {
+    const onDelete = () => {
+      Modal.confirm({
+        title: '确认删除该字典类型？',
+        okText: '删除',
+        cancelText: '取消',
+        okButtonProps: { danger: true },
+        onOk: async () => {
+          try {
+            await deleteDictTypeApi(record.id);
+            message.success('删除成功');
+            action?.reload?.();
+            if (selectedTypeId === record.id) {
+              setSelectedTypeId(null);
+              setSelectedType(null);
+              // 清除右表搜索框的「类型编码」，避免引用已删除类型；
+              // 同点击左侧行：必须 submit() 让 ProTable 把新表单值写入 formSearch。
+              entryFormRef.current?.setFieldsValue({ typeCode: undefined });
+              entryFormRef.current?.submit?.();
+            }
+          } catch (err) {
+            message.error(`删除失败：${(err as Error).message ?? '未知错误'}`);
+          }
+        },
+      });
+    };
     return [
       <a
         key="edit"
@@ -232,37 +256,16 @@ const DictPage = () => {
       >
         编辑
       </a>,
-      <TableDropdown
-        key="more"
-        onSelect={(key) => {
-          if (key === 'delete') {
-            Modal.confirm({
-              title: '确认删除该字典类型？',
-              okText: '删除',
-              cancelText: '取消',
-              okButtonProps: { danger: true },
-              onOk: async () => {
-                try {
-                  await deleteDictTypeApi(record.id);
-                  message.success('删除成功');
-                  action?.reload?.();
-                  if (selectedTypeId === record.id) {
-                    setSelectedTypeId(null);
-                    setSelectedType(null);
-                    // 清除右表搜索框的「类型编码」，避免引用已删除类型；
-                    // 同点击左侧行：必须 submit() 让 ProTable 把新表单值写入 formSearch。
-                    entryFormRef.current?.setFieldsValue({ typeCode: undefined });
-                    entryFormRef.current?.submit?.();
-                  }
-                } catch (err) {
-                  message.error(`删除失败：${(err as Error).message ?? '未知错误'}`);
-                }
-              },
-            });
-          }
+      <a
+        key="delete"
+        style={{ color: '#ff4d4f' }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete();
         }}
-        menus={[{ key: 'delete', name: '删除' }]}
-      />,
+      >
+        删除
+      </a>,
     ];
   }
 
@@ -273,39 +276,44 @@ const DictPage = () => {
     __: unknown,
     action?: ActionType,
   ) {
+    const onDelete = () => {
+      Modal.confirm({
+        title: '确认删除该字典项？',
+        okText: '删除',
+        cancelText: '取消',
+        okButtonProps: { danger: true },
+        onOk: async () => {
+          try {
+            await deleteDictDataApi(record.id);
+            message.success('删除成功');
+            action?.reload?.();
+          } catch (err) {
+            message.error(`删除失败：${(err as Error).message ?? '未知错误'}`);
+          }
+        },
+      });
+    };
     return [
       <a
         key="edit"
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           setEditingEntry(record);
           setEntryDrawerOpen(true);
         }}
       >
         编辑
       </a>,
-      <TableDropdown
-        key="more"
-        onSelect={(key) => {
-          if (key === 'delete') {
-            Modal.confirm({
-              title: '确认删除该字典项？',
-              okText: '删除',
-              cancelText: '取消',
-              okButtonProps: { danger: true },
-              onOk: async () => {
-                try {
-                  await deleteDictDataApi(record.id);
-                  message.success('删除成功');
-                  action?.reload?.();
-                } catch (err) {
-                  message.error(`删除失败：${(err as Error).message ?? '未知错误'}`);
-                }
-              },
-            });
-          }
+      <a
+        key="delete"
+        style={{ color: '#ff4d4f' }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete();
         }}
-        menus={[{ key: 'delete', name: '删除' }]}
-      />,
+      >
+        删除
+      </a>,
     ];
   }
 
