@@ -4,6 +4,7 @@ import i18next from 'i18next';
 import { loginApi, getUserInfoApi, refreshTokenApi, logoutApi } from '@/api/rest/auth';
 import { startRefreshTimer, stopRefreshTimer } from '@/hooks/useTokenRefresh';
 import type { UserInfo, LoginRequest } from '@/api/rest/types';
+import { queryClient } from '@/core/query-client';
 
 const STORAGE_KEY = 'auth-storage';
 const REMEMBER_KEY = 'auth-remember';
@@ -200,6 +201,9 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
         // 登出 API 失败不影响本地清理
       });
     } finally {
+      // 清除 queryClient 缓存，防止登出期间被缓存污染的查询结果
+      // （如 getMe 因 401 返回 null 被 fetchQuery 缓存）导致重新登录时命中脏数据
+      queryClient.clear();
       clearPersisted();
       if (typeof window !== 'undefined') {
         window.localStorage.removeItem('user-storage');
@@ -237,6 +241,8 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
 
   forceLogout: () => {
     stopRefreshTimer();
+    // 清除 queryClient 缓存，防止缓存污染导致重新登录失败
+    queryClient.clear();
     clearPersisted();
     if (typeof window !== 'undefined') {
       window.localStorage.removeItem('user-storage');

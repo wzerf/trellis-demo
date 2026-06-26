@@ -20,8 +20,7 @@ pre-commit:
     # react-admin 不在根 workspace,需单独跑 ESLint。
     # 只对暂存的 ts/tsx 触发,避免 commit 时扫整个项目。
     lint:react-admin:
-      glob: "apps/react-admin/**/*.{ts,tsx}"
-      run: pnpm -C apps/react-admin exec eslint {staged_files}
+      run: pnpm -C apps/react-admin exec eslint
     # react-admin 的 tsc(只在有 react-admin 暂存改动时触发)。
     typecheck:react-admin:
       glob: "apps/react-admin/**/*.{ts,tsx}"
