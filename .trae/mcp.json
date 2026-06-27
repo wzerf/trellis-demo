@@ -8,10 +8,6 @@
         "--mcp"
       ]
     },
-    "sketch": {
-      "type": "http",
-      "url": "http://localhost:31126/mcp"
-    },
     "playwright": {
       "command": "npx",
       "args": [

@@ -6,11 +6,6 @@
       "command": ["codegraph", "serve", "--mcp"],
       "enabled": true,
     },
-    "sketch": {
-      "type": "remote",
-      "url": "http://localhost:31126/mcp",
-      "enabled": true,
-    },
     "playwright": {
       "type": "local",
       "command": ["npx", "@playwright/mcp@latest"],
