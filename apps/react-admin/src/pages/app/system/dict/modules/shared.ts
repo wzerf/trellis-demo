@@ -31,4 +31,16 @@ export const PLATFORM_OPTIONS: { value: string; label: string }[] = (() => {
   return list;
 })();
 
+/**
+ * 字典项 platform 字段的搜索下拉候选（搜索场景不限制「自己」，展示全部 3 项）。
+ * 与 PLATFORM_OPTIONS（表单 Select）区分：搜索需要看全 platform；表单只允许维护自己。
+ * label 硬编码：columns 在 module-level 定义，无法直接用 useTranslation；如需 i18n
+ * 可改为 component-level columns 并使用 t()。
+ */
+export const SEARCH_PLATFORM_OPTIONS: { value: string; label: string }[] = [
+  { value: 'general', label: '通用' },
+  { value: 'react-admin', label: 'React Admin' },
+  { value: 'vue-admin', label: 'Vue Admin' },
+];
+
 export type { DictType, DictData };

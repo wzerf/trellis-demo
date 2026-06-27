@@ -28,6 +28,7 @@ import type { DictData, DictType } from '@/api/rest/types';
 import ContentContainer from '@/layouts/components/PageContainer/ContentContainer';
 import DictTypeDrawer from './modules/dict-type-drawer';
 import DictDataDrawer from './modules/dict-data-drawer';
+import { SEARCH_PLATFORM_OPTIONS, getCurrentPlatform } from './modules/shared';
 
 type BulkAction = 'enable' | 'disable' | 'delete';
 
@@ -121,9 +122,43 @@ const dataColumns: ProColumns<DictData>[] = [
     title: '归属平台',
     dataIndex: 'platform',
     width: 110,
-    search: false,
+    // 搜索筛选：3 项候选（含对方平台）。列渲染与表单 Select 不冲突。
+    valueType: 'select',
+    fieldProps: {
+      allowClear: true,
+      placeholder: '请选择归属平台',
+    },
+    valueEnum: SEARCH_PLATFORM_OPTIONS.reduce<Record<string, { text: string }>>(
+      (acc, { value, label }) => {
+        acc[value] = { text: label };
+        return acc;
+      },
+      {},
+    ),
     render: (_, r) =>
       r.platform ? <Tag>{r.platform}</Tag> : <span style={{ color: '#999' }}>-</span>,
+  },
+  // 「包含通用」搜索项：选 general 时整项视觉消失（renderFormItem 返回 null）。
+  // 后端在 platform=general 时忽略该参数，行为一致。
+  {
+    title: '包含通用',
+    dataIndex: 'includeGeneral',
+    valueType: 'checkbox',
+    hideInTable: true,
+    initialValue: false,
+    dependencies: ['platform'],
+    formItemProps: {
+      tooltip:
+        '把通用（general）字典项并入结果。platform=通用 时该选项无效。',
+    },
+    renderFormItem: (_schema, _config, form) => {
+      // 首次渲染 form 可能为空，返回 undefined 让 ProField 使用默认渲染；
+      // 之后 platform 变化时 dependencies 触发 re-render，form 已就绪可读取。
+      if (!form) return undefined;
+      const platform = form.getFieldValue('platform');
+      if (platform === 'general') return null;
+      return undefined;
+    },
   },
   { title: '排序', dataIndex: 'sort', width: 80, search: false },
   {
@@ -361,6 +396,8 @@ const DictPage = () => {
       pageSize?: number;
       value?: string;
       is_enabled?: number | '';
+      platform?: string;
+      includeGeneral?: boolean;
     },
   ) {
     const {
@@ -368,14 +405,20 @@ const DictPage = () => {
       pageSize = 20,
       value,
       is_enabled,
+      platform,
+      includeGeneral,
     } = params;
     // typeCode 不在搜索表单里，由 entryTypeCodeRef 提供（点击行 / 关闭按钮 / 删除后清空）。
+    // platform：表单未选时落到 getCurrentPlatform()（=VITE_APP_PLATFORM）。
+    // includeGeneral：复选框布尔值；后端 platform=general 时忽略。
     const res = await listDictDataApi({
       page: current,
       pageSize,
       typeCode: entryTypeCodeRef.current,
       value: value || undefined,
       status: statusOrUndefined(is_enabled),
+      platform: platform || getCurrentPlatform(),
+      includeGeneral: includeGeneral === true,
     });
     return { data: res.items, total: res.total, success: true };
   }

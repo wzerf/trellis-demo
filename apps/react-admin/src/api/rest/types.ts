@@ -157,6 +157,8 @@ export interface DictDataQuery {
   status?: 0 | 1;
   /** 归属平台过滤（精确匹配；缺省由 hooks 层注入 VITE_APP_PLATFORM） */
   platform?: string;
+  /** 是否把通用（general）并入过滤结果（仅当 platform !== 'general' 时生效） */
+  includeGeneral?: boolean;
 }
 
 export interface CreateDictTypeRequest {
