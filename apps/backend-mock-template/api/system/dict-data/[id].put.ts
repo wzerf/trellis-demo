@@ -1,8 +1,21 @@
 import { defineEventHandler, getRouterParam, readBody, setResponseStatus } from "h3";
-import { ensureDictSeeds, getMockDictDataList, isoNow } from "~/utils/mock-data";
+import {
+  ensureDictSeeds,
+  getMockDictDataList,
+  isAllowedDictDataPlatform,
+  isoNow,
+} from "~/utils/mock-data";
 import { useResponseError, useResponseSuccess } from "~/utils/response";
 
-const ALLOWED_KEYS = ["value", "label", "sort", "is_default", "is_enabled", "remark"] as const;
+const ALLOWED_KEYS = [
+  "value",
+  "label",
+  "sort",
+  "is_default",
+  "platform",
+  "is_enabled",
+  "remark",
+] as const;
 
 export default defineEventHandler(async (event) => {
   ensureDictSeeds();
@@ -83,6 +96,15 @@ export default defineEventHandler(async (event) => {
   }
   if ("is_default" in patch) {
     patch.is_default = patch.is_default ? 1 : 0;
+  }
+  if ("platform" in patch) {
+    if (!isAllowedDictDataPlatform(patch.platform)) {
+      setResponseStatus(event, 400);
+      return useResponseError(
+        "BadRequest",
+        "platform must be one of general|react-admin|vue-admin",
+      );
+    }
   }
   if ("is_enabled" in patch) {
     const v = Number(patch.is_enabled);

@@ -125,6 +125,8 @@ export interface DictData {
   label: string;
   sort: number;
   is_default: 0 | 1;
+  /** 归属平台：general / react-admin / vue-admin；与 schema v8 对齐 */
+  platform: string;
   is_enabled: 0 | 1;
   deleted_at: number;
   remark: string;
@@ -153,6 +155,8 @@ export interface DictDataQuery {
   label?: string;
   value?: string;
   status?: 0 | 1;
+  /** 归属平台过滤（精确匹配；缺省由 hooks 层注入 VITE_APP_PLATFORM） */
+  platform?: string;
 }
 
 export interface CreateDictTypeRequest {
@@ -176,6 +180,8 @@ export interface CreateDictDataRequest {
   label: string;
   sort?: number;
   isDefault?: boolean;
+  /** 归属平台；缺省 mock 层回退到 'general' */
+  platform?: string;
   is_enabled?: 0 | 1;
   remark?: string;
 }
@@ -186,6 +192,7 @@ export interface UpdateDictDataRequest {
   label?: string;
   sort?: number;
   is_default?: 0 | 1;
+  platform?: string;
   is_enabled?: 0 | 1;
   remark?: string;
 }

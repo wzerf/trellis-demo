@@ -7,4 +7,28 @@ export const STATUS_OPTIONS = [
 
 export const CODE_PATTERN = /^[a-z][a-z0-9_]{0,63}$/;
 
+/**
+ * 当前前端平台标识（VITE_APP_PLATFORM）。
+ * 缺省 'general'，与 schema v8 DEFAULT 对齐。
+ */
+export function getCurrentPlatform(): string {
+  return (import.meta.env.VITE_APP_PLATFORM as string | undefined) || 'general';
+}
+
+/**
+ * 字典项 platform 字段的候选下拉选项。
+ * 当前前端只应选择「自己」+「通用」两类；其它平台的项不允许本前端维护。
+ * 选项 label 留空 → 由 antd Select 渲染 value 即可；调用方可自定义渲染。
+ */
+export const PLATFORM_OPTIONS: { value: string; label: string }[] = (() => {
+  const current = getCurrentPlatform();
+  const list: { value: string; label: string }[] = [
+    { value: 'general', label: '通用' },
+  ];
+  if (current !== 'general') {
+    list.push({ value: current, label: current });
+  }
+  return list;
+})();
+
 export type { DictType, DictData };

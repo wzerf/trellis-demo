@@ -460,6 +460,11 @@ export interface DictData {
   label: string;
   sort: number;
   is_default: 0 | 1;
+  /**
+   * 归属平台：general = 跨前端通用；react-admin / vue-admin 表示只对对应前端可见。
+   * 写入 / 修改时由 mock 校验，非法值 400。
+   */
+  platform: string;
   is_enabled: 0 | 1;
   deleted_at: number;
   remark: string;
@@ -471,6 +476,24 @@ export interface DictData {
    * 关联的字典类型编码，仅在 list 接口里 join 后返回；其他接口不返回该字段。
    */
   typeCode?: string;
+}
+
+/**
+ * 字典项允许的 platform 取值（与 schema v8 注释 + 前端 VITE_APP_PLATFORM 对齐）。
+ * 写入/修改时校验，非法值 400。
+ */
+export const ALLOWED_DICT_DATA_PLATFORMS = [
+  "general",
+  "react-admin",
+  "vue-admin",
+] as const;
+export type DictDataPlatform = (typeof ALLOWED_DICT_DATA_PLATFORMS)[number];
+
+export function isAllowedDictDataPlatform(v: unknown): v is DictDataPlatform {
+  return (
+    typeof v === "string" &&
+    (ALLOWED_DICT_DATA_PLATFORMS as readonly string[]).includes(v)
+  );
 }
 
 /**
@@ -581,6 +604,7 @@ function buildDictDataSeeds(): DictData[] {
     label: string,
     sort: number,
     is_default: 0 | 1 = 0,
+    platform: DictData["platform"] = "general",
   ): DictData => ({
     id,
     type_id,
@@ -588,6 +612,7 @@ function buildDictDataSeeds(): DictData[] {
     label,
     sort,
     is_default,
+    platform,
     is_enabled: 1,
     deleted_at: 0,
     remark: "",

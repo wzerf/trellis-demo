@@ -117,6 +117,14 @@ const dataColumns: ProColumns<DictData>[] = [
   },
   { title: '字典值', dataIndex: 'value', width: 120 },
   { title: '字典标签', dataIndex: 'label', width: 140, ellipsis: true, search: false },
+  {
+    title: '归属平台',
+    dataIndex: 'platform',
+    width: 110,
+    search: false,
+    render: (_, r) =>
+      r.platform ? <Tag>{r.platform}</Tag> : <span style={{ color: '#999' }}>-</span>,
+  },
   { title: '排序', dataIndex: 'sort', width: 80, search: false },
   {
     title: '默认',

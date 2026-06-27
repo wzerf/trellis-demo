@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   const rawQuery = getQuery(event);
   // 兼容 ?typeCode=foo&typeCode=bar 与 ?typeCode[]=foo&typeCode[]=bar
   const typeCode = (rawQuery.typeCode ?? rawQuery["typeCode[]"]) as string | string[] | undefined;
-  const { page = 1, pageSize = 20, typeId, label, value, status } = rawQuery;
+  const { page = 1, pageSize = 20, typeId, label, value, status, platform } = rawQuery;
   let filtered: DictData[] = getMockDictDataList().filter((x) => x.deleted_at === 0);
 
   if (typeId !== undefined && typeId !== "") {
@@ -54,6 +54,11 @@ export default defineEventHandler(async (event) => {
   }
   if (["0", "1"].includes(status as string)) {
     filtered = filtered.filter((x) => x.is_enabled === Number(status));
+  }
+  // platform 过滤：精确匹配；不带参数时返回全部（向后兼容旧调用）
+  if (platform !== undefined && platform !== "") {
+    const p = String(platform);
+    filtered = filtered.filter((x) => x.platform === p);
   }
   filtered.sort((a, b) => a.sort - b.sort || a.id - b.id);
 

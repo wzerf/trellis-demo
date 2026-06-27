@@ -47,6 +47,11 @@
 --                (由 os_name/version + browser_name/version + location 替代)
 --        - 放宽: user_agent VARCHAR(512)→TEXT
 --   5. api_log_archive / login_log_archive: 同步与热表同结构
+-- v8 (仅 dict_data):
+--   1. dict_data: 重新加 platform VARCHAR(32) NOT NULL DEFAULT 'general'(字典项归属平台;
+--        与前端的 VITE_APP_PLATFORM 配合做"前端只看自己+通用"过滤;enum={general,react-admin,vue-admin})
+--   2. dict_data: 加 idx_dict_data_platform 索引
+--   注: dict_type 保持 v7(无 platform);v6→v7→v8 形成"加 → 删 → 加"的明确取舍记录
 -- ============================================================
 
 SET NAMES utf8mb4;
@@ -305,6 +310,7 @@ CREATE TABLE i18n_translation (
 -- Section 10: 字典数据 — dict_data (FK → dict_type)
 -- v2: 加 remark;UNIQUE 软删感知
 -- v7: 跟随 dict_type 移除 platform 注释
+-- v8: 重新加 platform(字典项归属平台;general = 跨平台通用)
 -- ============================================================
 CREATE TABLE dict_data (
     id              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -313,6 +319,7 @@ CREATE TABLE dict_data (
     label           VARCHAR(128)    NOT NULL  COMMENT '字典标签(展示用)',
     sort            INT             NOT NULL DEFAULT 0  COMMENT '同类型内排序',
     is_default      TINYINT(1)      NOT NULL DEFAULT 0  COMMENT '是否该类型的默认值',
+    platform        VARCHAR(32)     NOT NULL DEFAULT 'general'  COMMENT '归属平台(general=通用 / react-admin / vue-admin)',
     is_enabled      TINYINT(1)      NOT NULL DEFAULT 1,
     deleted_at      BIGINT UNSIGNED NOT NULL DEFAULT 0  COMMENT '软删时间戳(毫秒);0=未删;非0=删除时刻',
     remark          VARCHAR(512)    NOT NULL DEFAULT '',
@@ -323,6 +330,7 @@ CREATE TABLE dict_data (
     PRIMARY KEY (id),
     UNIQUE KEY uniq_dict_data_type_value (type_id, value, deleted_at),
     INDEX idx_dict_data_type_sort (type_id, sort),
+    INDEX idx_dict_data_platform (platform),
     INDEX idx_dict_data_is_enabled (is_enabled),
     INDEX idx_dict_data_deleted_at (deleted_at),
     CONSTRAINT fk_dict_data_type_id FOREIGN KEY (type_id) REFERENCES dict_type (id)

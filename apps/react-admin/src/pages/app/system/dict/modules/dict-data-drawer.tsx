@@ -19,6 +19,7 @@ import type {
   CreateDictDataRequest,
   DictData,
 } from '@/api/rest/types';
+import { getCurrentPlatform, PLATFORM_OPTIONS } from './shared';
 
 interface Props {
   open: boolean;
@@ -37,6 +38,7 @@ interface FormValues {
   label: string;
   sort?: number;
   isDefault?: boolean;
+  platform?: string;
   is_enabled?: boolean;
   remark?: string;
 }
@@ -89,7 +91,7 @@ const DictDataDrawer = ({
 
   // 根据当前模式（编辑/新建）构造 form values。
   // - 编辑：用 row 各字段回显，注意 is_default/is_enabled 是 0/1，转成 boolean 给 Switch
-  // - 新建：用 defaultTypeId 回显所属类型，其他字段给个合理的初始值
+  // - 新建：用 defaultTypeId 回显所属类型，platform 默认当前前端平台，其他字段给个合理的初始值
   const buildFormValues = (
     source: DictData | null,
     initialTypeId?: number,
@@ -101,6 +103,7 @@ const DictDataDrawer = ({
         label: source.label,
         sort: source.sort,
         isDefault: source.is_default === 1,
+        platform: source.platform,
         is_enabled: source.is_enabled === 1,
         remark: source.remark,
       };
@@ -111,6 +114,7 @@ const DictDataDrawer = ({
       label: '',
       sort: 0,
       isDefault: false,
+      platform: getCurrentPlatform(),
       is_enabled: true,
       remark: '',
     };
@@ -139,6 +143,7 @@ const DictDataDrawer = ({
         label: values.label,
         sort: values.sort ?? 0,
         is_default: values.isDefault ? 1 : 0,
+        platform: values.platform ?? getCurrentPlatform(),
         is_enabled: values.is_enabled ? 1 : 0,
         remark: values.remark ?? '',
       });
@@ -149,6 +154,7 @@ const DictDataDrawer = ({
         label: values.label,
         sort: values.sort ?? 0,
         isDefault: !!values.isDefault,
+        platform: values.platform ?? getCurrentPlatform(),
         is_enabled: values.is_enabled ? 1 : 0,
         remark: values.remark ?? '',
       };
@@ -201,8 +207,20 @@ const DictDataDrawer = ({
         >
           <Input placeholder="例如 是 / 否 / 启用" />
         </Form.Item>
-        <Form.Item label="排序" name="sort" rules={[{ type: 'number', message: '排序必须为数字' }]}>
+        <Form.Item
+          label="排序"
+          name="sort"
+          rules={[{ type: 'number', message: '排序必须为数字' }]}
+        >
           <InputNumber style={{ width: '100%' }} placeholder="升序排序，0 排在前" />
+        </Form.Item>
+        <Form.Item label="归属平台" name="platform">
+          <Select
+            options={PLATFORM_OPTIONS}
+            placeholder="请选择归属平台"
+            showSearch
+            optionFilterProp="label"
+          />
         </Form.Item>
         <Form.Item
           label="是否默认"

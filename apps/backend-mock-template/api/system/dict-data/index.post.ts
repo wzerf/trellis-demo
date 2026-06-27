@@ -3,6 +3,7 @@ import {
   ensureDictSeeds,
   getMockDictDataList,
   getMockDictTypeList,
+  isAllowedDictDataPlatform,
   isoNow,
   nextDictId,
   type DictData,
@@ -18,6 +19,7 @@ export default defineEventHandler(async (event) => {
     label?: string;
     sort?: number;
     isDefault?: boolean;
+    platform?: string;
     is_enabled?: 0 | 1;
     remark?: string;
   };
@@ -52,6 +54,20 @@ export default defineEventHandler(async (event) => {
     return useResponseError("BadRequest", "label must be ≤ 128 chars");
   }
 
+  // platform 校验：未传则默认 general；传了则必须在枚举内
+  const platform: DictData["platform"] = isAllowedDictDataPlatform(body?.platform)
+    ? body.platform
+    : body?.platform === undefined
+      ? "general"
+      : null;
+  if (platform === null) {
+    setResponseStatus(event, 400);
+    return useResponseError(
+      "BadRequest",
+      `platform must be one of general|react-admin|vue-admin`,
+    );
+  }
+
   const list = getMockDictDataList();
   const conflict = list.find(
     (x) => x.deleted_at === 0 && x.type_id === typeId && x.value === value,
@@ -69,6 +85,7 @@ export default defineEventHandler(async (event) => {
     label,
     sort: Number(body?.sort ?? 0),
     is_default: (body?.isDefault ? 1 : 0) as 0 | 1,
+    platform,
     is_enabled: (body?.is_enabled ?? 1) as 0 | 1,
     deleted_at: 0,
     remark: body?.remark ?? "",
