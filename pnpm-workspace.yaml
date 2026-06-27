@@ -18,7 +18,7 @@ catalog:
   lefthook: 2.1.9
   typescript: ^5
   vite: npm:@voidzero-dev/vite-plus-core@latest
-  vitest: npm:@voidzero-dev/vite-plus-test@latest
+  vitest: 4.1.9
   vite-plus: latest
   "@types/jsonwebtoken": latest
   h3: latest
