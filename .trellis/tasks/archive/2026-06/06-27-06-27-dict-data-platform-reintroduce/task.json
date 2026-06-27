@@ -1,0 +1,31 @@
+{
+  "id": "06-27-dict-data-platform-reintroduce",
+  "name": "06-27-dict-data-platform-reintroduce",
+  "title": "dict_data 重新加回 platform 字段（跨 4 层 + .env 标识）",
+  "description": "",
+  "status": "completed",
+  "dev_type": null,
+  "scope": null,
+  "package": null,
+  "priority": "P2",
+  "creator": "w",
+  "assignee": "w",
+  "createdAt": "2026-06-27",
+  "completedAt": "2026-06-27",
+  "branch": null,
+  "base_branch": "master",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [
+    "06-27-06-27-dict-data-platform-schema",
+    "06-27-06-27-dict-data-platform-mock",
+    "06-27-06-27-dict-data-platform-react-admin",
+    "06-27-06-27-dict-data-platform-vue-vben-admin"
+  ],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {}
+}
