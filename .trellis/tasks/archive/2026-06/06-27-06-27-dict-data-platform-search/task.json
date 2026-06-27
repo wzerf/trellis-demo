@@ -1,0 +1,30 @@
+{
+  "id": "06-27-dict-data-platform-search",
+  "name": "06-27-dict-data-platform-search",
+  "title": "字典管理 platform 搜索筛选 + 右表初始加载",
+  "description": "字典管理：右表搜索栏加 platform 下拉筛选（选项=通用+自己）；右表 ajax 不再依赖左表点击，初始即加载；新增默认 platform=环境变量，编辑允许三选一。覆盖 react-admin 与 vue-vben-admin web-naive。",
+  "status": "completed",
+  "dev_type": null,
+  "scope": null,
+  "package": null,
+  "priority": "P2",
+  "creator": "w",
+  "assignee": "w",
+  "createdAt": "2026-06-27",
+  "completedAt": "2026-06-27",
+  "branch": null,
+  "base_branch": "master",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [
+    "06-27-06-27-dict-data-platform-search-react",
+    "06-27-06-27-dict-data-platform-search-vben",
+    "06-27-06-27-dict-data-platform-search-mock"
+  ],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {}
+}

@@ -39,3 +39,4 @@ node_modules/
 .understand-anything/.trash-*/
 .understand-anything/tmp/
 __pycache__
+.output

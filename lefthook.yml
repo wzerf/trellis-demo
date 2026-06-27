@@ -41,19 +41,16 @@ post-checkout:
   commands:
     index:codegraph:
       run: codegraph sync
-      skip_output: true
 
 post-merge:
   parallel: true
   commands:
     index:codegraph:
       run: codegraph sync
-      skip_output: true
     # lockfile 变更时同步依赖;frozen=false 允许更新 catalog 间接依赖。
     deps:install:
       glob: "pnpm-lock.yaml"
       run: pnpm install --frozen-lockfile=false
-      skip_output: true
 
 pre-push:
   # 全工作区 fmt + lint + type-check,兜底 --no-verify 或未暂存改动。
