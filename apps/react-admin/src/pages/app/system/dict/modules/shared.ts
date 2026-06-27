@@ -14,6 +14,13 @@ export const PLATFORM_OPTIONS: { value: string; label: string }[] = [
   { value: 'react-admin', label: 'react-admin' },
 ];
 
+/**
+ * 搜索下拉用：不含「通用」选项。
+ * 编辑表单仍然使用 PLATFORM_OPTIONS（创建/编辑通用类型仍需此选项）。
+ */
+export const PLATFORM_SEARCH_OPTIONS: { value: string; label: string }[] =
+  PLATFORM_OPTIONS.filter((o) => o.value !== '');
+
 /** 当前应用默认平台，用于列表默认筛选；从 Vite 环境变量读取。 */
 export const DEFAULT_PLATFORM: string =
   (import.meta.env.VITE_APP_PLATFORM as string | undefined) ?? '';

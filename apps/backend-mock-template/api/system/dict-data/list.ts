@@ -22,7 +22,20 @@ export default defineEventHandler(async (event) => {
       filtered = filtered.filter((x) => x.type_id === t);
     }
   }
-  if (typeCode) {
+  if (Array.isArray(typeCode)) {
+    // 多选：空数组=无命中；非空数组=精确匹配任一
+    if (typeCode.length === 0) {
+      filtered = [];
+    } else {
+      const codes = new Set((typeCode as unknown[]).map((v) => String(v)));
+      const typeIds = new Set(
+        getMockDictTypeList()
+          .filter((x) => x.deleted_at === 0 && codes.has(x.code))
+          .map((x) => x.id),
+      );
+      filtered = filtered.filter((x) => typeIds.has(x.type_id));
+    }
+  } else if (typeCode) {
     const q = String(typeCode as string);
     const typeIds = new Set(
       getMockDictTypeList()

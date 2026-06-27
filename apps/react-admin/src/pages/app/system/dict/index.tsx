@@ -1,15 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Button,
   Col,
+  type FormInstance,
   message,
   Modal,
   Popconfirm,
   Row,
   Space,
+  Tag,
   Typography,
 } from 'antd';
-import type { FormInstance } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   ProTable,
@@ -30,7 +31,7 @@ import type { DictData, DictType } from '@/api/rest/types';
 import ContentContainer from '@/layouts/components/PageContainer/ContentContainer';
 import DictTypeDrawer from './modules/dict-type-drawer';
 import DictDataDrawer from './modules/dict-data-drawer';
-import { DEFAULT_PLATFORM, PLATFORM_OPTIONS } from './modules/shared';
+import { DEFAULT_PLATFORM, PLATFORM_SEARCH_OPTIONS } from './modules/shared';
 
 type BulkAction = 'enable' | 'disable' | 'delete';
 
@@ -67,6 +68,7 @@ const typeColumns: ProColumns<DictType>[] = [
     },
     request: fetchDictTypeCodeEnum,
   },
+  { title: '类型名称', dataIndex: 'name', width: 140, ellipsis: true },
   {
     title: '平台标识',
     dataIndex: 'platform',
@@ -76,12 +78,11 @@ const typeColumns: ProColumns<DictType>[] = [
       showSearch: true,
       allowClear: true,
       placeholder: '请选择平台',
-      options: PLATFORM_OPTIONS,
+      options: PLATFORM_SEARCH_OPTIONS,
     },
     initialValue: DEFAULT_PLATFORM,
     render: (_, r) => r.platform || <span style={{ color: '#999' }}>通用</span>,
   },
-  { title: '类型名称', dataIndex: 'name', width: 140, ellipsis: true },
   {
     title: '备注',
     dataIndex: 'remark',
@@ -129,31 +130,24 @@ const dataColumns: ProColumns<DictData>[] = [
     dataIndex: 'typeCode',
     width: 140,
     ellipsis: true,
-    valueType: 'select',
-    fieldProps: {
-      showSearch: true,
-      allowClear: true,
-      placeholder: '请选择类型编码',
-    },
-    request: fetchDictTypeCodeEnum,
+    // 不在搜索表单中显示；筛选逻辑由联动 / 点击行同步在代码里完成。
+    hideInSearch: true,
   },
+  { title: '字典值', dataIndex: 'value', width: 120 },
+  { title: '字典标签', dataIndex: 'label', width: 140, ellipsis: true, search: false },
   {
     title: '平台标识',
     dataIndex: 'platform',
     width: 130,
     valueType: 'select',
-    hideInTable: true,
+    initialValue: DEFAULT_PLATFORM,
     fieldProps: {
+      options: PLATFORM_SEARCH_OPTIONS,
       showSearch: true,
       allowClear: true,
       placeholder: '请选择平台',
-      options: PLATFORM_OPTIONS,
     },
-    initialValue: DEFAULT_PLATFORM,
-    request: async () => PLATFORM_OPTIONS,
   },
-  { title: '字典值', dataIndex: 'value', width: 120 },
-  { title: '字典标签', dataIndex: 'label', width: 140, ellipsis: true, search: false },
   { title: '排序', dataIndex: 'sort', width: 80, search: false },
   {
     title: '默认',
@@ -202,10 +196,18 @@ const dataColumns: ProColumns<DictData>[] = [
 const DictPage = () => {
   const typeActionRef = useRef<ActionType | undefined>(undefined);
   const entryActionRef = useRef<ActionType | undefined>(undefined);
+  // 右表搜索表单引用：close Tag 时需要把「平台标识」字段清空
   const entryFormRef = useRef<FormInstance | undefined>(undefined);
 
   const [selectedTypeId, setSelectedTypeId] = useState<number | null>(null);
   const [selectedType, setSelectedType] = useState<DictType | null>(null);
+
+  // 左表「平台标识」筛选值；右表 platform 字段跟随并被锁定。
+  const [typePlatformFilter, setTypePlatformFilter] = useState<string | undefined>(undefined);
+
+  // 右表当前 typeCode：由左表点击行 / 关闭按钮写入，fetchEntryRows 直接读这个 ref。
+  // typeCode 不再走表单：搜索栏也不显示该字段，逻辑完全在代码里完成。
+  const entryTypeCodeRef = useRef<string | undefined>(undefined);
 
   // 多选状态（左右两表各自独立）
   const [typeSelectedRowKeys, setTypeSelectedRowKeys] = useState<
@@ -264,10 +266,8 @@ const DictPage = () => {
             if (selectedTypeId === record.id) {
               setSelectedTypeId(null);
               setSelectedType(null);
-              // 清除右表搜索框的「类型编码」，避免引用已删除类型；
-              // 同点击左侧行：必须 submit() 让 ProTable 把新表单值写入 formSearch。
-              entryFormRef.current?.setFieldsValue({ typeCode: undefined });
-              entryFormRef.current?.submit?.();
+              // 清除右表 typeCode 过滤，避免引用已删除类型
+              clearEntrySelection();
             }
           } catch (err) {
             message.error(`删除失败：${(err as Error).message ?? '未知错误'}`);
@@ -351,9 +351,35 @@ const DictPage = () => {
   const typeCols: ProColumns<DictType>[] = typeColumns.map((c) =>
     c.key === 'option' ? { ...c, render: renderTypeActions } : c,
   );
-  const entryCols: ProColumns<DictData>[] = dataColumns.map((c) =>
-    c.key === 'option' ? { ...c, render: renderEntryActions } : c,
+  // 右表 columns：platform 列的 disabled 需要跟随左表筛选值变化，所以用 useMemo 重建。
+  const entryCols: ProColumns<DictData>[] = useMemo(
+    () =>
+      dataColumns.map((c) => {
+        if (c.key === 'option') {
+          return { ...c, render: renderEntryActions };
+        }
+        if (c.dataIndex === 'platform') {
+          return {
+            ...c,
+            fieldProps: {
+              ...(typeof c.fieldProps === 'object' && c.fieldProps !== null
+                ? c.fieldProps
+                : {}),
+              disabled: typePlatformFilter !== undefined,
+            },
+          };
+        }
+        return c;
+      }),
+    [typePlatformFilter],
   );
+
+  // 左表 platform 筛选变化时：右表 platform 字段同步成同一个值，并触发重拉。
+  useEffect(() => {
+    if (entryFormRef.current && typePlatformFilter !== undefined) {
+      entryFormRef.current.setFieldsValue({ platform: typePlatformFilter });
+    }
+  }, [typePlatformFilter]);
 
   /* ---------- 列表请求 ---------- */
   async function fetchTypeRows(
@@ -382,6 +408,10 @@ const DictPage = () => {
       status: statusOrUndefined(is_enabled),
       platform: platform || undefined,
     });
+
+    // 把左表的 platform 筛选值同步到 state，驱动右表 platform 字段联动
+    setTypePlatformFilter(platform || undefined);
+
     return { data: res.items, total: res.total, success: true };
   }
 
@@ -389,7 +419,6 @@ const DictPage = () => {
     params: Record<string, unknown> & {
       current?: number;
       pageSize?: number;
-      typeCode?: string;
       value?: string;
       is_enabled?: number | '';
       platform?: string;
@@ -398,20 +427,35 @@ const DictPage = () => {
     const {
       current = 1,
       pageSize = 20,
-      typeCode,
       value,
       is_enabled,
       platform,
     } = params;
+    // typeCode 不在搜索表单里，由 entryTypeCodeRef 提供（点击行 / 关闭按钮 / 删除后清空）。
     const res = await listDictDataApi({
       page: current,
       pageSize,
-      typeCode: typeCode || undefined,
+      typeCode: entryTypeCodeRef.current,
       value: value || undefined,
       status: statusOrUndefined(is_enabled),
       platform: platform || undefined,
     });
     return { data: res.items, total: res.total, success: true };
+  }
+
+  /**
+   * 清除右表的「点击行筛选」状态：
+   * - 清空 typeCode ref
+   * - 清空 selectedType / selectedTypeId（标题变回「字典数据」）
+   * - 清空「平台标识」搜索字段（close Tag 是它唯一的清空入口）
+   * - 重新拉一次右表数据，typeCode 变 undefined 后右表回到「全部」
+   */
+  function clearEntrySelection() {
+    entryTypeCodeRef.current = undefined;
+    setSelectedTypeId(null);
+    setSelectedType(null);
+    entryFormRef.current?.setFieldsValue({ platform: undefined });
+    entryActionRef.current?.reload?.();
   }
 
   /* ---------- 保存后回调 ---------- */
@@ -663,12 +707,10 @@ const DictPage = () => {
               onClick: () => {
                 setSelectedTypeId(record.id);
                 setSelectedType(record);
-                // 选中左表行后，把右表搜索框的「类型编码」同步为该类型编码并刷新。
-                // ProTable 内部用 formSearch 缓存最近一次表单提交值，
-                // 仅 setFieldsValue 不会触发它更新；必须再调用 submit() 让
-                // ProTable 把新的表单值写入 formSearch 并重新发起请求。
-                entryFormRef.current?.setFieldsValue({ typeCode: record.code });
-                entryFormRef.current?.submit?.();
+                // 选中左表行后，把右表的 typeCode（由 entryTypeCodeRef 持有）
+                // 同步为该类型编码，并重新拉右表数据。
+                entryTypeCodeRef.current = record.code;
+                entryActionRef.current?.reload?.();
               },
               style: {
                 cursor: 'pointer',
@@ -687,9 +729,21 @@ const DictPage = () => {
         <Col xs={24} md={12}>
           <ProTable<DictData>
             headerTitle={
-              selectedType
-                ? `字典数据：${selectedType.name}（${selectedType.code}）`
-                : '字典数据'
+              <Space size={8} align="center" wrap>
+                <span>字典数据</span>
+                {selectedType && (
+                  <Tag
+                    closable
+                    onClose={(e) => {
+                      e.preventDefault();
+                      clearEntrySelection();
+                    }}
+                    style={{ margin: 0 }}
+                  >
+                    {selectedType.name}（{selectedType.code}）
+                  </Tag>
+                )}
+              </Space>
             }
             cardBordered
             rowKey="id"
@@ -704,6 +758,10 @@ const DictPage = () => {
               showSizeChanger: true,
               showTotal: (total) => `共 ${total} 条`,
             }}
+            // 右表数据量较大，启用表内垂直滚动，避免整页被顶长。
+            // 高度为视口减去头部 / 搜索栏 / 分页 / 卡片 padding 后的估算值，
+            // 通过 scroll.y 给 antd Table 一个明确的可滚动高度。
+            scroll={{ x: 'max-content', y: 'calc(100vh - 360px)' }}
             toolBarRender={entryToolbar}
             options={{
               reload: () => entryActionRef.current?.reload?.(),

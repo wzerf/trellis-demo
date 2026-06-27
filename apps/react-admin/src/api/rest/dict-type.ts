@@ -15,8 +15,16 @@ export function listDictTypeApi(query: DictTypeQuery = {}) {
   );
 }
 
-/** 列出全部字典类型（下拉用） */
-export function listAllDictTypeApi(params?: { status?: 0 | 1 }) {
+/**
+ * 列出全部字典类型（用于联动：把当前搜索条件下「全部命中行」的 typeCode
+ * 推送给右表做多选过滤，因此接口需要支持与 list 同样的过滤项）。
+ */
+export function listAllDictTypeApi(params?: {
+  status?: 0 | 1;
+  code?: string | string[];
+  name?: string;
+  platform?: string;
+}) {
   return get<DictType[]>('/system/dict-type/all', (params ?? {}) as Record<string, unknown>);
 }
 

@@ -38,3 +38,4 @@ node_modules/
 .understand-anything/diff-overlay.json
 .understand-anything/.trash-*/
 .understand-anything/tmp/
+__pycache__
