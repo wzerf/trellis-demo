@@ -21,6 +21,15 @@ export const PLATFORM_OPTIONS: { value: string; label: string }[] = [
 export const PLATFORM_SEARCH_OPTIONS: { value: string; label: string }[] =
   PLATFORM_OPTIONS.filter((o) => o.value !== '');
 
+/**
+ * 右表平台标识搜索下拉：包含「通用」选项。
+ * 用途：点行选中 platform=''（通用）时，下拉需要能把 value='' 渲染成"通用"
+ * 标签，否则选中后字段显示为空白。
+ * 后端语义：选「通用」时 value=''，前端透传 platform=''，后端把它识别为「仅通用」。
+ */
+export const PLATFORM_ENTRY_SEARCH_OPTIONS: { value: string; label: string }[] =
+  PLATFORM_OPTIONS;
+
 /** 当前应用默认平台，用于列表默认筛选；从 Vite 环境变量读取。 */
 export const DEFAULT_PLATFORM: string =
   (import.meta.env.VITE_APP_PLATFORM as string | undefined) ?? '';

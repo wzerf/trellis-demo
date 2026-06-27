@@ -30,10 +30,16 @@ export default defineEventHandler(async (event) => {
   if (["0", "1"].includes(status as string)) {
     filtered = filtered.filter((x) => x.is_enabled === Number(status));
   }
-  // platform 精确筛选；传入非空值时返回该平台 + 通用（platform=''）的并集
-  if (typeof platform === "string" && platform.length > 0) {
-    const p = platform;
-    filtered = filtered.filter((x) => x.platform === p || x.platform === "");
+  // platform 精确筛选。语义：query 里只要存在 platform 这个 key 就走过滤分支；
+  // - 不存在（key undefined）= 不过滤，返回全部
+  // - 存在且值为 ''             = 只取通用（platform=''）
+  // - 存在且值为非空字符串       = 取该平台 + 通用（platform=''）
+  // 这样前端可以显式选择「通用」做筛选，不会因为 '' 被替换为 undefined 而被退回「不过滤」。
+  if (Object.prototype.hasOwnProperty.call(query, "platform")) {
+    const p = typeof platform === "string" ? platform : "";
+    filtered = filtered.filter((x) =>
+      p === "" ? x.platform === "" : x.platform === p || x.platform === "",
+    );
   }
   // 按 id 升序，便于观察
   filtered.sort((a, b) => a.id - b.id);

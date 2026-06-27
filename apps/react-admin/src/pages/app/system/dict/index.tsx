@@ -31,7 +31,7 @@ import type { DictData, DictType } from '@/api/rest/types';
 import ContentContainer from '@/layouts/components/PageContainer/ContentContainer';
 import DictTypeDrawer from './modules/dict-type-drawer';
 import DictDataDrawer from './modules/dict-data-drawer';
-import { DEFAULT_PLATFORM, PLATFORM_SEARCH_OPTIONS } from './modules/shared';
+import { DEFAULT_PLATFORM, PLATFORM_ENTRY_SEARCH_OPTIONS, PLATFORM_SEARCH_OPTIONS } from './modules/shared';
 
 type BulkAction = 'enable' | 'disable' | 'delete';
 
@@ -142,7 +142,8 @@ const dataColumns: ProColumns<DictData>[] = [
     valueType: 'select',
     initialValue: DEFAULT_PLATFORM,
     fieldProps: {
-      options: PLATFORM_SEARCH_OPTIONS,
+      // 右表需要渲染「通用」(value='') 标签，避免选中通用时显示空白
+      options: PLATFORM_ENTRY_SEARCH_OPTIONS,
       showSearch: true,
       allowClear: true,
       placeholder: '请选择平台',
@@ -201,9 +202,6 @@ const DictPage = () => {
 
   const [selectedTypeId, setSelectedTypeId] = useState<number | null>(null);
   const [selectedType, setSelectedType] = useState<DictType | null>(null);
-
-  // 左表「平台标识」筛选值；右表 platform 字段跟随并被锁定。
-  const [typePlatformFilter, setTypePlatformFilter] = useState<string | undefined>(undefined);
 
   // 右表当前 typeCode：由左表点击行 / 关闭按钮写入，fetchEntryRows 直接读这个 ref。
   // typeCode 不再走表单：搜索栏也不显示该字段，逻辑完全在代码里完成。
@@ -351,7 +349,10 @@ const DictPage = () => {
   const typeCols: ProColumns<DictType>[] = typeColumns.map((c) =>
     c.key === 'option' ? { ...c, render: renderTypeActions } : c,
   );
-  // 右表 columns：platform 列的 disabled 需要跟随左表筛选值变化，所以用 useMemo 重建。
+  // 右表 columns：platform 列的 disabled 与默认值需要跟随左表选中行变化，
+  // 所以用 useMemo 重建。语义：
+  // - 左表点行 → disable，且字段值 = 该行 platform（由 onRow.onClick 同步写入）
+  // - 左表没点行 → enable，字段值可自由选（默认 DEFAULT_PLATFORM）
   const entryCols: ProColumns<DictData>[] = useMemo(
     () =>
       dataColumns.map((c) => {
@@ -365,21 +366,14 @@ const DictPage = () => {
               ...(typeof c.fieldProps === 'object' && c.fieldProps !== null
                 ? c.fieldProps
                 : {}),
-              disabled: typePlatformFilter !== undefined,
+              disabled: selectedTypeId !== null,
             },
           };
         }
         return c;
       }),
-    [typePlatformFilter],
+    [selectedTypeId],
   );
-
-  // 左表 platform 筛选变化时：右表 platform 字段同步成同一个值，并触发重拉。
-  useEffect(() => {
-    if (entryFormRef.current && typePlatformFilter !== undefined) {
-      entryFormRef.current.setFieldsValue({ platform: typePlatformFilter });
-    }
-  }, [typePlatformFilter]);
 
   /* ---------- 列表请求 ---------- */
   async function fetchTypeRows(
@@ -400,17 +394,16 @@ const DictPage = () => {
       is_enabled,
       platform,
     } = params;
+    // platform 必须透传（包括空串）：用 '' 显式表示「仅通用」，
+    // 不能被 || undefined 抹掉，否则后端会走「不过滤」分支。
     const res = await listDictTypeApi({
       page: current,
       pageSize,
       code: code || undefined,
       name: name || undefined,
       status: statusOrUndefined(is_enabled),
-      platform: platform || undefined,
+      platform: platform,
     });
-
-    // 把左表的 platform 筛选值同步到 state，驱动右表 platform 字段联动
-    setTypePlatformFilter(platform || undefined);
 
     return { data: res.items, total: res.total, success: true };
   }
@@ -431,6 +424,7 @@ const DictPage = () => {
       is_enabled,
       platform,
     } = params;
+    // platform 透传（含空串 ''）：用 '' 显式表示「仅通用」。
     // typeCode 不在搜索表单里，由 entryTypeCodeRef 提供（点击行 / 关闭按钮 / 删除后清空）。
     const res = await listDictDataApi({
       page: current,
@@ -438,7 +432,7 @@ const DictPage = () => {
       typeCode: entryTypeCodeRef.current,
       value: value || undefined,
       status: statusOrUndefined(is_enabled),
-      platform: platform || undefined,
+      platform: platform,
     });
     return { data: res.items, total: res.total, success: true };
   }
@@ -708,8 +702,11 @@ const DictPage = () => {
                 setSelectedTypeId(record.id);
                 setSelectedType(record);
                 // 选中左表行后，把右表的 typeCode（由 entryTypeCodeRef 持有）
-                // 同步为该类型编码，并重新拉右表数据。
+                // 同步为该类型编码；右表 platform 字段 disable 并跟随为该行 platform。
                 entryTypeCodeRef.current = record.code;
+                entryFormRef.current?.setFieldsValue({
+                  platform: record.platform || '',
+                });
                 entryActionRef.current?.reload?.();
               },
               style: {

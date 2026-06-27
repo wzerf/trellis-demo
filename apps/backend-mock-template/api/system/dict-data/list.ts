@@ -56,12 +56,20 @@ export default defineEventHandler(async (event) => {
     filtered = filtered.filter((x) => x.is_enabled === Number(status));
   }
   // platform 过滤：根据所属字典类型的 platform 决定。
-  // 传入非空值时，返回该平台类型 + 通用类型（platform=''）下的字典项。
-  if (typeof platform === "string" && platform.length > 0) {
-    const p = platform;
+  // 语义：query 里只要存在 platform 这个 key 就走过滤分支；
+  // - 不存在（key undefined）= 不过滤，返回全部
+  // - 存在且值为 ''             = 只取通用（platform=''）
+  // - 存在且值为非空字符串       = 取该平台 + 通用（platform=''）
+  // 这样前端可以显式选择「通用」做筛选，不会因为 '' 被替换为 undefined 而被退回「不过滤」。
+  if (Object.prototype.hasOwnProperty.call(rawQuery, "platform")) {
+    const p = typeof platform === "string" ? platform : "";
     const allowedTypeIds = new Set(
       getMockDictTypeList()
-        .filter((t) => t.deleted_at === 0 && (t.platform === p || t.platform === ""))
+        .filter(
+          (t) =>
+            t.deleted_at === 0 &&
+            (p === "" ? t.platform === "" : t.platform === p || t.platform === ""),
+        )
         .map((t) => t.id),
     );
     filtered = filtered.filter((x) => allowedTypeIds.has(x.type_id));

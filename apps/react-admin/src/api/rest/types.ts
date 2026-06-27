@@ -145,7 +145,7 @@ export interface DictTypeQuery {
   code?: string | string[];
   name?: string;
   status?: 0 | 1;
-  /** 平台标识筛选；空字符串或缺省=不过滤；非空时返回该平台 + 通用 */
+  /** 平台标识筛选；undefined = 不过滤；'' = 仅通用；非空 = 该平台 + 通用 */
   platform?: string;
 }
 
@@ -157,7 +157,7 @@ export interface DictDataQuery {
   label?: string;
   value?: string;
   status?: 0 | 1;
-  /** 平台标识筛选（按所属 type 的 platform 过滤） */
+  /** 平台标识筛选（按所属 type 的 platform 过滤）；undefined = 不过滤；'' = 仅通用；非空 = 该平台 + 通用 */
   platform?: string;
 }
 
