@@ -55,17 +55,16 @@ export default defineEventHandler(async (event) => {
   }
 
   // platform 校验：未传则默认 general；传了则必须在枚举内
-  const platform: DictData["platform"] = isAllowedDictDataPlatform(body?.platform)
-    ? body.platform
-    : body?.platform === undefined
-      ? "general"
-      : null;
+  const rawPlatform = body?.platform;
+  let platform: DictData["platform"] | null = null;
+  if (isAllowedDictDataPlatform(rawPlatform)) {
+    platform = rawPlatform;
+  } else if (rawPlatform === undefined) {
+    platform = "general";
+  }
   if (platform === null) {
     setResponseStatus(event, 400);
-    return useResponseError(
-      "BadRequest",
-      `platform must be one of general|react-admin|vue-admin`,
-    );
+    return useResponseError("BadRequest", `platform must be one of general|react-admin|vue-admin`);
   }
 
   const list = getMockDictDataList();

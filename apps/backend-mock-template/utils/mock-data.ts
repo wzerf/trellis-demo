@@ -482,18 +482,11 @@ export interface DictData {
  * 字典项允许的 platform 取值（与 schema v8 注释 + 前端 VITE_APP_PLATFORM 对齐）。
  * 写入/修改时校验，非法值 400。
  */
-export const ALLOWED_DICT_DATA_PLATFORMS = [
-  "general",
-  "react-admin",
-  "vue-admin",
-] as const;
+export const ALLOWED_DICT_DATA_PLATFORMS = ["general", "react-admin", "vue-admin"] as const;
 export type DictDataPlatform = (typeof ALLOWED_DICT_DATA_PLATFORMS)[number];
 
 export function isAllowedDictDataPlatform(v: unknown): v is DictDataPlatform {
-  return (
-    typeof v === "string" &&
-    (ALLOWED_DICT_DATA_PLATFORMS as readonly string[]).includes(v)
-  );
+  return typeof v === "string" && (ALLOWED_DICT_DATA_PLATFORMS as readonly string[]).includes(v);
 }
 
 /**

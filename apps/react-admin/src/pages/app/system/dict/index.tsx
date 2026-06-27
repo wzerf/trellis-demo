@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   Button,
+  Checkbox,
   Col,
+  Form,
   message,
   Modal,
   Popconfirm,
   Row,
+  Select,
   Space,
   Tag,
   Typography,
@@ -122,8 +125,11 @@ const dataColumns: ProColumns<DictData>[] = [
     title: '归属平台',
     dataIndex: 'platform',
     width: 110,
-    // 搜索筛选：3 项候选（含对方平台）。列渲染与表单 Select 不冲突。
+    // 表单未选 = 不限 platform（左表无 platform 概念，不应用此过滤）。
+    // valueEnum 用 SEARCH_PLATFORM_OPTIONS 全集；allowClear 让用户回到不限。
+    // initialValue = 当前前端平台（VITE_APP_PLATFORM），让搜索栏默认显示自己的平台视角。
     valueType: 'select',
+    initialValue: getCurrentPlatform(),
     fieldProps: {
       allowClear: true,
       placeholder: '请选择归属平台',
@@ -137,27 +143,42 @@ const dataColumns: ProColumns<DictData>[] = [
     ),
     render: (_, r) =>
       r.platform ? <Tag>{r.platform}</Tag> : <span style={{ color: '#999' }}>-</span>,
-  },
-  // 「包含通用」搜索项：选 general 时整项视觉消失（renderFormItem 返回 null）。
-  // 后端在 platform=general 时忽略该参数，行为一致。
-  {
-    title: '包含通用',
-    dataIndex: 'includeGeneral',
-    valueType: 'checkbox',
-    hideInTable: true,
-    initialValue: false,
-    dependencies: ['platform'],
-    formItemProps: {
-      tooltip:
-        '把通用（general）字典项并入结果。platform=通用 时该选项无效。',
-    },
-    renderFormItem: (_schema, _config, form) => {
-      // 首次渲染 form 可能为空，返回 undefined 让 ProField 使用默认渲染；
-      // 之后 platform 变化时 dependencies 触发 re-render，form 已就绪可读取。
-      if (!form) return undefined;
-      const platform = form.getFieldValue('platform');
-      if (platform === 'general') return null;
-      return undefined;
+    // 搜索区把「包含通用」复选框合并到 platform 旁边（Input.Group compact），
+    // 避免两个独立表单项挤在一起出现「宽度不够需要展开」的问题。
+    // platform=general 时包含通用强制 disabled checked（后端忽略该参数）。
+    // - 外层 Form.Item name="platform" 由 ProTable 自动包裹（cellRenderToFromItem.js）；
+    //   这里不能再加 Form.Item name="platform"，否则会重复注入。
+    // - includeGeneral 字段不在 schema 里注册，通过内嵌 Form.Item name="includeGeneral"
+    //   显式注册到同一个 ProTable form 实例上，提交时一起进 request params。
+    renderFormItem: (_schema, config, form) => {
+      if (!form) return config.defaultRender(_schema);
+      const platform = form.getFieldValue('platform') as string | undefined;
+      const disabled = platform === 'general';
+      return (
+        <span style={{ display: 'inline-flex', alignItems: 'center', width: '100%' }}>
+          <Form.Item name="platform" noStyle initialValue={getCurrentPlatform()}>
+            <Select
+              allowClear
+              placeholder="请选择归属平台"
+              options={SEARCH_PLATFORM_OPTIONS}
+              style={{ flex: 1 }}
+            />
+          </Form.Item>
+          <Form.Item
+            name="includeGeneral"
+            noStyle
+            valuePropName="checked"
+            initialValue={true}
+          >
+            <Checkbox
+              disabled={disabled}
+              style={{ marginLeft: 12, whiteSpace: 'nowrap' }}
+            >
+              包含通用
+            </Checkbox>
+          </Form.Item>
+        </span>
+      );
     },
   },
   { title: '排序', dataIndex: 'sort', width: 80, search: false },
@@ -409,16 +430,20 @@ const DictPage = () => {
       includeGeneral,
     } = params;
     // typeCode 不在搜索表单里，由 entryTypeCodeRef 提供（点击行 / 关闭按钮 / 删除后清空）。
-    // platform：表单未选时落到 getCurrentPlatform()（=VITE_APP_PLATFORM）。
-    // includeGeneral：复选框布尔值；后端 platform=general 时忽略。
+    // 左表（字典类型）本身没有 platform 概念，点击行后不应让 platform 过滤挡住结果：
+    // platform 仅在用户实际选择了某个平台时才传；表单未选 = 不限 platform。
+    // includeGeneral 仅在 platform 限定到具体平台（非 undefined、非 general）时才有意义。
     const res = await listDictDataApi({
       page: current,
       pageSize,
       typeCode: entryTypeCodeRef.current,
       value: value || undefined,
       status: statusOrUndefined(is_enabled),
-      platform: platform || getCurrentPlatform(),
-      includeGeneral: includeGeneral === true,
+      platform: platform || undefined,
+      includeGeneral:
+        Boolean(platform) &&
+        platform !== 'general' &&
+        includeGeneral === true,
     });
     return { data: res.items, total: res.total, success: true };
   }

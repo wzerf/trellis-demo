@@ -17,9 +17,7 @@ export default defineEventHandler(async (event) => {
   // includeGeneral：boolean；兼容 "1"/"true"/true，传错（如 "yes"）按 false 处理
   const includeGeneralRaw = rawQuery.includeGeneral;
   const includeGeneral =
-    includeGeneralRaw === true ||
-    includeGeneralRaw === "1" ||
-    includeGeneralRaw === "true";
+    includeGeneralRaw === true || includeGeneralRaw === "1" || includeGeneralRaw === "true";
   let filtered: DictData[] = getMockDictDataList().filter((x) => x.deleted_at === 0);
 
   if (typeId !== undefined && typeId !== "") {
@@ -63,12 +61,11 @@ export default defineEventHandler(async (event) => {
   }
   // platform 过滤：精确匹配；不带参数时返回全部（向后兼容旧调用）
   // includeGeneral=true 且 platform 非 general：把 general 并入过滤集合
-  if (platform !== undefined && platform !== "") {
-    const p = String(platform);
-    if (p === "general" || !includeGeneral) {
-      filtered = filtered.filter((x) => x.platform === p);
+  if (typeof platform === "string" && platform !== "") {
+    if (platform === "general" || !includeGeneral) {
+      filtered = filtered.filter((x) => x.platform === platform);
     } else {
-      filtered = filtered.filter((x) => x.platform === p || x.platform === "general");
+      filtered = filtered.filter((x) => x.platform === platform || x.platform === "general");
     }
   }
   filtered.sort((a, b) => a.sort - b.sort || a.id - b.id);
