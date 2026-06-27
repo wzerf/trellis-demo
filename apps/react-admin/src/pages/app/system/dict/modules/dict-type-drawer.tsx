@@ -4,7 +4,6 @@ import {
   Drawer,
   Form,
   Input,
-  Select,
   Space,
   Switch,
   message,
@@ -14,7 +13,7 @@ import {
   useUpdateDictType,
 } from '@/api/hooks/dict';
 import type { CreateDictTypeRequest, DictType } from '@/api/rest/types';
-import { CODE_PATTERN, PLATFORM_OPTIONS } from './shared';
+import { CODE_PATTERN } from './shared';
 
 interface Props {
   open: boolean;
@@ -25,7 +24,6 @@ interface Props {
 
 interface FormValues {
   code: string;
-  platform?: string;
   name: string;
   remark?: string;
   is_enabled?: boolean;
@@ -62,12 +60,11 @@ const DictTypeDrawer = ({ open, row, onClose, onSaved }: Props) => {
         row
           ? {
               code: row.code,
-              platform: row.platform ?? '',
               name: row.name,
               remark: row.remark,
               is_enabled: row.is_enabled === 1,
             }
-          : { code: '', platform: '', name: '', remark: '', is_enabled: true },
+          : { code: '', name: '', remark: '', is_enabled: true },
       );
     }
   }, [open, row, form]);
@@ -75,12 +72,10 @@ const DictTypeDrawer = ({ open, row, onClose, onSaved }: Props) => {
   const handleOk = async () => {
     const values = await form.validateFields();
     const isEnabled = values.is_enabled ? (1 as const) : (0 as const);
-    const platform = values.platform ?? '';
     if (isEdit) {
       updateMut.mutate({
         id: row.id,
         code: values.code,
-        platform,
         name: values.name,
         remark: values.remark ?? '',
         is_enabled: isEnabled,
@@ -88,7 +83,6 @@ const DictTypeDrawer = ({ open, row, onClose, onSaved }: Props) => {
     } else {
       const body: CreateDictTypeRequest = {
         code: values.code,
-        platform,
         name: values.name,
         remark: values.remark ?? '',
         is_enabled: isEnabled,
@@ -128,15 +122,6 @@ const DictTypeDrawer = ({ open, row, onClose, onSaved }: Props) => {
           ]}
         >
           <Input placeholder="例如 sys_user_sex" />
-        </Form.Item>
-        <Form.Item label="平台标识" name="platform" tooltip="空=通用；非空为前端管理端">
-          <Select
-            placeholder="请选择平台"
-            options={PLATFORM_OPTIONS}
-            showSearch
-            optionFilterProp="label"
-            allowClear={false}
-          />
         </Form.Item>
         <Form.Item
           label="类型名称"

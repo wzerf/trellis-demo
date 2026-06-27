@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   const rawQuery = getQuery(event);
   // 兼容 ?typeCode=foo&typeCode=bar 与 ?typeCode[]=foo&typeCode[]=bar
   const typeCode = (rawQuery.typeCode ?? rawQuery["typeCode[]"]) as string | string[] | undefined;
-  const { page = 1, pageSize = 20, typeId, label, value, status, platform } = rawQuery;
+  const { page = 1, pageSize = 20, typeId, label, value, status } = rawQuery;
   let filtered: DictData[] = getMockDictDataList().filter((x) => x.deleted_at === 0);
 
   if (typeId !== undefined && typeId !== "") {
@@ -54,25 +54,6 @@ export default defineEventHandler(async (event) => {
   }
   if (["0", "1"].includes(status as string)) {
     filtered = filtered.filter((x) => x.is_enabled === Number(status));
-  }
-  // platform 过滤：根据所属字典类型的 platform 决定。
-  // 语义：query 里只要存在 platform 这个 key 就走过滤分支；
-  // - 不存在（key undefined）= 不过滤，返回全部
-  // - 存在且值为 ''             = 只取通用（platform=''）
-  // - 存在且值为非空字符串       = 取该平台 + 通用（platform=''）
-  // 这样前端可以显式选择「通用」做筛选，不会因为 '' 被替换为 undefined 而被退回「不过滤」。
-  if (Object.prototype.hasOwnProperty.call(rawQuery, "platform")) {
-    const p = typeof platform === "string" ? platform : "";
-    const allowedTypeIds = new Set(
-      getMockDictTypeList()
-        .filter(
-          (t) =>
-            t.deleted_at === 0 &&
-            (p === "" ? t.platform === "" : t.platform === p || t.platform === ""),
-        )
-        .map((t) => t.id),
-    );
-    filtered = filtered.filter((x) => allowedTypeIds.has(x.type_id));
   }
   filtered.sort((a, b) => a.sort - b.sort || a.id - b.id);
 

@@ -108,8 +108,6 @@ export interface MenuItem {
 export interface DictType {
   id: number;
   code: string;
-  /** 平台标识：`''` = 通用、`vue-admin` / `react-admin` 为各前端管理端 */
-  platform: string;
   name: string;
   remark: string;
   is_enabled: 0 | 1;
@@ -145,8 +143,6 @@ export interface DictTypeQuery {
   code?: string | string[];
   name?: string;
   status?: 0 | 1;
-  /** 平台标识筛选；undefined = 不过滤；'' = 仅通用；非空 = 该平台 + 通用 */
-  platform?: string;
 }
 
 export interface DictDataQuery {
@@ -157,13 +153,10 @@ export interface DictDataQuery {
   label?: string;
   value?: string;
   status?: 0 | 1;
-  /** 平台标识筛选（按所属 type 的 platform 过滤）；undefined = 不过滤；'' = 仅通用；非空 = 该平台 + 通用 */
-  platform?: string;
 }
 
 export interface CreateDictTypeRequest {
   code: string;
-  platform?: string;
   name: string;
   remark?: string;
   is_enabled?: 0 | 1;
@@ -172,7 +165,6 @@ export interface CreateDictTypeRequest {
 export interface UpdateDictTypeRequest {
   id: number;
   code?: string;
-  platform?: string;
   name?: string;
   remark?: string;
   is_enabled?: 0 | 1;

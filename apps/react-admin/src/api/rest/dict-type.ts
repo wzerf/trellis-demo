@@ -23,7 +23,6 @@ export function listAllDictTypeApi(params?: {
   status?: 0 | 1;
   code?: string | string[];
   name?: string;
-  platform?: string;
 }) {
   return get<DictType[]>('/system/dict-type/all', (params ?? {}) as Record<string, unknown>);
 }

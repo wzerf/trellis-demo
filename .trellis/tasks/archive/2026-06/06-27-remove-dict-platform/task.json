@@ -1,0 +1,31 @@
+{
+  "id": "remove-dict-platform",
+  "name": "remove-dict-platform",
+  "title": "清理 dict_type / dict_data platform 字段",
+  "description": "把之前接入的 dict_type.platform / dict_data 平台归属从 schema、mock 后端与两个前端管理端一并清掉，让字典域回归到无平台归属的纯字典模型。",
+  "status": "completed",
+  "dev_type": null,
+  "scope": null,
+  "package": null,
+  "priority": "P2",
+  "creator": "w",
+  "assignee": "w",
+  "createdAt": "2026-06-27",
+  "completedAt": "2026-06-27",
+  "branch": null,
+  "base_branch": "master",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [
+    "06-27-dict-platform-schema",
+    "06-27-dict-platform-mock",
+    "06-27-dict-platform-react-admin",
+    "06-27-dict-platform-vue-vben-admin"
+  ],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {}
+}

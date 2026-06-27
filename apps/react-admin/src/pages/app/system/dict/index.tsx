@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Button,
   Col,
-  type FormInstance,
   message,
   Modal,
   Popconfirm,
@@ -12,9 +11,7 @@ import {
   Typography,
 } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
-import {
-  ProTable,
-} from '@ant-design/pro-components';
+import { ProTable } from '@ant-design/pro-components';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import {
   batchDictDataApi,
@@ -31,7 +28,6 @@ import type { DictData, DictType } from '@/api/rest/types';
 import ContentContainer from '@/layouts/components/PageContainer/ContentContainer';
 import DictTypeDrawer from './modules/dict-type-drawer';
 import DictDataDrawer from './modules/dict-data-drawer';
-import { DEFAULT_PLATFORM, PLATFORM_ENTRY_SEARCH_OPTIONS, PLATFORM_SEARCH_OPTIONS } from './modules/shared';
 
 type BulkAction = 'enable' | 'disable' | 'delete';
 
@@ -69,20 +65,6 @@ const typeColumns: ProColumns<DictType>[] = [
     request: fetchDictTypeCodeEnum,
   },
   { title: '类型名称', dataIndex: 'name', width: 140, ellipsis: true },
-  {
-    title: '平台标识',
-    dataIndex: 'platform',
-    width: 130,
-    valueType: 'select',
-    fieldProps: {
-      showSearch: true,
-      allowClear: true,
-      placeholder: '请选择平台',
-      options: PLATFORM_SEARCH_OPTIONS,
-    },
-    initialValue: DEFAULT_PLATFORM,
-    render: (_, r) => r.platform || <span style={{ color: '#999' }}>通用</span>,
-  },
   {
     title: '备注',
     dataIndex: 'remark',
@@ -135,20 +117,6 @@ const dataColumns: ProColumns<DictData>[] = [
   },
   { title: '字典值', dataIndex: 'value', width: 120 },
   { title: '字典标签', dataIndex: 'label', width: 140, ellipsis: true, search: false },
-  {
-    title: '平台标识',
-    dataIndex: 'platform',
-    width: 130,
-    valueType: 'select',
-    initialValue: DEFAULT_PLATFORM,
-    fieldProps: {
-      // 右表需要渲染「通用」(value='') 标签，避免选中通用时显示空白
-      options: PLATFORM_ENTRY_SEARCH_OPTIONS,
-      showSearch: true,
-      allowClear: true,
-      placeholder: '请选择平台',
-    },
-  },
   { title: '排序', dataIndex: 'sort', width: 80, search: false },
   {
     title: '默认',
@@ -197,8 +165,6 @@ const dataColumns: ProColumns<DictData>[] = [
 const DictPage = () => {
   const typeActionRef = useRef<ActionType | undefined>(undefined);
   const entryActionRef = useRef<ActionType | undefined>(undefined);
-  // 右表搜索表单引用：close Tag 时需要把「平台标识」字段清空
-  const entryFormRef = useRef<FormInstance | undefined>(undefined);
 
   const [selectedTypeId, setSelectedTypeId] = useState<number | null>(null);
   const [selectedType, setSelectedType] = useState<DictType | null>(null);
@@ -349,30 +315,8 @@ const DictPage = () => {
   const typeCols: ProColumns<DictType>[] = typeColumns.map((c) =>
     c.key === 'option' ? { ...c, render: renderTypeActions } : c,
   );
-  // 右表 columns：platform 列的 disabled 与默认值需要跟随左表选中行变化，
-  // 所以用 useMemo 重建。语义：
-  // - 左表点行 → disable，且字段值 = 该行 platform（由 onRow.onClick 同步写入）
-  // - 左表没点行 → enable，字段值可自由选（默认 DEFAULT_PLATFORM）
-  const entryCols: ProColumns<DictData>[] = useMemo(
-    () =>
-      dataColumns.map((c) => {
-        if (c.key === 'option') {
-          return { ...c, render: renderEntryActions };
-        }
-        if (c.dataIndex === 'platform') {
-          return {
-            ...c,
-            fieldProps: {
-              ...(typeof c.fieldProps === 'object' && c.fieldProps !== null
-                ? c.fieldProps
-                : {}),
-              disabled: selectedTypeId !== null,
-            },
-          };
-        }
-        return c;
-      }),
-    [selectedTypeId],
+  const entryCols: ProColumns<DictData>[] = dataColumns.map((c) =>
+    c.key === 'option' ? { ...c, render: renderEntryActions } : c,
   );
 
   /* ---------- 列表请求 ---------- */
@@ -383,7 +327,6 @@ const DictPage = () => {
       code?: string | string[];
       name?: string;
       is_enabled?: number | '';
-      platform?: string;
     },
   ) {
     const {
@@ -392,17 +335,13 @@ const DictPage = () => {
       code,
       name,
       is_enabled,
-      platform,
     } = params;
-    // platform 必须透传（包括空串）：用 '' 显式表示「仅通用」，
-    // 不能被 || undefined 抹掉，否则后端会走「不过滤」分支。
     const res = await listDictTypeApi({
       page: current,
       pageSize,
       code: code || undefined,
       name: name || undefined,
       status: statusOrUndefined(is_enabled),
-      platform: platform,
     });
 
     return { data: res.items, total: res.total, success: true };
@@ -414,7 +353,6 @@ const DictPage = () => {
       pageSize?: number;
       value?: string;
       is_enabled?: number | '';
-      platform?: string;
     },
   ) {
     const {
@@ -422,9 +360,7 @@ const DictPage = () => {
       pageSize = 20,
       value,
       is_enabled,
-      platform,
     } = params;
-    // platform 透传（含空串 ''）：用 '' 显式表示「仅通用」。
     // typeCode 不在搜索表单里，由 entryTypeCodeRef 提供（点击行 / 关闭按钮 / 删除后清空）。
     const res = await listDictDataApi({
       page: current,
@@ -432,7 +368,6 @@ const DictPage = () => {
       typeCode: entryTypeCodeRef.current,
       value: value || undefined,
       status: statusOrUndefined(is_enabled),
-      platform: platform,
     });
     return { data: res.items, total: res.total, success: true };
   }
@@ -441,14 +376,12 @@ const DictPage = () => {
    * 清除右表的「点击行筛选」状态：
    * - 清空 typeCode ref
    * - 清空 selectedType / selectedTypeId（标题变回「字典数据」）
-   * - 清空「平台标识」搜索字段（close Tag 是它唯一的清空入口）
    * - 重新拉一次右表数据，typeCode 变 undefined 后右表回到「全部」
    */
   function clearEntrySelection() {
     entryTypeCodeRef.current = undefined;
     setSelectedTypeId(null);
     setSelectedType(null);
-    entryFormRef.current?.setFieldsValue({ platform: undefined });
     entryActionRef.current?.reload?.();
   }
 
@@ -702,11 +635,8 @@ const DictPage = () => {
                 setSelectedTypeId(record.id);
                 setSelectedType(record);
                 // 选中左表行后，把右表的 typeCode（由 entryTypeCodeRef 持有）
-                // 同步为该类型编码；右表 platform 字段 disable 并跟随为该行 platform。
+                // 同步为该类型编码。
                 entryTypeCodeRef.current = record.code;
-                entryFormRef.current?.setFieldsValue({
-                  platform: record.platform || '',
-                });
                 entryActionRef.current?.reload?.();
               },
               style: {
@@ -745,7 +675,6 @@ const DictPage = () => {
             cardBordered
             rowKey="id"
             actionRef={entryActionRef}
-            formRef={entryFormRef}
             columns={entryCols}
             search={{ labelWidth: 'auto' }}
             request={fetchEntryRows}

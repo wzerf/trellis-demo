@@ -225,12 +225,12 @@ CREATE TABLE i18n_locale (
 -- Section 7: 字典 — dict_type
 -- v2: 加 remark;UNIQUE 软删感知
 -- v5: 移除 description(只保留 remark 统一语义)
--- v6: 加 platform(字典类型归属平台,如 vue-admin/react-admin;空=通用)
+-- v6: 加 platform(字典类型归属平台)
+-- v7: 移除 platform(字典域回归无平台归属)
 -- ============================================================
 CREATE TABLE dict_type (
     id              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     code            VARCHAR(64)     NOT NULL  COMMENT '字典类型编码(如 user_status)',
-    platform        VARCHAR(32)     NOT NULL DEFAULT '' COMMENT '平台标识(如 vue-admin/react-admin;空=通用)',
     name            VARCHAR(64)     NOT NULL  COMMENT '字典类型名(展示用)',
     remark          VARCHAR(512)    NOT NULL DEFAULT '',
     is_enabled      TINYINT(1)      NOT NULL DEFAULT 1,
@@ -304,7 +304,7 @@ CREATE TABLE i18n_translation (
 -- ============================================================
 -- Section 10: 字典数据 — dict_data (FK → dict_type)
 -- v2: 加 remark;UNIQUE 软删感知
--- 平台归属由 dict_type.platform 表达,dict_data 不再带 platform
+-- v7: 跟随 dict_type 移除 platform 注释
 -- ============================================================
 CREATE TABLE dict_data (
     id              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
