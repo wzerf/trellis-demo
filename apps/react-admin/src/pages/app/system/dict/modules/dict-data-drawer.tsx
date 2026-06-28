@@ -113,7 +113,7 @@ const DictDataDrawer = ({
     initialTypeId?: number,
   ): FormValues => {
     if (source) {
-      const hasPreset = source.tag_type && source.tag_type !== 'default';
+      const hasPreset = !!source.tag_type && source.tag_type !== 'default';
       return {
         typeId: source.type_id,
         value: source.value,
@@ -141,25 +141,32 @@ const DictDataDrawer = ({
     };
   };
 
+  // 抽屉初次挂载时通过 initialValues 注入；destroyOnClose 会让 Form 在每次
+  // 打开时重新创建，因此用 useMemo 把"当前应当填进表单的值"算成对象，
+  // 配合 key 让 Form 在 row/open 真正变化时整体重建，避免出现「Select 已经
+  // mount 但 setFieldsValue 还没跑」导致的下拉框不回显。
+  const formInitialValues = useMemo<FormValues>(
+    () => buildFormValues(row, defaultTypeId),
+    // buildFormValues 是纯函数；这里只依赖真正影响回显的入参
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [row, defaultTypeId],
+  );
+
   useEffect(() => {
     if (!open) return;
     // 新建模式必须等 typeOptions 就绪再回显，否则 Select 拿不到匹配项
     if (!row && effectiveTypeOptions.length === 0) return;
-    // 抽屉首次打开时 destroyOnClose 会卸载 Form，下次重新挂载时
-    // Select 等子项还没完成注册，立即 setFieldsValue 会丢。
-    // 延后到下一帧再回显，避免 typeId 字段首次不显示。
-    const apply = () =>
-      form.setFieldsValue(buildFormValues(row, defaultTypeId));
-    apply();
-    const timer = setTimeout(apply, 0);
-    return () => clearTimeout(timer);
+    // Form 跨打开不会自动重置 store（form 实例由 useForm() 持有），因此
+    // 每次抽屉从关闭转为打开时重置到当前 initialValues，保证编辑切换
+    // 不同 row 时所有字段（包括 Select / Switch）都正确回显。
+    form.resetFields();
   }, [open, row, defaultTypeId, effectiveTypeOptions, form]);
 
   const handleOk = async () => {
     const values = await form.validateFields();
     const finalTagType = values.usePresetStyle
       ? values.tagType || 'primary'
-      : 'default';
+      : '';
     if (isEdit) {
       updateMut.mutate({
         id: row.id,
@@ -188,8 +195,10 @@ const DictDataDrawer = ({
     }
   };
 
-  // 实时预览：根据当前 usePresetStyle / tagType / label 渲染 Tag
-  const previewColor = watchedUsePreset ? watchedTagType || 'primary' : 'default';
+  // 实时预览：根据当前 usePresetStyle / tagType / label 渲染。
+  // - 关闭预设样式：展示纯文本，不再渲染 Tag，避免出现「无颜色边框 Tag」的歧义
+  // - 开启预设样式：渲染对应颜色的 Tag
+  const previewColor = watchedUsePreset ? watchedTagType || 'primary' : undefined;
   const previewText = watchedLabel || '示例标签';
 
   return (
@@ -210,7 +219,12 @@ const DictDataDrawer = ({
         </Space>
       }
     >
-      <Form form={form} layout="vertical" preserve={false}>
+      <Form
+        form={form}
+        layout="vertical"
+        preserve={false}
+        initialValues={formInitialValues}
+      >
         {/* ============ 基础信息 ============ */}
         <Card size="small" title="基础信息" style={{ marginBottom: 16 }}>
           <Row gutter={16}>
@@ -264,7 +278,6 @@ const DictDataDrawer = ({
                 name="usePresetStyle"
                 valuePropName="checked"
                 getValueFromEvent={(v) => !!v}
-                getValueProps={(v) => ({ checked: v !== false })}
                 style={{ marginBottom: 0 }}
               >
                 <Switch checkedChildren="开" unCheckedChildren="关" />
@@ -300,9 +313,13 @@ const DictDataDrawer = ({
               >
                 预览
               </div>
-              <Tag color={previewColor} style={{ marginInlineEnd: 0 }}>
-                {previewText}
-              </Tag>
+              {watchedUsePreset ? (
+                <Tag color={previewColor} style={{ marginInlineEnd: 0 }}>
+                  {previewText}
+                </Tag>
+              ) : (
+                <span style={{ color: '#333' }}>{previewText}</span>
+              )}
             </Col>
           </Row>
         </Card>
