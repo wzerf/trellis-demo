@@ -1,0 +1,7 @@
+{"file": "apps/react-admin/src/pages/app/system/dict/modules/dict-data-drawer.tsx", "reason": "watchedPlatform = Form.useWatch('platform', form); 用 form.setFieldsValue 强制 usePresetStyle=false；Switch 上加 disabled={watchedPlatform==='general'}；buildFormValues 中编辑回显兼容 TAG_TYPE_SET。"}
+{"file": "apps/react-admin/src/pages/app/system/dict/modules/shared.ts", "reason": "新增 PLATFORM_TAG_TYPE_OPTIONS(platform) 函数与 TAG_TYPE_SET 常量；保留 TAG_TYPE_OPTIONS 16 项兼容导出。"}
+{"file": "apps/vue-vben-admin/apps/web-naive/src/views/system/dict/modules/form.vue", "reason": "dataModel.platform 用 watch 切换 usePresetStyle=false + NSwitch disabled；fillDataModelFromRow 用 NAIVE_TAG_TYPE_SET 判定 hasPreset；previewElType 直接传 tagType。"}
+{"file": "apps/vue-vben-admin/apps/web-naive/src/views/system/dict/data.ts", "reason": "新增 NAIVE_TAG_TYPE_OPTIONS 6 项 + NAIVE_TAG_TYPE_SET；PLATFORM_TAG_TYPE_OPTIONS(platform)；useDataFormSchema tag_type options 改为函数式读取 platform；useDataColumns CellTag 颜色改用 NAIVE_TAG_TYPE_SET 判定；移除 TAG_TYPE_TO_EL_TYPE 导出。"}
+{"file": "apps/react-admin/src/pages/app/system/dict/index.tsx", "reason": "CellTag 渲染逻辑保持现状（r.tag_type && r.tag_type !== 'default' ? r.tag_type : undefined），无需改动；记录为防御性观察点。"}
+{"file": ".trellis/spec/frontend/component-guidelines.md", "reason": "前端组件规范（占位中，本任务不依赖；记录以供未来归档 spec 时引用）。"}
+{"file": ".trellis/spec/frontend/hook-guidelines.md", "reason": "Hook 规范（占位中；本任务使用的 Form.useWatch / watch 是 antd / vue 标准 API，不依赖项目自定义 hook）。"}

@@ -1,0 +1,5 @@
+{"file": "apps/react-admin/src/pages/app/system/dict/modules/dict-data-drawer.tsx", "reason": "检查点 1：watchedPlatform 联动 usePresetStyle 时机——form.setFieldsValue 应在 useEffect 中执行；Switch disabled 不会拦截 Form.Item 已注册 value，所以 setFieldsValue 必须保留；保留 form.resetFields 逻辑避免回显串台。"}
+{"file": "apps/vue-vben-admin/apps/web-naive/src/views/system/dict/modules/form.vue", "reason": "检查点 2：dataModel.platform 用 watch 时机——watch 默认 pre-flush 会立即触发；切到 general 时除了 usePresetStyle=false 还要把 tagType 重置为 'default'，否则 previewElType 会读到非法值。"}
+{"file": "apps/vue-vben-admin/apps/web-naive/src/views/system/dict/data.ts", "reason": "检查点 3：vben form schema 中 componentProps.options 接受函数形式——确认 vben form 的 ApiSelect 文档是否支持 dynamic options；如不支持，改为在 form.vue 用 setFieldValue 同步。"}
+{"file": "apps/react-admin/src/pages/app/system/dict/modules/shared.ts", "reason": "检查点 4：PLATFORM_TAG_TYPE_OPTIONS 在 platform 为 undefined（新建未选平台）时的回退——应该返回全集而非空数组，避免新建时无选项可填。"}
+{"file": "apps/backend-mock-template/api/system/dict-data/[id].put.ts", "reason": "检查点 5：确认 PUT 路径对 patch.tag_type === '' 的处理——isAllowedTagType('') 应为 false，会 400；前端因此永远下发 'default' 而非空串（design §6 决策）。"}
