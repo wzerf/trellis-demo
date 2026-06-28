@@ -297,3 +297,37 @@ java-admin-backend Phase 3 收尾。Spring Boot 4.0.3 + Java 17 + 4 模块 Maven
 ### Next Steps
 
 - None - task complete
+
+
+## Session 6: 字典项预设样式按平台收敛（react + vue）
+
+**Date**: 2026-06-28
+**Task**: 字典项预设样式按平台收敛（react + vue）
+**Branch**: `master`
+
+### Summary
+
+按 PRD 将 react-admin / vue-vben-admin 两端字典项的「预设样式」按 platform 收敛:general 时开关禁用、提交 tag_type 归一化到 'default';编辑历史不在白名单的 tag_type 一律降级为关闭预设样式;vue 端表单从 vben Form schema 改成手写 NCard 三段卡片,并删掉 TAG_TYPE_TO_EL_TYPE 多对一压扁、NTag 改用原生 type 直传。
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `3dd731fe` | (see git log) |
+| `29e3a418` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
