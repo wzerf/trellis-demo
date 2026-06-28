@@ -73,7 +73,6 @@
     ]
   },
   "enabledPlugins": {
-    "understand-anything@understand-anything": true,
     "claude-hud@claude-hud": true
   }
 }
