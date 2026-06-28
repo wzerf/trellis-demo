@@ -465,6 +465,11 @@ export interface DictData {
    * 写入 / 修改时由 mock 校验，非法值 400。
    */
   platform: string;
+  /**
+   * 预设样式标识：default = 无样式；其余值由前端按标识映射 ant Tag 颜色 / vben Tag color。
+   * 写入 / 修改时由 mock 校验，非法值 400。
+   */
+  tag_type: string;
   is_enabled: 0 | 1;
   deleted_at: number;
   remark: string;
@@ -487,6 +492,35 @@ export type DictDataPlatform = (typeof ALLOWED_DICT_DATA_PLATFORMS)[number];
 
 export function isAllowedDictDataPlatform(v: unknown): v is DictDataPlatform {
   return typeof v === "string" && (ALLOWED_DICT_DATA_PLATFORMS as readonly string[]).includes(v);
+}
+
+/**
+ * 字典项允许的 tag_type 取值（与 schema v9 注释 + 前端 TAG_TYPE_OPTIONS 对齐）。
+ * 写入/修改时校验，非法值 400。
+ */
+export const ALLOWED_TAG_TYPES = [
+  "default",
+  "primary",
+  "success",
+  "warning",
+  "error",
+  "processing",
+  "magenta",
+  "red",
+  "volcano",
+  "orange",
+  "gold",
+  "lime",
+  "green",
+  "cyan",
+  "blue",
+  "geekblue",
+  "purple",
+] as const;
+export type TagType = (typeof ALLOWED_TAG_TYPES)[number];
+
+export function isAllowedTagType(v: unknown): v is TagType {
+  return typeof v === "string" && (ALLOWED_TAG_TYPES as readonly string[]).includes(v);
 }
 
 /**
@@ -598,6 +632,7 @@ function buildDictDataSeeds(): DictData[] {
     sort: number,
     is_default: 0 | 1 = 0,
     platform: DictData["platform"] = "general",
+    tag_type: DictData["tag_type"] = "default",
   ): DictData => ({
     id,
     type_id,
@@ -606,6 +641,7 @@ function buildDictDataSeeds(): DictData[] {
     sort,
     is_default,
     platform,
+    tag_type,
     is_enabled: 1,
     deleted_at: 0,
     remark: "",

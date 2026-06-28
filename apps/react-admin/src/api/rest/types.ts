@@ -127,6 +127,8 @@ export interface DictData {
   is_default: 0 | 1;
   /** 归属平台：general / react-admin / vue-admin；与 schema v8 对齐 */
   platform: string;
+  /** 预设样式标识：default / primary / success / warning 等；与 schema v9 对齐 */
+  tag_type: string;
   is_enabled: 0 | 1;
   deleted_at: number;
   remark: string;
@@ -184,6 +186,8 @@ export interface CreateDictDataRequest {
   isDefault?: boolean;
   /** 归属平台；缺省 mock 层回退到 'general' */
   platform?: string;
+  /** 预设样式标识；缺省 mock 层回退到 'default' */
+  tag_type?: string;
   is_enabled?: 0 | 1;
   remark?: string;
 }
@@ -195,6 +199,7 @@ export interface UpdateDictDataRequest {
   sort?: number;
   is_default?: 0 | 1;
   platform?: string;
+  tag_type?: string;
   is_enabled?: 0 | 1;
   remark?: string;
 }

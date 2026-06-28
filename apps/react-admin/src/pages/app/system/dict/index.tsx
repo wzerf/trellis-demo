@@ -145,7 +145,13 @@ const dataColumns: ProColumns<DictData>[] = [
       {},
     ),
     render: (_, r) =>
-      r.platform ? <Tag>{r.platform}</Tag> : <span style={{ color: '#999' }}>-</span>,
+      r.platform ? (
+        <Tag color={r.tag_type && r.tag_type !== 'default' ? r.tag_type : undefined}>
+          {r.platform}
+        </Tag>
+      ) : (
+        <span style={{ color: '#999' }}>-</span>
+      ),
     // 搜索区把「包含通用」复选框合并到 platform 旁边（Input.Group compact），
     // 避免两个独立表单项挤在一起出现「宽度不够需要展开」的问题。
     // platform=general 时包含通用强制 disabled checked（后端忽略该参数）。

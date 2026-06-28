@@ -3,6 +3,7 @@ import {
   ensureDictSeeds,
   getMockDictDataList,
   isAllowedDictDataPlatform,
+  isAllowedTagType,
   isoNow,
 } from "~/utils/mock-data";
 import { useResponseError, useResponseSuccess } from "~/utils/response";
@@ -13,6 +14,7 @@ const ALLOWED_KEYS = [
   "sort",
   "is_default",
   "platform",
+  "tag_type",
   "is_enabled",
   "remark",
 ] as const;
@@ -103,6 +105,15 @@ export default defineEventHandler(async (event) => {
       return useResponseError(
         "BadRequest",
         "platform must be one of general|react-admin|vue-admin",
+      );
+    }
+  }
+  if ("tag_type" in patch) {
+    if (!isAllowedTagType(patch.tag_type)) {
+      setResponseStatus(event, 400);
+      return useResponseError(
+        "BadRequest",
+        "tag_type must be one of default|primary|success|warning|error|processing|magenta|red|volcano|orange|gold|lime|green|cyan|blue|geekblue|purple",
       );
     }
   }

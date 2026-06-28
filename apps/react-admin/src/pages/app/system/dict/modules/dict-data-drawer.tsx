@@ -1,13 +1,17 @@
 import { useEffect, useMemo } from 'react';
 import {
   Button,
+  Card,
+  Col,
   Drawer,
   Form,
   Input,
   InputNumber,
+  Row,
   Select,
   Space,
   Switch,
+  Tag,
   message,
 } from 'antd';
 import {
@@ -19,7 +23,11 @@ import type {
   CreateDictDataRequest,
   DictData,
 } from '@/api/rest/types';
-import { getCurrentPlatform, PLATFORM_OPTIONS } from './shared';
+import {
+  getCurrentPlatform,
+  PLATFORM_OPTIONS,
+  TAG_TYPE_OPTIONS,
+} from './shared';
 
 interface Props {
   open: boolean;
@@ -39,6 +47,10 @@ interface FormValues {
   sort?: number;
   isDefault?: boolean;
   platform?: string;
+  /** 是否开启预设样式（默认开；编辑回显由 row.tag_type 决定） */
+  usePresetStyle?: boolean;
+  /** 预设样式标识；关闭时强制 'default' */
+  tagType?: string;
   is_enabled?: boolean;
   remark?: string;
 }
@@ -52,6 +64,10 @@ const DictDataDrawer = ({
   onSaved,
 }: Props) => {
   const [form] = Form.useForm<FormValues>();
+  // 抽屉内任意字段变化都触发预览（label + tagType 同时影响）
+  const watchedLabel = Form.useWatch('label', form);
+  const watchedTagType = Form.useWatch('tagType', form);
+  const watchedUsePreset = Form.useWatch('usePresetStyle', form);
   // 兜底加载：父组件 typeOptions 还没就绪就打开抽屉时，自己拉一次确保
   // Select 拿得到匹配项，否则 setFieldsValue 设的 typeId 会显示不出来
   const allTypesQuery = useListAllDictType(
@@ -97,6 +113,7 @@ const DictDataDrawer = ({
     initialTypeId?: number,
   ): FormValues => {
     if (source) {
+      const hasPreset = source.tag_type && source.tag_type !== 'default';
       return {
         typeId: source.type_id,
         value: source.value,
@@ -104,6 +121,8 @@ const DictDataDrawer = ({
         sort: source.sort,
         isDefault: source.is_default === 1,
         platform: source.platform,
+        usePresetStyle: hasPreset,
+        tagType: source.tag_type,
         is_enabled: source.is_enabled === 1,
         remark: source.remark,
       };
@@ -115,6 +134,8 @@ const DictDataDrawer = ({
       sort: 0,
       isDefault: false,
       platform: getCurrentPlatform(),
+      usePresetStyle: true,
+      tagType: 'primary',
       is_enabled: true,
       remark: '',
     };
@@ -136,6 +157,9 @@ const DictDataDrawer = ({
 
   const handleOk = async () => {
     const values = await form.validateFields();
+    const finalTagType = values.usePresetStyle
+      ? values.tagType || 'primary'
+      : 'default';
     if (isEdit) {
       updateMut.mutate({
         id: row.id,
@@ -144,6 +168,7 @@ const DictDataDrawer = ({
         sort: values.sort ?? 0,
         is_default: values.isDefault ? 1 : 0,
         platform: values.platform ?? getCurrentPlatform(),
+        tag_type: finalTagType,
         is_enabled: values.is_enabled ? 1 : 0,
         remark: values.remark ?? '',
       });
@@ -155,6 +180,7 @@ const DictDataDrawer = ({
         sort: values.sort ?? 0,
         isDefault: !!values.isDefault,
         platform: values.platform ?? getCurrentPlatform(),
+        tag_type: finalTagType,
         is_enabled: values.is_enabled ? 1 : 0,
         remark: values.remark ?? '',
       };
@@ -162,12 +188,16 @@ const DictDataDrawer = ({
     }
   };
 
+  // 实时预览：根据当前 usePresetStyle / tagType / label 渲染 Tag
+  const previewColor = watchedUsePreset ? watchedTagType || 'primary' : 'default';
+  const previewText = watchedLabel || '示例标签';
+
   return (
     <Drawer
       title={isEdit ? '编辑字典项' : '新建字典项'}
       open={open}
       onClose={onClose}
-      size={560}
+      size={640}
       destroyOnClose
       footer={
         <Space style={{ float: 'right' }}>
@@ -181,68 +211,156 @@ const DictDataDrawer = ({
       }
     >
       <Form form={form} layout="vertical" preserve={false}>
-        <Form.Item
-          label="所属类型"
-          name="typeId"
-          rules={[{ required: true, message: '请选择所属类型' }]}
-        >
-          <Select
-            placeholder="请选择类型"
-            options={effectiveTypeOptions}
-            showSearch
-            optionFilterProp="label"
-          />
-        </Form.Item>
-        <Form.Item
-          label="字典值"
-          name="value"
-          rules={[{ required: true, message: '请输入字典值' }, { max: 64 }]}
-        >
-          <Input placeholder="例如 Y / N / 0 / 1" />
-        </Form.Item>
-        <Form.Item
-          label="字典标签"
-          name="label"
-          rules={[{ required: true, message: '请输入字典标签' }, { max: 128 }]}
-        >
-          <Input placeholder="例如 是 / 否 / 启用" />
-        </Form.Item>
-        <Form.Item
-          label="排序"
-          name="sort"
-          rules={[{ type: 'number', message: '排序必须为数字' }]}
-        >
-          <InputNumber style={{ width: '100%' }} placeholder="升序排序，0 排在前" />
-        </Form.Item>
-        <Form.Item label="归属平台" name="platform">
-          <Select
-            options={PLATFORM_OPTIONS}
-            placeholder="请选择归属平台"
-            showSearch
-            optionFilterProp="label"
-          />
-        </Form.Item>
-        <Form.Item
-          label="是否默认"
-          name="isDefault"
-          valuePropName="checked"
-          getValueFromEvent={(v) => !!v}
-          getValueProps={(v) => ({ checked: !!v })}
-        >
-          <Switch checkedChildren="是" unCheckedChildren="否" />
-        </Form.Item>
-        <Form.Item
-          label="启用"
-          name="is_enabled"
-          valuePropName="checked"
-          getValueFromEvent={(v) => !!v}
-          getValueProps={(v) => ({ checked: v !== false })}
-        >
-          <Switch checkedChildren="启用" unCheckedChildren="禁用" />
-        </Form.Item>
-        <Form.Item label="备注" name="remark">
-          <Input.TextArea rows={3} placeholder="选填" />
-        </Form.Item>
+        {/* ============ 基础信息 ============ */}
+        <Card size="small" title="基础信息" style={{ marginBottom: 16 }}>
+          <Row gutter={16}>
+            <Col span={24}>
+              <Form.Item
+                label="所属类型"
+                name="typeId"
+                rules={[{ required: true, message: '请选择所属类型' }]}
+              >
+                <Select
+                  placeholder="请选择类型"
+                  options={effectiveTypeOptions}
+                  showSearch
+                  optionFilterProp="label"
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="字典值"
+                name="value"
+                rules={[
+                  { required: true, message: '请输入字典值' },
+                  { max: 64 },
+                ]}
+              >
+                <Input placeholder="例如 Y / N / 0 / 1" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="字典标签"
+                name="label"
+                rules={[
+                  { required: true, message: '请输入字典标签' },
+                  { max: 128 },
+                ]}
+              >
+                <Input placeholder="例如 是 / 否 / 启用" />
+              </Form.Item>
+            </Col>
+          </Row>
+        </Card>
+
+        {/* ============ 样式设置 ============ */}
+        <Card size="small" title="样式设置" style={{ marginBottom: 16 }}>
+          <Row gutter={16} align="middle">
+            <Col span={8}>
+              <Form.Item
+                label="开启预设样式"
+                name="usePresetStyle"
+                valuePropName="checked"
+                getValueFromEvent={(v) => !!v}
+                getValueProps={(v) => ({ checked: v !== false })}
+                style={{ marginBottom: 0 }}
+              >
+                <Switch checkedChildren="开" unCheckedChildren="关" />
+              </Form.Item>
+            </Col>
+            {watchedUsePreset ? (
+              <Col span={10}>
+                <Form.Item
+                  label="预设样式"
+                  name="tagType"
+                  rules={[{ required: true, message: '请选择预设样式' }]}
+                  style={{ marginBottom: 0 }}
+                >
+                  <Select
+                    placeholder="请选择预设样式"
+                    options={TAG_TYPE_OPTIONS}
+                    showSearch
+                    optionFilterProp="label"
+                  />
+                </Form.Item>
+              </Col>
+            ) : null}
+            <Col span={watchedUsePreset ? 6 : 16}>
+              <div
+                style={{
+                  fontSize: 12,
+                  color: '#999',
+                  marginBottom: 4,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                }}
+              >
+                预览
+              </div>
+              <Tag color={previewColor} style={{ marginInlineEnd: 0 }}>
+                {previewText}
+              </Tag>
+            </Col>
+          </Row>
+        </Card>
+
+        {/* ============ 其他属性 ============ */}
+        <Card size="small" title="其他属性" style={{ marginBottom: 16 }}>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                label="排序"
+                name="sort"
+                rules={[{ type: 'number', message: '排序必须为数字' }]}
+              >
+                <InputNumber
+                  style={{ width: '100%' }}
+                  placeholder="升序排序，0 排在前"
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item label="归属平台" name="platform">
+                <Select
+                  options={PLATFORM_OPTIONS}
+                  placeholder="请选择归属平台"
+                  showSearch
+                  optionFilterProp="label"
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="是否默认"
+                name="isDefault"
+                valuePropName="checked"
+                getValueFromEvent={(v) => !!v}
+                getValueProps={(v) => ({ checked: !!v })}
+              >
+                <Switch checkedChildren="是" unCheckedChildren="否" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="启用"
+                name="is_enabled"
+                valuePropName="checked"
+                getValueFromEvent={(v) => !!v}
+                getValueProps={(v) => ({ checked: v !== false })}
+              >
+                <Switch checkedChildren="启用" unCheckedChildren="禁用" />
+              </Form.Item>
+            </Col>
+            <Col span={24}>
+              <Form.Item label="备注" name="remark">
+                <Input.TextArea rows={3} placeholder="选填" />
+              </Form.Item>
+            </Col>
+          </Row>
+        </Card>
       </Form>
     </Drawer>
   );

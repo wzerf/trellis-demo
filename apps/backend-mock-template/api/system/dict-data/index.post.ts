@@ -4,6 +4,7 @@ import {
   getMockDictDataList,
   getMockDictTypeList,
   isAllowedDictDataPlatform,
+  isAllowedTagType,
   isoNow,
   nextDictId,
   type DictData,
@@ -20,6 +21,7 @@ export default defineEventHandler(async (event) => {
     sort?: number;
     isDefault?: boolean;
     platform?: string;
+    tag_type?: string;
     is_enabled?: 0 | 1;
     remark?: string;
   };
@@ -67,6 +69,40 @@ export default defineEventHandler(async (event) => {
     return useResponseError("BadRequest", `platform must be one of general|react-admin|vue-admin`);
   }
 
+  // tag_type 校验：未传则默认 default；传了则必须在枚举内
+  const rawTagType = body?.tag_type;
+  let tagType: DictData["tag_type"] | null = null;
+  if (isAllowedTagType(rawTagType)) {
+    tagType = rawTagType;
+  } else if (rawTagType === undefined) {
+    tagType = "default";
+  }
+  if (tagType === null) {
+    setResponseStatus(event, 400);
+    return useResponseError(
+      "BadRequest",
+      `tag_type must be one of ${[
+        "default",
+        "primary",
+        "success",
+        "warning",
+        "error",
+        "processing",
+        "magenta",
+        "red",
+        "volcano",
+        "orange",
+        "gold",
+        "lime",
+        "green",
+        "cyan",
+        "blue",
+        "geekblue",
+        "purple",
+      ].join("|")}`,
+    );
+  }
+
   const list = getMockDictDataList();
   const conflict = list.find(
     (x) => x.deleted_at === 0 && x.type_id === typeId && x.value === value,
@@ -85,6 +121,7 @@ export default defineEventHandler(async (event) => {
     sort: Number(body?.sort ?? 0),
     is_default: (body?.isDefault ? 1 : 0) as 0 | 1,
     platform,
+    tag_type: tagType,
     is_enabled: (body?.is_enabled ?? 1) as 0 | 1,
     deleted_at: 0,
     remark: body?.remark ?? "",
