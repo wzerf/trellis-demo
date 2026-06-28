@@ -146,39 +146,50 @@ const dataColumns: ProColumns<DictData>[] = [
     // 搜索区把「包含通用」复选框合并到 platform 旁边（Input.Group compact），
     // 避免两个独立表单项挤在一起出现「宽度不够需要展开」的问题。
     // platform=general 时包含通用强制 disabled checked（后端忽略该参数）。
-    // - 外层 Form.Item name="platform" 由 ProTable 自动包裹（cellRenderToFromItem.js）；
-    //   这里不能再加 Form.Item name="platform"，否则会重复注入。
-    // - includeGeneral 字段不在 schema 里注册，通过内嵌 Form.Item name="includeGeneral"
-    //   显式注册到同一个 ProTable form 实例上，提交时一起进 request params。
-    renderFormItem: (_schema, config, form) => {
-      if (!form) return config.defaultRender(_schema);
-      const platform = form.getFieldValue('platform') as string | undefined;
-      const disabled = platform === 'general';
-      return (
-        <span style={{ display: 'inline-flex', alignItems: 'center', width: '100%' }}>
-          <Form.Item name="platform" noStyle initialValue={getCurrentPlatform()}>
-            <Select
-              allowClear
-              placeholder="请选择归属平台"
-              options={SEARCH_PLATFORM_OPTIONS}
-              style={{ flex: 1 }}
-            />
-          </Form.Item>
-          <Form.Item
-            name="includeGeneral"
-            noStyle
-            valuePropName="checked"
-            initialValue={true}
-          >
-            <Checkbox
-              disabled={disabled}
-              style={{ marginLeft: 12, whiteSpace: 'nowrap' }}
-            >
-              包含通用
-            </Checkbox>
-          </Form.Item>
-        </span>
+    // - platform 表单项由 ProTable 自动包裹（cellRenderToFromItem.js），
+    //   这里不能再加 Form.Item name="platform"，否则会重复注入且导致
+    //   ProTable 跟踪不到 platform 的值变化（取消「通用」时 Select 视图错位）。
+    // - includeGeneral 通过内嵌 Form.Item name="includeGeneral" 注册到
+    //   同一个 ProTable form 实例上，提交时一起进 request params。
+    // - 通过 Field 订阅 platform 字段变化，仅在外层修改 platform 时同步
+    //   「通用」checkbox 的 disabled 与勾选状态，避免与 ProTable 内置
+    //   Form.Item 的 onChange 互相覆盖。
+    renderFormItem: (schema, config, form) => {
+      if (!form) return config.defaultRender(schema);
+      const PlatformSelectWithGeneral = (
+        <Form.Item noStyle shouldUpdate={(prev, next) => prev.platform !== next.platform}>
+          {({ getFieldValue }) => {
+            const platform = getFieldValue('platform') as string | undefined;
+            const disabled = platform === 'general';
+            return (
+              <span style={{ display: 'inline-flex', alignItems: 'center', width: '100%' }}>
+                <Form.Item name="platform" noStyle initialValue={getCurrentPlatform()}>
+                  <Select
+                    allowClear
+                    placeholder="请选择归属平台"
+                    options={SEARCH_PLATFORM_OPTIONS}
+                    style={{ flex: 1, minWidth: 140 }}
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="includeGeneral"
+                  noStyle
+                  valuePropName="checked"
+                  initialValue={true}
+                >
+                  <Checkbox
+                    disabled={disabled}
+                    style={{ marginLeft: 12, whiteSpace: 'nowrap' }}
+                  >
+                    通用
+                  </Checkbox>
+                </Form.Item>
+              </span>
+            );
+          }}
+        </Form.Item>
       );
+      return PlatformSelectWithGeneral;
     },
   },
   { title: '排序', dataIndex: 'sort', width: 80, search: false },
