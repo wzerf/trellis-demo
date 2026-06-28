@@ -96,7 +96,7 @@ const DictTypeDrawer = ({ open, row, onClose, onSaved }: Props) => {
       title={isEdit ? '编辑字典类型' : '新建字典类型'}
       open={open}
       onClose={onClose}
-      width={560}
+      size={560}
       destroyOnClose
       footer={
         <Space style={{ float: 'right' }}>

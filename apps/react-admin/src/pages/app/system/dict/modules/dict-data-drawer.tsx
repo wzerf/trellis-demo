@@ -167,7 +167,7 @@ const DictDataDrawer = ({
       title={isEdit ? '编辑字典项' : '新建字典项'}
       open={open}
       onClose={onClose}
-      width={560}
+      size={560}
       destroyOnClose
       footer={
         <Space style={{ float: 'right' }}>

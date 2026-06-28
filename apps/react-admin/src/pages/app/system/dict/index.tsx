@@ -127,9 +127,12 @@ const dataColumns: ProColumns<DictData>[] = [
     width: 110,
     // 表单未选 = 不限 platform（左表无 platform 概念，不应用此过滤）。
     // valueEnum 用 SEARCH_PLATFORM_OPTIONS 全集；allowClear 让用户回到不限。
-    // initialValue = 当前前端平台（VITE_APP_PLATFORM），让搜索栏默认显示自己的平台视角。
+    // 不要在 column 顶层设置 initialValue：ProTable 内部已经用一个
+    // Form.Item name="platform" 包裹搜索输入（cellRenderToFromItem.js），
+    // 这里再设会让 antd 报 "Multiple Field with path 'platform' set
+    // 'initialValue'"。真正的 initialValue 在下方 renderFormItem 内部
+    // 的 Form.Item 上设置。
     valueType: 'select',
-    initialValue: getCurrentPlatform(),
     fieldProps: {
       allowClear: true,
       placeholder: '请选择归属平台',
