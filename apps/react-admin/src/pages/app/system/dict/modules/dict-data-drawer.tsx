@@ -26,7 +26,8 @@ import type {
 import {
   getCurrentPlatform,
   PLATFORM_OPTIONS,
-  TAG_TYPE_OPTIONS,
+  PLATFORM_TAG_TYPE_OPTIONS,
+  TAG_TYPE_SET,
 } from './shared';
 
 interface Props {
@@ -68,6 +69,8 @@ const DictDataDrawer = ({
   const watchedLabel = Form.useWatch('label', form);
   const watchedTagType = Form.useWatch('tagType', form);
   const watchedUsePreset = Form.useWatch('usePresetStyle', form);
+  // 监听 platform：切到 general 时强制 usePresetStyle=false，并锁住开关
+  const watchedPlatform = Form.useWatch('platform', form);
   // 兜底加载：父组件 typeOptions 还没就绪就打开抽屉时，自己拉一次确保
   // Select 拿得到匹配项，否则 setFieldsValue 设的 typeId 会显示不出来
   const allTypesQuery = useListAllDictType(
@@ -106,14 +109,19 @@ const DictDataDrawer = ({
   const submitting = createMut.isPending || updateMut.isPending;
 
   // 根据当前模式（编辑/新建）构造 form values。
-  // - 编辑：用 row 各字段回显，注意 is_default/is_enabled 是 0/1，转成 boolean 给 Switch
+  // - 编辑：用 row 各字段回显，注意 is_default/is_enabled 是 0/1，转成 boolean 给 Switch；
+  //   hasPreset 同时校验 row.tag_type ∈ TAG_TYPE_SET（16 项白名单），legacy 颜色预设
+  //   （如历史数据可能出现的非法值）一律视为「关闭预设样式」
   // - 新建：用 defaultTypeId 回显所属类型，platform 默认当前前端平台，其他字段给个合理的初始值
   const buildFormValues = (
     source: DictData | null,
     initialTypeId?: number,
   ): FormValues => {
     if (source) {
-      const hasPreset = !!source.tag_type && source.tag_type !== 'default';
+      const hasPreset =
+        !!source.tag_type &&
+        source.tag_type !== 'default' &&
+        TAG_TYPE_SET.has(source.tag_type);
       return {
         typeId: source.type_id,
         value: source.value,
@@ -122,7 +130,7 @@ const DictDataDrawer = ({
         isDefault: source.is_default === 1,
         platform: source.platform,
         usePresetStyle: hasPreset,
-        tagType: source.tag_type,
+        tagType: hasPreset ? source.tag_type : 'primary',
         is_enabled: source.is_enabled === 1,
         remark: source.remark,
       };
@@ -162,11 +170,26 @@ const DictDataDrawer = ({
     form.resetFields();
   }, [open, row, defaultTypeId, effectiveTypeOptions, form]);
 
+  // 联动：platform=general 时强制 usePresetStyle=false 并锁住 tagType 选择
+  // （通用平台不允许维护自己的预设样式，按 PRD §「行为契约」执行）。
+  // 用 useEffect 而非在 onChange 里写：watchedPlatform 在表单刚 reset 完
+  // 也会触发一次，此时 usePresetStyle 已经是正确的初始值，setFieldsValue
+  // 是 no-op，所以不会破坏编辑回显。
+  useEffect(() => {
+    if (!open) return;
+    if (watchedPlatform === 'general' && watchedUsePreset) {
+      form.setFieldsValue({ usePresetStyle: false });
+    }
+  }, [open, watchedPlatform, watchedUsePreset, form]);
+
   const handleOk = async () => {
     const values = await form.validateFields();
+    // 永远下发白名单内的值：usePresetStyle=false → 'default'；
+    // true → 当前选中的 tagType 或 'primary' 兜底（前端白名单 ⊂ 后端 16 项白名单，
+    // 不会触发后端 PUT 的 400）。也避免下发空串。
     const finalTagType = values.usePresetStyle
       ? values.tagType || 'primary'
-      : '';
+      : 'default';
     if (isEdit) {
       updateMut.mutate({
         id: row.id,
@@ -280,7 +303,12 @@ const DictDataDrawer = ({
                 getValueFromEvent={(v) => !!v}
                 style={{ marginBottom: 0 }}
               >
-                <Switch checkedChildren="开" unCheckedChildren="关" />
+                {/* 通用平台：开关 disable，鼠标点击无响应（PRD 视觉约定） */}
+                <Switch
+                  checkedChildren="开"
+                  unCheckedChildren="关"
+                  disabled={watchedPlatform === 'general'}
+                />
               </Form.Item>
             </Col>
             {watchedUsePreset ? (
@@ -293,7 +321,7 @@ const DictDataDrawer = ({
                 >
                   <Select
                     placeholder="请选择预设样式"
-                    options={TAG_TYPE_OPTIONS}
+                    options={PLATFORM_TAG_TYPE_OPTIONS(watchedPlatform)}
                     showSearch
                     optionFilterProp="label"
                   />
