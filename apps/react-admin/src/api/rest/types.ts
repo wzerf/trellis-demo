@@ -153,7 +153,8 @@ export interface DictDataQuery {
   page?: number;
   pageSize?: number;
   typeId?: number;
-  typeCode?: string;
+  /** 字典类型编码；多选下拉时传数组（精确匹配任一） */
+  typeCode?: string | string[];
   label?: string;
   value?: string;
   status?: 0 | 1;

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Button,
   Checkbox,
@@ -28,6 +28,7 @@ import {
   listDictTypeApi,
 } from '@/api/rest/dict-type';
 import type { DictData, DictType } from '@/api/rest/types';
+import { useListDictData } from '@/api/hooks/dict';
 import ContentContainer from '@/layouts/components/PageContainer/ContentContainer';
 import DictTypeDrawer from './modules/dict-type-drawer';
 import DictDataDrawer from './modules/dict-data-drawer';
@@ -44,207 +45,330 @@ function statusOrUndefined(v: number | '' | undefined): 0 | 1 | undefined {
 /* ---------- 字典类型下拉选项（用于左右两个搜索框的「类型编码」下拉） ---------- */
 // 表格/搜索下拉的 label 只展示编码，不拼接名称，避免列被撑宽
 async function fetchDictTypeCodeEnum() {
-  const list = await listAllDictTypeApi({ status: 1 });
+  const list = await listAllDictTypeApi();
   return list.map((t) => ({
     label: t.code,
     value: t.code,
   }));
 }
 
-/* ---------- 列：字典类型 ---------- */
-const typeColumns: ProColumns<DictType>[] = [
-  { title: 'ID', dataIndex: 'id', width: 80, search: false },
-  {
-    title: '类型编码',
-    dataIndex: 'code',
-    width: 140,
-    ellipsis: true,
-    valueType: 'select',
-    fieldProps: {
-      mode: 'multiple',
-      showSearch: true,
-      allowClear: true,
-      placeholder: '请选择类型编码',
-    },
-    request: fetchDictTypeCodeEnum,
-  },
-  { title: '类型名称', dataIndex: 'name', width: 140, ellipsis: true },
-  {
-    title: '备注',
-    dataIndex: 'remark',
-    ellipsis: true,
-    search: false,
-    render: (_, r) =>
-      r.remark ? (
-        <span title={r.remark}>{r.remark}</span>
-      ) : (
-        <span style={{ color: '#999' }}>-</span>
-      ),
-  },
-  {
-    title: '状态',
-    dataIndex: 'is_enabled',
-    width: 90,
-    search: false,
-    valueType: 'select',
-    valueEnum: {
-      1: { text: '启用' },
-      0: { text: '禁用' },
-    },
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'updated_at',
-    width: 170,
-    valueType: 'dateTime',
-    search: false,
-  },
-  {
-    title: '操作',
-    valueType: 'option',
-    key: 'option',
-    width: 120,
-    fixed: 'right',
-  },
-];
+/* ---------- 字典驱动渲染工具 ---------- */
+// 一次 list 调用同时拉 sys_switch_status + sys_platform，客户端按 typeCode 拆 map。
+// 渲染「状态」「归属平台」两列时优先从 map 取 label / tag_type，未命中走兜底。
+// is_enabled 0/1 与 sys_switch_status.value enabled/disabled 字符串之间做映射。
+type DictDict = { label: string; tag_type: string };
 
-/* ---------- 列：字典项 ---------- */
-const dataColumns: ProColumns<DictData>[] = [
-  { title: 'ID', dataIndex: 'id', width: 80, search: false },
-  {
-    title: '类型编码',
-    dataIndex: 'typeCode',
-    width: 140,
-    ellipsis: true,
-    // 不在搜索表单中显示；筛选逻辑由联动 / 点击行同步在代码里完成。
-    hideInSearch: true,
-  },
-  { title: '字典值', dataIndex: 'value', width: 120 },
-  { title: '字典标签', dataIndex: 'label', width: 140, ellipsis: true, search: false },
-  {
-    title: '归属平台',
-    dataIndex: 'platform',
-    width: 110,
-    // 表单未选 = 不限 platform（左表无 platform 概念，不应用此过滤）。
-    // valueEnum 用 SEARCH_PLATFORM_OPTIONS 全集；allowClear 让用户回到不限。
-    // 不要在 column 顶层设置 initialValue：ProTable 内部已经用一个
-    // Form.Item name="platform" 包裹搜索输入（cellRenderToFromItem.js），
-    // 这里再设会让 antd 报 "Multiple Field with path 'platform' set
-    // 'initialValue'"。真正的 initialValue 在下方 renderFormItem 内部
-    // 的 Form.Item 上设置。
-    valueType: 'select',
-    fieldProps: {
-      allowClear: true,
-      placeholder: '请选择归属平台',
+const SWITCH_STATUS_FALLBACK: Record<0 | 1, string> = {
+  1: '启用',
+  0: '禁用',
+};
+
+function isEnabledKey(n: number): 'enabled' | 'disabled' {
+  return n === 1 ? 'enabled' : 'disabled';
+}
+
+function buildDictMaps(
+  items: DictData[] | undefined,
+): { switchStatusMap: Map<string, DictDict>; platformMap: Map<string, DictDict> } {
+  const switchStatusMap = new Map<string, DictDict>();
+  const platformMap = new Map<string, DictDict>();
+  for (const d of items ?? []) {
+    const entry: DictDict = { label: d.label, tag_type: d.tag_type };
+    if (d.typeCode === 'sys_switch_status') {
+      switchStatusMap.set(d.value, entry);
+    } else if (d.typeCode === 'sys_platform') {
+      platformMap.set(d.value, entry);
+    }
+  }
+  return { switchStatusMap, platformMap };
+}
+
+/* ---------- 列：字典类型 / 字典项 ---------- */
+// 列定义改为组件内构造函数：渲染层依赖 sys_switch_status / sys_platform
+// 字典项做 label + tag_type 查表，必须能拿到 closure 中的运行时 map。
+// 兜底策略：dict map 尚未填充时（首次 render 或请求失败）走静态写死版本，渲染行为
+// 与改造前一致，避免出现 undefined / 空白。
+function buildTypeColumns(
+  switchStatusMap: Map<string, DictDict>,
+  // renderOption 签名固定为 (text, record, index, action) 4 个参数，是 antd ProTable
+  // 的 API 约束。这里用 eslint-disable 允许超出 max-params=3 限制。
+  // eslint-disable-next-line max-params
+  renderOption: (
+    _: unknown,
+    record: DictType,
+    __: unknown,
+    action?: ActionType,
+  ) => React.ReactNode[],
+): ProColumns<DictType>[] {
+  // 状态 valueEnum：键 1/0（与 is_enabled 数值一致），text 从字典取，命中失败时
+  // 落到 SWITCH_STATUS_FALLBACK。
+  const statusValueEnum: Record<1 | 0, { text: string }> = {
+    1: {
+      text:
+        switchStatusMap.get('enabled')?.label ?? SWITCH_STATUS_FALLBACK[1],
     },
-    valueEnum: SEARCH_PLATFORM_OPTIONS.reduce<Record<string, { text: string }>>(
-      (acc, { value, label }) => {
-        acc[value] = { text: label };
-        return acc;
+    0: {
+      text:
+        switchStatusMap.get('disabled')?.label ?? SWITCH_STATUS_FALLBACK[0],
+    },
+  };
+  // 状态列 render：tag_type 缺失/默认时不传 color，纯文本。
+  const renderStatus = (_: unknown, r: { is_enabled: number }) => {
+    const key = isEnabledKey(r.is_enabled);
+    const hit = switchStatusMap.get(key);
+    const fallbackNum: 0 | 1 = r.is_enabled === 1 ? 1 : 0;
+    const label = hit?.label ?? SWITCH_STATUS_FALLBACK[fallbackNum];
+    const tagType = hit?.tag_type;
+    return (
+      <Tag color={tagType && tagType !== 'default' ? tagType : undefined}>
+        {label}
+      </Tag>
+    );
+  };
+  return [
+    { title: 'ID', dataIndex: 'id', width: 80, search: false },
+    {
+      title: '类型编码',
+      dataIndex: 'code',
+      width: 140,
+      ellipsis: true,
+      valueType: 'select',
+      fieldProps: {
+        mode: 'multiple',
+        showSearch: true,
+        allowClear: true,
+        placeholder: '请选择类型编码',
       },
-      {},
-    ),
-    render: (_, r) =>
-      r.platform ? (
-        <Tag color={r.tag_type && r.tag_type !== 'default' ? r.tag_type : undefined}>
-          {r.platform}
-        </Tag>
-      ) : (
-        <span style={{ color: '#999' }}>-</span>
-      ),
-    // 搜索区把「包含通用」复选框合并到 platform 旁边（Input.Group compact），
-    // 避免两个独立表单项挤在一起出现「宽度不够需要展开」的问题。
-    // platform=general 时包含通用强制 disabled checked（后端忽略该参数）。
-    // - platform 表单项由 ProTable 自动包裹（cellRenderToFromItem.js），
-    //   这里不能再加 Form.Item name="platform"，否则会重复注入且导致
-    //   ProTable 跟踪不到 platform 的值变化（取消「通用」时 Select 视图错位）。
-    // - includeGeneral 通过内嵌 Form.Item name="includeGeneral" 注册到
-    //   同一个 ProTable form 实例上，提交时一起进 request params。
-    // - 通过 Field 订阅 platform 字段变化，仅在外层修改 platform 时同步
-    //   「通用」checkbox 的 disabled 与勾选状态，避免与 ProTable 内置
-    //   Form.Item 的 onChange 互相覆盖。
-    renderFormItem: (schema, config, form) => {
-      if (!form) return config.defaultRender(schema);
-      const PlatformSelectWithGeneral = (
-        <Form.Item noStyle shouldUpdate={(prev, next) => prev.platform !== next.platform}>
-          {({ getFieldValue }) => {
-            const platform = getFieldValue('platform') as string | undefined;
-            const disabled = platform === 'general';
-            return (
-              <span style={{ display: 'inline-flex', alignItems: 'center', width: '100%' }}>
-                <Form.Item name="platform" noStyle initialValue={getCurrentPlatform()}>
-                  <Select
-                    allowClear
-                    placeholder="请选择归属平台"
-                    options={SEARCH_PLATFORM_OPTIONS}
-                    style={{ flex: 1, minWidth: 140 }}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="includeGeneral"
-                  noStyle
-                  valuePropName="checked"
-                  initialValue={true}
-                >
-                  <Checkbox
-                    disabled={disabled}
-                    style={{ marginLeft: 12, whiteSpace: 'nowrap' }}
+      request: fetchDictTypeCodeEnum,
+    },
+    { title: '类型名称', dataIndex: 'name', width: 140, ellipsis: true },
+    {
+      title: '备注',
+      dataIndex: 'remark',
+      ellipsis: true,
+      search: false,
+      render: (_, r) =>
+        r.remark ? (
+          <span title={r.remark}>{r.remark}</span>
+        ) : (
+          <span style={{ color: '#999' }}>-</span>
+        ),
+    },
+    {
+      title: '状态',
+      dataIndex: 'is_enabled',
+      width: 90,
+      search: false,
+      valueType: 'select',
+      valueEnum: statusValueEnum,
+      render: renderStatus,
+    },
+    {
+      title: '更新时间',
+      dataIndex: 'updated_at',
+      width: 170,
+      valueType: 'dateTime',
+      search: false,
+    },
+    {
+      title: '操作',
+      valueType: 'option',
+      key: 'option',
+      width: 120,
+      fixed: 'right',
+      render: renderOption,
+    },
+  ];
+}
+
+function buildDataColumns(
+  platformMap: Map<string, DictDict>,
+  switchStatusMap: Map<string, DictDict>,
+  // renderOption 签名固定为 (text, record, index, action) 4 个参数，是 antd ProTable
+  // 的 API 约束。这里用 eslint-disable 允许超出 max-params=3 限制。
+  // eslint-disable-next-line max-params
+  renderOption: (
+    _: unknown,
+    record: DictData,
+    __: unknown,
+    action?: ActionType,
+  ) => React.ReactNode[],
+): ProColumns<DictData>[] {
+  // 状态 valueEnum（同 typeColumns）
+  const statusValueEnum: Record<1 | 0, { text: string }> = {
+    1: {
+      text:
+        switchStatusMap.get('enabled')?.label ?? SWITCH_STATUS_FALLBACK[1],
+    },
+    0: {
+      text:
+        switchStatusMap.get('disabled')?.label ?? SWITCH_STATUS_FALLBACK[0],
+    },
+  };
+  const renderStatus = (_: unknown, r: { is_enabled: number }) => {
+    const key = isEnabledKey(r.is_enabled);
+    const hit = switchStatusMap.get(key);
+    const fallbackNum: 0 | 1 = r.is_enabled === 1 ? 1 : 0;
+    const label = hit?.label ?? SWITCH_STATUS_FALLBACK[fallbackNum];
+    const tagType = hit?.tag_type;
+    return (
+      <Tag color={tagType && tagType !== 'default' ? tagType : undefined}>
+        {label}
+      </Tag>
+    );
+  };
+  // 平台 valueEnum（搜索下拉）：字典加载完用字典版生成；否则用 SEARCH_PLATFORM_OPTIONS 兜底。
+  const platformValueEnum: Record<string, { text: string }> =
+    platformMap.size > 0
+      ? Object.fromEntries(
+          [...platformMap.entries()].map(([value, { label }]) => [
+            value,
+            { text: label },
+          ]),
+        )
+      : SEARCH_PLATFORM_OPTIONS.reduce<Record<string, { text: string }>>(
+          (acc, { value, label }) => {
+            acc[value] = { text: label };
+            return acc;
+          },
+          {},
+        );
+  const renderPlatform = (_: unknown, r: { platform?: string }) => {
+    if (!r.platform) {
+      return <span style={{ color: '#999' }}>-</span>;
+    }
+    const hit = platformMap.get(r.platform);
+    const label = hit?.label ?? r.platform;
+    const tagType = hit?.tag_type;
+    return (
+      <Tag color={tagType && tagType !== 'default' ? tagType : undefined}>
+        {label}
+      </Tag>
+    );
+  };
+  return [
+    { title: 'ID', dataIndex: 'id', width: 80, search: false },
+    {
+      title: '类型编码',
+      dataIndex: 'typeCode',
+      width: 140,
+      ellipsis: true,
+      // 不在搜索表单中显示；筛选逻辑由联动 / 点击行同步在代码里完成。
+      hideInSearch: true,
+    },
+    { title: '字典值', dataIndex: 'value', width: 120 },
+    { title: '字典标签', dataIndex: 'label', width: 140, ellipsis: true, search: false },
+    {
+      title: '归属平台',
+      dataIndex: 'platform',
+      width: 110,
+      // 表单未选 = 不限 platform（左表无 platform 概念，不应用此过滤）。
+      // valueEnum 用 SEARCH_PLATFORM_OPTIONS 全集；allowClear 让用户回到不限。
+      // 不要在 column 顶层设置 initialValue：ProTable 内部已经用一个
+      // Form.Item name="platform" 包裹搜索输入（cellRenderToFromItem.js），
+      // 这里再设会让 antd 报 "Multiple Field with path 'platform' set
+      // 'initialValue'"。真正的 initialValue 在下方 renderFormItem 内部
+      // 的 Form.Item 上设置。
+      valueType: 'select',
+      fieldProps: {
+        allowClear: true,
+        placeholder: '请选择归属平台',
+      },
+      valueEnum: platformValueEnum,
+      render: renderPlatform,
+      // 搜索区把「包含通用」复选框合并到 platform 旁边（Input.Group compact），
+      // 避免两个独立表单项挤在一起出现「宽度不够需要展开」的问题。
+      // platform=general 时包含通用强制 disabled checked（后端忽略该参数）。
+      // - platform 表单项由 ProTable 自动包裹（cellRenderToFromItem.js），
+      //   这里不能再加 Form.Item name="platform"，否则会重复注入且导致
+      //   ProTable 跟踪不到 platform 的值变化（取消「通用」时 Select 视图错位）。
+      // - includeGeneral 通过内嵌 Form.Item name="includeGeneral" 注册到
+      //   同一个 ProTable form 实例上，提交时一起进 request params。
+      // - 通过 Field 订阅 platform 字段变化，仅在外层修改 platform 时同步
+      //   「通用」checkbox 的 disabled 与勾选状态，避免与 ProTable 内置
+      //   Form.Item 的 onChange 互相覆盖。
+      renderFormItem: (schema, config, form) => {
+        if (!form) return config.defaultRender(schema);
+        const PlatformSelectWithGeneral = (
+          <Form.Item noStyle shouldUpdate={(prev, next) => prev.platform !== next.platform}>
+            {({ getFieldValue }) => {
+              const platform = getFieldValue('platform') as string | undefined;
+              const disabled = platform === 'general';
+              return (
+                <span style={{ display: 'inline-flex', alignItems: 'center', width: '100%' }}>
+                  <Form.Item name="platform" noStyle initialValue={getCurrentPlatform()}>
+                    <Select
+                      allowClear
+                      placeholder="请选择归属平台"
+                      options={SEARCH_PLATFORM_OPTIONS}
+                      style={{ flex: 1, minWidth: 140 }}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name="includeGeneral"
+                    noStyle
+                    valuePropName="checked"
+                    initialValue={true}
                   >
-                    通用
-                  </Checkbox>
-                </Form.Item>
-              </span>
-            );
-          }}
-        </Form.Item>
-      );
-      return PlatformSelectWithGeneral;
+                    <Checkbox
+                      disabled={disabled}
+                      style={{ marginLeft: 12, whiteSpace: 'nowrap' }}
+                    >
+                      通用
+                    </Checkbox>
+                  </Form.Item>
+                </span>
+              );
+            }}
+          </Form.Item>
+        );
+        return PlatformSelectWithGeneral;
+      },
     },
-  },
-  { title: '排序', dataIndex: 'sort', width: 80, search: false },
-  {
-    title: '默认',
-    dataIndex: 'is_default',
-    width: 80,
-    search: false,
-    render: (_, r) =>
-      r.is_default === 1 ? (
-        <span style={{ color: '#1677ff' }}>默认</span>
-      ) : (
-        <span style={{ color: '#999' }}>-</span>
-      ),
-  },
-  {
-    title: '状态',
-    dataIndex: 'is_enabled',
-    width: 90,
-    search: false,
-    valueType: 'select',
-    valueEnum: {
-      1: { text: '启用' },
-      0: { text: '禁用' },
+    { title: '排序', dataIndex: 'sort', width: 80, search: false },
+    {
+      title: '默认',
+      dataIndex: 'is_default',
+      width: 80,
+      search: false,
+      render: (_, r) =>
+        r.is_default === 1 ? (
+          <span style={{ color: '#1677ff' }}>默认</span>
+        ) : (
+          <span style={{ color: '#999' }}>-</span>
+        ),
     },
-  },
-  {
-    title: '备注',
-    dataIndex: 'remark',
-    ellipsis: true,
-    search: false,
-    render: (_, r) =>
-      r.remark ? (
-        <span title={r.remark}>{r.remark}</span>
-      ) : (
-        <span style={{ color: '#999' }}>-</span>
-      ),
-  },
-  {
-    title: '操作',
-    valueType: 'option',
-    key: 'option',
-    width: 120,
-    fixed: 'right',
-  },
-];
+    {
+      title: '状态',
+      dataIndex: 'is_enabled',
+      width: 90,
+      search: false,
+      valueType: 'select',
+      valueEnum: statusValueEnum,
+      render: renderStatus,
+    },
+    {
+      title: '备注',
+      dataIndex: 'remark',
+      ellipsis: true,
+      search: false,
+      render: (_, r) =>
+        r.remark ? (
+          <span title={r.remark}>{r.remark}</span>
+        ) : (
+          <span style={{ color: '#999' }}>-</span>
+        ),
+    },
+    {
+      title: '操作',
+      valueType: 'option',
+      key: 'option',
+      width: 120,
+      fixed: 'right',
+      render: renderOption,
+    },
+  ];
+}
 
 const DictPage = () => {
   const typeActionRef = useRef<ActionType | undefined>(undefined);
@@ -395,13 +519,23 @@ const DictPage = () => {
     ];
   }
 
-  // 注入 render
-  const typeCols: ProColumns<DictType>[] = typeColumns.map((c) =>
-    c.key === 'option' ? { ...c, render: renderTypeActions } : c,
+  /* ---------- 一次 list 调用拉两份字典（sys_switch_status + sys_platform） ---------- */
+  // 通过 useListDictData 注入 typeCode 数组；hook 自动注入 platform，merged query
+  // 进 queryKey。客户端按返回的 typeCode 字段拆成两份 map，注入到列定义。
+  // dict 未返回时（首次 render / 错误）map 为空，列定义走兜底分支。
+  const { data: dictPage } = useListDictData({
+    typeCode: ['sys_switch_status', 'sys_platform'],
+  });
+  const { switchStatusMap, platformMap } = useMemo(
+    () => buildDictMaps(dictPage?.items),
+    [dictPage],
   );
-  const entryCols: ProColumns<DictData>[] = dataColumns.map((c) =>
-    c.key === 'option' ? { ...c, render: renderEntryActions } : c,
-  );
+
+  // 列定义：每次 render 直接构造，保证 renderTypeActions / renderEntryActions
+  // 闭包内捕获的是最新 state（selectedTypeId / selectedType / entryTypeCodeRef 等）。
+  // 数组很小，构造开销可忽略；正确性优先于 memoization。
+  const typeCols: ProColumns<DictType>[] = buildTypeColumns(switchStatusMap, renderTypeActions);
+  const entryCols: ProColumns<DictData>[] = buildDataColumns(platformMap, switchStatusMap, renderEntryActions);
 
   /* ---------- 列表请求 ---------- */
   async function fetchTypeRows(
