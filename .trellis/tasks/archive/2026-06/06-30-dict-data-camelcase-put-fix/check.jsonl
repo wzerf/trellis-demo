@@ -1,0 +1,25 @@
+{"file": ".trellis/tasks/06-30-dict-data-camelcase-put-fix/prd.md", "reason": "需求与验收基线"}
+{"file": ".trellis/tasks/06-30-dict-data-camelcase-put-fix/design.md", "reason": "技术契约、字段映射、handler 边界策略"}
+{"file": ".trellis/tasks/06-30-dict-data-camelcase-put-fix/implement.md", "reason": "执行清单 + 验证命令 + 回滚点"}
+{"file": "apps/backend-mock-template/utils/dict-camel.ts", "reason": "新增工具：snake↔camel 转换"}
+{"file": "apps/backend-mock-template/api/system/dict-data/index.post.ts", "reason": "camelCase body + camelCase response"}
+{"file": "apps/backend-mock-template/api/system/dict-data/[id].put.ts", "reason": "修复 PUT 400 + camelCase"}
+{"file": "apps/backend-mock-template/api/system/dict-data/[id].delete.ts", "reason": "camelCase response"}
+{"file": "apps/backend-mock-template/api/system/dict-data/list.ts", "reason": "camelCase response"}
+{"file": "apps/backend-mock-template/api/system/dict-data/by-type/[code].ts", "reason": "camelCase response"}
+{"file": "apps/backend-mock-template/api/system/dict-data/batch.post.ts", "reason": "行字段不涉及；批量接口"}
+{"file": "apps/backend-mock-template/api/system/dict-type/index.post.ts", "reason": "camelCase body + camelCase response"}
+{"file": "apps/backend-mock-template/api/system/dict-type/[id].put.ts", "reason": "camelCase body + camelCase response"}
+{"file": "apps/backend-mock-template/api/system/dict-type/[id].delete.ts", "reason": "camelCase response"}
+{"file": "apps/backend-mock-template/api/system/dict-type/[id].ts", "reason": "camelCase response"}
+{"file": "apps/backend-mock-template/api/system/dict-type/list.ts", "reason": "camelCase response"}
+{"file": "apps/backend-mock-template/api/system/dict-type/all.ts", "reason": "camelCase response"}
+{"file": "apps/backend-mock-template/api/system/dict-type/batch.post.ts", "reason": "行字段不涉及"}
+{"file": "apps/react-admin/src/api/rest/types.ts", "reason": "DictType/DictData 字段全 camelCase"}
+{"file": "apps/react-admin/src/pages/app/system/dict/modules/dict-data-drawer.tsx", "reason": "删除 tag_type 改写；字段名 camelCase"}
+{"file": "apps/react-admin/src/pages/app/system/dict/modules/dict-type-drawer.tsx", "reason": "字段名 camelCase"}
+{"file": "apps/react-admin/src/pages/app/system/dict/index.tsx", "reason": "renderDict 列读取 camelCase；fetchXxxRows 读 isEnabled"}
+{"file": "apps/vue-vben-admin/apps/web-naive/src/api/system/dict/types.ts", "reason": "DictType/DictData 字段全 camelCase"}
+{"file": "apps/vue-vben-admin/apps/web-naive/src/views/system/dict/data.ts", "reason": "schema 字段与表格 field 全 camelCase"}
+{"file": "apps/vue-vben-admin/apps/web-naive/src/views/system/dict/modules/form.vue", "reason": "编辑回显 + 提交 payload 全 camelCase"}
+{"file": "apps/vue-vben-admin/apps/web-naive/src/views/system/dict/index.vue", "reason": "运行时 helper 读 camelCase"}
