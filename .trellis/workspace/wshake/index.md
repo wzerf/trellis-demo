@@ -8,8 +8,8 @@
 
 <!-- @@@auto:current-status -->
 - **Active File**: `journal-1.md`
-- **Total Sessions**: 6
-- **Last Active**: 2026-06-28
+- **Total Sessions**: 7
+- **Last Active**: 2026-06-29
 <!-- @@@/auto:current-status -->
 
 ---
@@ -19,7 +19,7 @@
 <!-- @@@auto:active-documents -->
 | File | Lines | Status |
 |------|-------|--------|
-| `journal-1.md` | ~333 | Active |
+| `journal-1.md` | ~364 | Active |
 <!-- @@@/auto:active-documents -->
 
 ---
@@ -30,6 +30,7 @@
 
 | # | Date | Title | Commits | Branch |
 |---|------|-------|---------|--------|
+| 7 | 2026-06-29 | 字典管理状态/平台列改用字典 label+tag_type 渲染 | - | `master` |
 | 6 | 2026-06-28 | 字典项预设样式按平台收敛（react + vue） | `3dd731fe`, `29e3a418` | `master` |
 | 5 | 2026-06-25 | 字典管理跨端实现（Vue vben-admin / React admin / Backend-mock） | `33e2853d`, `15e29f01`, `0a3c9166`, `5cf2912f` | `master` |
 | 4 | 2026-06-25 | 字典管理跨端实现（Vue vben-admin / React admin / Backend-mock） | `33e2853d`, `15e29f01`, `0a3c9166`, `5cf2912f` | `master` |

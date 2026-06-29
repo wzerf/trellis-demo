@@ -331,3 +331,34 @@ java-admin-backend Phase 3 收尾。Spring Boot 4.0.3 + Java 17 + 4 模块 Maven
 ### Next Steps
 
 - None - task complete
+
+
+## Session 7: 字典管理状态/平台列改用字典 label+tag_type 渲染
+
+**Date**: 2026-06-29
+**Task**: 字典管理状态/平台列改用字典 label+tag_type 渲染
+**Branch**: `master`
+
+### Summary
+
+完成 06-29-dict-platform-switch-status-column-render 任务的规划与实现: mock seed 新增 sys_platform 字典 (type id=10, items 2001/2002/2003); 两端 DictDataQuery.typeCode 拓宽为 string|string[]; react-admin / vue-vben 字典管理页面用一次 useListDictData 调用拉 sys_switch_status + sys_platform 两份字典, 客户端按 typeCode 字段拆分 map, 「状态」「归属平台」两列从静态 valueEnum / 写死 formatter 改为基于字典 label + tag_type 渲染; 兜底保留原行为; 调用方显式带 includeGeneral=true 保证拿到 general 组; mock 与 SQL sys_switch_status / sys_platform 契约一致。 trellis-check 通过 (mock 端到端 + typecheck + lint)。 用户在 finish-work 前未授权 code commit, session 的工作未提交, 任务按 uncommitted state archive。
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+(No commits - planning session)
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
