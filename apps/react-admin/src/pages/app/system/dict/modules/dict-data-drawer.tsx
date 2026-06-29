@@ -156,7 +156,7 @@ const DictDataDrawer = ({
   const formInitialValues = useMemo<FormValues>(
     () => buildFormValues(row, defaultTypeId),
     // buildFormValues 是纯函数；这里只依赖真正影响回显的入参
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     [row, defaultTypeId],
   );
 
