@@ -523,8 +523,13 @@ const DictPage = () => {
   // 通过 useListDictData 注入 typeCode 数组；hook 自动注入 platform，merged query
   // 进 queryKey。客户端按返回的 typeCode 字段拆成两份 map，注入到列定义。
   // dict 未返回时（首次 render / 错误）map 为空，列定义走兜底分支。
+  // 显式带 includeGeneral: true：mock dict-data/list.ts 默认 includeGeneral=false，
+  // 平台为 react-admin / vue-admin 时不会自动并入 general 组；显式开启后才能
+  // 同时拿到 general + 当前平台两组字典项（sys_switch_status 的 general 项由
+  // includeGeneral 控制可见性，sys_platform 的 general 项同理）。
   const { data: dictPage } = useListDictData({
     typeCode: ['sys_switch_status', 'sys_platform'],
+    includeGeneral: true,
   });
   const { switchStatusMap, platformMap } = useMemo(
     () => buildDictMaps(dictPage?.items),
