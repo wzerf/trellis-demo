@@ -28,7 +28,7 @@ import {
   listDictTypeApi,
 } from '@/api/rest/dict-type';
 import type { DictData, DictType } from '@/api/rest/types';
-import { useListDictData } from '@/api/hooks/dict';
+import { useDictLookups } from '@/api/hooks/dict';
 import ContentContainer from '@/layouts/components/PageContainer/ContentContainer';
 import DictTypeDrawer from './modules/dict-type-drawer';
 import DictDataDrawer from './modules/dict-data-drawer';
@@ -53,43 +53,15 @@ async function fetchDictTypeCodeEnum() {
 }
 
 /* ---------- 字典驱动渲染工具 ---------- */
-// 一次 list 调用同时拉 sys_switch_status + sys_platform，客户端按 typeCode 拆 map。
-// 渲染「状态」「归属平台」两列时优先从 map 取 label / tagType，未命中走兜底。
-// isEnabled 0/1 与 sys_switch_status.value enabled/disabled 字符串之间做映射。
-type DictDict = { label: string; tagType: string };
-
-const SWITCH_STATUS_FALLBACK: Record<0 | 1, string> = {
-  1: '启用',
-  0: '禁用',
-};
-
-function isEnabledKey(n: number): 'enabled' | 'disabled' {
-  return n === 1 ? 'enabled' : 'disabled';
-}
-
-function buildDictMaps(
-  items: DictData[] | undefined,
-): { switchStatusMap: Map<string, DictDict>; platformMap: Map<string, DictDict> } {
-  const switchStatusMap = new Map<string, DictDict>();
-  const platformMap = new Map<string, DictDict>();
-  for (const d of items ?? []) {
-    const entry: DictDict = { label: d.label, tagType: d.tagType };
-    if (d.typeCode === 'sys_switch_status') {
-      switchStatusMap.set(d.value, entry);
-    } else if (d.typeCode === 'sys_platform') {
-      platformMap.set(d.value, entry);
-    }
-  }
-  return { switchStatusMap, platformMap };
-}
+// 所有 fallback（label / tagType / valueEnum / 平台命中）由 useDictLookups 提供。
+// 本文件只消费 helper，不再持有 SWITCH_STATUS_FALLBACK / 平台命中策略。
 
 /* ---------- 列：字典类型 / 字典项 ---------- */
-// 列定义改为组件内构造函数：渲染层依赖 sys_switch_status / sys_platform
-// 字典项做 label + tag_type 查表，必须能拿到 closure 中的运行时 map。
-// 兜底策略：dict map 尚未填充时（首次 render 或请求失败）走静态写死版本，渲染行为
+// 列定义改为组件内构造函数：渲染层依赖 useDictLookups 返回的 helper。
+// dict 未返回时（首次 render 或请求失败）hook 内部走静态 fallback，渲染行为
 // 与改造前一致，避免出现 undefined / 空白。
 function buildTypeColumns(
-  switchStatusMap: Map<string, DictDict>,
+  dictLookups: ReturnType<typeof useDictLookups>,
   // renderOption 签名固定为 (text, record, index, action) 4 个参数，是 antd ProTable
   // 的 API 约束。这里用 eslint-disable 允许超出 max-params=3 限制。
   // eslint-disable-next-line max-params
@@ -100,28 +72,13 @@ function buildTypeColumns(
     action?: ActionType,
   ) => React.ReactNode[],
 ): ProColumns<DictType>[] {
-  // 状态 valueEnum：键 1/0（与 is_enabled 数值一致），text 从字典取，命中失败时
-  // 落到 SWITCH_STATUS_FALLBACK。
-  const statusValueEnum: Record<1 | 0, { text: string }> = {
-    1: {
-      text:
-        switchStatusMap.get('enabled')?.label ?? SWITCH_STATUS_FALLBACK[1],
-    },
-    0: {
-      text:
-        switchStatusMap.get('disabled')?.label ?? SWITCH_STATUS_FALLBACK[0],
-    },
-  };
-  // 状态列 render：tagType 缺失/默认时不传 color，纯文本。
+  const statusValueEnum = dictLookups.switchValueEnum;
+  // 状态列 render：tagType 缺失/默认时不传 color，纯文本（保留改前 React 视觉）。
   const renderStatus = (_: unknown, r: { isEnabled: number }) => {
-    const key = isEnabledKey(r.isEnabled);
-    const hit = switchStatusMap.get(key);
-    const fallbackNum: 0 | 1 = r.isEnabled === 1 ? 1 : 0;
-    const label = hit?.label ?? SWITCH_STATUS_FALLBACK[fallbackNum];
-    const tagType = hit?.tagType;
+    const tagType = dictLookups.lookupSwitchTagType(r.isEnabled);
     return (
       <Tag color={tagType && tagType !== 'default' ? tagType : undefined}>
-        {label}
+        {dictLookups.lookupSwitchLabel(r.isEnabled)}
       </Tag>
     );
   };
@@ -182,8 +139,7 @@ function buildTypeColumns(
 }
 
 function buildDataColumns(
-  platformMap: Map<string, DictDict>,
-  switchStatusMap: Map<string, DictDict>,
+  dictLookups: ReturnType<typeof useDictLookups>,
   // renderOption 签名固定为 (text, record, index, action) 4 个参数，是 antd ProTable
   // 的 API 约束。这里用 eslint-disable 允许超出 max-params=3 限制。
   // eslint-disable-next-line max-params
@@ -194,55 +150,25 @@ function buildDataColumns(
     action?: ActionType,
   ) => React.ReactNode[],
 ): ProColumns<DictData>[] {
-  // 状态 valueEnum（同 typeColumns）
-  const statusValueEnum: Record<1 | 0, { text: string }> = {
-    1: {
-      text:
-        switchStatusMap.get('enabled')?.label ?? SWITCH_STATUS_FALLBACK[1],
-    },
-    0: {
-      text:
-        switchStatusMap.get('disabled')?.label ?? SWITCH_STATUS_FALLBACK[0],
-    },
-  };
+  const statusValueEnum = dictLookups.switchValueEnum;
   const renderStatus = (_: unknown, r: { isEnabled: number }) => {
-    const key = isEnabledKey(r.isEnabled);
-    const hit = switchStatusMap.get(key);
-    const fallbackNum: 0 | 1 = r.isEnabled === 1 ? 1 : 0;
-    const label = hit?.label ?? SWITCH_STATUS_FALLBACK[fallbackNum];
-    const tagType = hit?.tagType;
+    const tagType = dictLookups.lookupSwitchTagType(r.isEnabled);
     return (
       <Tag color={tagType && tagType !== 'default' ? tagType : undefined}>
-        {label}
+        {dictLookups.lookupSwitchLabel(r.isEnabled)}
       </Tag>
     );
   };
-  // 平台 valueEnum（搜索下拉）：字典加载完用字典版生成；否则用 SEARCH_PLATFORM_OPTIONS 兜底。
-  const platformValueEnum: Record<string, { text: string }> =
-    platformMap.size > 0
-      ? Object.fromEntries(
-          [...platformMap.entries()].map(([value, { label }]) => [
-            value,
-            { text: label },
-          ]),
-        )
-      : SEARCH_PLATFORM_OPTIONS.reduce<Record<string, { text: string }>>(
-          (acc, { value, label }) => {
-            acc[value] = { text: label };
-            return acc;
-          },
-          {},
-        );
+  // 平台 valueEnum（搜索下拉）：hook 已内置 platformLabels 兜底逻辑。
+  const platformValueEnum = dictLookups.platformValueEnum;
   const renderPlatform = (_: unknown, r: { platform?: string }) => {
     if (!r.platform) {
       return <span style={{ color: '#999' }}>-</span>;
     }
-    const hit = platformMap.get(r.platform);
-    const label = hit?.label ?? r.platform;
-    const tagType = hit?.tagType;
+    const tagType = dictLookups.lookupPlatformTagType(r.platform);
     return (
       <Tag color={tagType && tagType !== 'default' ? tagType : undefined}>
-        {label}
+        {dictLookups.lookupPlatformLabel(r.platform)}
       </Tag>
     );
   };
@@ -520,27 +446,34 @@ const DictPage = () => {
   }
 
   /* ---------- 一次 list 调用拉两份字典（sys_switch_status + sys_platform） ---------- */
-  // 通过 useListDictData 注入 typeCode 数组；hook 自动注入 platform，merged query
-  // 进 queryKey。客户端按返回的 typeCode 字段拆成两份 map，注入到列定义。
-  // dict 未返回时（首次 render / 错误）map 为空，列定义走兜底分支。
-  // 显式带 includeGeneral: true：mock dict-data/list.ts 默认 includeGeneral=false，
-  // 平台为 react-admin / vue-admin 时不会自动并入 general 组；显式开启后才能
-  // 同时拿到 general + 当前平台两组字典项（sys_switch_status 的 general 项由
-  // includeGeneral 控制可见性，sys_platform 的 general 项同理）。
-  const { data: dictPage } = useListDictData({
-    typeCode: ['sys_switch_status', 'sys_platform'],
-    includeGeneral: true,
-  });
-  const { switchStatusMap, platformMap } = useMemo(
-    () => buildDictMaps(dictPage?.items),
-    [dictPage],
+  // 通过 useDictLookups 注入 typeCode 数组；hook 内部合并 platform / includeGeneral，
+  // 走平台优先命中拆 map、构造 fallback label / tagType / valueEnum。
+  // dict 未返回时（首次 render / 错误）hook helper 走内置静态 fallback，渲染行为
+  // 与改造前一致。
+  // platformLabels 用 SEARCH_PLATFORM_OPTIONS 兜底：dict 还没拉回来时,
+  // 平台列 valueEnum 仍展示「通用 / React Admin / Vue Admin」三项友好文案。
+  const platformLabels = useMemo(
+    () =>
+      SEARCH_PLATFORM_OPTIONS.reduce<Record<string, string>>(
+        (acc, { value, label }) => {
+          acc[value] = label;
+          return acc;
+        },
+        {},
+      ),
+    [],
   );
+  const dictLookups = useDictLookups({
+    typeCodes: ['sys_switch_status', 'sys_platform'],
+    includeGeneral: true,
+    platformLabels,
+  });
 
   // 列定义：每次 render 直接构造，保证 renderTypeActions / renderEntryActions
   // 闭包内捕获的是最新 state（selectedTypeId / selectedType / entryTypeCodeRef 等）。
   // 数组很小，构造开销可忽略；正确性优先于 memoization。
-  const typeCols: ProColumns<DictType>[] = buildTypeColumns(switchStatusMap, renderTypeActions);
-  const entryCols: ProColumns<DictData>[] = buildDataColumns(platformMap, switchStatusMap, renderEntryActions);
+  const typeCols: ProColumns<DictType>[] = buildTypeColumns(dictLookups, renderTypeActions);
+  const entryCols: ProColumns<DictData>[] = buildDataColumns(dictLookups, renderEntryActions);
 
   /* ---------- 列表请求 ---------- */
   async function fetchTypeRows(
