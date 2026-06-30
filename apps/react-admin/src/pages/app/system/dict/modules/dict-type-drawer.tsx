@@ -26,7 +26,7 @@ interface FormValues {
   code: string;
   name: string;
   remark?: string;
-  is_enabled?: boolean;
+  isEnabled?: boolean;
 }
 
 const DictTypeDrawer = ({ open, row, onClose, onSaved }: Props) => {
@@ -62,30 +62,30 @@ const DictTypeDrawer = ({ open, row, onClose, onSaved }: Props) => {
               code: row.code,
               name: row.name,
               remark: row.remark,
-              is_enabled: row.is_enabled === 1,
+              isEnabled: row.isEnabled === 1,
             }
-          : { code: '', name: '', remark: '', is_enabled: true },
+          : { code: '', name: '', remark: '', isEnabled: true },
       );
     }
   }, [open, row, form]);
 
   const handleOk = async () => {
     const values = await form.validateFields();
-    const isEnabled = values.is_enabled ? (1 as const) : (0 as const);
+    const isEnabled = values.isEnabled ? (1 as const) : (0 as const);
     if (isEdit) {
       updateMut.mutate({
         id: row.id,
         code: values.code,
         name: values.name,
         remark: values.remark ?? '',
-        is_enabled: isEnabled,
+        isEnabled,
       });
     } else {
       const body: CreateDictTypeRequest = {
         code: values.code,
         name: values.name,
         remark: values.remark ?? '',
-        is_enabled: isEnabled,
+        isEnabled,
       };
       createMut.mutate(body);
     }
@@ -135,7 +135,7 @@ const DictTypeDrawer = ({ open, row, onClose, onSaved }: Props) => {
         </Form.Item>
         <Form.Item
           label="启用"
-          name="is_enabled"
+          name="isEnabled"
           valuePropName="checked"
           getValueFromEvent={(v) => !!v}
           getValueProps={(v) => ({ checked: v !== false })}

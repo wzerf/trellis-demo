@@ -1,5 +1,6 @@
 import { defineEventHandler, getQuery } from "h3";
 import { ensureDictSeeds, getMockDictTypeList, type DictType } from "~/utils/mock-data";
+import { toCamelRow } from "~/utils/dict-camel";
 import { usePageResponseSuccess } from "~/utils/response";
 
 export default defineEventHandler(async (event) => {
@@ -33,5 +34,5 @@ export default defineEventHandler(async (event) => {
   // 按 id 升序，便于观察
   filtered.sort((a, b) => a.id - b.id);
 
-  return usePageResponseSuccess(page as string, pageSize as string, filtered);
+  return usePageResponseSuccess(page as string, pageSize as string, filtered.map(toCamelRow));
 });

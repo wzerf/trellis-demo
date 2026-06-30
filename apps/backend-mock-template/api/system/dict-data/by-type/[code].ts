@@ -1,5 +1,6 @@
 import { defineEventHandler, getRouterParam, setResponseStatus } from "h3";
 import { ensureDictSeeds, getMockDictDataList, getMockDictTypeList } from "~/utils/mock-data";
+import { toCamelRow } from "~/utils/dict-camel";
 import { useResponseError, useResponseSuccess } from "~/utils/response";
 
 export default defineEventHandler(async (event) => {
@@ -21,6 +22,7 @@ export default defineEventHandler(async (event) => {
 
   const items = getMockDictDataList()
     .filter((d) => typeIds.has(d.type_id) && d.is_enabled === 1)
-    .sort((a, b) => a.sort - b.sort || a.id - b.id);
+    .sort((a, b) => a.sort - b.sort || a.id - b.id)
+    .map(toCamelRow);
   return useResponseSuccess(items);
 });

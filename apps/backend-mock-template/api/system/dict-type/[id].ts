@@ -1,5 +1,6 @@
 import { defineEventHandler, getRouterParam, setResponseStatus } from "h3";
 import { ensureDictSeeds, getMockDictTypeList } from "~/utils/mock-data";
+import { toCamelRow } from "~/utils/dict-camel";
 import { useResponseError, useResponseSuccess } from "~/utils/response";
 
 export default defineEventHandler(async (event) => {
@@ -17,5 +18,5 @@ export default defineEventHandler(async (event) => {
     setResponseStatus(event, 404);
     return useResponseError("NotFound", `dict-type ${id} not found`);
   }
-  return useResponseSuccess(found);
+  return useResponseSuccess(toCamelRow(found));
 });

@@ -6,16 +6,17 @@ import {
   isAllowedTagType,
   isoNow,
 } from "~/utils/mock-data";
+import { pickCamelKeys, toCamelRow } from "~/utils/dict-camel";
 import { useResponseError, useResponseSuccess } from "~/utils/response";
 
 const ALLOWED_KEYS = [
   "value",
   "label",
   "sort",
-  "is_default",
+  "isDefault",
   "platform",
-  "tag_type",
-  "is_enabled",
+  "tagType",
+  "isEnabled",
   "remark",
 ] as const;
 
@@ -29,7 +30,8 @@ export default defineEventHandler(async (event) => {
     return useResponseError("BadRequest", "id must be a number");
   }
 
-  const raw = (await readBody(event)) as Record<string, unknown>;
+  // 接受 camelCase 字段；同时容忍 snake（迁移期容错）。
+  const raw = ((await readBody(event)) ?? {}) as Record<string, unknown>;
   const list = getMockDictDataList();
   const idx = list.findIndex((x) => x.id === id && x.deleted_at === 0);
   if (idx < 0) {
@@ -37,10 +39,7 @@ export default defineEventHandler(async (event) => {
     return useResponseError("NotFound", `dict-data ${id} not found`);
   }
 
-  const patch: Record<string, unknown> = {};
-  for (const key of ALLOWED_KEYS) {
-    if (key in raw) patch[key] = raw[key];
-  }
+  const patch = pickCamelKeys<Record<string, unknown>>(raw, ALLOWED_KEYS);
 
   if ("value" in patch) {
     const rawValue = patch.value;
@@ -58,8 +57,15 @@ export default defineEventHandler(async (event) => {
       setResponseStatus(event, 400);
       return useResponseError("BadRequest", "value must be ≤ 64 chars");
     }
+    // 唯一性：(type_id, value, platform) 三元组；platform 是隔离维度，
+    // 因此同 type 下不同 platform 的同名 value 不应判重。
     const conflict = list.find(
-      (x) => x.id !== id && x.deleted_at === 0 && x.type_id === list[idx].type_id && x.value === v,
+      (x) =>
+        x.id !== id &&
+        x.deleted_at === 0 &&
+        x.type_id === list[idx].type_id &&
+        x.value === v &&
+        x.platform === list[idx].platform,
     );
     if (conflict) {
       setResponseStatus(event, 400);
@@ -96,8 +102,8 @@ export default defineEventHandler(async (event) => {
     }
     patch.sort = s;
   }
-  if ("is_default" in patch) {
-    patch.is_default = patch.is_default ? 1 : 0;
+  if ("isDefault" in patch) {
+    patch.isDefault = patch.isDefault ? 1 : 0;
   }
   if ("platform" in patch) {
     if (!isAllowedDictDataPlatform(patch.platform)) {
@@ -108,29 +114,45 @@ export default defineEventHandler(async (event) => {
       );
     }
   }
-  if ("tag_type" in patch) {
-    if (!isAllowedTagType(patch.tag_type)) {
+  if ("tagType" in patch) {
+    if (!isAllowedTagType(patch.tagType)) {
       setResponseStatus(event, 400);
       return useResponseError(
         "BadRequest",
-        "tag_type must be one of default|primary|success|warning|error|processing|magenta|red|volcano|orange|gold|lime|green|cyan|blue|geekblue|purple",
+        "tagType must be one of default|primary|success|warning|error|processing|magenta|red|volcano|orange|gold|lime|green|cyan|blue|geekblue|purple",
       );
     }
   }
-  if ("is_enabled" in patch) {
-    const v = Number(patch.is_enabled);
+  if ("isEnabled" in patch) {
+    const v = Number(patch.isEnabled);
     if (v !== 0 && v !== 1) {
       setResponseStatus(event, 400);
-      return useResponseError("BadRequest", "is_enabled must be 0 or 1");
+      return useResponseError("BadRequest", "isEnabled must be 0 or 1");
     }
-    patch.is_enabled = v as 0 | 1;
+    patch.isEnabled = v as 0 | 1;
+  }
+
+  // 写入仍使用 snake；按 ALLOWED_KEYS 映射回 snake key 避免内存行混入 camel 字段。
+  const snakePatch: Record<string, unknown> = {};
+  const KEY_TO_SNAKE: Record<string, string> = {
+    value: "value",
+    label: "label",
+    sort: "sort",
+    isDefault: "is_default",
+    platform: "platform",
+    tagType: "tag_type",
+    isEnabled: "is_enabled",
+    remark: "remark",
+  };
+  for (const k of ALLOWED_KEYS) {
+    if (k in patch) snakePatch[KEY_TO_SNAKE[k]] = patch[k];
   }
 
   list[idx] = {
     ...list[idx],
-    ...patch,
+    ...snakePatch,
     updated_at: isoNow(),
     updated_by: 0,
   };
-  return useResponseSuccess(list[idx]);
+  return useResponseSuccess(toCamelRow(list[idx]));
 });

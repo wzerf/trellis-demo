@@ -9,26 +9,39 @@ import {
   nextDictId,
   type DictData,
 } from "~/utils/mock-data";
+import { pickCamelKeys, toCamelRow } from "~/utils/dict-camel";
 import { useResponseError, useResponseSuccess } from "~/utils/response";
 
 export default defineEventHandler(async (event) => {
   ensureDictSeeds();
 
-  const body = (await readBody(event)) as {
+  // 接受 camelCase 字段；同时容忍 snake（迁移期容错）。
+  const raw = ((await readBody(event)) ?? {}) as Record<string, unknown>;
+  const body = pickCamelKeys<{
     typeId?: number | string;
     value?: string;
     label?: string;
     sort?: number;
-    isDefault?: boolean;
+    isDefault?: boolean | number;
     platform?: string;
-    tag_type?: string;
-    is_enabled?: 0 | 1;
+    tagType?: string;
+    isEnabled?: 0 | 1 | boolean;
     remark?: string;
-  };
+  }>(raw, [
+    "typeId",
+    "value",
+    "label",
+    "sort",
+    "isDefault",
+    "platform",
+    "tagType",
+    "isEnabled",
+    "remark",
+  ]);
 
-  const typeId = Number(body?.typeId);
-  const value = (body?.value ?? "").trim();
-  const label = (body?.label ?? "").trim();
+  const typeId = Number(body.typeId);
+  const value = String(body.value ?? "").trim();
+  const label = String(body.label ?? "").trim();
 
   if (!Number.isFinite(typeId) || typeId <= 0) {
     setResponseStatus(event, 400);
@@ -57,7 +70,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // platform 校验：未传则默认 general；传了则必须在枚举内
-  const rawPlatform = body?.platform;
+  const rawPlatform = body.platform;
   let platform: DictData["platform"] | null = null;
   if (isAllowedDictDataPlatform(rawPlatform)) {
     platform = rawPlatform;
@@ -69,8 +82,8 @@ export default defineEventHandler(async (event) => {
     return useResponseError("BadRequest", `platform must be one of general|react-admin|vue-admin`);
   }
 
-  // tag_type 校验：未传则默认 default；传了则必须在枚举内
-  const rawTagType = body?.tag_type;
+  // tagType 校验：未传则默认 default；传了则必须在枚举内
+  const rawTagType = body.tagType;
   let tagType: DictData["tag_type"] | null = null;
   if (isAllowedTagType(rawTagType)) {
     tagType = rawTagType;
@@ -81,7 +94,7 @@ export default defineEventHandler(async (event) => {
     setResponseStatus(event, 400);
     return useResponseError(
       "BadRequest",
-      `tag_type must be one of ${[
+      `tagType must be one of ${[
         "default",
         "primary",
         "success",
@@ -103,6 +116,17 @@ export default defineEventHandler(async (event) => {
     );
   }
 
+  // isEnabled 归一为 0|1
+  let isEnabled: 0 | 1 = 1;
+  if (body.isEnabled !== undefined) {
+    const n = Number(body.isEnabled);
+    if (n !== 0 && n !== 1) {
+      setResponseStatus(event, 400);
+      return useResponseError("BadRequest", "isEnabled must be 0 or 1");
+    }
+    isEnabled = n as 0 | 1;
+  }
+
   const list = getMockDictDataList();
   const conflict = list.find(
     (x) => x.deleted_at === 0 && x.type_id === typeId && x.value === value,
@@ -118,18 +142,18 @@ export default defineEventHandler(async (event) => {
     type_id: typeId,
     value,
     label,
-    sort: Number(body?.sort ?? 0),
-    is_default: (body?.isDefault ? 1 : 0) as 0 | 1,
+    sort: Number(body.sort ?? 0),
+    is_default: (body.isDefault ? 1 : 0) as 0 | 1,
     platform,
     tag_type: tagType,
-    is_enabled: (body?.is_enabled ?? 1) as 0 | 1,
+    is_enabled: isEnabled,
     deleted_at: 0,
-    remark: body?.remark ?? "",
+    remark: body.remark ?? "",
     created_at: now,
     updated_at: now,
     created_by: 0,
     updated_by: 0,
   };
   list.unshift(newRow);
-  return useResponseSuccess(newRow);
+  return useResponseSuccess(toCamelRow(newRow));
 });

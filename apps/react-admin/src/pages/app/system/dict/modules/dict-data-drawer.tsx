@@ -48,11 +48,11 @@ interface FormValues {
   sort?: number;
   isDefault?: boolean;
   platform?: string;
-  /** 是否开启预设样式（默认开；编辑回显由 row.tag_type 决定） */
+  /** 是否开启预设样式（默认开；编辑回显由 row.tagType 决定） */
   usePresetStyle?: boolean;
   /** 预设样式标识；关闭时强制 'default' */
   tagType?: string;
-  is_enabled?: boolean;
+  isEnabled?: boolean;
   remark?: string;
 }
 
@@ -109,8 +109,8 @@ const DictDataDrawer = ({
   const submitting = createMut.isPending || updateMut.isPending;
 
   // 根据当前模式（编辑/新建）构造 form values。
-  // - 编辑：用 row 各字段回显，注意 is_default/is_enabled 是 0/1，转成 boolean 给 Switch；
-  //   hasPreset 同时校验 row.tag_type ∈ TAG_TYPE_SET（16 项白名单），legacy 颜色预设
+  // - 编辑：用 row 各字段回显，注意 isDefault/isEnabled 是 0/1，转成 boolean 给 Switch；
+  //   hasPreset 同时校验 row.tagType ∈ TAG_TYPE_SET（16 项白名单），legacy 颜色预设
   //   （如历史数据可能出现的非法值）一律视为「关闭预设样式」
   // - 新建：用 defaultTypeId 回显所属类型，platform 默认当前前端平台，其他字段给个合理的初始值
   const buildFormValues = (
@@ -119,19 +119,19 @@ const DictDataDrawer = ({
   ): FormValues => {
     if (source) {
       const hasPreset =
-        !!source.tag_type &&
-        source.tag_type !== 'default' &&
-        TAG_TYPE_SET.has(source.tag_type);
+        !!source.tagType &&
+        source.tagType !== 'default' &&
+        TAG_TYPE_SET.has(source.tagType);
       return {
-        typeId: source.type_id,
+        typeId: source.typeId,
         value: source.value,
         label: source.label,
         sort: source.sort,
-        isDefault: source.is_default === 1,
+        isDefault: source.isDefault === 1,
         platform: source.platform,
         usePresetStyle: hasPreset,
-        tagType: hasPreset ? source.tag_type : 'primary',
-        is_enabled: source.is_enabled === 1,
+        tagType: hasPreset ? source.tagType : 'primary',
+        isEnabled: source.isEnabled === 1,
         remark: source.remark,
       };
     }
@@ -144,7 +144,7 @@ const DictDataDrawer = ({
       platform: getCurrentPlatform(),
       usePresetStyle: true,
       tagType: 'primary',
-      is_enabled: true,
+      isEnabled: true,
       remark: '',
     };
   };
@@ -196,10 +196,10 @@ const DictDataDrawer = ({
         value: values.value,
         label: values.label,
         sort: values.sort ?? 0,
-        is_default: values.isDefault ? 1 : 0,
+        isDefault: values.isDefault ? 1 : 0,
         platform: values.platform ?? getCurrentPlatform(),
-        tag_type: finalTagType,
-        is_enabled: values.is_enabled ? 1 : 0,
+        tagType: finalTagType,
+        isEnabled: values.isEnabled ? 1 : 0,
         remark: values.remark ?? '',
       });
     } else {
@@ -210,8 +210,8 @@ const DictDataDrawer = ({
         sort: values.sort ?? 0,
         isDefault: !!values.isDefault,
         platform: values.platform ?? getCurrentPlatform(),
-        tag_type: finalTagType,
-        is_enabled: values.is_enabled ? 1 : 0,
+        tagType: finalTagType,
+        isEnabled: values.isEnabled ? 1 : 0,
         remark: values.remark ?? '',
       };
       createMut.mutate(body);
@@ -391,7 +391,7 @@ const DictDataDrawer = ({
             <Col span={12}>
               <Form.Item
                 label="启用"
-                name="is_enabled"
+                name="isEnabled"
                 valuePropName="checked"
                 getValueFromEvent={(v) => !!v}
                 getValueProps={(v) => ({ checked: v !== false })}

@@ -110,32 +110,32 @@ export interface DictType {
   code: string;
   name: string;
   remark: string;
-  is_enabled: 0 | 1;
-  deleted_at: number;
-  created_at: string;
-  updated_at: string;
-  created_by: number;
-  updated_by: number;
+  isEnabled: 0 | 1;
+  deletedAt: number;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: number;
+  updatedBy: number;
 }
 
 export interface DictData {
   id: number;
-  type_id: number;
+  typeId: number;
   value: string;
   label: string;
   sort: number;
-  is_default: 0 | 1;
+  isDefault: 0 | 1;
   /** 归属平台：general / react-admin / vue-admin；与 schema v8 对齐 */
   platform: string;
   /** 预设样式标识：default / primary / success / warning 等；与 schema v9 对齐 */
-  tag_type: string;
-  is_enabled: 0 | 1;
-  deleted_at: number;
+  tagType: string;
+  isEnabled: 0 | 1;
+  deletedAt: number;
   remark: string;
-  created_at: string;
-  updated_at: string;
-  created_by: number;
-  updated_by: number;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: number;
+  updatedBy: number;
   /** 关联的字典类型编码（仅 list 接口返回） */
   typeCode?: string;
 }
@@ -168,7 +168,7 @@ export interface CreateDictTypeRequest {
   code: string;
   name: string;
   remark?: string;
-  is_enabled?: 0 | 1;
+  isEnabled?: 0 | 1;
 }
 
 export interface UpdateDictTypeRequest {
@@ -176,7 +176,7 @@ export interface UpdateDictTypeRequest {
   code?: string;
   name?: string;
   remark?: string;
-  is_enabled?: 0 | 1;
+  isEnabled?: 0 | 1;
 }
 
 export interface CreateDictDataRequest {
@@ -188,8 +188,8 @@ export interface CreateDictDataRequest {
   /** 归属平台；缺省 mock 层回退到 'general' */
   platform?: string;
   /** 预设样式标识；缺省 mock 层回退到 'default' */
-  tag_type?: string;
-  is_enabled?: 0 | 1;
+  tagType?: string;
+  isEnabled?: 0 | 1;
   remark?: string;
 }
 
@@ -198,9 +198,9 @@ export interface UpdateDictDataRequest {
   value?: string;
   label?: string;
   sort?: number;
-  is_default?: 0 | 1;
+  isDefault?: 0 | 1;
   platform?: string;
-  tag_type?: string;
-  is_enabled?: 0 | 1;
+  tagType?: string;
+  isEnabled?: 0 | 1;
   remark?: string;
 }

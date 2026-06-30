@@ -1,5 +1,6 @@
 import { defineEventHandler, getRouterParam, setResponseStatus } from "h3";
 import { ensureDictSeeds, getMockDictDataList } from "~/utils/mock-data";
+import { toCamelRow } from "~/utils/dict-camel";
 import { useResponseError, useResponseSuccess } from "~/utils/response";
 
 export default defineEventHandler(async (event) => {
@@ -19,5 +20,5 @@ export default defineEventHandler(async (event) => {
     return useResponseError("NotFound", `dict-data ${id} not found`);
   }
   list[idx] = { ...list[idx], deleted_at: Date.now() };
-  return useResponseSuccess(list[idx]);
+  return useResponseSuccess(toCamelRow(list[idx]));
 });

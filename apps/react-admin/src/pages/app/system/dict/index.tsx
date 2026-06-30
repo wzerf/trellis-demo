@@ -54,9 +54,9 @@ async function fetchDictTypeCodeEnum() {
 
 /* ---------- 字典驱动渲染工具 ---------- */
 // 一次 list 调用同时拉 sys_switch_status + sys_platform，客户端按 typeCode 拆 map。
-// 渲染「状态」「归属平台」两列时优先从 map 取 label / tag_type，未命中走兜底。
-// is_enabled 0/1 与 sys_switch_status.value enabled/disabled 字符串之间做映射。
-type DictDict = { label: string; tag_type: string };
+// 渲染「状态」「归属平台」两列时优先从 map 取 label / tagType，未命中走兜底。
+// isEnabled 0/1 与 sys_switch_status.value enabled/disabled 字符串之间做映射。
+type DictDict = { label: string; tagType: string };
 
 const SWITCH_STATUS_FALLBACK: Record<0 | 1, string> = {
   1: '启用',
@@ -73,7 +73,7 @@ function buildDictMaps(
   const switchStatusMap = new Map<string, DictDict>();
   const platformMap = new Map<string, DictDict>();
   for (const d of items ?? []) {
-    const entry: DictDict = { label: d.label, tag_type: d.tag_type };
+    const entry: DictDict = { label: d.label, tagType: d.tagType };
     if (d.typeCode === 'sys_switch_status') {
       switchStatusMap.set(d.value, entry);
     } else if (d.typeCode === 'sys_platform') {
@@ -112,13 +112,13 @@ function buildTypeColumns(
         switchStatusMap.get('disabled')?.label ?? SWITCH_STATUS_FALLBACK[0],
     },
   };
-  // 状态列 render：tag_type 缺失/默认时不传 color，纯文本。
-  const renderStatus = (_: unknown, r: { is_enabled: number }) => {
-    const key = isEnabledKey(r.is_enabled);
+  // 状态列 render：tagType 缺失/默认时不传 color，纯文本。
+  const renderStatus = (_: unknown, r: { isEnabled: number }) => {
+    const key = isEnabledKey(r.isEnabled);
     const hit = switchStatusMap.get(key);
-    const fallbackNum: 0 | 1 = r.is_enabled === 1 ? 1 : 0;
+    const fallbackNum: 0 | 1 = r.isEnabled === 1 ? 1 : 0;
     const label = hit?.label ?? SWITCH_STATUS_FALLBACK[fallbackNum];
-    const tagType = hit?.tag_type;
+    const tagType = hit?.tagType;
     return (
       <Tag color={tagType && tagType !== 'default' ? tagType : undefined}>
         {label}
@@ -156,7 +156,7 @@ function buildTypeColumns(
     },
     {
       title: '状态',
-      dataIndex: 'is_enabled',
+      dataIndex: 'isEnabled',
       width: 90,
       search: false,
       valueType: 'select',
@@ -165,7 +165,7 @@ function buildTypeColumns(
     },
     {
       title: '更新时间',
-      dataIndex: 'updated_at',
+      dataIndex: 'updatedAt',
       width: 170,
       valueType: 'dateTime',
       search: false,
@@ -205,12 +205,12 @@ function buildDataColumns(
         switchStatusMap.get('disabled')?.label ?? SWITCH_STATUS_FALLBACK[0],
     },
   };
-  const renderStatus = (_: unknown, r: { is_enabled: number }) => {
-    const key = isEnabledKey(r.is_enabled);
+  const renderStatus = (_: unknown, r: { isEnabled: number }) => {
+    const key = isEnabledKey(r.isEnabled);
     const hit = switchStatusMap.get(key);
-    const fallbackNum: 0 | 1 = r.is_enabled === 1 ? 1 : 0;
+    const fallbackNum: 0 | 1 = r.isEnabled === 1 ? 1 : 0;
     const label = hit?.label ?? SWITCH_STATUS_FALLBACK[fallbackNum];
-    const tagType = hit?.tag_type;
+    const tagType = hit?.tagType;
     return (
       <Tag color={tagType && tagType !== 'default' ? tagType : undefined}>
         {label}
@@ -239,7 +239,7 @@ function buildDataColumns(
     }
     const hit = platformMap.get(r.platform);
     const label = hit?.label ?? r.platform;
-    const tagType = hit?.tag_type;
+    const tagType = hit?.tagType;
     return (
       <Tag color={tagType && tagType !== 'default' ? tagType : undefined}>
         {label}
@@ -328,11 +328,11 @@ function buildDataColumns(
     { title: '排序', dataIndex: 'sort', width: 80, search: false },
     {
       title: '默认',
-      dataIndex: 'is_default',
+      dataIndex: 'isDefault',
       width: 80,
       search: false,
       render: (_, r) =>
-        r.is_default === 1 ? (
+        r.isDefault === 1 ? (
           <span style={{ color: '#1677ff' }}>默认</span>
         ) : (
           <span style={{ color: '#999' }}>-</span>
@@ -340,7 +340,7 @@ function buildDataColumns(
     },
     {
       title: '状态',
-      dataIndex: 'is_enabled',
+      dataIndex: 'isEnabled',
       width: 90,
       search: false,
       valueType: 'select',
@@ -549,7 +549,7 @@ const DictPage = () => {
       pageSize?: number;
       code?: string | string[];
       name?: string;
-      is_enabled?: number | '';
+      isEnabled?: number | '';
     },
   ) {
     const {
@@ -557,14 +557,14 @@ const DictPage = () => {
       pageSize = 10,
       code,
       name,
-      is_enabled,
+      isEnabled,
     } = params;
     const res = await listDictTypeApi({
       page: current,
       pageSize,
       code: code || undefined,
       name: name || undefined,
-      status: statusOrUndefined(is_enabled),
+      status: statusOrUndefined(isEnabled),
     });
 
     return { data: res.items, total: res.total, success: true };
@@ -575,7 +575,7 @@ const DictPage = () => {
       current?: number;
       pageSize?: number;
       value?: string;
-      is_enabled?: number | '';
+      isEnabled?: number | '';
       platform?: string;
       includeGeneral?: boolean;
     },
@@ -584,7 +584,7 @@ const DictPage = () => {
       current = 1,
       pageSize = 20,
       value,
-      is_enabled,
+      isEnabled,
       platform,
       includeGeneral,
     } = params;
@@ -597,7 +597,7 @@ const DictPage = () => {
       pageSize,
       typeCode: entryTypeCodeRef.current,
       value: value || undefined,
-      status: statusOrUndefined(is_enabled),
+      status: statusOrUndefined(isEnabled),
       platform: platform || undefined,
       includeGeneral:
         Boolean(platform) &&

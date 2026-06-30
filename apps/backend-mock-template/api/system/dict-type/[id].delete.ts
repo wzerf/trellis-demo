@@ -1,5 +1,6 @@
 import { defineEventHandler, getRouterParam, setResponseStatus } from "h3";
 import { ensureDictSeeds, getMockDictDataList, getMockDictTypeList } from "~/utils/mock-data";
+import { toCamelRow } from "~/utils/dict-camel";
 import { useResponseError, useResponseSuccess } from "~/utils/response";
 
 export default defineEventHandler(async (event) => {
@@ -26,7 +27,7 @@ export default defineEventHandler(async (event) => {
     return useResponseError("BadRequest", "请先清空字典项");
   }
 
-  // 软删：标记 deleted_at，保留行便于将来恢复
+  // 软删：标记 deletedAt，保留行便于将来恢复
   types[idx] = { ...types[idx], deleted_at: Date.now() };
-  return useResponseSuccess(types[idx]);
+  return useResponseSuccess(toCamelRow(types[idx]));
 });

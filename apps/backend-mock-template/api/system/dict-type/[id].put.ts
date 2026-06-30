@@ -1,8 +1,16 @@
 import { defineEventHandler, getRouterParam, readBody, setResponseStatus } from "h3";
 import { ensureDictSeeds, getMockDictTypeList, isoNow } from "~/utils/mock-data";
+import { pickCamelKeys, toCamelRow } from "~/utils/dict-camel";
 import { useResponseError, useResponseSuccess } from "~/utils/response";
 
-const ALLOWED_KEYS = ["code", "name", "remark", "is_enabled"] as const;
+const ALLOWED_KEYS = ["code", "name", "remark", "isEnabled"] as const;
+
+const KEY_TO_SNAKE: Record<string, string> = {
+  code: "code",
+  name: "name",
+  remark: "remark",
+  isEnabled: "is_enabled",
+};
 
 export default defineEventHandler(async (event) => {
   ensureDictSeeds();
@@ -14,7 +22,8 @@ export default defineEventHandler(async (event) => {
     return useResponseError("BadRequest", "id must be a number");
   }
 
-  const raw = (await readBody(event)) as Record<string, unknown>;
+  // 接受 camelCase 字段；同时容忍 snake（迁移期容错）。
+  const raw = ((await readBody(event)) ?? {}) as Record<string, unknown>;
   const list = getMockDictTypeList();
   const idx = list.findIndex((x) => x.id === id && x.deleted_at === 0);
   if (idx < 0) {
@@ -22,10 +31,8 @@ export default defineEventHandler(async (event) => {
     return useResponseError("NotFound", `dict-type ${id} not found`);
   }
 
-  const patch: Record<string, unknown> = {};
-  for (const key of ALLOWED_KEYS) {
-    if (key in raw) patch[key] = raw[key];
-  }
+  const patch = pickCamelKeys<Record<string, unknown>>(raw, ALLOWED_KEYS);
+
   // name 校验
   if ("name" in patch) {
     const rawName = patch.name;
@@ -45,14 +52,14 @@ export default defineEventHandler(async (event) => {
     }
     patch.name = name;
   }
-  // is_enabled 校验
-  if ("is_enabled" in patch) {
-    const v = Number(patch.is_enabled);
+  // isEnabled 校验
+  if ("isEnabled" in patch) {
+    const v = Number(patch.isEnabled);
     if (v !== 0 && v !== 1) {
       setResponseStatus(event, 400);
-      return useResponseError("BadRequest", "is_enabled must be 0 or 1");
+      return useResponseError("BadRequest", "isEnabled must be 0 or 1");
     }
-    patch.is_enabled = v as 0 | 1;
+    patch.isEnabled = v as 0 | 1;
   }
 
   // code 唯一性校验
@@ -65,11 +72,17 @@ export default defineEventHandler(async (event) => {
     }
   }
 
+  // 写入仍用 snake；按 ALLOWED_KEYS 映射回 snake key
+  const snakePatch: Record<string, unknown> = {};
+  for (const k of ALLOWED_KEYS) {
+    if (k in patch) snakePatch[KEY_TO_SNAKE[k]] = patch[k];
+  }
+
   list[idx] = {
     ...list[idx],
-    ...patch,
+    ...snakePatch,
     updated_at: isoNow(),
     updated_by: 0,
   };
-  return useResponseSuccess(list[idx]);
+  return useResponseSuccess(toCamelRow(list[idx]));
 });

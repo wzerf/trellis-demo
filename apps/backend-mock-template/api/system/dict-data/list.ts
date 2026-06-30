@@ -5,6 +5,7 @@ import {
   getMockDictTypeList,
   type DictData,
 } from "~/utils/mock-data";
+import { toCamelRow } from "~/utils/dict-camel";
 import { usePageResponseSuccess } from "~/utils/response";
 
 export default defineEventHandler(async (event) => {
@@ -72,7 +73,7 @@ export default defineEventHandler(async (event) => {
 
   // join typeCode（仅 list 返回）
   const typeMap = new Map(getMockDictTypeList().map((t) => [t.id, t.code]));
-  const items = filtered.map((x) => ({ ...x, typeCode: typeMap.get(x.type_id) ?? "" }));
+  const items = filtered.map((x) => toCamelRow({ ...x, typeCode: typeMap.get(x.type_id) ?? "" }));
 
   return usePageResponseSuccess(page as string, pageSize as string, items);
 });
